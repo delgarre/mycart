@@ -23,6 +23,7 @@
         <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
+       
         <%@include file="components/navbar.jsp" %>
         <div class="container-fluid">
         <div class="row mt-3 mx-2">
@@ -74,7 +75,7 @@
             
         <div class="col-md-8">
             <div class="table-responsive-sm">
-                <table class="table table-bordered " >
+                <table class="table table-bordered " id="myTable">
                     <tr>
                 <th>Photo</th>
                 <th>Id</th>
@@ -96,6 +97,7 @@
                 <td><%= p.getpPrice()%></td>
                 <td>
                     <button class="btn custom-bg text-white" onClick="add_to_cart(<%= p.getpId() %>, '<%= p.getpName() %>',<%= p.getpPrice() %> )">Add to Cart</button>
+                    <input type="text">
                 </td>
             </tr>
             <%

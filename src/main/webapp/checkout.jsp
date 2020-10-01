@@ -61,7 +61,7 @@
                                 </label>
                               </div>
                                 <div class="container mt-3 text-center">
-                                    <input type="submit" value="Submit" id="save_data">
+                                    <input type="submit" value="Submit" id="save_data" onclick="orderSubmit()">
                                     <button class="btn btn-outline-primary">Continue Shopping</button>
                                 </div>
                             </form>
