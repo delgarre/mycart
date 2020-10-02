@@ -97,7 +97,7 @@
                 <td><%= p.getpPrice()%></td>
                 <td>
                     <button class="btn custom-bg text-white" onClick="add_to_cart(<%= p.getpId() %>, '<%= p.getpName() %>',<%= p.getpPrice() %> )">Add to Cart</button>
-                    <input type="text">
+                    
                 </td>
             </tr>
             <%

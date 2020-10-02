@@ -26,7 +26,7 @@
                         <div class="card-body">
                             
                             <h3 class="text-center">Your Selected Items:</h3>
-                            <div class="cart-body">
+                            <div class="cart-body" id="cart-body">
                                 
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                         <div class="card-body">
                             
                             <h3 class="text-center">Order Details:</h3>
-                            <form method="post">
+                            
                               <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
                                 <input value="<%= user.getUserEmail()%>" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -64,7 +64,7 @@
                                     <input type="submit" value="Submit" id="save_data" onclick="orderSubmit()">
                                     <button class="btn btn-outline-primary">Continue Shopping</button>
                                 </div>
-                            </form>
+                            
                             
                         </div>
                     </div>

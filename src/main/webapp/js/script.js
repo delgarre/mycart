@@ -149,11 +149,73 @@ function searchFunction(){
     }
   }
 }
-function orderSubmit(){
+function orderSubmit(UserName, UserEmail){
     
-    let cartString = localStorage.getItem("cart");
+    let cart = localStorage.getItem("cart-body");
+    let user = {name:UserName, email:UserEmail};
     
-    let cart = JSON.parse(cartString);
     
+    console.log(cart);
+    if(cart===null){
+     
+     let carts = [];
+     carts.push(cart, user);
+     localStorage.setItem("cart-body", JSON.stringify(carts));
+    }
+    
+    updateOrder();
+}
+//updateOrder
+function updateOrder()
+{
+    let cartsString = localStorage.getItem("carts");
+    let carts = JSON.parse(cartsString);
+    
+    if(carts === null || carts.length === 0)
+    {
+        $(".orders").html("<h3>No Pending Orders!<h3>");
+        $(".view-btn").attr('disabled',true);
+    }else
+    {
+        //there is something in cart to show
+        console.log(carts);
+        $(".orders").html(`( ${carts.length} )`);
+        let orderTable = `
+                    <table class='table'>
+                    <thead class='thead-light'>
+                        <tr>
+                        <th>Order Id </th>
+                        <th>User </th>
+                        <th>Email </th>
+                        <th>Action </th>
+                         
+                        </tr>
+        
+                    </thead>
+
+                    `;
+        
+                    let orderId = 0;
+                    carts.map((pending)=>{
+                        orderTable+=`
+                                <tr>
+                                    <td> ${Math.random() * 13/2}</td>
+                                    <td> ${pending.name}</td>
+                                    <td> ${pending.email}</td>
+                                    <td><button onclick='deletePending(${pending.orderId})' class='btn btn-danger btn-sm'>Remove</button></td>
+                                    <td><button onclick='viewOrder(${pending.orderId})' class='btn-primary btn-sm'>View</button></td> 
+                                </tr>
+                                `;
+            
+                                orderId += Math.random() * 13/2;
+                    });
+        
+                    orderTable = orderTable + `
+                    
+                    </table>`;
+                    $(".orders").html(orderTable);
+                    $(".view-btn").attr('disabled',false);
+                    
+    }
     
 }
