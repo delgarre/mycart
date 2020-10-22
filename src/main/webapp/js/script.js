@@ -151,7 +151,7 @@ function searchFunction(){
 }
 function orderSubmit(UserName, UserEmail){
     
-    let cart = localStorage.getItem("cart-body");
+    let cart = localStorage.getItem("cart");
     let user = {name:UserName, email:UserEmail};
     
     
@@ -160,7 +160,7 @@ function orderSubmit(UserName, UserEmail){
      
      let carts = [];
      carts.push(cart, user);
-     localStorage.setItem("cart-body", JSON.stringify(carts));
+     localStorage.setItem("cart", JSON.stringify(carts));
     }
     
     updateOrder();
@@ -219,3 +219,6 @@ function updateOrder()
     }
     
 }
+$(document).ready(function() {
+    updateOrder();
+});

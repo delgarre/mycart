@@ -64,7 +64,7 @@ public class ProductOperationServlet extends HttpServlet {
                 String pName = request.getParameter("pName");
                 String pDesc = request.getParameter("pDesc");
                 int pPrice = Integer.parseInt(request.getParameter("pPrice"));
-                int pDiscount = Integer.parseInt(request.getParameter("pDiscount"));
+                
                 int pQuantity = Integer.parseInt(request.getParameter("pQuantity"));
                 int catId = Integer.parseInt(request.getParameter("catId"));
                 Part part = request.getPart("pPhoto");
@@ -75,7 +75,7 @@ public class ProductOperationServlet extends HttpServlet {
                 p.setpName(pName);
                 p.setpDesc(pDesc);
                 p.setpPrice(pPrice);
-                p.setpDiscount(pDiscount);
+                
                 p.setpQuanity(pQuantity);
                 p.setpPhoto(part.getSubmittedFileName());
                 

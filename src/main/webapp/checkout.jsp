@@ -74,5 +74,28 @@
         
         <%@include file="components/common_modals.jsp" %> 
     </body>
-   
+    <script>
+        function orderSubmit(UserName, UserEmail){
+    
+    let cart = localStorage.getItem("cart");
+    let user = {name:UserName, email:UserEmail};
+    
+    
+    console.log(cart);
+    if(cart===null){
+     
+     let carts = [];
+     carts.push(cart, user);
+     localStorage.setItem("cart", JSON.stringify(carts));
+     console.log(carts);
+    }else
+    {
+        let pcarts = JSON.parse(carts);
+        localStorage.setItem("cart", JSON.stringify(pcarts));
+    }
+    
+    updateOrder();
+}
+
+    </script>
 </html>

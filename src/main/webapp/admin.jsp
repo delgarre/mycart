@@ -230,7 +230,7 @@
 
                     %>
                     <div class="form-group">
-                        <select name="catId" class="form-control" id="">
+                        <select name="catId" class="form-control" id="catId">
                             
                             <%
                                 for(Category c: list){
