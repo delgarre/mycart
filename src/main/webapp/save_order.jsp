@@ -1,21 +1,21 @@
 <%@page import="java.sql.*,java.util.*" %>
 
 <%
-String productName=request.getParameter("productName");
-String productPrice=request.getParameter("productPrice");
-String productQuantity=request.getParameter("productQuantity");
-String totalPrice=request.getParameter("totalPrice");
-int intPrice = Integer.parseInt(request.getParameter("productPrice"));
-int intQuantity = Integer.parseInt(request.getParameter("productQuantity"));
-int intTotalPrice = Integer.parseInt(request.getParameter("totalPrice"));
+String aPName=request.getParameter("aPName");
+//String aPPrice=request.getParameter("aPPrice");
+//String quantity=request.getParameter("quantity");
+int intaPPrice = Integer.parseInt(request.getParameter("aPPrice"));
+int intquantity = Integer.parseInt(request.getParameter("quantity"));
+
 try
 {
 
 Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mycart", "root", "antoine567");
 Statement st=conn.createStatement();
-int i=st.executeUpdate("insert into orders(productName,productPrice,productQuantity,totalPrice)values('"+productName+"','"+intPrice+"','"+intQuantity+"','"+intTotalPrice+"')");
-out.println("Data is successfully inserted!");
+int i=st.executeUpdate("insert into approveorder(aPName,aPPrice,quantity)values('"+aPName+"','"+intaPPrice+"','"+intquantity+"')");
+session.setAttribute("message", "User updated successfully!");
+response.sendRedirect("test_page.jsp");
 }
 catch(Exception e)
 {
