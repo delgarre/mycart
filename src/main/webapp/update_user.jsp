@@ -2,9 +2,9 @@
 <%@ page import="java.sql.*" %>
 <%@include file="components/message.jsp" %>
 <%! String driverName = "com.mysql.jdbc.Driver";%>
-<%!String url = "jdbc:mysql://localhost:3306/mycart";%>
-<%!String user = "root";%>
-<%!String psw = "antoine567";%>
+<%!String url = "jdbc:mysql://172.20.29.70:3306/mycart";%>
+<%!String user = "admin";%>
+<%!String psw = "ordering";%>
 
 <%
 String id = request.getParameter("user_id");
@@ -21,7 +21,7 @@ try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql="Update user set user_id=?,user_name=?,user_type=?,user_password=?,user_email=? where user_id="+id;
+String sql="Update User set user_id=?,user_name=?,user_type=?,user_password=?,user_email=? where user_id="+id;
 ps = con.prepareStatement(sql);
 ps.setString(1,id);
 ps.setString(2, user_name);

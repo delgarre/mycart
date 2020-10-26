@@ -8,11 +8,11 @@
         
     Class.forName("com.mysql.jdbc.Driver");
     
-    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mycart", "root", "antoine567");
+    Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "root", "antoine567");
     
     Statement st = conn.createStatement();
     
-    int i = st.executeUpdate("DELETE FROM user WHERE user_id="+id);
+    int i = st.executeUpdate("DELETE FROM User WHERE user_id="+id);
     session.setAttribute("message", "User deleted successfully!");
     response.sendRedirect("users.jsp");
     }
