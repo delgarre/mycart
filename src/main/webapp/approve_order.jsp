@@ -15,10 +15,10 @@
 <%
 String id = request.getParameter("id");
 String driver = "com.mysql.jdbc.Driver";
-String connectionUrl = "jdbc:mysql://localhost:3306/";
+String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
 String database = "mycart";
-String userid = "root";
-String password = "antoine567";
+String userid = "admin";
+String password = "ordering";
 try {
 Class.forName(driver);
 } catch (ClassNotFoundException e) {
@@ -32,7 +32,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from product where pId="+id;
+String sql ="select * from Product where pId = "+id;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
