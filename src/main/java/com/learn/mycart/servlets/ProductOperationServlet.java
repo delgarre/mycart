@@ -4,7 +4,9 @@ package com.learn.mycart.servlets;
 import com.learn.mycart.entities.Category;
 import com.learn.mycart.dao.CategoryDao;
 import com.learn.mycart.dao.ProductDao;
+import com.learn.mycart.dao.VendorDao;
 import com.learn.mycart.entities.Product;
+import com.learn.mycart.entities.Vendor;
 import com.learn.mycart.helper.FactoryProvider;
 import java.io.File;
 import java.io.FileInputStream;
@@ -66,7 +68,9 @@ public class ProductOperationServlet extends HttpServlet {
                 int pPrice = Integer.parseInt(request.getParameter("pPrice"));
                 
                 int pQuantity = Integer.parseInt(request.getParameter("pQuantity"));
+                String pMeasure = request.getParameter("pMeasure");
                 int catId = Integer.parseInt(request.getParameter("catId"));
+                int vendorId = Integer.parseInt(request.getParameter("vendorId"));
                 Part part = request.getPart("pPhoto");
                 
                 
@@ -75,7 +79,7 @@ public class ProductOperationServlet extends HttpServlet {
                 p.setpName(pName);
                 p.setpDesc(pDesc);
                 p.setpPrice(pPrice);
-                
+                p.setUnitOfMeasure(pMeasure);
                 p.setpQuanity(pQuantity);
                 p.setpPhoto(part.getSubmittedFileName());
                 
@@ -84,6 +88,11 @@ public class ProductOperationServlet extends HttpServlet {
                 CategoryDao cDao = new CategoryDao(FactoryProvider.getFactory());
                 Category category= cDao.getCategoryById(catId);
                 p.setCategory(category);
+                
+                //get vendor
+                VendorDao vDao = new VendorDao(FactoryProvider.getFactory());
+                Vendor vendor = vDao.getVendorById(vendorId);
+                p.setVendor(vendor);
                 
                 //product save...
                 ProductDao pDao =  new ProductDao(FactoryProvider.getFactory());

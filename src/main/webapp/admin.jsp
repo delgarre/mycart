@@ -1,4 +1,6 @@
 <%@page import="com.learn.mycart.entities.Category"%>
+<%@page import="com.learn.mycart.entities.Vendor"%>
+<%@page import="com.learn.mycart.dao.VendorDao"%>
 <%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.dao.CategoryDao"%>
@@ -222,6 +224,11 @@
                         <h6>Enter Quantity</h6>
                         <input type="number" class="form-control" placeholder="Enter product quantity" name="pQuantity" required/>
                     </div>
+                    <!--product uOfMeasure-->
+                    <div>
+                        <h6>Enter Unit of Measure</h6>
+                        <input type="text" class="form-control" placeholder="Enter product unit of measure" name="pMeasure" required/>
+                    </div>
                     <!--product category-->
                     <%
                         
@@ -242,6 +249,22 @@
                             %>
                         </select>
                     </div>
+                        <!--product vendor-->
+                        <%
+                            VendorDao vDao = new VendorDao(FactoryProvider.getFactory());
+                            List<Vendor> vList = vDao.getVendors();
+                        %>
+                        <div class="form-group">
+                            <select name="vendorId" class="form-control" id="vendorId">
+                                <%
+                                for(Vendor v: vList){
+                                %>
+                                <option value="<%=v.getVendorId()%>"> <%= v.getVendorName()%></option>
+                                <%
+                                    }
+                                %>
+                            </select>
+                        </div>
                     <!--product file-->
                     <div class="form-group">
                         <label for="pPhoto">Select picture of product:</label>
