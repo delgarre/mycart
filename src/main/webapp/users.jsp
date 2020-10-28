@@ -1,5 +1,5 @@
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
-<%@page import="com.learn.mycart.entities.User"%>
+
 <%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.dao.UserDao"%>
 <%@page import="com.learn.mycart.entities.User"%>
