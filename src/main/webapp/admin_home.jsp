@@ -13,6 +13,15 @@
         response.sendRedirect("index.jsp");
         return;
     }
+    else
+    {
+        if(user.getUserType().equals("normal"))
+        {
+            session.setAttribute("message", "Admin level required!");
+            response.sendRedirect("index.jsp");
+            return;
+        }
+    }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,7 +33,7 @@
     </head>
     <body>
        
-        <%@include file="components/user_navbar.jsp" %>
+        <%@include file="components/navbar.jsp" %>
         <div class="container-fluid">
         <div class="row mt-3 mx-2">
             <%
@@ -53,7 +62,7 @@
                 
                 <div class="list-group mt-4">
                     
-                     <a href="home.jsp?category=all" class="list-group-item list-group-item-action active">
+                     <a href="admin_home.jsp?category=all" class="list-group-item list-group-item-action active">
                      All products
                      </a>
                 
@@ -61,7 +70,7 @@
                 <%
                 for(Category c: clist){
                 %>   
-                    <a href="home.jsp?category=<%= c.getCategoryId()%>" class="list-group-item list-group-item-action"><%= c.getCategoryTitle()%></a>
+                    <a href="admin_home.jsp?category=<%= c.getCategoryId()%>" class="list-group-item list-group-item-action"><%= c.getCategoryTitle()%></a>
                     
                 <%  }
                 

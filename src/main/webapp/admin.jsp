@@ -96,7 +96,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/product.png" alt="user_icon">
                             </div>
                             <a href="companies.jsp" class="card-link">Click me!</a>
-                            <h3 class="text-muted">Companies</h3>
+                            <h3 class="text-muted">Locations</h3>
                         </div>
                     </div>
                 </div>

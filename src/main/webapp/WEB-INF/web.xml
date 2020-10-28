@@ -20,6 +20,7 @@
         <servlet-name>OrderServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.OrderServlet</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -36,6 +37,7 @@
         <servlet-name>OrderServlet</servlet-name>
         <url-pattern>/OrderServlet</url-pattern>
     </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

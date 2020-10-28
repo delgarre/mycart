@@ -23,7 +23,7 @@
         <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
-        <%@include file="components/navbar.jsp" %>
+        <%@include file="components/user_navbar.jsp" %>
         <div class="col-md-8">
             <div class="table-responsive-sm mt-3">
                
