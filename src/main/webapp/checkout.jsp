@@ -49,14 +49,14 @@
                                 <input value="<%= user.getUserName()%>" type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name">
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Florida" id="defaultCheck1" name="company">
-                                <label class="form-check-label" for="defaultCheck1">
+                                <input class="form-check-input" type="checkbox" value="Florida" id="location" name="location">
+                                <label class="form-check-label" for="location">
                                   Florida
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Georgia" name="company" id="defaultCheck2">
-                                <label class="form-check-label" for="defaultCheck2">
+                                <input class="form-check-input" type="checkbox" value="Georgia" name="location" id="location">
+                                <label class="form-check-label" for="location">
                                   Georgia
                                 </label>
                               </div>

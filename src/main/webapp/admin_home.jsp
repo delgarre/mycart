@@ -105,8 +105,9 @@
                 <td><%= p.getpName()%></td>
                 <td><%= p.getpPrice()%></td>
                 <td>
-                    <button class="btn custom-bg text-white" onClick="add_to_cart(<%= p.getpId() %>, '<%= p.getpName() %>',<%= p.getpPrice() %> )">Add to Cart</button>
-                    
+                    <a href="approve_order.jsp?id=<%= p.getpId()%>">
+                    <button class="btn btn-outline-success">Add Quantity</button>
+                    </a>
                 </td>
             </tr>
             <%

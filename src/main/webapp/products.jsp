@@ -1,4 +1,9 @@
 <%@page import="com.learn.mycart.entities.User"%>
+<%@page import="com.learn.mycart.entities.Product"%>
+<%@page import="com.learn.mycart.helper.FactoryProvider"%>
+<%@page import="java.util.List"%>
+<%@page import="com.learn.mycart.dao.ProductDao"%>
+
 <%
     User user = (User)session.getAttribute("current-user");
     if(user==null){
@@ -14,8 +19,53 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Items</title>
+        <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%@include file="components/navbar.jsp" %>
+        <div class="col-md-8">
+            <div div class="table-responsive-sm mt-3">
+                <table class="table table-bordered ">
+                    <tr>
+                        <th>Photo</th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Unit of Measure</th>
+                        
+                    </tr>
+                    <%
+                    ProductDao pDao = new ProductDao(FactoryProvider.getFactory());
+                    List<Product> list = pDao.getAllProducts();
+                    %>
+                    
+                    <%
+                    for(Product p: list){
+                    %>
+                    
+                    <tr>
+                        <td><%=p.getpPhoto() %></td>
+                        <td><%= p.getpId() %></td>
+                        <td><%=p.getpName() %></td>
+                        <td><%=p.getpPrice() %></td>
+                        <td><%=p.getpQuanity()%></td>
+                        <td><%=p.getUnitOfMeasure() %></td>
+                        <td>
+                            <a href="update_product.jsp?id=<%= p.getpId()%>">
+                                <button type="button" class="update">Update</button>
+                            </a>
+                            <a href="delete_product.jsp?=<%=p.getpId() %>">
+                                <button type="button" class="delete">Delete</button>
+                            </a>
+                        </td>
+                        
+                    </tr>
+                    <%
+                    }
+                    %>
+                </table>
+            </div>
+        </div>
     </body>
 </html>
