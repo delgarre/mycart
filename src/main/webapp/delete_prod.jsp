@@ -1,7 +1,5 @@
-
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*,java.util.*" %>
+
 <%
     String id = request.getParameter("id");
     
@@ -13,9 +11,9 @@
     
     Statement st = conn.createStatement();
     
-    int i = st.executeUpdate("DELETE FROM Company WHERE companyId="+id);
-    session.setAttribute("message", "Company deleted successfully!");
-    response.sendRedirect("companies.jsp");
+    int i = st.executeUpdate("DELETE FROM Product WHERE pId="+id);
+    session.setAttribute("message", "User deleted successfully!");
+    response.sendRedirect("products.jsp");
     }
     catch(Exception e)
     {

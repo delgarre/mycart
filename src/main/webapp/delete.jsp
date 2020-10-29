@@ -8,7 +8,7 @@
         
     Class.forName("com.mysql.jdbc.Driver");
     
-    Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "root", "antoine567");
+    Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
     
     Statement st = conn.createStatement();
     

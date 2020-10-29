@@ -58,9 +58,6 @@
                             <td><%=a.getQuantity()%></td>
                             <td>
                                 <a>
-                                    <button type="button">Approve</button>
-                                </a>
-                                <a>
                                     <button type="button">Update</button>
                                 </a>
                                 <a>

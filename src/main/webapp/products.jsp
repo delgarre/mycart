@@ -52,7 +52,7 @@
                         <td><%=p.getpQuanity()%></td>
                         <td><%=p.getUnitOfMeasure() %></td>
                         <td>
-                            <a href="update_product.jsp?id=<%= p.getpId()%>">
+                            <a href="update_product_page.jsp?id=<%= p.getpId()%>">
                                 <button type="button" class="update">Update</button>
                             </a>
                             <a href="delete_product.jsp?=<%=p.getpId() %>">

@@ -28,7 +28,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>Locatio</th>
+                        <th>Location</th>
                         <th>Actions</th>
                     </tr>
                     
@@ -50,7 +50,7 @@
                     <a href="delete_comp.jsp?id=<%= cp.getCompanyId()%>">
                         <button type="button" class="delete">Delete</button>
                     </a>
-                    <a href="update_comp.jsp?id=<%= cp.getCompanyId()%>">
+                    <a href="update_comp_page.jsp?id=<%= cp.getCompanyId()%>">
                         <button type="button" class="update">Update</button>
                     </a> 
                 </td>
