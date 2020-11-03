@@ -24,8 +24,7 @@ public class Company {
     @OneToMany(mappedBy = "companies")
     private List<User> user = new ArrayList<>();
     
-    @ManyToMany(mappedBy = "companies")
-    private Set<Orderhistory> orderHistory;
+    
 
     public Company() {
     }

@@ -10,15 +10,12 @@
         <property name ="dialect">org.hibernate.dialect.MySQL57Dialect</property>
         <property name ="hbm2ddl.auto">update</property>
         <property name ="show_sql">true</property>
-        <property name="hibernate.jdbc.batch_size">20</property>
-        <property name="hibernate.order_inserts">true</property>
         <mapping class = "com.learn.mycart.entities.User"/>
         <mapping class = "com.learn.mycart.entities.Category"/>
         <mapping class = "com.learn.mycart.entities.Product"/>
         <mapping class = "com.learn.mycart.entities.Company"/>
         <mapping class = "com.learn.mycart.entities.Vendor"/>
-        <mapping class = "com.learn.mycart.entities.Orderhistory"/>
-        <mapping class = "com.learn.mycart.entities.Order"/>
+        <mapping class = "com.learn.mycart.entities.OrderHistory"/>
         <mapping class = "com.learn.mycart.entities.ApproveOrder"/>
         
     </session-factory>

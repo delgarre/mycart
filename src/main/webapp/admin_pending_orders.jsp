@@ -57,8 +57,8 @@
                             <td><%=a.getaPPrice()%></td>
                             <td><%=a.getQuantity()%></td>
                             <td>
-                                <a>
-                                    <button type="button">Update</button>
+                                <a href="submit_approval.jsp?id=<%= a.getId()%>">
+                                    <button type="button">Approve</button>
                                 </a>
                                 <a>
                                     <button type="button">Delete</button>
