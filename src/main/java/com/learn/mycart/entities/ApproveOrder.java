@@ -15,18 +15,21 @@ public class ApproveOrder {
     
     private String aPName;
     
-    private int aPPrice;
+    private double aPPrice;
     
     private int quantity;
+    
+    private String name;
 
     public ApproveOrder() {
     }
 
-    public ApproveOrder(int id, String aPName, int aPPrice, int quantity) {
+    public ApproveOrder(int id, String aPName, double aPPrice, int quantity, String name) {
         this.id = id;
         this.aPName = aPName;
         this.aPPrice = aPPrice;
         this.quantity = quantity;
+        this.name = name;
     }
 
     public int getId() {
@@ -45,11 +48,11 @@ public class ApproveOrder {
         this.aPName = aPName;
     }
 
-    public int getaPPrice() {
+    public double getaPPrice() {
         return aPPrice;
     }
 
-    public void setaPPrice(int aPPrice) {
+    public void setaPPrice(double aPPrice) {
         this.aPPrice = aPPrice;
     }
 
@@ -59,6 +62,14 @@ public class ApproveOrder {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

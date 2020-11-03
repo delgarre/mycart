@@ -58,6 +58,9 @@ Name:<br>
 Price:<br>
 <input type="text" name="aPPrice" value="<%=resultSet.getString("pPrice") %>">
 <br>
+Member Name:<br>
+<input value="<%= user.getUserName()%>" type="text" name="name">
+<br>
 Quantity:<br>
 <input type="text" name="quantity" placeholder="Enter Amount">
 <br><br>

@@ -217,7 +217,7 @@
                     <!--product price-->
                     <div class="form-group">
                         <h6>Enter Item Price</h6>
-                        <input type="number" class="form-control" placeholder="Enter price of product" name="pPrice" required/>
+                        <input type="number" step="any" class="form-control" placeholder="Enter price of product" name="pPrice" required/>
                     </div>
                     <!--product quantity-->
                     <div class="form-group">

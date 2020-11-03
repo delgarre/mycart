@@ -18,7 +18,7 @@ public class Product {
     @Column(length = 3000)
     private String pDesc;
     private String pPhoto;
-    private int pPrice;
+    private double pPrice;
     private int pDiscount;
     private int pQuanity;
     private String unitOfMeasure;
@@ -30,7 +30,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String pName, String pDesc, String pPhoto, int pPrice, int pDiscount, int pQuanity, Category categoty, String unitOfMeasure, Vendor vendor) {
+    public Product(String pName, String pDesc, String pPhoto, double pPrice, int pDiscount, int pQuanity, Category categoty, String unitOfMeasure, Vendor vendor) {
         this.pName = pName;
         this.pDesc = pDesc;
         this.pPhoto = pPhoto;
@@ -74,11 +74,11 @@ public class Product {
         this.pPhoto = pPhoto;
     }
 
-    public int getpPrice() {
+    public double getpPrice() {
         return pPrice;
     }
 
-    public void setpPrice(int pPrice) {
+    public void setpPrice(double pPrice) {
         this.pPrice = pPrice;
     }
 
@@ -128,10 +128,6 @@ public class Product {
         return "Product{" + "pId=" + pId + ", pName=" + pName + ", pDesc=" + pDesc + ", pPhoto=" + pPhoto + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount + ", pQuanity=" + pQuanity + '}';
     }
     
-    //calculate price after discount
-    public int getPriceAfterApplyingDiscount(){
-        int d= (int)((this.getpDiscount()/100.0)*this.getpPrice());
-        return this.getpPrice()-d;
-    }
+    
     
 }

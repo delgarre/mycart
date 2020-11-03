@@ -65,7 +65,7 @@ public class ProductOperationServlet extends HttpServlet {
                 //work
                 String pName = request.getParameter("pName");
                 String pDesc = request.getParameter("pDesc");
-                int pPrice = Integer.parseInt(request.getParameter("pPrice"));
+                double pPrice = Double.parseDouble(request.getParameter("pPrice"));
                 
                 int pQuantity = Integer.parseInt(request.getParameter("pQuantity"));
                 String pMeasure = request.getParameter("pMeasure");
