@@ -22,6 +22,8 @@ public class Product {
     private int pDiscount;
     private int pQuanity;
     private String unitOfMeasure;
+    private String cpt;
+    private String ndc;
     @ManyToOne 
     private Vendor vendor;
     @ManyToOne
@@ -30,7 +32,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String pName, String pDesc, String pPhoto, double pPrice, int pDiscount, int pQuanity, Category categoty, String unitOfMeasure, Vendor vendor) {
+    public Product(String pName, String pDesc, String pPhoto, double pPrice, int pDiscount, int pQuanity, Category categoty, String unitOfMeasure, Vendor vendor, String cpt, String ndc) {
         this.pName = pName;
         this.pDesc = pDesc;
         this.pPhoto = pPhoto;
@@ -40,6 +42,8 @@ public class Product {
         this.category = category;
         this.vendor = vendor;
         this.unitOfMeasure = unitOfMeasure;
+        this.cpt = cpt;
+        this.ndc = ndc;
     }
 
     public int getpId() {
@@ -121,6 +125,23 @@ public class Product {
     public void setVendor(Vendor vendor) {
         this.vendor = vendor;
     }
+
+    public String getCpt() {
+        return cpt;
+    }
+
+    public void setCpt(String cpt) {
+        this.cpt = cpt;
+    }
+
+    public String getNdc() {
+        return ndc;
+    }
+
+    public void setNdc(String ndc) {
+        this.ndc = ndc;
+    }
+    
     
     
     @Override

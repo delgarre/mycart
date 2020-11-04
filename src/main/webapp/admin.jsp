@@ -237,6 +237,7 @@
 
                     %>
                     <div class="form-group">
+                        <h6>Select Category:</h6>
                         <select name="catId" class="form-control" id="catId">
                             
                             <%
@@ -255,6 +256,7 @@
                             List<Vendor> vList = vDao.getVendors();
                         %>
                         <div class="form-group">
+                            <h6>Select Vendor:</h6>
                             <select name="vendorId" class="form-control" id="vendorId">
                                 <%
                                 for(Vendor v: vList){
