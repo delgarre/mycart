@@ -214,6 +214,16 @@
                         <h6>Enter Description</h6>
                         <textarea style="height: 100px" class="form-control" placeholder="Enter product description" name="pDesc"></textarea>
                     </div>
+                    <!--product ndc-->
+                    <div class="form-group">
+                        <h6>Enter NDC</h6>
+                        <textarea style="height: 100px" class="form-control" placeholder="Enter product NDC #:" name="ndc"></textarea>
+                    </div>
+                    <!--product cpt-->
+                    <div class="form-group">
+                        <h6>Enter CPT</h6>
+                        <textarea style="height: 100px" class="form-control" placeholder="Enter product CPT #:" name="cpt"></textarea>
+                    </div>
                     <!--product price-->
                     <div class="form-group">
                         <h6>Enter Item Price</h6>

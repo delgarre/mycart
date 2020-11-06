@@ -2,8 +2,12 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.entities.User"%>
 <%@page import="com.learn.mycart.entities.Product"%>
+<%@page import="com.learn.mycart.dao.CompanyDao"%>
+<%@page import="com.learn.mycart.helper.FactoryProvider"%>
+<%@page import="com.learn.mycart.entities.Company"%>
 <%
     User user = (User)session.getAttribute("current-user");
     if(user==null){
@@ -63,6 +67,22 @@ Member Name:<br>
 <br>
 Quantity:<br>
 <input type="text" name="quantity" placeholder="Enter Amount">
+
+<%
+    CompanyDao cDao = new CompanyDao(FactoryProvider.getFactory());
+    List<Company> list = cDao.getCompanies();
+%>
+<br>
+Select Location:<br>
+<select name="comId">
+    <%
+        for(Company c: list){
+    %>
+    <option value="<%=c.getCompanyId()%>"> <%=c.getCompanyName()%></option>
+    <%
+        }
+    %>
+</select>
 <br><br>
 
 <input type="submit" value="submit">

@@ -71,7 +71,10 @@ public class ProductOperationServlet extends HttpServlet {
                 String pMeasure = request.getParameter("pMeasure");
                 int catId = Integer.parseInt(request.getParameter("catId"));
                 int vendorId = Integer.parseInt(request.getParameter("vendorId"));
+                //String cpt = request.getParameter("cpt");
+                //String ndc = request.getParameter("ndc");
                 Part part = request.getPart("pPhoto");
+                String fileName = part.getSubmittedFileName();
                 
                 
                 
@@ -81,6 +84,8 @@ public class ProductOperationServlet extends HttpServlet {
                 p.setpPrice(pPrice);
                 p.setUnitOfMeasure(pMeasure);
                 p.setpQuanity(pQuantity);
+                //p.setCpt(cpt);
+                //p.setNdc(ndc);
                 p.setpPhoto(part.getSubmittedFileName());
                 
                 
@@ -102,6 +107,7 @@ public class ProductOperationServlet extends HttpServlet {
                 //pic upload
                 //find out the path to upload photo
                 String path = request.getRealPath("img") +File.separator+ "products" + File.separator +part.getSubmittedFileName();
+                //String path = getServletContext().getRealPath("/"+"img"+File.separator+fileName);
                 System.out.println(path);
                 
                 

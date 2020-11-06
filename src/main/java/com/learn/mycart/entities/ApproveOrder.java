@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ApproveOrder {
@@ -20,16 +21,20 @@ public class ApproveOrder {
     private int quantity;
     
     private String name;
+    
+    @ManyToOne 
+    private Company companies;
 
     public ApproveOrder() {
     }
 
-    public ApproveOrder(int id, String aPName, double aPPrice, int quantity, String name) {
+    public ApproveOrder(int id, String aPName, double aPPrice, int quantity, String name, Company companies) {
         this.id = id;
         this.aPName = aPName;
         this.aPPrice = aPPrice;
         this.quantity = quantity;
         this.name = name;
+        this.companies = companies;
     }
 
     public int getId() {
@@ -71,6 +76,16 @@ public class ApproveOrder {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Company getCompanies() {
+        return companies;
+    }
+
+    public void setCompanies(Company companies) {
+        this.companies = companies;
+    }
+    
+    
 
     @Override
     public String toString() {

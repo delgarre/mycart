@@ -23,17 +23,20 @@ public class Company {
     private String typeLocation; 
     @OneToMany(mappedBy = "companies")
     private List<User> user = new ArrayList<>();
+    @OneToMany(mappedBy = "companies")
+    private List<ApproveOrder> ap = new ArrayList<>();
     
     
 
     public Company() {
     }
 
-    public Company(String companyName, String type, String typeLocation, List<User> user) {
+    public Company(String companyName, String type, String typeLocation, List<User> user, List<ApproveOrder> ap) {
         this.companyName = companyName;
         this.type = type;
         this.typeLocation = typeLocation;
         this.user = user;
+        this.ap = ap;
     }
 
     public int getCompanyId() {
@@ -75,6 +78,16 @@ public class Company {
     public void setUser(List<User> user){
         this.user = user;
     }
+
+    public List<ApproveOrder> getAp() {
+        return ap;
+    }
+
+    public void setAp(List<ApproveOrder> ap) {
+        this.ap = ap;
+    }
+    
+    
 
     @Override
     public String toString() {

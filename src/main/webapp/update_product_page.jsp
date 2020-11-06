@@ -65,6 +65,12 @@ Unit of Measure:<br>
 <br><br>
 <input type="submit" value="submit">
 </form>
+<form action="uploadImage" method="post" enctype="multipart/form-data">
+<input type="hidden" name="pId" value="<%=resultSet.getString("pId") %>">
+Upload Image:<br>
+<input type="file" name="image"/><br/><br/>
+<input type="submit"/>
+</form>
 <%
 }
 connection.close();

@@ -1,6 +1,7 @@
 
 package com.learn.mycart.entities;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,11 @@ public class Product {
     private String unitOfMeasure;
     private String cpt;
     private String ndc;
+    private String itemNumber;
+    private String manufacturer;
+    private String manufacturerNum;
+    
+    
     @ManyToOne 
     private Vendor vendor;
     @ManyToOne
@@ -32,7 +38,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String pName, String pDesc, String pPhoto, double pPrice, int pDiscount, int pQuanity, Category categoty, String unitOfMeasure, Vendor vendor, String cpt, String ndc) {
+    public Product(String pName, String pDesc, String pPhoto, double pPrice, int pDiscount, int pQuanity, Category categoty, String unitOfMeasure, Vendor vendor, String cpt, String ndc, String itemNumber, String manufacturer, String manufacturerNum /*byte[] pPic*/) {
         this.pName = pName;
         this.pDesc = pDesc;
         this.pPhoto = pPhoto;
@@ -44,6 +50,10 @@ public class Product {
         this.unitOfMeasure = unitOfMeasure;
         this.cpt = cpt;
         this.ndc = ndc;
+        this.itemNumber = itemNumber;
+        this.manufacturer = manufacturer;
+        this.manufacturerNum = manufacturerNum;
+        //this.pPic = pPic;
     }
 
     public int getpId() {
@@ -141,7 +151,32 @@ public class Product {
     public void setNdc(String ndc) {
         this.ndc = ndc;
     }
+
+    public String getItemNumber() {
+        return itemNumber;
+    }
     
+    public void setItemNumber(String itemNumber) {
+        this.itemNumber = itemNumber;
+    }
+    
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+    
+    public String getManufacturerNum() {
+        return manufacturerNum;
+    }
+
+    public void setManufacturerNum(String manufacturerNum) {
+        this.manufacturerNum = manufacturerNum;
+    }
+
+   
     
     
     @Override

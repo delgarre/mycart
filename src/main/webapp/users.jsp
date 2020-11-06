@@ -23,6 +23,12 @@
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
+        <div class="row ml-2">
+            <a href="add_user.jsp">
+                <button>Add user</button>
+            </a>
+        </div>
+        
         <div class="col-md-8">
         <div class="table-responsive-sm mt-3">
         <table class="table table-bordered " >
@@ -72,9 +78,7 @@
         </div>
       
     </div>
-        <div class="row ml-2">
-            <button>Add user</button>
-        </div>
+        
         
     </body>
 </html>
