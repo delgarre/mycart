@@ -1,6 +1,8 @@
 
 package com.learn.mycart.entities;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,19 +24,22 @@ public class ApproveOrder {
     
     private String name;
     
+    private Date date;
+    
     @ManyToOne 
     private Company companies;
 
     public ApproveOrder() {
     }
 
-    public ApproveOrder(int id, String aPName, double aPPrice, int quantity, String name, Company companies) {
+    public ApproveOrder(int id, String aPName, double aPPrice, int quantity, String name, Company companies, Date date) {
         this.id = id;
         this.aPName = aPName;
         this.aPPrice = aPPrice;
         this.quantity = quantity;
         this.name = name;
         this.companies = companies;
+        this.date = date;
     }
 
     public int getId() {
@@ -83,6 +88,14 @@ public class ApproveOrder {
 
     public void setCompanies(Company companies) {
         this.companies = companies;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
     
     

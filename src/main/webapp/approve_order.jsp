@@ -2,6 +2,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.entities.User"%>
 <%@page import="com.learn.mycart.entities.Product"%>
@@ -49,11 +51,18 @@ while(resultSet.next()){
         <title>Submit Order</title>
         <%@include file="components/common_css_js.jsp" %>
     </head>
+    <%
+    Date today = new Date();
+    SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
+    String ddMMyyyyToday = DATE_FORMAT.format(today);
+    %>
     <body>
            <%@include file="components/navbar.jsp" %>
         <h1>Enter Amount</h1>
+        Date: <%=today%>
 <form method="post" action="save_order.jsp">
 <input type="hidden" name="pId" value="<%=resultSet.getString("pId") %>">
+<input type="hidden" name="date">
 
 <br>
 Name:<br>
