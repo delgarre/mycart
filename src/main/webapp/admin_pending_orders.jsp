@@ -60,7 +60,7 @@
                                 <a href="submit_approval.jsp?id=<%= a.getId()%>">
                                     <button type="button">Approve</button>
                                 </a>
-                                <a>
+                                    <a href="admin_delete_order.jsp?id=<%= a.getId()%>">
                                     <button type="button">Delete</button>
                                 </a>
                             </td>

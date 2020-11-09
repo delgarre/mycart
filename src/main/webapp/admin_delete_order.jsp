@@ -14,7 +14,7 @@
     
     int i = st.executeUpdate("DELETE FROM ApproveOrder WHERE id="+id);
     session.setAttribute("message", "Order deleted successfully!");
-    response.sendRedirect("home.jsp");
+    response.sendRedirect("admin.jsp");
     }
     catch(Exception e)
     {

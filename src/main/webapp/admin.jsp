@@ -214,16 +214,6 @@
                         <h6>Enter Description</h6>
                         <textarea style="height: 100px" class="form-control" placeholder="Enter product description" name="pDesc"></textarea>
                     </div>
-                    <!--product ndc-->
-                    <div class="form-group">
-                        <h6>Enter NDC</h6>
-                        <textarea style="height: 100px" class="form-control" placeholder="Enter product NDC #:" name="ndc"></textarea>
-                    </div>
-                    <!--product cpt-->
-                    <div class="form-group">
-                        <h6>Enter CPT</h6>
-                        <textarea style="height: 100px" class="form-control" placeholder="Enter product CPT #:" name="cpt"></textarea>
-                    </div>
                     <!--product price-->
                     <div class="form-group">
                         <h6>Enter Item Price</h6>
@@ -238,6 +228,30 @@
                     <div>
                         <h6>Enter Unit of Measure</h6>
                         <input type="text" class="form-control" placeholder="Enter product unit of measure" name="pMeasure" required/>
+                    </div>
+                    <!--product cpt -->
+                    <div>
+                        <h6>Enter CPT</h6>
+                        <input type="text" class="form-control" placeholder="Enter CPT" name="cpt" required/>
+                    </div>
+                    <div>
+                        <h6>Enter NDC</h6>
+                        <input type="text" class="form-control" placeholder="Enter NDC" name="ndc" required/>
+                    </div>
+                    <!--product Item number -->
+                    <div>
+                        <h6>Enter ItemNumber</h6>
+                        <input type="text" class="form-control" placeholder="Enter Item Number" name="itemNumber" required/>
+                    </div>
+                    <!--product manufacturer  -->
+                    <div>
+                        <h6>Enter Manufacturer</h6>
+                        <input type="text" class="form-control" placeholder="Enter Manufacturer" name="manufacturer" required/>
+                    </div>
+                    <!--product manufacturerNum -->
+                    <div>
+                        <h6>Enter Manufacturer #</h6>
+                        <input type="text" class="form-control" placeholder="Enter Manufacturer Number" name="manufacturerNum" required/>
                     </div>
                     <!--product category-->
                     <%

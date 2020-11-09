@@ -71,8 +71,11 @@ public class ProductOperationServlet extends HttpServlet {
                 String pMeasure = request.getParameter("pMeasure");
                 int catId = Integer.parseInt(request.getParameter("catId"));
                 int vendorId = Integer.parseInt(request.getParameter("vendorId"));
-                //String cpt = request.getParameter("cpt");
-                //String ndc = request.getParameter("ndc");
+                String cpt = request.getParameter("cpt");
+                String ndc = request.getParameter("ndc");
+                String itemNumber = request.getParameter("itemNumber");
+                String manufacturer = request.getParameter("manufacturer");
+                String manufacturerNum = request.getParameter("manufacturerNum");
                 Part part = request.getPart("pPhoto");
                 String fileName = part.getSubmittedFileName();
                 
@@ -84,8 +87,11 @@ public class ProductOperationServlet extends HttpServlet {
                 p.setpPrice(pPrice);
                 p.setUnitOfMeasure(pMeasure);
                 p.setpQuanity(pQuantity);
-                //p.setCpt(cpt);
-                //p.setNdc(ndc);
+                p.setCpt(cpt);
+                p.setNdc(ndc);
+                p.setItemNumber(itemNumber);
+                p.setManufacturer(manufacturer);
+                p.setManufacturerNum(manufacturerNum);
                 p.setpPhoto(part.getSubmittedFileName());
                 
                 

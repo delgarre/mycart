@@ -48,10 +48,10 @@
                             <td><%=a.getaPPrice()%></td>
                             <td><%=a.getQuantity()%></td>
                             <td>
-                                <a>
+                                <a href="update_order_page.jsp?id=<%= a.getId()%>">
                                     <button type="button">Update</button>
                                 </a>
-                                <a>
+                                <a href="delete_order.jsp?id=<%= a.getId()%>">
                                     <button type="button">Delete</button>
                                 </a>
                             </td>
