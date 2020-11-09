@@ -32,6 +32,7 @@
                             <th>Item Name</th>
                             <th>Item Price</th>
                             <th>Quantity Requested</th>
+                            <th>Order date</th>
                             <th>Actions</th>
                         </tr>
                         
@@ -47,6 +48,7 @@
                             <td><%=a.getaPName()%></td>
                             <td><%=a.getaPPrice()%></td>
                             <td><%=a.getQuantity()%></td>
+                            <td><%=a.getDate()%></td>
                             <td>
                                 <a href="update_order_page.jsp?id=<%= a.getId()%>">
                                     <button type="button">Update</button>

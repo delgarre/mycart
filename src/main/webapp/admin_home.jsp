@@ -100,7 +100,11 @@
             %>
             
             <tr>
-                <td><%= p.getpPhoto()%></td>
+                <td>
+                    <a href="view.jsp?id=<%= p.getpId()%>">
+                        <button class="btn btn-outline-success">View</button>
+                    </a>
+                </td>
                 <td><%= p.getpId()%></td>
                 <td><%= p.getpName()%></td>
                 <td><%= p.getpPrice()%></td>

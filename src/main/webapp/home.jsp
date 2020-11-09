@@ -77,7 +77,7 @@
             <div class="table-responsive-sm">
                 <table class="table table-bordered " id="myTable">
                     <tr>
-                <th>Pic</th>
+                <th>Photo</th>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Price</th>
