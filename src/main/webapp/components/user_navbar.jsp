@@ -20,7 +20,10 @@
         <a class="nav-link" href="home.jsp">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-          <a class="nav-link" href="pending_orders.jsp">Orders <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="pending_orders.jsp">Pending Orders <span class="sr-only">(current)</span></a>
+      </li>
+      <li>
+          <a class="nav-link" href="user_orders.jsp">Past Orders <span class="sr-only">(current)</span></a>
       </li>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search Name" onkeyup="searchFunction()" aria-label="Search" id="myInput">
