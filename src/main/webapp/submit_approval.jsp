@@ -1,6 +1,8 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.learn.mycart.entities.User"%>
 <%@page import="com.learn.mycart.entities.ApproveOrder"%>
@@ -44,9 +46,15 @@ while(resultSet.next()){
         <title>Approve Order</title>
         <%@include file="components/common_css_js.jsp" %>
     </head>
+     <%
+    Date today = new Date();
+    SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
+    String ddMMyyyyToday = DATE_FORMAT.format(today);
+    %>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <h1>Check</h1>
+        <h1>Check!</h1>
+        Date: <%=today%>
     <form method="post" action="submit_order.jsp">
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
 
