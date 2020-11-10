@@ -71,7 +71,7 @@
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/list.png" alt="user_icon">
                             </div>
-                            
+                            <a href="categories.jsp" class="card-link">Click me!</a>
                             <h3 class="text-muted">Categories</h3>
                         </div>
                     </div>

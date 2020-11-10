@@ -28,7 +28,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Items Page</title>
         <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
@@ -63,7 +63,7 @@
                 <div class="list-group mt-4">
                     
                      <a href="admin_home.jsp?category=all" class="list-group-item list-group-item-action active">
-                     All products
+                     All Categories
                      </a>
                 
                 
@@ -87,9 +87,11 @@
                 <table class="table table-bordered " id="myTable">
                     <tr>
                 <th>Photo</th>
-                <th>Id</th>
+                <th>Item Number</th>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Unit of Measure</th>
+                <th>Quantity Per UOM</th>
                 <th>Actions</th>
             </tr>
             
@@ -105,9 +107,11 @@
                         <button class="btn btn-outline-success">View</button>
                     </a>
                 </td>
-                <td><%= p.getpId()%></td>
+                <td><%= p.getItemNumber()%></td>
                 <td><%= p.getpName()%></td>
                 <td><%= p.getpPrice()%></td>
+                <td><%= p.getUnitOfMeasure()%></td>
+                <td><%= p.getpQuanity()%></td>
                 <td>
                     <a href="approve_order.jsp?id=<%= p.getpId()%>">
                     <button class="btn btn-outline-success">Add Quantity</button>

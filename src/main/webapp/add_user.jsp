@@ -1,7 +1,26 @@
 <%@page import="com.learn.mycart.dao.CompanyDao"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.entities.Company"%>
+<%@page import="com.learn.mycart.entities.User"%>
 <%@page import="java.util.List"%>
+<%
+    User user = (User)session.getAttribute("current-user");
+    if(user==null){
+        session.setAttribute("message", "You are not logged in!");
+        response.sendRedirect("index.jsp");
+        return;
+    }
+    else
+    {
+        if(user.getUserType().equals("normal"))
+        {
+            session.setAttribute("message", "Admin level required!");
+            response.sendRedirect("index.jsp");
+            return;
+        }
+    }
+%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

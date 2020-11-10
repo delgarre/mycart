@@ -11,6 +11,15 @@
         response.sendRedirect("index.jsp");
         return;
     }
+    else
+    {
+        if(user.getUserType().equals("normal"))
+        {
+            session.setAttribute("message", "Admin level required!");
+            response.sendRedirect("index.jsp");
+            return;
+        }
+    }
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,7 +37,7 @@
                 <table class="table table-bordered ">
                     <tr>
                         <th>Photo</th>
-                        <th>Id</th>
+                        <th>Item Number</th>
                         <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -46,7 +55,7 @@
                     
                     <tr>
                         <td><%=p.getpPhoto() %></td>
-                        <td><%= p.getpId() %></td>
+                        <td><%= p.getItemNumber()%></td>
                         <td><%=p.getpName() %></td>
                         <td><%=p.getpPrice() %></td>
                         <td><%=p.getpQuanity()%></td>
@@ -55,7 +64,7 @@
                             <a href="update_product_page.jsp?id=<%= p.getpId()%>">
                                 <button type="button" class="update">Update</button>
                             </a>
-                            <a href="delete_product.jsp?=<%=p.getpId() %>">
+                            <a href="delete_prod.jsp?id=<%=p.getpId() %>">
                                 <button type="button" class="delete">Delete</button>
                             </a>
                         </td>
