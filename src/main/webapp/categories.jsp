@@ -27,8 +27,44 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Categories</title>
+        <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%@include file="components/navbar.jsp" %>
+        <div class="col-md-8">
+            <div div class="table-responsive-sm mt-3">
+                <table class="table table-bordered ">
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                    <%
+                    CategoryDao cDao = new CategoryDao(FactoryProvider.getFactory());
+                    List<Category> list = cDao.getCategories();
+                    %>
+                    
+                    <%
+                    for(Category c: list){
+                    %>
+                    
+                    <tr>
+                        <td><%= c.getCategoryTitle()%></td>
+                        <td><%= c.getCategoryDesc()%></td>
+                        <td>
+                            <a href="update_category_page.jsp?id=<%=c.getCategoryId()%>">
+                                <button type="button" class="update">Update</button>
+                            </a>
+                                <a href="delete_category.jsp?id=<%=c.getCategoryId()%>">
+                                    <button type="button" class="delete">Delete</button>
+                                </a>
+                        </td>
+                    </tr>
+                    <%
+                    }
+                    %>
+                </table>
+            </div>
+        </div>
     </body>
 </html>

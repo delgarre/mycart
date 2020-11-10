@@ -42,6 +42,7 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Unit of Measure</th>
+                        <th>Actions</th>
                         
                     </tr>
                     <%
