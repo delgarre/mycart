@@ -40,8 +40,12 @@
                         <th>Item Number</th>
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Quantity</th>
+                        <th>QTY Per UOM</th>
                         <th>Unit of Measure</th>
+                        <th>Description</th>
+                        
+                        <th>CPT</th>
+                        <th>NDC</th>
                         <th>Actions</th>
                         
                     </tr>
@@ -55,12 +59,20 @@
                     %>
                     
                     <tr>
-                        <td><%=p.getpPhoto() %></td>
+                        <td>
+                            <a href="view.jsp?id=<%= p.getpId()%>">
+                                <button class="btn btn-outline-success">View</button>
+                            </a>
+                        </td>
                         <td><%= p.getItemNumber()%></td>
                         <td><%=p.getpName() %></td>
                         <td><%=p.getpPrice() %></td>
                         <td><%=p.getpQuanity()%></td>
                         <td><%=p.getUnitOfMeasure() %></td>
+                        <td><%=p.getpDesc()%></td>
+                        <td><%=p.getCpt()%></td>
+                        <td><%=p.getNdc()%></td>
+                        
                         <td>
                             <a href="update_product_page.jsp?id=<%= p.getpId()%>">
                                 <button type="button" class="update">Update</button>

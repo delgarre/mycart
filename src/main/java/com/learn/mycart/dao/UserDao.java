@@ -70,5 +70,14 @@ public class UserDao {
         return userId;
     }
     
+    //get all users of given company
+    public List<User> getAllUsersById(int cid){
+        
+        Session s = this.factory.openSession();
+        Query query = s.createQuery("from Users as u where u.companies.companyId =: id");
+        query.setParameter("id", cid);
+        List<User> list = query.list();
+        return list;
+    }
     
 }

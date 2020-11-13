@@ -1,11 +1,15 @@
+<%@page import="com.learn.mycart.dao.CompanyDao"%>
+<%@page import="com.learn.mycart.helper.FactoryProvider"%>
+<%@page import="com.learn.mycart.entities.Company"%>
+<%@page import="java.util.List"%>
+<%@page import="com.learn.mycart.entities.User"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="com.learn.mycart.entities.User"%>
-<%@page import="com.learn.mycart.entities.Product"%>
+
 <%
-    User user = (User)session.getAttribute("current-user");
+User user = (User)session.getAttribute("current-user");
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
         response.sendRedirect("index.jsp");
@@ -32,7 +36,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Product where pId = "+id;
+String sql ="select companies_companyId from CompanyUser where user_user_id = "+id;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
@@ -42,37 +46,19 @@ while(resultSet.next()){
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Update Product</title>
+        <title>User Info</title>
         <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
-           <%@include file="components/navbar.jsp" %>
-        <h1>Make Changes</h1>
-<form method="post" action="update_product.jsp">
-<input type="hidden" name="pId" value="<%=resultSet.getString("pId") %>">
-<br>
-Name:<br>
-<input type="text" name="pName" value="<%=resultSet.getString("pName") %>">
-<br>
-Type:<br>
-<input type="text" name="pPrice" value="<%=resultSet.getString("pPrice") %>">
-<br>
-Quantity:<br>
-<input type="text" name="pQuantity" value="<%=resultSet.getString("pQuanity") %>">
-<br>
-Unit of Measure:<br>
-<input type="text" name="unitOfMeasure" value="<%=resultSet.getString("unitOfMeasure") %>">
-<br><br>
-Update Product<br>
-<input type="submit" value="submit">
-</form>
-<form action="uploadImage" method="post" enctype="multipart/form-data">
-<input type="hidden" name="pId" value="<%=resultSet.getString("pId") %>">
-Upload Image:<br>
-<input type="file" name="image"/><br/><br/>
-For Picture<br>
-<input type="submit"/>
-</form>
+        <%@include file="components/navbar.jsp" %>
+        <h1>Hello World!</h1>
+        
+        <form method="post" action="">
+            
+            
+            <br>
+            <input type="text" name="companies_companyId" value="<%=resultSet.getString("companies_companyId") %>">
+        </form>
 <%
 }
 connection.close();

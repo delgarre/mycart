@@ -11,7 +11,8 @@
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.entities.Company"%>
 <%
-    Company company = (Company)session.getAttribute("location");
+ session.getAttribute("location");
+ Company company = (Company)session.getAttribute("location");
     User user = (User)session.getAttribute("current-user");
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
@@ -61,7 +62,7 @@ while(resultSet.next()){
            <%@include file="components/navbar.jsp" %>
         <h1>Enter Amount</h1>
         Date: <%=today%>
-<form method="post" action="save_order.jsp">
+<form method="post" action="test_save.jsp">
 <input type="hidden" name="pId" value="<%=resultSet.getString("pId") %>">
 <input type="hidden" name="date">
 
@@ -75,11 +76,14 @@ Price:<br>
 Member Name:<br>
 <input value="<%= user.getUserName()%>" type="text" name="name">
 <br>
+Location:<br>
+<%
+String com = request.getParameter("comId");
+%>
+<input value="<%=company.getCompanyName()%>">
+<br>
 Quantity:<br>
 <input type="text" name="quantity" placeholder="Enter Amount">
-<br>
-Location:<br>
-<input value="<%=company.getCompanyName()%>" name="locations">
 <br><br>
 
 <input type="submit" value="submit">

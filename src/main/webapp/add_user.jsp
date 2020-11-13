@@ -50,8 +50,20 @@
             List<Company> list = cDao.getCompanies();
             %>
             <br>
+            <br>
+            Location:<br>
+            <select name="locations" multiple>
+            <%
+            for(Company c: list){
+            %>
+            <option value="<%=c.getCompanyId()%>"> <%=c.getCompanyName()%></option>
+            <%
+            }
+            %>
+            </select>
+            <br>  
             Select Location:<br>
-            <select name="comId">
+            <select name="comId" multiple>
             <%
             for(Company c: list){
             %>

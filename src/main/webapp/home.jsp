@@ -75,6 +75,9 @@
             
         <div class="col-md-8">
             <div class="table-responsive-sm">
+                <div>
+                    <a href="select_company..jsp">Select Company</a>
+                </div>
                 <table class="table table-bordered " id="myTable">
                     <tr>
                 <th>Photo</th>

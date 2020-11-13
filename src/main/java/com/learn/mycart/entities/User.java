@@ -2,17 +2,21 @@
 package com.learn.mycart.entities;
 
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
 @Entity
-public class User {
+public class User implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,12 +36,19 @@ public class User {
     private String userAddress;
     @Column(name="user_type")
     private String userType;
+    @Column(name="locations")
+    private String locations;
     @ManyToOne
     private Company companies;
+    @OneToMany(mappedBy = "user")
+    private List<CompanyUser> cTie = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "users")
+    private List<Test> test = new ArrayList<>();
     
     
 
-    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType) {
+    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, String locations, List<Test> test) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -46,9 +57,11 @@ public class User {
         this.userPic = userPic;
         this.userAddress = userAddress;
         this.userType = userType;
+        this.locations = locations;
+        this.test = test;
     }
 
-    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, Company companies) {
+    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, Company companies, String locations, List<Test> test) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
@@ -57,6 +70,8 @@ public class User {
         this.userAddress = userAddress;
         this.userType = userType;
         this.companies = companies;
+        this.locations = locations;
+        this.test = test;
     }
     
     public User(){
@@ -133,6 +148,32 @@ public class User {
     public void setCompanies(Company companies) {
         this.companies = companies;
     }
+
+    public String getLocations() {
+        return locations;
+    }
+
+    public void setLocations(String locations) {
+        this.locations = locations;
+    }
+
+    public List<CompanyUser> getcTie() {
+        return cTie;
+    }
+
+    public void setcTie(List<CompanyUser> cTie) {
+        this.cTie = cTie;
+    }
+
+    public List<Test> getTest() {
+        return test;
+    }
+
+    public void setTest(List<Test> test) {
+        this.test = test;
+    }
+    
+    
 
     @Override
     public String toString() {

@@ -26,20 +26,19 @@ public class ApproveOrder {
     
     private Date date;
     
-    @ManyToOne 
-    private Company companies;
+    private String locations;
 
     public ApproveOrder() {
     }
 
-    public ApproveOrder(int id, String aPName, double aPPrice, int quantity, String name, Company companies, Date date) {
+    public ApproveOrder(int id, String aPName, double aPPrice, int quantity, String name, Date date, String locations) {
         this.id = id;
         this.aPName = aPName;
         this.aPPrice = aPPrice;
         this.quantity = quantity;
         this.name = name;
-        this.companies = companies;
         this.date = date;
+        this.locations = locations;
     }
 
     public int getId() {
@@ -82,20 +81,20 @@ public class ApproveOrder {
         this.name = name;
     }
 
-    public Company getCompanies() {
-        return companies;
-    }
-
-    public void setCompanies(Company companies) {
-        this.companies = companies;
-    }
-
     public Date getDate() {
         return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getLocations() {
+        return locations;
+    }
+
+    public void setLocations(String locations) {
+        this.locations = locations;
     }
     
     

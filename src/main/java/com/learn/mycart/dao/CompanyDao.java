@@ -36,4 +36,17 @@ public class CompanyDao {
         }
         return company;
     }
+    public Company getCompanyByName(String name){
+        Company company = null;
+        try {
+            String query="from Company where companyName =: n";
+            Session session = this.factory.openSession();
+            Query q= session.createQuery(query);
+            q.setParameter("n", name);
+            company =(Company) q.uniqueResult();
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return company;
+    }
 }

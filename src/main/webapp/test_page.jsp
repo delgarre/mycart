@@ -6,6 +6,7 @@
 <%@page import="com.learn.mycart.dao.ProductDao"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.entities.User"%>
+<%@page import="com.learn.mycart.entities.Company"%>
 <%
     User user = (User)session.getAttribute("current-user");
     if(user==null){
@@ -77,6 +78,9 @@
             
         <div class="col-md-8">
             <div class="table-responsive-sm">
+                <div>
+                    <a href="dropdown.jsp?id=<%= user.getUserId()%>">Select Company</a>
+                </div>
                 <table class="table table-bordered " >
                     <tr>
                 <th>Photo</th>
@@ -99,7 +103,7 @@
                 <td><%= p.getpPrice()%></td>
                 <td>
                     <button class="btn custom-bg text-white" onClick="add_to_carts(<%= p.getpId() %>, '<%= p.getpName() %>',<%= p.getpPrice() %> )">Add to Cart</button>
-                    <a href="approve_order.jsp?id=<%= p.getpId()%>">
+                    <a href="test_approve_order.jsp?id=<%= p.getpId()%>">
                     <button class="btn btn-outline-success">Add Quantity</button>
                     </a>
                 </td>
@@ -116,4 +120,5 @@
             <%@include file="components/common_modals.jsp" %>
             
     </body>
+    
 </html>

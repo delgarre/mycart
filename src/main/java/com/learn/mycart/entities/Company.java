@@ -1,6 +1,7 @@
 
 package com.learn.mycart.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Company {
+public class Company implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,20 +24,23 @@ public class Company {
     private String typeLocation; 
     @OneToMany(mappedBy = "companies")
     private List<User> user = new ArrayList<>();
+   
     @OneToMany(mappedBy = "companies")
-    private List<ApproveOrder> ap = new ArrayList<>();
+    private List<CompanyUser> cTie = new ArrayList<>();
     
-    
+    @OneToMany(mappedBy = "companies")
+    private List<Test> test = new ArrayList<>();
 
     public Company() {
     }
 
-    public Company(String companyName, String type, String typeLocation, List<User> user, List<ApproveOrder> ap) {
+    public Company(String companyName, String type, String typeLocation, List<User> user, List<Test> test) {
         this.companyName = companyName;
         this.type = type;
         this.typeLocation = typeLocation;
         this.user = user;
-        this.ap = ap;
+        this.test = test;
+        
     }
 
     public int getCompanyId() {
@@ -79,12 +83,20 @@ public class Company {
         this.user = user;
     }
 
-    public List<ApproveOrder> getAp() {
-        return ap;
+    public List<CompanyUser> getcTie() {
+        return cTie;
     }
 
-    public void setAp(List<ApproveOrder> ap) {
-        this.ap = ap;
+    public void setcTie(List<CompanyUser> cTie) {
+        this.cTie = cTie;
+    }
+
+    public List<Test> getTest() {
+        return test;
+    }
+
+    public void setTest(List<Test> test) {
+        this.test = test;
     }
     
     

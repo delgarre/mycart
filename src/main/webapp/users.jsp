@@ -1,5 +1,6 @@
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
-
+<%@page import="com.learn.mycart.entities.Company"%>
+<%@page import="com.learn.mycart.dao.CompanyDao"%>
 <%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.dao.UserDao"%>
 <%@page import="com.learn.mycart.entities.User"%>
@@ -51,8 +52,12 @@
             
             
             <%
+            
+                
                 UserDao uDao = new UserDao(FactoryProvider.getFactory());
                 List<User> ulist = uDao.getUsers();
+                
+               
                 
                 
             %>
@@ -67,7 +72,10 @@
             <tr>
                 <td><%= u.getUserId()%></td>
                 <td><%= u.getUserName()%></td>
-                <td><%= u.getCompanies()%></td>
+                
+                
+                <td><%=u.getCompanies()%></td>
+                
                 <td><%= u.getUserType()%></td>
                 <td>
                     <a href="delete.jsp?id=<%= u.getUserId() %>">
@@ -75,7 +83,10 @@
                     </a>
                     <a href="update_user_page.jsp?id=<%=u.getUserId() %>">
                         <button type="button" class="update">Update</button>
-                    </a> 
+                    </a>
+                        <a href="company_user.jsp?id=<%= u.getUserId()%>">
+                        <button type="">Companies</button>    
+                    </a>
                 </td>
             </tr>
             <%

@@ -11,7 +11,7 @@ String aPName=request.getParameter("aPName");
 double intaPPrice = Double.parseDouble(request.getParameter("aPPrice"));
 int intquantity = Integer.parseInt(request.getParameter("quantity"));
 String name = request.getParameter("name");
-String locations = request.getParameter("locations");
+String comId = request.getParameter("comId");
 Date today = new Date();
 SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 String ddMMyyyyToday = DATE_FORMAT.format(today);
@@ -26,7 +26,7 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
 Statement st=conn.createStatement();
 
-int i=st.executeUpdate("insert into ApproveOrder(aPName,aPPrice,quantity, name, date, locations)values('"+aPName+"','"+intaPPrice+"','"+intquantity+"','"+name+"','"+ddMMyyyyToday+"','"+locations+"')");
+int i=st.executeUpdate("insert into ApproveOrder(aPName,aPPrice,quantity, name, companies_companyId, date)values('"+aPName+"','"+intaPPrice+"','"+intquantity+"','"+name+"','"+comId+"','"+ddMMyyyyToday+"')");
 session.setAttribute("message", "Order updated successfully!");
 response.sendRedirect("home.jsp");
 }
