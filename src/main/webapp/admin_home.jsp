@@ -84,6 +84,9 @@
             
         <div class="col-md-8">
             <div class="table-responsive-sm">
+                <div>
+                    <a href="dropdown.jsp?id=<%= user.getUserId()%>">Select Location</a>
+                </div>
                 <table class="table table-bordered " id="myTable">
                     <tr>
                 <th>Photo</th>

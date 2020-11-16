@@ -1,3 +1,4 @@
+<%@page import="com.learn.mycart.entities.Company"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -7,6 +8,7 @@
 <%@page import="com.learn.mycart.entities.User"%>
 <%@page import="com.learn.mycart.entities.ApproveOrder"%>
 <%
+    Company company = (Company)session.getAttribute("location");
     User user = (User)session.getAttribute("current-user");
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
@@ -79,6 +81,9 @@ Member Name:<br>
 <br>
 Quantity:<br>
 <input type="text" name="quantity" value="<%=resultSet.getString("quantity") %>">
+<br>
+Location:<br>
+<input value="<%=company.getCompanyName()%>" name="locations">
 <br><br>
 
 <input type="submit" value="submit">

@@ -2,6 +2,7 @@
 package com.learn.mycart.dao;
 
 
+import com.learn.mycart.entities.Company;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,5 +26,18 @@ public class TestDao {
         query.setParameter("uid", uid);
         List<Test> list = query.list();
         return list;
+    }
+    public Test getLocationByName(String name){
+        Test test = null;
+        try {
+            String query="from Test where comp.name =: n";
+            Session session = this.factory.openSession();
+            Query q= session.createQuery(query);
+            q.setParameter("n", name);
+            test =(Test) q.uniqueResult();
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return test;
     }
 }

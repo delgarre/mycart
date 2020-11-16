@@ -1,3 +1,4 @@
+<%@page import="com.learn.mycart.entities.Test"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -12,6 +13,7 @@
 <%@page import="com.learn.mycart.entities.Company"%>
 <%
     Company company = (Company)session.getAttribute("location");
+    Test test = (Test)session.getAttribute("locations");
     User user = (User)session.getAttribute("current-user");
     if(user==null){
         session.setAttribute("message", "You are not logged in!");

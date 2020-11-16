@@ -24,6 +24,14 @@
         <servlet-name>CompanySelectServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.CompanySelectServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DropDownServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.DropDownServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDropDownServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.AdminDropDownServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -43,6 +51,14 @@
     <servlet-mapping>
         <servlet-name>CompanySelectServlet</servlet-name>
         <url-pattern>/CompanySelectServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DropDownServlet</servlet-name>
+        <url-pattern>/DropDownServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDropDownServlet</servlet-name>
+        <url-pattern>/AdminDropDownServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

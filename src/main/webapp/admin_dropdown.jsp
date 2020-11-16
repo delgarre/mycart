@@ -9,8 +9,8 @@ pageEncoding="ISO-8859-1"%>
 <%@include file="components/common_css_js.jsp" %>
 </head>
 <body>
-    <%@include file="components/user_navbar.jsp" %>
     
+    <%@include file="components/navbar.jsp" %>
 <%! String driverName = "com.mysql.jdbc.Driver";%>
 <%!String url = "jdbc:mysql://172.20.29.70:3306/mycart";%>
 <%!String user = "admin";%>
@@ -28,10 +28,8 @@ String sql = "SELECT * FROM Test where user_id = " +id;
 ps = con.prepareStatement(sql);
 ResultSet rs = ps.executeQuery(); 
 %>
-
-
 <p>Select Location :
-<select name="comId" id="comId">
+<select>
 <%
 while(rs.next())
 {
@@ -44,7 +42,6 @@ String cname = rs.getString("comp_name");
 </select>
 </p>
 <input type="submit" value="submit">
-
 <%
 }
 catch(SQLException sqe)
