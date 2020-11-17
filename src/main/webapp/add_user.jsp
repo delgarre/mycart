@@ -61,18 +61,8 @@
             }
             %>
             </select>
-            <br>  
-            Select Location:<br>
-            <select name="comId" multiple>
-            <%
-            for(Company c: list){
-            %>
-            <option value="<%=c.getCompanyId()%>"> <%=c.getCompanyName()%></option>
-            <%
-            }
-            %>
-            </select>
-            <br><br>
+            <br> <br> 
+            
             
             <input type="submit" value="submit">
         </form>

@@ -19,6 +19,7 @@
         <mapping class = "com.learn.mycart.entities.ApproveOrder"/>
         <mapping class = "com.learn.mycart.entities.CompanyUser"/>
         <mapping class = "com.learn.mycart.entities.Test"/>
+        <mapping class = "com.learn.mycart.entities.Notice"/>
         
     </session-factory>
 </hibernate-configuration>

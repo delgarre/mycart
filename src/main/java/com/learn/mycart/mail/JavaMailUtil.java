@@ -46,7 +46,7 @@ public class JavaMailUtil {
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("Test Email With New Portal");
-            message.setText("Test email from Delenis!");
+            message.setText("Order Submitted!");
             return message;
         }catch (Exception ex){
             Logger.getLogger(JavaMailUtil.class.getName()).log(Level.SEVERE, null, ex);

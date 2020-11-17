@@ -1,3 +1,4 @@
+<%@page import="com.learn.mycart.mail.JavaMailUtil"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDateTime"%>
@@ -28,6 +29,7 @@ Statement st=conn.createStatement();
 
 int i=st.executeUpdate("insert into ApproveOrder(aPName,aPPrice,quantity, name, date, locations)values('"+aPName+"','"+intaPPrice+"','"+intquantity+"','"+name+"','"+ddMMyyyyToday+"','"+locations+"')");
 session.setAttribute("message", "Order updated successfully!");
+JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
 response.sendRedirect("home.jsp");
 }
 catch(Exception e)

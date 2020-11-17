@@ -1,4 +1,9 @@
-
+<%@page import="com.learn.mycart.entities.Notice"%>
+<%@page import="com.learn.mycart.dao.NoticeDao"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="com.learn.mycart.entities.Category"%>
 <%@page import="com.learn.mycart.dao.CategoryDao"%>
 <%@page import="com.learn.mycart.entities.Product"%>
@@ -15,6 +20,30 @@
         return;
     }
 %>
+<%
+
+String driver = "com.mysql.jdbc.Driver";
+String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
+String database = "mycart";
+String userid = "admin";
+String password = "ordering";
+try {
+Class.forName(driver);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connection = null;
+Statement statement = null;
+ResultSet resultSet = null;
+%>
+<%
+try{
+connection = DriverManager.getConnection(connectionUrl+database, userid, password);
+statement=connection.createStatement();
+String sql ="select * from Notice where status = 'active' ";
+resultSet = statement.executeQuery(sql);
+while(resultSet.next()){
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -26,6 +55,23 @@
     </head>
     <body>
         <%@include file="components/user_navbar.jsp" %>
+        <div class="panel panel-primary">
+            <div>
+                <div class="panel-heading">
+                    <table>
+                        <tr>
+                            <th>Message</th>
+                        </tr>
+                        
+                        
+                        <tr>
+                            <td><%=resultSet.getString("message") %></td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
         
         <div class="container-fluid">
         <div class="row mt-3 mx-2">
@@ -118,7 +164,13 @@
         </div>
         
             <%@include file="components/common_modals.jsp" %>
-            
+<%
+}
+connection.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%> 
     </body>
     
 </html>

@@ -1,8 +1,4 @@
-<%-- 
-    Document   : select_company.
-    Created on : Nov 10, 2020, 10:20:28 PM
-    Author     : garre
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

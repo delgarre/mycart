@@ -32,6 +32,14 @@
         <servlet-name>AdminDropDownServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.AdminDropDownServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SendMailServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.SendMailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NoticeServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.NoticeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -59,6 +67,14 @@
     <servlet-mapping>
         <servlet-name>AdminDropDownServlet</servlet-name>
         <url-pattern>/AdminDropDownServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendMailServlet</servlet-name>
+        <url-pattern>/SendMailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NoticeServlet</servlet-name>
+        <url-pattern>/NoticeServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
