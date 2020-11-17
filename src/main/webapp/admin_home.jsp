@@ -133,7 +133,7 @@ while(resultSet.next()){
         <div class="col-md-8">
             <div class="table-responsive-sm">
                 <div>
-                    <a href="dropdown.jsp?id=<%= user.getUserId()%>">Select Location</a>
+                    <a href="dropdown.jsp?id=<%= user.getUserId()%>"><h3>Select Location</h3></a>
                 </div>
                 <table class="table table-bordered " id="myTable">
                     <tr>
