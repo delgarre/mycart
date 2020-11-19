@@ -1,5 +1,4 @@
-<%@page import="com.learn.mycart.entities.Notice"%>
-<%@page import="com.learn.mycart.dao.NoticeDao"%>
+
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -149,7 +148,7 @@ while(resultSet.next()){
                 <td><%= p.getpPrice()%></td>
                 <td>
                     <button class="btn custom-bg text-white" onClick="add_to_carts(<%= p.getpId() %>, '<%= p.getpName() %>',<%= p.getpPrice() %> )">Add to Cart</button>
-                    <a href="test_approve_order.jsp?id=<%= p.getpId()%>">
+                    <a href="test_pending.jsp?id=<%= p.getpId()%>">
                     <button class="btn btn-outline-success">Add Quantity</button>
                     </a>
                 </td>

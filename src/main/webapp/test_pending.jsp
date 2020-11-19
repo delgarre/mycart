@@ -54,7 +54,7 @@ resultSet = statement.executeQuery(sql);
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pending Orders</title>
+        <title>Submit Order</title>
         <%@include file="components/common_css_js.jsp" %>
     </head>
     <%
@@ -69,13 +69,12 @@ resultSet = statement.executeQuery(sql);
             
             <table class="table table-bordered ">
                 <tr>
-                    <th>Pending Number</th>
+                     
                     <th>Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>User Name</th>
                     <th>Location</th>
-                    <th>Actions</th>
                     
                 </tr>
                 <tr>
@@ -86,23 +85,13 @@ resultSet = statement.executeQuery(sql);
                         String quantity = resultSet.getString("quantity");
                         String name = resultSet.getString("name");
                         String locations = resultSet.getString("locations");
-                        String Id = resultSet.getString("id");
                     %>
                     
-                    <td><%= Id%></td>
                     <td><%=aPName%></td>
                     <td><%=aPPrice%></td>
                     <td><%=quantity%></td>
                     <td><%=name%></td>
                     <td><%=locations%></td>
-                    <td>
-                        <a href="update_order_page.jsp?id=<%= Id%>">
-                            <button>Update</button>
-                        </a>
-                            <a href="delete_order.jsp?id=<%= Id%>">
-                                <button>Delete</button>
-                            </a>
-                    </td>
                     
                 </tr>
                 <%

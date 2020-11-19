@@ -62,8 +62,11 @@ Member Name:<br>
 <br>
 Quantity:<br>
 <input type="text" name="quantity" value="<%=resultSet.getString("quantity") %>">
-<br><br>
+<br>
 
+Location:<br>
+<input type="text" name="locations" value="<%=resultSet.getString("locations")%>">
+<br><br>
 <input type="submit" value="submit">
 </form>
 <%

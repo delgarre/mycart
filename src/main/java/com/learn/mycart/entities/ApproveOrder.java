@@ -4,9 +4,12 @@ package com.learn.mycart.entities;
 import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -27,11 +30,18 @@ public class ApproveOrder {
     private Date date;
     
     private String locations;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+    @JoinColumn(name="user_id", referencedColumnName="user_id"),
+    @JoinColumn(name="user_name", referencedColumnName="user_name")
+    })
+    private User users;
 
     public ApproveOrder() {
     }
 
-    public ApproveOrder(int id, String aPName, double aPPrice, int quantity, String name, Date date, String locations) {
+    public ApproveOrder(int id, String aPName, double aPPrice, int quantity, String name, Date date, String locations, User users) {
         this.id = id;
         this.aPName = aPName;
         this.aPPrice = aPPrice;
@@ -39,6 +49,7 @@ public class ApproveOrder {
         this.name = name;
         this.date = date;
         this.locations = locations;
+        this.users = users;
     }
 
     public int getId() {
@@ -96,9 +107,16 @@ public class ApproveOrder {
     public void setLocations(String locations) {
         this.locations = locations;
     }
-    
-    
 
+    public User getUsers() {
+        return users;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
+    }
+
+    
     @Override
     public String toString() {
         return "ApproveOrder{" + "id=" + id + ", aPName=" + aPName + ", aPPrice=" + aPPrice + ", quantity=" + quantity + '}';

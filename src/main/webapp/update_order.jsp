@@ -12,6 +12,7 @@ String aPName=request.getParameter("aPName");
 double intaPPrice = Double.parseDouble(request.getParameter("aPPrice"));
 String name=request.getParameter("name");
 int intquantity = Integer.parseInt(request.getParameter("quantity"));
+String locations = request.getParameter("locations");
 if(id != null)
 {
 Connection con = null;
@@ -21,13 +22,14 @@ try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql="Update ApproveOrder set id=?,aPName=?,aPPrice=?,name=?,quantity=? where id="+id;
+String sql="Update ApproveOrder set id=?,aPName=?,aPPrice=?,name=?,quantity=?, locations=? where id="+id;
 ps = con.prepareStatement(sql);
 ps.setString(1,id);
 ps.setString(2, aPName);
 ps.setDouble(3, intaPPrice);
 ps.setString(4, name);
 ps.setInt(5, intquantity);
+ps.setString(6, locations);
 int i = ps.executeUpdate();
 if(i > 0)
 {

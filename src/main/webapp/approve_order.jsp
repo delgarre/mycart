@@ -66,7 +66,7 @@ while(resultSet.next()){
 <form method="post" action="save_order.jsp">
 <input type="hidden" name="pId" value="<%=resultSet.getString("pId") %>">
 <input type="hidden" name="date">
-
+<input type="hidden" name="user_id" value="<%=user.getUserId()%>">
 <br>
 Name:<br>
 <input type="text" name="aPName" value="<%=resultSet.getString("pName") %>">

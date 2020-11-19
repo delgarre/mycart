@@ -34,7 +34,7 @@
         <%@include file="components/navbar.jsp" %>
         <div class="col-md-8">
             <div div class="table-responsive-sm mt-3">
-                <a href="product_report.jsp">Generate Report</a>
+               <a href="product_report.jsp">Generate Report</a>
                 <table class="table table-bordered ">
                     <tr>
                         <th>Photo</th>

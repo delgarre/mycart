@@ -46,9 +46,10 @@ public class User implements Serializable{
     @OneToMany(mappedBy = "users")
     private List<Test> test = new ArrayList<>();
     
-    
+    @OneToMany(mappedBy = "users")
+    private List<ApproveOrder> ap = new ArrayList<>();
 
-    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, String locations, List<Test> test) {
+    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, String locations, List<Test> test, List<ApproveOrder> ap) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -59,9 +60,10 @@ public class User implements Serializable{
         this.userType = userType;
         this.locations = locations;
         this.test = test;
+        this.ap = ap;
     }
 
-    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, Company companies, String locations, List<Test> test) {
+    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, Company companies, String locations, List<Test> test, List<ApproveOrder> ap) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
@@ -72,6 +74,8 @@ public class User implements Serializable{
         this.companies = companies;
         this.locations = locations;
         this.test = test;
+        this.ap = ap;
+        
     }
     
     public User(){
@@ -171,6 +175,14 @@ public class User implements Serializable{
 
     public void setTest(List<Test> test) {
         this.test = test;
+    }
+
+    public List<ApproveOrder> getAp() {
+        return ap;
+    }
+
+    public void setAp(List<ApproveOrder> ap) {
+        this.ap = ap;
     }
     
     

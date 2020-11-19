@@ -29,6 +29,8 @@ public class Product {
     private String itemNumber;
     private String manufacturer;
     private String manufacturerNum;
+    private String inventoryType;
+    private String alternateItem;
     
     
     @ManyToOne 
@@ -40,7 +42,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String pName, String pDesc, String pPhoto, double pPrice, int pDiscount, int pQuanity, Category categoty, String unitOfMeasure, Vendor vendor, String cpt, String ndc, String itemNumber, String manufacturer, String manufacturerNum /*byte[] pPic*/) {
+    public Product(String pName, String pDesc, String pPhoto, double pPrice, int pDiscount, int pQuanity, Category categoty, String unitOfMeasure, Vendor vendor, String cpt, String ndc, String itemNumber, String manufacturer, String manufacturerNum, String inventoryType, String alternateItem) {
         this.pName = pName;
         this.pDesc = pDesc;
         this.pPhoto = pPhoto;
@@ -55,6 +57,8 @@ public class Product {
         this.itemNumber = itemNumber;
         this.manufacturer = manufacturer;
         this.manufacturerNum = manufacturerNum;
+        this.inventoryType = inventoryType;
+        this.alternateItem = alternateItem;
         //this.pPic = pPic;
     }
 
@@ -176,6 +180,22 @@ public class Product {
 
     public void setManufacturerNum(String manufacturerNum) {
         this.manufacturerNum = manufacturerNum;
+    }
+
+    public String getInventoryType() {
+        return inventoryType;
+    }
+
+    public void setInventoryType(String inventoryType) {
+        this.inventoryType = inventoryType;
+    }
+
+    public String getAlternateItem() {
+        return alternateItem;
+    }
+
+    public void setAlternateItem(String alternateItem) {
+        this.alternateItem = alternateItem;
     }
 
    
