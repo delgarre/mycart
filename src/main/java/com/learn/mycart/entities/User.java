@@ -48,8 +48,11 @@ public class User implements Serializable{
     
     @OneToMany(mappedBy = "users")
     private List<ApproveOrder> ap = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "users")
+    private List<Orders> orders = new ArrayList<>();
 
-    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, String locations, List<Test> test, List<ApproveOrder> ap) {
+    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, String locations, List<Test> test, List<ApproveOrder> ap, List<Orders> orders) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -61,9 +64,10 @@ public class User implements Serializable{
         this.locations = locations;
         this.test = test;
         this.ap = ap;
+        this.orders = orders;
     }
 
-    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, Company companies, String locations, List<Test> test, List<ApproveOrder> ap) {
+    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, Company companies, String locations, List<Test> test, List<ApproveOrder> ap, List<Orders> orders) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
@@ -75,6 +79,7 @@ public class User implements Serializable{
         this.locations = locations;
         this.test = test;
         this.ap = ap;
+        this.orders = orders;
         
     }
     
@@ -183,6 +188,14 @@ public class User implements Serializable{
 
     public void setAp(List<ApproveOrder> ap) {
         this.ap = ap;
+    }
+
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
     }
     
     

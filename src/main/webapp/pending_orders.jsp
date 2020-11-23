@@ -66,7 +66,10 @@ resultSet = statement.executeQuery(sql);
            <%@include file="components/navbar.jsp" %>
         <h1>Cart Items:</h1>
         <div class="col-md-8">
-            
+            <form method="post" action="OrderServlet">
+                <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
+                <input type="submit" value="Process Orders"/>
+            </form>
             <table class="table table-bordered ">
                 <tr>
                     <th>Pending Number</th>

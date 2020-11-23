@@ -1,12 +1,17 @@
 
 package com.learn.mycart.servlets;
 
+import com.learn.mycart.mail.JavaMailUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.hibernate.SessionFactory;
 
 
@@ -25,8 +30,22 @@ public class OrderServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-           // private SessionFactory factory;
+
+            String user_id = request.getParameter("user_id");
+            
+            if(user_id != null){
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
+                    Statement st=conn.createStatement();   
+                    HttpSession httpSession=request.getSession();
+                    int i = st.executeUpdate("insert into Orders(aPName, aPPrice, date, locations, name, quantity, user_id) select aPName, aPPrice, date, locations, name, quantity, user_id from ApproveOrder where user_id ="+user_id);
+                    httpSession.setAttribute("message", "Order processed successfully!");
+                    JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
+                    response.sendRedirect("home.jsp");
+                } catch (Exception e) {
+                }
+            }
             
             
         }
