@@ -64,7 +64,7 @@ resultSet = statement.executeQuery(sql);
     %>
     <body>
            <%@include file="components/navbar.jsp" %>
-        <h1>Pending Orders</h1>
+        <h1>Cart Items:</h1>
         <div class="col-md-8">
             
             <table class="table table-bordered ">

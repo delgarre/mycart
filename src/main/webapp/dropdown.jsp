@@ -7,6 +7,12 @@ pageEncoding="ISO-8859-1"%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Select Location</title>
 <%@include file="components/common_css_js.jsp" %>
+<style>
+
+p {text-align: center;}
+div {text-align: center;}
+</style>
+
 </head>
 <body>
     <%@include file="components/user_navbar.jsp" %>
@@ -15,6 +21,11 @@ pageEncoding="ISO-8859-1"%>
 <%!String url = "jdbc:mysql://172.20.29.70:3306/mycart";%>
 <%!String user = "admin";%>
 <%!String psw = "ordering";%>
+<div class="container">
+    <div class="row mt-5">
+<div class="col-md-8">
+    <div class="card">
+        <div class="card-body">
 <form method="post" action="DropDownServlet">
 <%
 String id = request.getParameter("id");
@@ -53,5 +64,10 @@ out.println(sqe);
 }
 %>
 </form>
+        </div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>

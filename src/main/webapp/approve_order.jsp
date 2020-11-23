@@ -53,6 +53,11 @@ while(resultSet.next()){
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Submit Order</title>
         <%@include file="components/common_css_js.jsp" %>
+        <style>
+h1 {text-align: center;}
+div {text-align: center;}
+</style>
+
     </head>
     <%
     Date today = new Date();
@@ -61,6 +66,11 @@ while(resultSet.next()){
     %>
     <body>
            <%@include file="components/navbar.jsp" %>
+<div class="container">
+    <div class="row mt-5">
+<div class="col-md-8">
+    <div class="card">
+        <div class="card-body">
         <h1>Enter Amount</h1>
         Date: <%=today%>
 <form method="post" action="save_order.jsp">
@@ -93,5 +103,11 @@ connection.close();
 e.printStackTrace();
 }
 %>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
     </body>
 </html>
