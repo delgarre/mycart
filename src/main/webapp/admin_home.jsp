@@ -12,14 +12,21 @@
 <%@page import="com.learn.mycart.dao.ProductDao"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.entities.User"%>
+
+<%@page import="com.learn.mycart.entities.Company"%>
+
 <%
     User user = (User)session.getAttribute("current-user");
+    
+    
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
         response.sendRedirect("index.jsp");
         return;
     }
-    else
+    
+        
+    else 
     {
         if(user.getUserType().equals("normal"))
         {
@@ -28,6 +35,8 @@
             return;
         }
     }
+    
+    
 %>
 <%
 
@@ -63,7 +72,7 @@ while(resultSet.next()){
     </head>
     <body>
        
-        <%@include file="components/navbar.jsp" %>
+        <%@include file="components/admin_navbar.jsp" %>
         <div class="panel panel-primary">
             <div>
                 <div class="panel-heading">

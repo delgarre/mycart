@@ -50,7 +50,8 @@ public class LoginServlet extends HttpServlet {
                 }
                 else if(user.getUserType().equals("normal")){
                     //normal-normal.jsp
-                    response.sendRedirect("home.jsp");
+                    user.getUserId();
+                    response.sendRedirect("dropdown.jsp?id="+user.getUserId());
                 }
                 else
                 {

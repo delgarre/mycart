@@ -1,0 +1,27 @@
+
+package com.learn.mycart.dao;
+
+import com.learn.mycart.entities.Orders;
+import org.hibernate.SessionFactory;
+import org.hibernate.Session;
+import org.hibernate.query.Query; 
+import org.hibernate.Transaction;
+import java.util.List;
+
+
+public class OrdersDao {
+    
+    private SessionFactory factory;
+
+    public OrdersDao(SessionFactory factory) {
+        this.factory = factory;
+    }
+    
+    public List<Orders> getOrders(){
+        Session s = this.factory.openSession();
+        Query query = s.createQuery("from Orders");
+        List<Orders> list = query.list();
+        return list;
+    }
+
+}

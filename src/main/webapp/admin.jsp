@@ -111,7 +111,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/orders.png" alt="user_icon">
                             </div>
                             <a href="orders.jsp" class="card-link">Click me!</a>
-                            <h3 class="text-muted">Orders</h3>
+                            <h3 class="text-muted">Pending Orders</h3>
                         </div>
                     </div>
                 </div>

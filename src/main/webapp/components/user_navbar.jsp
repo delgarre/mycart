@@ -4,7 +4,7 @@
 <%
     User user1 = (User)session.getAttribute("current-user");
 
-    
+    Company company = (Company)session.getAttribute("location");
 
 %>
 
@@ -53,7 +53,13 @@
               }
               else
               {
-           %>     
+           %> 
+           
+           <li class="nav-item active">
+               <a class="nav-link" href="#!"><%=company.getCompanyName()%></a>
+           </li>
+           
+           
             <li class="nav-item active">
                 <a class="nav-link" href="#!"><%= user1.getUserName()%> </a>
             </li>
