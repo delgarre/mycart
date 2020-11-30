@@ -34,7 +34,32 @@
       <ul class="navbar-nav ml-auto">
           
           
+          <%
+           if(company == null)
+            {
+           
+            
+            
+
+           %>
+           <li class="nav-item active">
+              <a href="dropdown.jsp?id=<%= user1.getUserId()%>"></a>
+           </li>
+           
+          <%
+              }
+              else
+              {
+           %> 
+        
+            <li class="nav-item active">
+              <a class="nav-link" href="#!"><%= company.getCompanyName()%> </a>
+            </li>  
           
+           
+           <%      
+              }
+           %>
         
                  
           
@@ -55,9 +80,7 @@
               {
            %> 
            
-           <li class="nav-item active">
-               <a class="nav-link" href="#!"><%=company.getCompanyName()%></a>
-           </li>
+          
            
            
             <li class="nav-item active">

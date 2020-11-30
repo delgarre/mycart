@@ -99,8 +99,8 @@ while(resultSet.next()){
             <div class="col-md-2">
                 
                 <div class="list-group mt-4">
-                    
-                     <a href="home.jsp?category=all" class="list-group-item list-group-item-action active">
+                  
+                     <a href="test_page.jsp?category=all" class="list-group-item list-group-item-action active">
                      All products
                      </a>
                 
@@ -108,8 +108,12 @@ while(resultSet.next()){
                 <%
                 for(Category c: clist){
                 %>   
-                    <a href="home.jsp?category=<%= c.getCategoryId()%>" class="list-group-item list-group-item-action"><%= c.getCategoryTitle()%></a>
-                    
+                
+                        
+                
+                
+                    <a href="test_page.jsp?category=<%= c.getCategoryId()%>" class="list-group-item list-group-item-action"><%= c.getCategoryTitle()%></a>
+                   
                 <%  }
                 
                 %>

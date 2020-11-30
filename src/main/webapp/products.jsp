@@ -34,7 +34,25 @@
         <%@include file="components/navbar.jsp" %>
         <div class="col-md-8">
             <div div class="table-responsive-sm mt-3">
-                <a href="product_report.jsp">Generate Report</a>
+                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <h3>Generate Report</h3>
+               </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <a class="dropdown-item" href="product_report.jsp">All</a>
+               <a class="dropdown-item" href="item_product_report.jsp">Item Number</a>
+               <a class="dropdown-item" href="price_product_report.jsp">Price</a>
+               <a class="dropdown-item" href="vendor_product_report.jsp">Vendor</a>
+               <a class="dropdown-item" href="man_product_report.jsp">Manufacturer</a>
+               <a class="dropdown-item" href="mannum_product_report.jsp">Manufacturer Number</a>
+               <a class="dropdown-item" href="inventory_product_report.jsp">Inventory Type</a>
+               <a class="dropdown-item" href="alt_product_report.jsp">Alternate Item</a>
+               <a class="dropdown-item" href="qty_product_report.jsp">QTY Per UOM</a>
+               <a class="dropdown-item" href="unit_product_report.jsp">Unit of Measure</a>
+               <a class="dropdown-item" href="desc_product_report.jsp">Description</a>
+               <a class="dropdown-item" href="cpt_product_report.jsp">CPT</a>
+               <a class="dropdown-item" href="ndc_product_report.jsp">NDC</a>
+               
+                </div>
                 <table class="table table-bordered ">
                     <tr>
                         <th>Photo</th>
