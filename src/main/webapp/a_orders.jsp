@@ -39,7 +39,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select locations from Orders group by locations";
+String sql ="select * from Orders where locations = '"+id+"'";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -49,8 +49,9 @@ resultSet = statement.executeQuery(sql);
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pending Orders</title>
-        <%@include file="components/common_css_js.jsp" %>
+        <title>JSP Page</title>
+         
+    <%@include file="components/common_css_js.jsp" %>
     </head>
     <%
     Date today = new Date();
@@ -58,33 +59,35 @@ resultSet = statement.executeQuery(sql);
     String ddMMyyyyToday = DATE_FORMAT.format(today);
     %>
     <body>
-           <%@include file="components/navbar.jsp" %>
-        <h1>Locations Waiting Approval:</h1>
+        <%@include file="components/navbar.jsp" %>
+        <h1>Approve:</h1>
         <div class="col-md-8">
 
             <table class="table table-bordered ">
                 <tr>
-                    <th>Locations</th>
-                   
+                    <th>Item Name</th>
+                    <th>Price</th>
+                    <th>Ordered By</th>
+                    <th>QTY Per UOM</th>
                     <th>Actions</th>
                     
                 </tr>
                 <tr>
                    <%
                     while(resultSet.next()){
-                        ;
-                        String locations = resultSet.getString("locations");
+                        
+                        String item = resultSet.getString("aPName");
+                        String price = resultSet.getString("aPPrice");
+                        String name = resultSet.getString("name");
+                        String quantity = resultSet.getString("quantity");
                         
                     %>
                     
 
-                    <td><%=locations%></td>
-                    <td>
-                        <a href="a_orders.jsp?id=<%= locations%>">
-                            <button>Approve</button>
-                        </a>
-                           
-                    </td>
+                    <td><%=item%></td>
+                    <td><%= price%></td>
+                    <td><%=name%></td>
+                    <td><%=quantity%></td>
                     
                 </tr>
                 <%
@@ -93,6 +96,10 @@ resultSet = statement.executeQuery(sql);
             </table>
         
         </div>
+
+        
+        
+        
 <%
 
 connection.close();
