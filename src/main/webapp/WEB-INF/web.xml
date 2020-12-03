@@ -44,6 +44,10 @@
         <servlet-name>SaveOrderServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.SaveOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApproveOrderServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.ApproveOrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -83,6 +87,10 @@
     <servlet-mapping>
         <servlet-name>SaveOrderServlet</servlet-name>
         <url-pattern>/SaveOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApproveOrderServlet</servlet-name>
+        <url-pattern>/ApproveOrderServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

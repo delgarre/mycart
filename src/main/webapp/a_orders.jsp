@@ -63,12 +63,22 @@ resultSet = statement.executeQuery(sql);
         <h1>Approve:</h1>
         <div class="col-md-8">
 
+            <form method="post" action="ApproveOrderServlet">
+                <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
+                
+                <input type="hidden" name="locations" value="<%=id%>"/>
+                <input type="submit" value="Approve Orders"/>
+             </form>
+
+            
             <table class="table table-bordered ">
                 <tr>
+                    <th>Id</th>
                     <th>Item Name</th>
                     <th>Price</th>
                     <th>Ordered By</th>
                     <th>QTY Per UOM</th>
+                    <th>Location</th>
                     <th>Actions</th>
                     
                 </tr>
@@ -80,21 +90,33 @@ resultSet = statement.executeQuery(sql);
                         String price = resultSet.getString("aPPrice");
                         String name = resultSet.getString("name");
                         String quantity = resultSet.getString("quantity");
+                        String locations = resultSet.getString("locations");
+                        String order_id = resultSet.getString("id");
                         
                     %>
                     
-
+                    <td><%=order_id%></td>
                     <td><%=item%></td>
                     <td><%= price%></td>
                     <td><%=name%></td>
                     <td><%=quantity%></td>
+                    <td><%= locations%></td>
+                    <td>
+                        <a href="update_a_orders_page.jsp?id=<%=order_id%>">
+                            <button>Update/Approve</button>
+                        </a>
+                            <a href="delete_a_orders.jsp?id=<%=order_id%>">
+                                <button>Delete</button>
+                            </a>
+                        
+                    </td>
                     
                 </tr>
                 <%
                     }
                 %>
             </table>
-        
+                
         </div>
 
         

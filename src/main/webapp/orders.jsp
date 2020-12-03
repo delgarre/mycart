@@ -62,7 +62,10 @@ resultSet = statement.executeQuery(sql);
         <h1>Locations Waiting Approval:</h1>
         <div class="col-md-8">
 
+
+            
             <table class="table table-bordered ">
+                
                 <tr>
                     <th>Locations</th>
                    

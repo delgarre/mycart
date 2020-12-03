@@ -51,6 +51,8 @@ public class User implements Serializable{
     
     @OneToMany(mappedBy = "users")
     private List<Orders> orders = new ArrayList<>();
+    
+   
 
     public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, String locations, List<Test> test, List<ApproveOrder> ap, List<Orders> orders) {
         this.userId = userId;
@@ -65,6 +67,7 @@ public class User implements Serializable{
         this.test = test;
         this.ap = ap;
         this.orders = orders;
+       
     }
 
     public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, Company companies, String locations, List<Test> test, List<ApproveOrder> ap, List<Orders> orders) {
@@ -80,6 +83,7 @@ public class User implements Serializable{
         this.test = test;
         this.ap = ap;
         this.orders = orders;
+        
         
     }
     
@@ -197,6 +201,7 @@ public class User implements Serializable{
     public void setOrders(List<Orders> orders) {
         this.orders = orders;
     }
+    
     
     
 

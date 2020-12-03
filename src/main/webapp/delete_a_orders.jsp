@@ -12,10 +12,9 @@
     
     Statement st = conn.createStatement();
     
-    int i = st.executeUpdate("DELETE FROM ApproveOrder WHERE id="+id);
-    
-    response.sendRedirect("home.jsp");
-    session.setAttribute("message", "Order deleted successfully!");
+    int i = st.executeUpdate("DELETE FROM Orders WHERE id="+id);
+    session.setAttribute("message", "User deleted successfully!");
+    response.sendRedirect("orders.jsp");
     }
     catch(Exception e)
     {

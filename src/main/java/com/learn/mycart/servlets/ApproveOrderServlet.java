@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.learn.mycart.servlets;
 
 import com.learn.mycart.mail.JavaMailUtil;
@@ -12,10 +16,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.SessionFactory;
 
-
-public class OrderServlet extends HttpServlet {
+/**
+ *
+ * @author garre
+ */
+public class ApproveOrderServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,8 +36,9 @@ public class OrderServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+           
             String user_id = request.getParameter("user_id");
+            String id = request.getParameter("locations");
             
             if(user_id != null){
                 try {
@@ -39,15 +46,14 @@ public class OrderServlet extends HttpServlet {
                     Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
                     Statement st=conn.createStatement();   
                     HttpSession httpSession=request.getSession();
-                    int i = st.executeUpdate("insert into Orders(aPName, aPPrice, date, locations, name, quantity, user_id) select aPName, aPPrice, date, locations, name, quantity, user_id from ApproveOrder where user_id ="+user_id);
+                    int i = st.executeUpdate("insert into OrderHistory(aName, aPrice, date, locations, cName, quantity) select aPName, aPPrice, date, locations, name, quantity from Orders where locations = " +id);
                     
                     JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
-                    response.sendRedirect("home.jsp");
+                    response.sendRedirect("admin.jsp");
                     httpSession.setAttribute("message", "Order processed successfully!");
                 } catch (Exception e) {
                 }
             }
-            
             
         }
     }

@@ -68,7 +68,7 @@ resultSet = statement.executeQuery(sql);
         <div class="col-md-8">
             <form method="post" action="OrderServlet">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
-                <input type="submit" value="Process Orders"/>
+                <input type="submit" value="Submit Cart"/>
             </form>
             <table class="table table-bordered ">
                 <tr>
