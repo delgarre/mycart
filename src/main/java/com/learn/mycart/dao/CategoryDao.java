@@ -57,4 +57,13 @@ public class CategoryDao {
         session.close();
         return catId;
     }
+    public List<Category> getAllItemsByName(String name)
+    {
+        Session s = this.factory.openSession();
+        Query query = s.createQuery("from Category as c where c.companies.companyName =: name");
+        query.setParameter("name", name);
+        List<Category> list = query.list();
+        return list;
+    }
+
 }

@@ -49,4 +49,12 @@ public class ItemDao {
         return list;
     }
     
+    public List<Item> getAllItemsById(int cid)
+    {
+        Session s = this.factory.openSession();
+        Query query = s.createQuery("from Item as i where i.category.categoryId =: id");
+        query.setParameter("id", cid);
+        List<Item> list = query.list();
+        return list;
+    }
 }

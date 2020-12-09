@@ -46,10 +46,10 @@ public class ApproveOrderServlet extends HttpServlet {
                     Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
                     Statement st=conn.createStatement();   
                     HttpSession httpSession=request.getSession();
-                    int i = st.executeUpdate("insert into OrderHistory(aName, aPrice, date, locations, cName, quantity) select aPName, aPPrice, date, locations, name, quantity from Orders where locations = " +id);
+                    int i = st.executeUpdate("insert into OrderHistory(aName, aPrice, date, locations, cName, quantity) select aPName, aPPrice, date, locations, name, quantity from Orders where locations = "+id);
                     
                     JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
-                    response.sendRedirect("admin.jsp");
+                    response.sendRedirect("home.jsp");
                     httpSession.setAttribute("message", "Order processed successfully!");
                 } catch (Exception e) {
                 }

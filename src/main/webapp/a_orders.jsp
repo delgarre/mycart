@@ -62,14 +62,14 @@ resultSet = statement.executeQuery(sql);
         <%@include file="components/navbar.jsp" %>
         <h1>Approve:</h1>
         <div class="col-md-8">
-
-            <form method="post" action="ApproveOrderServlet">
+            
+            <form method="post" action="a.jsp">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
+                <input type="text" name="locations" value="<%=id%>"/>
                 
-                <input type="hidden" name="locations" value="<%=id%>"/>
                 <input type="submit" value="Approve Orders"/>
-             </form>
-
+             
+            
             
             <table class="table table-bordered ">
                 <tr>
@@ -112,11 +112,14 @@ resultSet = statement.executeQuery(sql);
                     </td>
                     
                 </tr>
+                
                 <%
                     }
                 %>
+                
             </table>
                 
+            </form>
         </div>
 
         
