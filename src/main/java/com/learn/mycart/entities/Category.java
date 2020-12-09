@@ -1,16 +1,20 @@
 
 package com.learn.mycart.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Category {
+public class Category implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +27,13 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<Vendor> vendors = new ArrayList<>();
     
+    @OneToMany(mappedBy = "category")
+    private List<Item> items = new ArrayList<>();
+    
+    @ManyToOne
+    @JoinColumn(name="companyName", referencedColumnName="companyName")
+    private Company companies;
+    
     public Category(){
         
     }
@@ -33,11 +44,13 @@ public class Category {
         this.categoryDesc = categoryDesc;
     }
 
-    public Category(String categoryTitle, String categoryDesc, List<Product> products, List<Vendor> vendors) {
+    public Category(String categoryTitle, String categoryDesc, List<Product> products, List<Vendor> vendors, List<Item> items, Company companies) {
         this.categoryTitle = categoryTitle;
         this.categoryDesc = categoryDesc;
         this.products = products;
         this.vendors = vendors;
+        this.items = items;
+        this.companies = companies;
     }
 
     public int getCategoryId() {
@@ -78,6 +91,22 @@ public class Category {
 
     public void setVendor(List<Vendor> vendors) {
         this.vendors = vendors;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public Company getCompanies() {
+        return companies;
+    }
+
+    public void setCompanies(Company companies) {
+        this.companies = companies;
     }
     
     

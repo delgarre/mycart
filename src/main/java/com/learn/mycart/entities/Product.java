@@ -36,13 +36,19 @@ public class Product {
     @ManyToOne 
     @JoinColumn(name="vendorName")
     private Vendor vendor;
+    
+    @ManyToOne 
+    @JoinColumn(name="companyName")
+    private Company companies;
+    
+    
     @ManyToOne
     private Category category;
 
     public Product() {
     }
 
-    public Product(String pName, String pDesc, String pPhoto, double pPrice, int pDiscount, int pQuanity, Category categoty, String unitOfMeasure, Vendor vendor, String cpt, String ndc, String itemNumber, String manufacturer, String manufacturerNum, String inventoryType, String alternateItem) {
+    public Product(String pName, String pDesc, String pPhoto, double pPrice, int pDiscount, int pQuanity, Category categoty, String unitOfMeasure, Vendor vendor, String cpt, String ndc, String itemNumber, String manufacturer, String manufacturerNum, String inventoryType, String alternateItem, Company companies) {
         this.pName = pName;
         this.pDesc = pDesc;
         this.pPhoto = pPhoto;
@@ -60,6 +66,7 @@ public class Product {
         this.inventoryType = inventoryType;
         this.alternateItem = alternateItem;
         //this.pPic = pPic;
+        this.companies = companies;
     }
 
     public int getpId() {
@@ -196,6 +203,14 @@ public class Product {
 
     public void setAlternateItem(String alternateItem) {
         this.alternateItem = alternateItem;
+    }
+
+    public Company getCompanies() {
+        return companies;
+    }
+
+    public void setCompanies(Company companies) {
+        this.companies = companies;
     }
 
    
