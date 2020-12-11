@@ -39,6 +39,8 @@ public class Company implements Serializable {
     
     @OneToMany(mappedBy = "companies")
     private List<Product> products = new ArrayList<>();
+    
+
 
 
     public Company() {
@@ -53,6 +55,7 @@ public class Company implements Serializable {
         this.items = items;
         this.category = catgeory;
         this.products = products;
+        
         
     }
 
@@ -135,6 +138,8 @@ public class Company implements Serializable {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
+
     
     
 

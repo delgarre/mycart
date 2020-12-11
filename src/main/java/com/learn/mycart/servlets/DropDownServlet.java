@@ -6,8 +6,10 @@
 package com.learn.mycart.servlets;
 
 import com.learn.mycart.dao.CompanyDao;
+import com.learn.mycart.dao.LocationTypeDao;
 import com.learn.mycart.dao.TestDao;
 import com.learn.mycart.entities.Company;
+import com.learn.mycart.entities.LocationType;
 import com.learn.mycart.entities.Test;
 import java.io.IOException;
 import com.learn.mycart.helper.FactoryProvider;
@@ -39,9 +41,11 @@ public class DropDownServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String name = request.getParameter("comId");
            
-            CompanyDao cDao = new CompanyDao(FactoryProvider.getFactory());
-            Company company = cDao.getCompanyByName(name);
+            LocationTypeDao lDao = new LocationTypeDao(FactoryProvider.getFactory());
+           // LocationType locationType = lDao.getByLocation(location);
             
+            CompanyDao cdao  = new CompanyDao(FactoryProvider.getFactory());
+            Company company = cdao.getCompanyByName(name);
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute("location", company);
             response.sendRedirect("home.jsp");

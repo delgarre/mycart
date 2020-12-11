@@ -1,10 +1,14 @@
 <%@page import="com.learn.mycart.entities.User"%>
 
 <%@page import="com.learn.mycart.entities.Company"%>
+<%@page import="com.learn.mycart.entities.LocationType"%>
 <%
     User user1 = (User)session.getAttribute("current-user");
 
     Company company = (Company)session.getAttribute("location");
+    
+   // LocationType locationType = (LocationType)session.getAttribute("location");
+    
 
 %>
 

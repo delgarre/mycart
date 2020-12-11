@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,9 +31,19 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "category")
     private List<Item> items = new ArrayList<>();
     
-    @ManyToOne
-    @JoinColumn(name="companyName", referencedColumnName="companyName")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+    @JoinColumn(name="companyName", referencedColumnName="companyName"),
+    @JoinColumn(name="locationType", referencedColumnName="type")
+    })
     private Company companies;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+    @JoinColumn(name="location", referencedColumnName="location"),
+    @JoinColumn(name="type", referencedColumnName="locationType")
+    })
+    private LocationType locationType;
     
     public Category(){
         
@@ -44,13 +55,14 @@ public class Category implements Serializable {
         this.categoryDesc = categoryDesc;
     }
 
-    public Category(String categoryTitle, String categoryDesc, List<Product> products, List<Vendor> vendors, List<Item> items, Company companies) {
+    public Category(String categoryTitle, String categoryDesc, List<Product> products, List<Vendor> vendors, List<Item> items, Company companies, LocationType locationType) {
         this.categoryTitle = categoryTitle;
         this.categoryDesc = categoryDesc;
         this.products = products;
         this.vendors = vendors;
         this.items = items;
         this.companies = companies;
+        this.locationType = locationType;
     }
 
     public int getCategoryId() {
@@ -107,6 +119,14 @@ public class Category implements Serializable {
 
     public void setCompanies(Company companies) {
         this.companies = companies;
+    }
+
+    public LocationType getLocationType() {
+        return locationType;
+    }
+
+    public void setLocationType(LocationType locationType) {
+        this.locationType = locationType;
     }
     
     
