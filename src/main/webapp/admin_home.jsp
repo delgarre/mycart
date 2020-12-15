@@ -163,9 +163,7 @@ while(resultSet.next()){
             
             <tr>
                 <td>
-                    <a href="view.jsp?id=<%= p.getpId()%>">
-                        <button class="btn btn-outline-success">View</button>
-                    </a>
+                     <img style="max-width: 125px" src="image/<%=p.getpPhoto()%>" alt="user_icon">
                 </td>
                 <td><%= p.getItemNumber()%></td>
                 <td><%= p.getpName()%></td>

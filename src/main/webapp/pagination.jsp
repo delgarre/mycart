@@ -102,7 +102,7 @@ Company company = (Company)session.getAttribute("location");
                 
                 <td><%= i.getQuantity()%></td>
                 <td>
-                    <img style="max-width: 125px" class="img-fluid rounded-circle" src="image/<%=i.getPhoto()%>" alt="user_icon">
+                    <img style="max-width: 125px"" src="image/<%=i.getPhoto()%>" alt="user_icon">
                     
                 </td>
                 
