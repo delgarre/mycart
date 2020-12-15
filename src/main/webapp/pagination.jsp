@@ -80,6 +80,7 @@ Company company = (Company)session.getAttribute("location");
                     <th>Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
+                    <th>Photo</th>
                     
                 </tr>
                 
@@ -100,6 +101,10 @@ Company company = (Company)session.getAttribute("location");
                 <td><%=i.getPrice()%></td>
                 
                 <td><%= i.getQuantity()%></td>
+                <td>
+                    <img style="max-width: 125px" class="img-fluid rounded-circle" src="image/<%=i.getPhoto()%>" alt="user_icon">
+                    
+                </td>
                 
             </tr>
             <%
