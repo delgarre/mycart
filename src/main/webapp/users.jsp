@@ -45,7 +45,6 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Location</th>
                 <th>Authority</th>
                 <th>Actions</th>
             </tr>
@@ -74,7 +73,7 @@
                 <td><%= u.getUserName()%></td>
                 
                 
-                <td><%=u.getCompanies()%></td>
+                
                 
                 <td><%= u.getUserType()%></td>
                 <td>
@@ -85,7 +84,7 @@
                         <button type="button" class="update">Update</button>
                     </a>
                         <a href="company_user.jsp?id=<%= u.getUserId()%>">
-                        <button type="">Companies</button>    
+                        <button type="">Locations</button>    
                     </a>
                 </td>
             </tr>
