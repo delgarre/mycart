@@ -54,9 +54,11 @@ resultSet = statement.executeQuery(sql);
         
             <table class="table table-bordered ">
                 <tr>
+                <th>Photo</th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
+                <th>Actions</th>
                 </tr>
                 <%
                     while(resultSet.next()){
@@ -65,10 +67,14 @@ resultSet = statement.executeQuery(sql);
                         String names = resultSet.getString("name");
                         String price = resultSet.getString("price");
                         String quantity = resultSet.getString("quantity");
+                        String photo = resultSet.getString("photo");
                         
                     %>
                 
                 <tr>
+                    <td>
+                        <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
+                    </td>
                     <td><%= names%></td>
                     <td><%= price%></td>
                     <td><%= quantity%></td>

@@ -32,7 +32,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from ApproveOrder where id = "+id;
+String sql ="select * from Approve where id = "+id;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
@@ -52,10 +52,10 @@ while(resultSet.next()){
 
 <br>
 Name:<br>
-<input type="text" name="aPName" value="<%=resultSet.getString("aPName") %>">
+<input type="text" name="itemName" value="<%=resultSet.getString("itemName") %>">
 <br>
 Price:<br>
-<input type="text" name="aPPrice" value="<%=resultSet.getString("aPPrice") %>">
+<input type="text" name="price" value="<%=resultSet.getString("price") %>">
 <br>
 Member Name:<br>
 <input type="text" name="name" value="<%=resultSet.getString("name") %>">

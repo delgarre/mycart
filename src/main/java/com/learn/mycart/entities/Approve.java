@@ -5,6 +5,8 @@
  */
 package com.learn.mycart.entities;
 
+import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,50 +16,39 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
-/**
- *
- * @author garre
- */
+
 @Entity
-public class Item {
+public class Approve implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private String itemName;
     private String price;
     private String photo;
     private String quantity;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-    @JoinColumn(name="categoryId", referencedColumnName="categoryId"),
-    @JoinColumn(name="categoryTitle", referencedColumnName="categoryTitle")
-    })
-    private Category category;
+    private Date date;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-    @JoinColumn(name="location", referencedColumnName="location"),
-    @JoinColumn(name="locationType", referencedColumnName="locationType")
-    })
-    private LocationType location;
+    private String locations;
     
     @ManyToOne
-    @JoinColumn(name="vendorName", referencedColumnName="vendorName")
-    private Vendor vendors;
+    @JoinColumn(name="user_id", referencedColumnName="user_id")
+    private User users;
 
-    public Item() {
+    public Approve() {
     }
 
-    public Item(int id, String name, String price, String photo, String quantity, Category category, LocationType location, Vendor vendors) {
+    public Approve(int id, String name, String price, String photo, String quantity, Date date, String locations, User users, String itemName) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.photo = photo;
         this.quantity = quantity;
-        this.category = category;
-        this.location = location;
-        this.vendors = vendors;
+        this.date = date;
+        this.locations = locations;
+        this.users = users;
+        this.itemName = itemName;
     }
 
     public int getId() {
@@ -100,39 +91,37 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public Category getCategory() {
-        return category;
+    public Date getDate() {
+        return date;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public LocationType getLocation() {
-        return location;
+    public String getLocations() {
+        return locations;
     }
 
-    public void setLocation(LocationType location) {
-        this.location = location;
+    public void setLocations(String locations) {
+        this.locations = locations;
     }
 
-    public Vendor getVendors() {
-        return vendors;
+    public User getUsers() {
+        return users;
     }
 
-    public void setVendors(Vendor vendors) {
-        this.vendors = vendors;
+    public void setUsers(User users) {
+        this.users = users;
     }
 
-    
-    
-    
-    
-    @Override
-    public String toString() {
-        return "Item{" + "id=" + id + ", name=" + name + ", price=" + price + ", photo=" + photo + ", quantity=" + quantity + '}';
+    public String getItemName() {
+        return itemName;
     }
-    
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
     
     
 }

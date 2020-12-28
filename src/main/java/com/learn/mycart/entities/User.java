@@ -52,9 +52,11 @@ public class User implements Serializable{
     @OneToMany(mappedBy = "users")
     private List<Orders> orders = new ArrayList<>();
     
+    @OneToMany(mappedBy = "users")
+    private List<Approve> a = new ArrayList<>();
    
 
-    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, String locations, List<Test> test, List<ApproveOrder> ap, List<Orders> orders) {
+    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, String locations, List<Test> test, List<ApproveOrder> ap, List<Orders> orders, List<Approve> a) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -67,10 +69,11 @@ public class User implements Serializable{
         this.test = test;
         this.ap = ap;
         this.orders = orders;
+        this.a = a;
        
     }
 
-    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, Company companies, String locations, List<Test> test, List<ApproveOrder> ap, List<Orders> orders) {
+    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, Company companies, String locations, List<Test> test, List<ApproveOrder> ap, List<Orders> orders, List<Approve> a) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
@@ -83,6 +86,7 @@ public class User implements Serializable{
         this.test = test;
         this.ap = ap;
         this.orders = orders;
+        this.a = a;
         
         
     }
@@ -200,6 +204,14 @@ public class User implements Serializable{
 
     public void setOrders(List<Orders> orders) {
         this.orders = orders;
+    }
+
+    public List<Approve> getA() {
+        return a;
+    }
+
+    public void setA(List<Approve> a) {
+        this.a = a;
     }
     
     

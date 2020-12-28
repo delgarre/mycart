@@ -44,7 +44,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from ApproveOrder where user_id = "+id;
+String sql ="select * from Approve where user_id = "+id;
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -72,7 +72,7 @@ resultSet = statement.executeQuery(sql);
             </form>
             <table class="table table-bordered ">
                 <tr>
-                    <th>Pending Number</th>
+                    <th>Photo</th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
@@ -84,15 +84,18 @@ resultSet = statement.executeQuery(sql);
                 <tr>
                    <%
                     while(resultSet.next()){
-                        String aPName = resultSet.getString("aPName");
-                        String aPPrice = resultSet.getString("aPPrice");
+                        String aPName = resultSet.getString("itemName");
+                        String aPPrice = resultSet.getString("price");
                         String quantity = resultSet.getString("quantity");
                         String name = resultSet.getString("name");
                         String locations = resultSet.getString("locations");
                         String Id = resultSet.getString("id");
+                        String photo = resultSet.getString("photo");
                     %>
                     
-                    <td><%= Id%></td>
+                    <td>
+                        <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
+                    </td>
                     <td><%=aPName%></td>
                     <td><%=aPPrice%></td>
                     <td><%=quantity%></td>
