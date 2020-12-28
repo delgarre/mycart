@@ -35,7 +35,7 @@ Company company = (Company)session.getAttribute("location");
                  ilist = iDao.getItems();
             }else{
                 int cid =Integer.parseInt(cat.trim());
-                ilist = iDao.getAllItemsById(cid);
+                ilist = iDao.getAllItemsByIdandName(cid, name);
             }
                
                 

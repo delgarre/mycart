@@ -43,7 +43,7 @@ public class ItemDao {
     public List<Item> getAllItemsByName(String name)
     {
         Session s = this.factory.openSession();
-        Query query = s.createQuery("from Item as i where i.companies.companyName =: name");
+        Query query = s.createQuery("from Item as i inner join  location as LT on LT.locationType = i.locationType where LT.location =: name");
         query.setParameter("name", name);
         List<Item> list = query.list();
         return list;
@@ -54,6 +54,15 @@ public class ItemDao {
         Session s = this.factory.openSession();
         Query query = s.createQuery("from Item as i where i.category.categoryId =: id");
         query.setParameter("id", cid);
+        List<Item> list = query.list();
+        return list;
+    }
+    public List<Item> getAllItemsByIdandName(int cid, String name)
+    {
+        Session s = this.factory.openSession();
+        Query query = s.createQuery("from Item as i where i.category.categoryId =: id and i.location.location =: name");
+        query.setParameter("id", cid);
+        query.setParameter("name", name);
         List<Item> list = query.list();
         return list;
     }

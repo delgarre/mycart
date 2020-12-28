@@ -37,21 +37,22 @@ public class Item {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns({
-    @JoinColumn(name="companyId", referencedColumnName="companyId"),
-    @JoinColumn(name="companyName", referencedColumnName="companyName")
+    @JoinColumn(name="location", referencedColumnName="location"),
+    @JoinColumn(name="locationType", referencedColumnName="locationType")
     })
-    private Company companies;
+    private LocationType location;
 
     public Item() {
     }
 
-    public Item(int id, String name, String price, String photo, String quantity, Category category) {
+    public Item(int id, String name, String price, String photo, String quantity, Category category, LocationType location) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.photo = photo;
         this.quantity = quantity;
         this.category = category;
+        this.location = location;
     }
 
     public int getId() {
@@ -102,13 +103,15 @@ public class Item {
         this.category = category;
     }
 
-    public Company getCompanies() {
-        return companies;
+    public LocationType getLocation() {
+        return location;
     }
 
-    public void setCompanies(Company companies) {
-        this.companies = companies;
+    public void setLocation(LocationType location) {
+        this.location = location;
     }
+
+    
 
     
     

@@ -31,8 +31,7 @@ public class Company implements Serializable {
     @OneToMany(mappedBy = "companies")
     private List<Test> test = new ArrayList<>();
     
-    @OneToMany(mappedBy = "companies")
-    private List<Item> items = new ArrayList<>();
+    
     
     @OneToMany(mappedBy = "companies")
     private List<Category> category = new ArrayList<>();
@@ -46,13 +45,13 @@ public class Company implements Serializable {
     public Company() {
     }
 
-    public Company(String companyName, String type, String typeLocation, List<User> user, List<Test> test, List<Item> items, List<Category> catgeory, List<Product> products) {
+    public Company(String companyName, String type, String typeLocation, List<User> user, List<Test> test, List<Category> catgeory, List<Product> products) {
         this.companyName = companyName;
         this.type = type;
         this.typeLocation = typeLocation;
         this.user = user;
         this.test = test;
-        this.items = items;
+        
         this.category = catgeory;
         this.products = products;
         
@@ -113,14 +112,6 @@ public class Company implements Serializable {
 
     public void setTest(List<Test> test) {
         this.test = test;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
     }
 
     public List<Category> getCategory() {

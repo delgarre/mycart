@@ -63,6 +63,10 @@
         <servlet-name>AddLocationServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.AddLocationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ImportToExcelServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.ImportToExcelServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -114,6 +118,10 @@
     <servlet-mapping>
         <servlet-name>AddLocationServlet</servlet-name>
         <url-pattern>/AddLocationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImportToExcelServlet</servlet-name>
+        <url-pattern>/ImportToExcelServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
