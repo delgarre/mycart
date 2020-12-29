@@ -95,7 +95,7 @@
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/product.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/location.png" alt="user_icon">
                             </div>
                             <a href="companies.jsp" class="card-link">Click me!</a>
                             <h3 class="text-muted">Locations</h3>
@@ -128,6 +128,19 @@
                         </div>
                     </div>
                 </div>
+                <!--seventh row -->
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            
+                            <div class="container">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
+                            </div>
+                            <a href="vendors.jsp" class="card-link">Click me!</a>
+                            <h3 class="text-muted"> Vendors</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <!--second row-->
@@ -139,7 +152,7 @@
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/product.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/category.png" alt="user_icon">
                             </div>
                             <p class="mt-2">Click here to add new category</p>
                             <h1 class="text-uppercase text-muted">Add Category</h1>
@@ -310,7 +323,7 @@
                                 <%
                                 for(Vendor v: vList){
                                 %>
-                                <option value="<%=v.getVendorId()%>"> <%= v.getVendorName()%></option>
+                                <option value="<%=v.getVendorName()%>"> <%= v.getVendorName()%></option>
                                 <%
                                     }
                                 %>
