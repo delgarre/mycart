@@ -30,32 +30,28 @@ User user1 = (User)session.getAttribute("current-user");
 %>
 
 <%
-String id = request.getParameter("user_id");
-String user_name=request.getParameter("user_name");
-String authority=request.getParameter("user_type");
-String password=request.getParameter("user_password");
-String email=request.getParameter("user_email");
-if(id != null)
+String vendorId = request.getParameter("vendorId");
+String vendorName=request.getParameter("vendorName");
+
+if(vendorId != null)
 {
 Connection con = null;
 PreparedStatement ps = null;
-int personID = Integer.parseInt(id);
+int personID = Integer.parseInt(vendorId);
 try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql="Update User set user_id=?,user_name=?,user_type=?,user_password=?,user_email=? where user_id="+id;
+String sql="Update Vendor set vendorId=?, vendorName=? where vendorId="+vendorId;
 ps = con.prepareStatement(sql);
-ps.setString(1,id);
-ps.setString(2, user_name);
-ps.setString(3, authority);
-ps.setString(4, password);
-ps.setString(5, email);
+ps.setString(1,vendorId);
+ps.setString(2, vendorName);
+
 int i = ps.executeUpdate();
 if(i > 0)
 {
-session.setAttribute("message", "User updated successfully!");
-response.sendRedirect("users.jsp");
+session.setAttribute("message", "Vendor info changed successfully!");
+response.sendRedirect("vendors.jsp");
 }
 else
 {

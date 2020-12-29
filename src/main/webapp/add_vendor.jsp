@@ -1,6 +1,4 @@
-<%@page import="com.learn.mycart.dao.CompanyDao"%>
-<%@page import="com.learn.mycart.helper.FactoryProvider"%>
-<%@page import="com.learn.mycart.entities.Company"%>
+
 <%@page import="com.learn.mycart.entities.User"%>
 <%@page import="java.util.List"%>
 <%
@@ -27,27 +25,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add User</title>
+        <title>Add Vendor</title>
         <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <form method="post" action="new_user.jsp">
+        <div class="col-md-8">
+        <h1>Info:</h1>
+        <form method="POST" action="new_vendor.jsp">
             Name:<br>
-            <input type="text" name="user_name"/>
-            <br>
-            Email:<br>
-            <input type="text" name="user_email"/>
-            <br>
-            Password:<br>
-            <input type="text" name="user_password"/>
-            <br>
-            Authority:<br>
-            <input type="text" name="user_type" placeholder=" 'admin' or 'normal' all lowercase letters"/>
-            <br> <br> 
-            
-            
-            <input type="submit" value="submit">
+            <input type="text" name="vendorName"/>
+            <br><br>
+            <input type="submit" value="Add Vendor">
         </form>
+        </div>
     </body>
 </html>
