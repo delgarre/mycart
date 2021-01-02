@@ -56,6 +56,15 @@ resultSet = statement.executeQuery(sql);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pending Orders</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <%
     Date today = new Date();
@@ -65,10 +74,10 @@ resultSet = statement.executeQuery(sql);
     <body>
            <%@include file="components/navbar.jsp" %>
         <h1>Cart Items:</h1>
-        <div class="col-md-8">
+        <div class="center">
             <form method="post" action="OrderServlet">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
-                <input type="submit" value="Submit Cart"/>
+                <input type="submit" value="Submit Cart" onclick="myFunction()"/>
             </form>
             <table class="table table-bordered ">
                 <tr>
@@ -103,10 +112,10 @@ resultSet = statement.executeQuery(sql);
                     <td><%=locations%></td>
                     <td>
                         <a href="update_order_page.jsp?id=<%= Id%>">
-                            <button>Update</button>
+                            <button>Edit</button>
                         </a>
                             <a href="delete_order.jsp?id=<%= Id%>">
-                                <button>Delete</button>
+                                <button onclick="myFunction()">Delete</button>
                             </a>
                     </td>
                     
@@ -124,5 +133,19 @@ connection.close();
 e.printStackTrace();
 }
 %>
+
+<script>
+function myFunction() {
+  var txt;
+  var r = confirm("Are you sure?");
+  if (r == true) {
+    window.location.href = "pending_orders.jsp";
+  } else {
+    window.location.href = "pending_orders.jsp";
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+</script>
+
     </body>
 </html>

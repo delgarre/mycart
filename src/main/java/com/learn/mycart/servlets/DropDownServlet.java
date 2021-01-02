@@ -48,8 +48,11 @@ public class DropDownServlet extends HttpServlet {
             Company company = cdao.getCompanyByName(name);
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute("location", company);
-            response.sendRedirect("home.jsp");
             
+                httpSession.setAttribute("message","Location selected ");
+            //response.sendRedirect("home.jsp");
+            response.sendRedirect("items.jsp");
+            return;
         }
     }
 

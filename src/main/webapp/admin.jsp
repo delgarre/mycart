@@ -1,6 +1,8 @@
 <%@page import="com.learn.mycart.entities.Category"%>
 <%@page import="com.learn.mycart.entities.Vendor"%>
 <%@page import="com.learn.mycart.dao.VendorDao"%>
+<%@page import="com.learn.mycart.entities.LocationType"%>
+<%@page import="com.learn.mycart.dao.LocationTypeDao"%>
 <%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.dao.CategoryDao"%>
@@ -193,7 +195,7 @@
       </div>
       <div class="modal-body">
         
-          <form action="ProductOperationServlet" method="post">
+          <form action="AddItemServlet" method="post">
               
               <input type="hidden" name="operation" value="addcategory">
               
@@ -278,15 +280,21 @@
                     </div>
                     <!--product Item number -->
                     <div>
-                        <h6>Enter ItemNumber</h6>
+                        <h6>Enter Item Number</h6>
                         <input type="text" class="form-control" placeholder="Enter Item Number" name="itemNumber" required/>
                     </div>
+                    <!--location
+                    <div>
+                        <h6>Enter Location</h6>
+                        <input type="text" class="form-control" placeholder="Enter Item Location" name="locations" required/>
+                    </div>
+                    -->
                     <!--product manufacturer  -->
                     <div>
                         <h6>Enter Manufacturer</h6>
                         <input type="text" class="form-control" placeholder="Enter Manufacturer" name="manufacturer" required/>
                     </div>
-                    <!--product manufacturerNum -->
+                                        <!--product manufacturerNum -->
                     <div>
                         <h6>Enter Manufacturer #</h6>
                         <input type="text" class="form-control" placeholder="Enter Manufacturer Number" name="manufacturerNum" required/>
@@ -305,7 +313,7 @@
                             <%
                                 for(Category c: list){
                             %>
-                            <option value="<%= c.getCategoryId() %>"><%= c.getCategoryTitle() %> </option>
+                            <option value="<%= c.getCategoryTitle() %>"><%= c.getCategoryTitle() %> </option>
                             
                             <%
                                 }
@@ -328,12 +336,30 @@
                                     }
                                 %>
                             </select>
+                            <
+                            <div class="form-group">
+                                <h6>Select Location Type</h6>
+                                <select name="location" class="form-control" id="location">
+                                    <option value="OFFICE">OFFICE</option>
+                                    <option value="JACKSONVILLE ONLY">JACKSONVILLE ONLY</option>
+                                    <option value="OFFICE-ADMIN">OFFICE-ADMIN</option>
+                                    <option value="DIVERSIFIED SERVICE ENTERPRISES">DIVERSIFIED SERVICE ENTERPRISES</option>
+                                    <option value="PHYSICIANS GROUP INC">PHYSICIANS GROUP INC</option>
+                                    <option value="FROG HOP">FROG HOP</option>
+                                    <option value="HOTELS">HOTELS</option>
+                                    <option value="PHARMACY">PHARMACY</option>
+                                    <option value="WEST COAST LAW">WEST COAST LAW</option>
+                                </select>
+                            </div>
                         </div>
                     <!--product file-->
                     <div class="form-group">
-                        <label for="pPhoto">Select picture of product:</label>
+                        <label for="file">Select picture of product:</label>
                         <br>
-                        <input type="file" id="pPhoto" name="pPhoto"/>
+                        <input type="file" id="file" name="file"/>
+                        <!--
+                        <input type="file" id="file" name="file"/>
+                        -->
                     </div>
                     <!--submit button-->
                     <div class="container text-center">

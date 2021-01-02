@@ -57,4 +57,19 @@ public class VendorDao {
         session.close();
         return vendorId;
     }
+    public Vendor getVendorByNmae(String name)
+    {
+        Vendor ven = null;
+        try {
+            
+            Session session = this.factory.openSession();
+            ven = session.get(Vendor.class, name);
+            session.close();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ven;
+    }
+
 }

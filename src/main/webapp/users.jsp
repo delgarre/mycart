@@ -30,6 +30,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Users</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
@@ -39,7 +48,7 @@
             </a>
         </div>
         
-        <div class="col-md-8">
+        <div class="center">
         <div class="table-responsive-sm mt-3">
         <table class="table table-bordered " >
             <tr>
@@ -78,7 +87,7 @@
                 <td><%= u.getUserType()%></td>
                 <td>
                     <a href="delete.jsp?id=<%= u.getUserId() %>">
-                        <button type="button" class="delete">Delete</button>
+                        <button type="button" class="delete" onclick="myFunction()">Delete</button>
                     </a>
                     <a href="update_user_page.jsp?id=<%=u.getUserId() %>">
                         <button type="button" class="update">Update</button>
@@ -98,6 +107,17 @@
       
     </div>
         
-        
+<script>
+function myFunction() {
+  var txt;
+  var r = confirm("Are you sure?");
+  if (r == true) {
+    txt = "Category edited!";
+  } else {
+    txt = "You changed your mind!";
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+</script>
     </body>
 </html>

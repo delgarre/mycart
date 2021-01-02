@@ -5,6 +5,7 @@
  */
 package com.learn.mycart.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,11 +29,19 @@ public class Item {
     private String price;
     private String photo;
     private String quantity;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-    @JoinColumn(name="categoryId", referencedColumnName="categoryId"),
+    private String unitOfMeasure;
+    private String cpt;
+    private String ndc;
+    private String itemNumber;
+    private String manufacturer;
+    private String manufacturerNum;
+    private String alternateItem;
+    @Column(length = 3000)
+    private String pDesc;
+    private String stat;
+    
+    @ManyToOne
     @JoinColumn(name="categoryTitle", referencedColumnName="categoryTitle")
-    })
     private Category category;
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -49,7 +58,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(int id, String name, String price, String photo, String quantity, Category category, LocationType location, Vendor vendors) {
+    public Item(int id, String name, String price, String photo, String quantity, Category category, LocationType location, Vendor vendors, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, String itemNumber, String alternateItem, String stat) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -58,6 +67,16 @@ public class Item {
         this.category = category;
         this.location = location;
         this.vendors = vendors;
+        this.unitOfMeasure = unitOfMeasure;
+        this.cpt = cpt;
+        this.ndc = ndc;
+        this.itemNumber = itemNumber;
+        this.alternateItem = this.alternateItem;
+        this.manufacturer = manufacturer;
+        this.pDesc = pDesc;
+        this.manufacturerNum = manufacturerNum;
+        this.stat = stat;
+        
     }
 
     public int getId() {
@@ -124,7 +143,78 @@ public class Item {
         this.vendors = vendors;
     }
 
-    
+    public String getUnitOfMeasure() {
+        return unitOfMeasure;
+    }
+
+    public void setUnitOfMeasure(String unitOfMeasure) {
+        this.unitOfMeasure = unitOfMeasure;
+    }
+
+    public String getCpt() {
+        return cpt;
+    }
+
+    public void setCpt(String cpt) {
+        this.cpt = cpt;
+    }
+
+    public String getNdc() {
+        return ndc;
+    }
+
+    public void setNdc(String ndc) {
+        this.ndc = ndc;
+    }
+
+    public String getItemNumber() {
+        return itemNumber;
+    }
+
+    public void setItemNumber(String itemNumber) {
+        this.itemNumber = itemNumber;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getManufacturerNum() {
+        return manufacturerNum;
+    }
+
+    public void setManufacturerNum(String manufacturerNum) {
+        this.manufacturerNum = manufacturerNum;
+    }
+
+    public String getAlternateItem() {
+        return alternateItem;
+    }
+
+    public void setAlternateItem(String alternateItem) {
+        this.alternateItem = alternateItem;
+    }
+
+    public String getpDesc() {
+        return pDesc;
+    }
+
+    public void setpDesc(String pDesc) {
+        this.pDesc = pDesc;
+    }
+
+    public String getStat() {
+        return stat;
+    }
+
+    public void setStat(String stat) {
+        this.stat = stat;
+    }
+
     
     
     

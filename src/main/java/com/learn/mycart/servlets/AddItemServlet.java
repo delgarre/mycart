@@ -1,15 +1,20 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.learn.mycart.servlets;
 
-import com.learn.mycart.entities.Category;
 import com.learn.mycart.dao.CategoryDao;
-import com.learn.mycart.dao.ProductDao;
+import com.learn.mycart.dao.ItemDao;
+import com.learn.mycart.dao.LocationTypeDao;
 import com.learn.mycart.dao.VendorDao;
-import com.learn.mycart.entities.Product;
+import com.learn.mycart.entities.Category;
+import com.learn.mycart.entities.Item;
+import com.learn.mycart.entities.LocationType;
 import com.learn.mycart.entities.Vendor;
 import com.learn.mycart.helper.FactoryProvider;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +22,6 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,12 +31,12 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-@MultipartConfig
-public class ProductOperationServlet extends HttpServlet {
-    
-    
-    
-    
+/**
+ *
+ * @author garre
+ */
+public class AddItemServlet extends HttpServlet {
+
     private boolean isMultipart;
    private String filePath;
    private int maxFileSize = 100 * 1024;
@@ -43,17 +47,13 @@ public class ProductOperationServlet extends HttpServlet {
       // Get the file location where it would be stored.
       filePath = getServletContext().getInitParameter("file-upload"); 
    }
-
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        isMultipart = ServletFileUpload.isMultipartContent(request);
         try (PrintWriter out = response.getWriter()) {
-           
-            
-            //servlet 2:
-            //add category
-            //add product
-            
+            /* TODO output your page here. You may use following sample code. */
             String op = request.getParameter("operation");
             
             if(op.trim().equals("addcategory"))
@@ -80,16 +80,15 @@ public class ProductOperationServlet extends HttpServlet {
             }
             else if(op.trim().equals("addproduct"))
             {
-                //add product
-                //work
-                String pName = request.getParameter("pName");
+            
+                String name = request.getParameter("name");
                 String pDesc = request.getParameter("pDesc");
-                double pPrice = Double.parseDouble(request.getParameter("pPrice"));
+                String price = request.getParameter("price");
                 
-                int pQuantity = Integer.parseInt(request.getParameter("pQuantity"));
-                String pMeasure = request.getParameter("pMeasure");
+                String quantity = request.getParameter("quantity");
+                String unitOfMeasure = request.getParameter("unitOfMeasure");
                 String catId = request.getParameter("catId");
-                String vendorId = request.getParameter("vendorId");
+                String vendor = request.getParameter("vendorId");
                 String cpt = request.getParameter("cpt");
                 String ndc = request.getParameter("ndc");
                 String itemNumber = request.getParameter("itemNumber");
@@ -97,49 +96,42 @@ public class ProductOperationServlet extends HttpServlet {
                 String manufacturerNum = request.getParameter("manufacturerNum");
                 Part part = request.getPart("file");
                 String fileName = part.getSubmittedFileName();
+                String locationType = request.getParameter("location");
                 
                 
                 
-                Product p = new Product();
-                p.setpName(pName);
-                p.setpDesc(pDesc);
-                p.setpPrice(pPrice);
-                p.setUnitOfMeasure(pMeasure);
-                p.setpQuanity(pQuantity);
-                p.setCpt(cpt);
-                p.setNdc(ndc);
-                p.setItemNumber(itemNumber);
-                p.setManufacturer(manufacturer);
-                p.setManufacturerNum(manufacturerNum);
-                p.setpPhoto(part.getSubmittedFileName());
                 
+                Item i = new Item();
+                i.setName(name);
+                i.setpDesc(pDesc);
+                i.setManufacturer(manufacturer);
+                i.setItemNumber(itemNumber);
+                i.setCpt(cpt);
+                i.setNdc(ndc);
+                i.setManufacturerNum(manufacturerNum);
+                i.setPrice(price);
+                i.setQuantity(quantity);
+                i.setUnitOfMeasure(unitOfMeasure);
+                i.setPhoto(fileName);
+              
+
                 
-                //get category
+                LocationTypeDao ldao = new LocationTypeDao(FactoryProvider.getFactory());
+                LocationType location = ldao.getLocationTypeByName(locationType);
+                i.setLocation(location);
+                
+                VendorDao vDao = new VendorDao(FactoryProvider.getFactory());
+                Vendor vendors = vDao.getVendorByNmae(vendor);
+                i.setVendors(vendors);
+                
                 CategoryDao cDao = new CategoryDao(FactoryProvider.getFactory());
                 Category category= cDao.getName(catId);
-                p.setCategory(category);
-                
-                //get vendor
-                VendorDao vDao = new VendorDao(FactoryProvider.getFactory());
-                Vendor vendor = vDao.getVendorByNmae(vendorId);
-                p.setVendor(vendor);
-                
-                //product save...
-                ProductDao pDao =  new ProductDao(FactoryProvider.getFactory());
-                pDao.saveProduct(p);
-                
-                
-                //pic upload
-                //find out the path to upload photo
-                String path = request.getRealPath("img") +File.separator+ "products" + File.separator +part.getSubmittedFileName();
-                //String path = getServletContext().getRealPath("/"+"img"+File.separator+fileName);
-                System.out.println(path);
-                
-                
-                //uploading code
-                
+                i.setCategory(category);
+                ItemDao idao = new ItemDao(FactoryProvider.getFactory());
+                idao.saveProduct(i);
                 try {
                     
+                    String path = request.getRealPath("img") +File.separator+ "products" + File.separator +part.getSubmittedFileName();
                 
                 FileOutputStream fos = new FileOutputStream(path);
                 
@@ -159,7 +151,8 @@ public class ProductOperationServlet extends HttpServlet {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                 DiskFileItemFactory factory = new DiskFileItemFactory();
+                
+                DiskFileItemFactory factory = new DiskFileItemFactory();
    
       // maximum size that will be stored in memory
       factory.setSizeThreshold(maxMemSize);
@@ -203,52 +196,23 @@ public class ProductOperationServlet extends HttpServlet {
           } catch(Exception ex) {
             System.out.println(ex);
          }
-                out.println("Product save sucess...");
-                HttpSession httpSession = request.getSession();
-                httpSession.setAttribute("message","Product added successfully... ");
+          HttpSession httpSession = request.getSession();
+                httpSession.setAttribute("message","Item added successfully... ");
                 response.sendRedirect("admin.jsp");
                 return;
-            }
+        }
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+         throws ServletException, java.io.IOException {
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+         throw new ServletException("GET method used with " +
+            getClass( ).getName( )+": POST method required.");
+      }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

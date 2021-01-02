@@ -6,9 +6,11 @@
 package com.learn.mycart.dao;
 
 import com.learn.mycart.entities.Item;
+import com.learn.mycart.entities.Product;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 /**
@@ -65,5 +67,23 @@ public class ItemDao {
         query.setParameter("name", name);
         List<Item> list = query.list();
         return list;
+    }
+    public boolean saveProduct(Item item){
+        boolean f = false;
+        try {
+            
+            Session session = this.factory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.save(item);
+            
+            tx.commit();
+            session.close();
+            f = true;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            f = false;
+        }
+        return f;
     }
 }

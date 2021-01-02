@@ -22,4 +22,11 @@ public class NoticeDao {
         List<Notice> list= query.list();
         return list;
     }
+    public List<Notice> getStatus(){
+        Session s= this.factory.openSession();
+        Query query = s.createQuery("from Notice where status = 'active'");
+        List<Notice> list= query.list();
+        return list;
+    }
+    
 }

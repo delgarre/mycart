@@ -51,6 +51,15 @@ resultSet = statement.executeQuery(sql);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pending Orders</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <%
     Date today = new Date();
@@ -60,7 +69,7 @@ resultSet = statement.executeQuery(sql);
     <body>
            <%@include file="components/navbar.jsp" %>
         <h1>Locations Waiting Approval:</h1>
-        <div class="col-md-8">
+        <div class="center">
 
 
             
