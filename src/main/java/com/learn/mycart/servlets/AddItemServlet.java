@@ -22,6 +22,7 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author garre
  */
+@MultipartConfig
 public class AddItemServlet extends HttpServlet {
 
     private boolean isMultipart;
@@ -48,7 +50,7 @@ public class AddItemServlet extends HttpServlet {
       filePath = getServletContext().getInitParameter("file-upload"); 
    }
    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -81,12 +83,12 @@ public class AddItemServlet extends HttpServlet {
             else if(op.trim().equals("addproduct"))
             {
             
-                String name = request.getParameter("name");
+                String name = request.getParameter("pName");
                 String pDesc = request.getParameter("pDesc");
-                String price = request.getParameter("price");
+                String price = request.getParameter("pPrice");
                 
-                String quantity = request.getParameter("quantity");
-                String unitOfMeasure = request.getParameter("unitOfMeasure");
+                String quantity = request.getParameter("pQuantity");
+                String unitOfMeasure = request.getParameter("pMeasure");
                 String catId = request.getParameter("catId");
                 String vendor = request.getParameter("vendorId");
                 String cpt = request.getParameter("cpt");
@@ -113,26 +115,24 @@ public class AddItemServlet extends HttpServlet {
                 i.setQuantity(quantity);
                 i.setUnitOfMeasure(unitOfMeasure);
                 i.setPhoto(fileName);
+                i.setcTitle(catId);
+                i.setvTitle(vendor);
               
 
                 
-                LocationTypeDao ldao = new LocationTypeDao(FactoryProvider.getFactory());
-                LocationType location = ldao.getLocationTypeByName(locationType);
-                i.setLocation(location);
                 
-                VendorDao vDao = new VendorDao(FactoryProvider.getFactory());
-                Vendor vendors = vDao.getVendorByNmae(vendor);
-                i.setVendors(vendors);
+                i.setLocationType(locationType);
                 
-                CategoryDao cDao = new CategoryDao(FactoryProvider.getFactory());
-                Category category= cDao.getName(catId);
-                i.setCategory(category);
+
                 ItemDao idao = new ItemDao(FactoryProvider.getFactory());
                 idao.saveProduct(i);
+                String path = request.getRealPath("img") +File.separator+ "products" + File.separator +part.getSubmittedFileName();
+                System.out.println(path);
+                //uploading code
+                
                 try {
                     
-                    String path = request.getRealPath("img") +File.separator+ "products" + File.separator +part.getSubmittedFileName();
-                
+              /*  
                 FileOutputStream fos = new FileOutputStream(path);
                 
                 InputStream is = part.getInputStream();
@@ -151,7 +151,7 @@ public class AddItemServlet extends HttpServlet {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                
+                */
                 DiskFileItemFactory factory = new DiskFileItemFactory();
    
       // maximum size that will be stored in memory
@@ -166,7 +166,7 @@ public class AddItemServlet extends HttpServlet {
       // maximum file size to be uploaded.
       upload.setSizeMax( maxFileSize );
 
-      try { 
+     // try { 
          // Parse the request to get file items.
          List fileItems = upload.parseRequest(request);
 	
@@ -190,12 +190,13 @@ public class AddItemServlet extends HttpServlet {
                   file = new File( filePath + fileNames.substring(fileNames.lastIndexOf("\\")+1)) ;
                }
                fi.write( file ) ;
-               out.println("Uploaded Filename: " + fileNames + "<br>");
+               out.println("Uploaded Filename: " + fileNames);
             }
          }
           } catch(Exception ex) {
             System.out.println(ex);
          }
+                
           HttpSession httpSession = request.getSession();
                 httpSession.setAttribute("message","Item added successfully... ");
                 response.sendRedirect("admin.jsp");
@@ -210,9 +211,5 @@ public class AddItemServlet extends HttpServlet {
          throw new ServletException("GET method used with " +
             getClass( ).getName( )+": POST method required.");
       }
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+    
 }

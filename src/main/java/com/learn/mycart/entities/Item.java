@@ -39,17 +39,17 @@ public class Item {
     @Column(length = 3000)
     private String pDesc;
     private String stat;
+    private String cTitle;
+    private String vTitle;
     
     @ManyToOne
     @JoinColumn(name="categoryTitle", referencedColumnName="categoryTitle")
     private Category category;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-    @JoinColumn(name="location", referencedColumnName="location"),
-    @JoinColumn(name="locationType", referencedColumnName="locationType")
-    })
-    private LocationType location;
+
+    private String location;
+    
+    private String locationType;
     
     @ManyToOne
     @JoinColumn(name="vendorName", referencedColumnName="vendorName")
@@ -58,7 +58,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(int id, String name, String price, String photo, String quantity, Category category, LocationType location, Vendor vendors, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, String itemNumber, String alternateItem, String stat) {
+    public Item(int id, String name, String price, String photo, String quantity, Category category, String location, Vendor vendors, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, String itemNumber, String alternateItem, String stat, String cTitle, String vTitle, String locationType) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -76,6 +76,9 @@ public class Item {
         this.pDesc = pDesc;
         this.manufacturerNum = manufacturerNum;
         this.stat = stat;
+        this.cTitle = cTitle;
+        this.vTitle = vTitle;
+        this.locationType = locationType;
         
     }
 
@@ -127,11 +130,11 @@ public class Item {
         this.category = category;
     }
 
-    public LocationType getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(LocationType location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
@@ -213,6 +216,30 @@ public class Item {
 
     public void setStat(String stat) {
         this.stat = stat;
+    }
+
+    public String getcTitle() {
+        return cTitle;
+    }
+
+    public void setcTitle(String cTitle) {
+        this.cTitle = cTitle;
+    }
+
+    public String getvTitle() {
+        return vTitle;
+    }
+
+    public void setvTitle(String vTitle) {
+        this.vTitle = vTitle;
+    }
+
+    public String getLocationType() {
+        return locationType;
+    }
+
+    public void setLocationType(String locationType) {
+        this.locationType = locationType;
     }
 
     

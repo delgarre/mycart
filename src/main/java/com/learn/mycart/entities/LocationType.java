@@ -25,8 +25,7 @@ public class LocationType implements Serializable {
     
     private String locationType;
     
-    @OneToMany(mappedBy = "location")
-    private List<Item> item = new ArrayList<>();
+
 
     public LocationType() {
     }
@@ -34,11 +33,11 @@ public class LocationType implements Serializable {
     
     
 
-    public LocationType(int id, String location, String locationType, List<Item> item) {
+    public LocationType(int id, String location, String locationType) {
         this.id = id;
         this.location = location;
         this.locationType = locationType;
-        this.item = item;
+        
     }
 
     public int getId() {
@@ -65,13 +64,7 @@ public class LocationType implements Serializable {
         this.locationType = locationType;
     }
 
-    public List<Item> getItem() {
-        return item;
-    }
 
-    public void setItem(List<Item> item) {
-        this.item = item;
-    }
 
     
     

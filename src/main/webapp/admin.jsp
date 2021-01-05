@@ -241,7 +241,7 @@
               </div>
               <div class="modal-body">
                 <!--form-->
-                <form action="ProductOperationServlet" method="post" enctype="multipart/form-data">
+                <form action="AddItemServlet" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="operation" value="addproduct"/>
                     
                     <!--product title-->
@@ -336,7 +336,7 @@
                                     }
                                 %>
                             </select>
-                            <
+                            
                             <div class="form-group">
                                 <h6>Select Location Type</h6>
                                 <select name="location" class="form-control" id="location">
