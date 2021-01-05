@@ -72,11 +72,15 @@ resultSet = statement.executeQuery(sql);
                             <th>Message:</th>
                         </tr>
                         
-                        
+                        <%
+                        for(Notice n: notice){
+                        %>
                         <tr>
-                            <td></td>
+                            <td><%=n.getMessage()%></td>
                         </tr>
-                        
+                        <%
+                            }
+                        %>
                     </table>
                 </div>
             </div>

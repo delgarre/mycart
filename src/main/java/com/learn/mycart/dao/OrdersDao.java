@@ -23,5 +23,19 @@ public class OrdersDao {
         List<Orders> list = query.list();
         return list;
     }
+    
+    public Orders getOrdersByName(String name){
+        Orders orders = null;
+        try {
+            String query="from Orders where name =: n";
+            Session session = this.factory.openSession();
+            Query q= session.createQuery(query);
+            q.setParameter("n", name);
+            orders =(Orders) q.uniqueResult();
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return orders;
+    }
 
 }

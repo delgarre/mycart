@@ -22,4 +22,17 @@ public class OrderHistoryDao {
         List<OrderHistory> list = query.list();
         return list;
     }
+    public OrderHistory getOrdersByName(String name){
+        OrderHistory orders = null;
+        try {
+            String query="from OrderHistory where name =: n";
+            Session session = this.factory.openSession();
+            Query q= session.createQuery(query);
+            q.setParameter("n", name);
+            orders =(OrderHistory) q.uniqueResult();
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return orders;
+    }
 }
