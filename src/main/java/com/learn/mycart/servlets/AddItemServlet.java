@@ -7,12 +7,8 @@ package com.learn.mycart.servlets;
 
 import com.learn.mycart.dao.CategoryDao;
 import com.learn.mycart.dao.ItemDao;
-import com.learn.mycart.dao.LocationTypeDao;
-import com.learn.mycart.dao.VendorDao;
 import com.learn.mycart.entities.Category;
 import com.learn.mycart.entities.Item;
-import com.learn.mycart.entities.LocationType;
-import com.learn.mycart.entities.Vendor;
 import com.learn.mycart.helper.FactoryProvider;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,12 +30,12 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
- * @author garre
+ * @author Delenis Garrett
  */
 @MultipartConfig
 public class AddItemServlet extends HttpServlet {
 
-    private boolean isMultipart;
+   private boolean isMultipart;
    private String filePath;
    private int maxFileSize = 100 * 1024;
    private int maxMemSize = 4 * 1024;
@@ -55,7 +51,6 @@ public class AddItemServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         isMultipart = ServletFileUpload.isMultipartContent(request);
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             String op = request.getParameter("operation");
             
             if(op.trim().equals("addcategory"))
@@ -99,6 +94,7 @@ public class AddItemServlet extends HttpServlet {
                 Part part = request.getPart("file");
                 String fileName = part.getSubmittedFileName();
                 String locationType = request.getParameter("location");
+                String stat = "Active";
                 
                 
                 
@@ -117,6 +113,7 @@ public class AddItemServlet extends HttpServlet {
                 i.setPhoto(fileName);
                 i.setcTitle(catId);
                 i.setvTitle(vendor);
+                i.setStat(stat);
               
 
                 
@@ -126,11 +123,10 @@ public class AddItemServlet extends HttpServlet {
 
                 ItemDao idao = new ItemDao(FactoryProvider.getFactory());
                 idao.saveProduct(i);
-                String path = request.getRealPath("img") +File.separator+ "products" + File.separator +part.getSubmittedFileName();
-                System.out.println(path);
+                
                 //uploading code
                 
-                try {
+                
                     
               /*  
                 FileOutputStream fos = new FileOutputStream(path);
@@ -152,7 +148,13 @@ public class AddItemServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 */
-                DiskFileItemFactory factory = new DiskFileItemFactory();
+              if( !isMultipart ) {
+                  System.out.println("No File Uploaded");
+                    return;
+                                 }
+              
+              
+      DiskFileItemFactory factory = new DiskFileItemFactory();
    
       // maximum size that will be stored in memory
       factory.setSizeThreshold(maxMemSize);
@@ -166,7 +168,7 @@ public class AddItemServlet extends HttpServlet {
       // maximum file size to be uploaded.
       upload.setSizeMax( maxFileSize );
 
-     // try { 
+      try { 
          // Parse the request to get file items.
          List fileItems = upload.parseRequest(request);
 	
@@ -178,19 +180,19 @@ public class AddItemServlet extends HttpServlet {
             if ( !fi.isFormField () ) {
                // Get the uploaded file parameters
                String fieldName = fi.getFieldName();
-               String fileNames = fi.getName();
+               fileName = fi.getName();
                String contentType = fi.getContentType();
                boolean isInMemory = fi.isInMemory();
                long sizeInBytes = fi.getSize();
             
                // Write the file
-               if( fileNames.lastIndexOf("\\") >= 0 ) {
-                  file = new File( filePath + fileNames.substring( fileNames.lastIndexOf("\\"))) ;
+               if( fileName.lastIndexOf("\\") >= 0 ) {
+                  file = new File( filePath + fileName.substring( fileName.lastIndexOf("\\"))) ;
                } else {
-                  file = new File( filePath + fileNames.substring(fileNames.lastIndexOf("\\")+1)) ;
+                  file = new File( filePath + fileName.substring(fileName.lastIndexOf("\\")+1)) ;
                }
                fi.write( file ) ;
-               out.println("Uploaded Filename: " + fileNames);
+               out.println("Uploaded Filename: " + fileName);
             }
          }
           } catch(Exception ex) {

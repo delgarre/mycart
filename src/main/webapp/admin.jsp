@@ -272,11 +272,11 @@
                     <!--product cpt -->
                     <div>
                         <h6>Enter CPT</h6>
-                        <input type="text" class="form-control" placeholder="Enter CPT" name="cpt" required/>
+                        <input type="text" class="form-control" placeholder="Enter CPT" name="cpt" />
                     </div>
                     <div>
                         <h6>Enter NDC</h6>
-                        <input type="text" class="form-control" placeholder="Enter NDC" name="ndc" required/>
+                        <input type="text" class="form-control" placeholder="Enter NDC" name="ndc"/>
                     </div>
                     <!--product Item number -->
                     <div>
@@ -292,12 +292,12 @@
                     <!--product manufacturer  -->
                     <div>
                         <h6>Enter Manufacturer</h6>
-                        <input type="text" class="form-control" placeholder="Enter Manufacturer" name="manufacturer" required/>
+                        <input type="text" class="form-control" placeholder="Enter Manufacturer" name="manufacturer" />
                     </div>
                                         <!--product manufacturerNum -->
                     <div>
                         <h6>Enter Manufacturer #</h6>
-                        <input type="text" class="form-control" placeholder="Enter Manufacturer Number" name="manufacturerNum" required/>
+                        <input type="text" class="form-control" placeholder="Enter Manufacturer Number" name="manufacturerNum" />
                     </div>
                     <!--product category-->
                     <%
@@ -356,7 +356,7 @@
                     <div class="form-group">
                         <label for="file">Select picture of product:</label>
                         <br>
-                        <input type="file" id="file" name="file"/>
+                        <input type="file" id="file" name="file" size="50"/>
                         <!--
                         <input type="file" id="file" name="file"/>
                         -->

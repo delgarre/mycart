@@ -133,7 +133,7 @@ resultSet = statement.executeQuery(sql);
                    
                     <td>
                         <a href="o.jsp?id=<%= id%>">
-                    <button class="btn btn-outline-success">Add Quantity</button>
+                    <button class="btn btn-outline-success">Add To Cart</button>
                     </a>
                     </td>
                 </tr>

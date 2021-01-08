@@ -145,7 +145,7 @@ while(resultSet.next()){
             
             <tr>
                 <td>
-                    <img style="max-width: 125px" src="image/<%=p.getpPhoto()%>" alt="user_icon">
+                    <img style="max-width: 125px" src="image/<%=p.getpPhoto()%>" alt="image/beach2.jpg">
                 </td>
                 <td><%= p.getItemNumber()%></td>
                 <td><%= p.getpName()%></td>

@@ -16,6 +16,7 @@ String locations = request.getParameter("locations");
 Date today = new Date();
 SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 String ddMMyyyyToday = DATE_FORMAT.format(today);
+String stat = "Not Approved";
 
 
 
@@ -27,7 +28,7 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
 Statement st=conn.createStatement();
 
-int i=st.executeUpdate("insert into Approve(date,locations, name,price, quantity, itemName, user_id)values('"+ddMMyyyyToday+"','"+locations+"','"+name+"','"+price+"','"+quantity+"','"+itemName+"','"+user_id+"')");
+int i=st.executeUpdate("insert into Approve(date,locations, name,price, quantity, itemName, user_id, stat)values('"+ddMMyyyyToday+"','"+locations+"','"+name+"','"+price+"','"+quantity+"','"+itemName+"','"+user_id+"', '"+stat+"')");
 
 JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
 response.sendRedirect("items.jsp");

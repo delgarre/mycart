@@ -124,6 +124,26 @@ resultSet = statement.executeQuery(sql);
                     }
                 %>
             </table>
+          
+            <table class="table table-bordered ">
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>User Name</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            
         
         </div>
 <%
