@@ -243,12 +243,13 @@
                 <!--form-->
                 <form action="AddItemServlet" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="operation" value="addproduct"/>
-                    
-                    <!--product title-->
-                    <div class="form-group">
-                        <h6>Enter Item Title</h6>
-                        <input type="text" class="form-control" placeholder="Enter Title of item" name="pName" required/>
+                    <!--product Item number -->
+                    <div>
+                        <h6>Enter Item Number</h6>
+                        <input type="text" class="form-control" placeholder="Enter Item Number" name="itemNumber" required/>
                     </div>
+                    
+                    
                     <!--product description-->
                     <div class="form-group">
                         <h6>Enter Description</h6>
@@ -278,10 +279,10 @@
                         <h6>Enter NDC</h6>
                         <input type="text" class="form-control" placeholder="Enter NDC" name="ndc"/>
                     </div>
-                    <!--product Item number -->
-                    <div>
-                        <h6>Enter Item Number</h6>
-                        <input type="text" class="form-control" placeholder="Enter Item Number" name="itemNumber" required/>
+                    <!--product title-->
+                    <div class="form-group">
+                        <h6>Enter Item Title</h6>
+                        <input type="text" class="form-control" placeholder="Enter Title of item" name="pName" required/>
                     </div>
                     <!--location
                     <div>
