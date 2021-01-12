@@ -25,6 +25,7 @@
         <mapping class = "com.learn.mycart.entities.LocationType"/>
         <mapping class = "com.learn.mycart.entities.ImportTest"/>
         <mapping class = "com.learn.mycart.entities.Approve"/>
+        <mapping class = "com.learn.mycart.entities.Types"/>
         
     </session-factory>
 </hibernate-configuration>

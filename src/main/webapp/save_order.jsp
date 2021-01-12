@@ -31,7 +31,7 @@ Statement st=conn.createStatement();
 int i=st.executeUpdate("insert into ApproveOrder(aPName,aPPrice,quantity, name, date, locations, user_id)values('"+aPName+"','"+intaPPrice+"','"+intquantity+"','"+name+"','"+ddMMyyyyToday+"','"+locations+"','"+user_id+"')");
 session.setAttribute("message", "Order updated successfully!");
 JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
-response.sendRedirect("home.jsp");
+response.sendRedirect("items.jsp");
 }
 catch(Exception e)
 {

@@ -5,6 +5,7 @@
  */
 package com.learn.mycart.entities;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +21,7 @@ import javax.persistence.ManyToOne;
  * @author garre
  */
 @Entity
-public class Item {
+public class Item implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
