@@ -42,21 +42,22 @@
 </style>
     </head>
     <body>
-        <%@include file="components/user_navbar.jsp" %>
+<%@include file="components/navbar.jsp" %>
 
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search Item Number" onkeyup="searchFunction()" aria-label="Search" id="myInput">
     </form>
 
-        <h1>List of Items</h1>
+        <h1 class="center">List of Items</h1>
         <div class="center">
         <table class="table table-bordered" id="myTable">
             <tr>
                         
                         
                         <th>Price</th>
-                        <th>Item Number</th>
                         <th>QTY Per UOM</th>
+                        <th>Item Number</th>
+                        
                         <th>Unit of Measure</th>
                         <th>Description</th>
                         <th>Vendor</th>
@@ -75,8 +76,9 @@
 
 
                 <td><%=i.getPrice()%></td>
-                <td><%=i.getItemNumber()%></td>
                 <td><%=i.getQuantity()%></td>
+                <td><%=i.getItemNumber()%></td>
+                
                 <td><%=i.getUnitOfMeasure()%></td>
                 <td><%=i.getpDesc()%></td>
                 <td><%=i.getVendors()%></td>

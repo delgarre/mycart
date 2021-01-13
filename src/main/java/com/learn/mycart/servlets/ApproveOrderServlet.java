@@ -50,7 +50,7 @@ public class ApproveOrderServlet extends HttpServlet {
                     
                     JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
                     response.sendRedirect("home.jsp");
-                    httpSession.setAttribute("message", "Order processed successfully!");
+                    httpSession.setAttribute("message", "Order saved successfully!");
                 } catch (Exception e) {
                 }
             }

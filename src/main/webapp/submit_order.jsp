@@ -7,8 +7,8 @@
 String aPName=request.getParameter("aPName");
 //String aPPrice=request.getParameter("aPPrice");
 //String quantity=request.getParameter("quantity");
-double intaPPrice = Double.parseDouble(request.getParameter("aPPrice"));
-int intquantity = Integer.parseInt(request.getParameter("quantity"));
+String intaPPrice = request.getParameter("aPPrice");
+String intquantity = request.getParameter("quantity");
 String name = request.getParameter("name");
 String locations = request.getParameter("locations");
 Date today = new Date();

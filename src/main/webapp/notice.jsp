@@ -34,17 +34,20 @@
         <%@include file="components/navbar.jsp" %>
         <h3>Enter Message:</h3>
         <form method="post" action="NoticeServlet">
+            
         <textarea style="height: 100px" name="notice" class="form-control" placeholder="Enter message"></textarea>
         <select name="status" id="status">
             <option value="active">active</option>
             <option value="not active"> not active</option>
         </select>
-        <input type="submit"   value="submit">
+        <input type="submit"   value="Post Message">
         </form>
-        <div>
-            <table>
+        <div class="col-md-8">
+            <table class="table table-bordered">
                 <tr>
                     <th>Messages:</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                 </tr>
                 <%
                 NoticeDao nDao = new NoticeDao(FactoryProvider.getFactory());

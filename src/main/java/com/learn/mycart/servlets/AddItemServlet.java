@@ -61,11 +61,11 @@ public class AddItemServlet extends HttpServlet {
                 //add category
                 //fetching category data
                 String title = request.getParameter("catTitle");
-                String description = request.getParameter("catDescription");
+                
                 
                 Category category = new Category();
                 category.setCategoryTitle(title);
-                category.setCategoryDesc(description);
+                
                 
                 //category save data:
                 CategoryDao categoryDao = new CategoryDao(FactoryProvider.getFactory());

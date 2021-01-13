@@ -44,8 +44,8 @@
             <div div class="table-responsive-sm mt-3">
                 <table class="table table-bordered ">
                     <tr>
-                        <th>Title</th>
-                        <th>Description</th>
+                        <th>Category</th>
+                        
                         <th>Actions</th>
                     </tr>
                     <%
@@ -59,10 +59,10 @@
                     
                     <tr>
                         <td><%= c.getCategoryTitle()%></td>
-                        <td><%= c.getCategoryDesc()%></td>
+                        
                         <td>
                             <a href="update_category_page.jsp?id=<%=c.getCategoryId()%>">
-                                <button type="button" class="update">Update</button>
+                                <button type="button" class="update">Edit</button>
                             </a>
                                 <a href="delete_category.jsp?id=<%=c.getCategoryId()%>">
                                     <button type="button" class="delete" onclick="myFunction()">Delete</button>

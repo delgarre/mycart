@@ -203,12 +203,7 @@
                   <h6>Enter Category Title</h6>
                   <input type="text" class="form-control" name="catTitle" placeholder="Enter category title" required/>                    
               </div>
-              <div class="form-group">
-                  <h6>Enter Description</h6>
-                  <textarea style="height: 100px" class="form-control" placeholder="Enter category description" name="catDescription" required></textarea>
-                  
-              </div>
-              <div class="container text-center">
+                            <div class="container text-center">
                   
                   <button class="btn btn-outline-success">Add Category</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -253,7 +248,7 @@
                     <!--product description-->
                     <div class="form-group">
                         <h6>Enter Description</h6>
-                        <textarea style="height: 100px" class="form-control" placeholder="Enter product description" name="pDesc"></textarea>
+                        <textarea style="height: 100px" class="form-control" placeholder="Enter product description" name="pDesc" required></textarea>
                     </div>
                     <!--product price-->
                     <div class="form-group">
@@ -289,12 +284,12 @@
                     <!--product manufacturer  -->
                     <div>
                         <h6>Enter Manufacturer</h6>
-                        <input type="text" class="form-control" placeholder="Enter Manufacturer" name="manufacturer" />
+                        <input type="text" class="form-control" placeholder="Enter Manufacturer" name="manufacturer" required/>
                     </div>
                                         <!--product manufacturerNum -->
                     <div>
                         <h6>Enter Manufacturer #</h6>
-                        <input type="text" class="form-control" placeholder="Enter Manufacturer Number" name="manufacturerNum" />
+                        <input type="text" class="form-control" placeholder="Enter Manufacturer Number" name="manufacturerNum" required/>
                     </div>
                     <!--product category-->
                     <%
@@ -365,6 +360,12 @@
                         <!--
                         <input type="file" id="file" name="file"/>
                         -->
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="sds">Select SDS:</label>
+                        <br>
+                        <input type="file" id="sds" name="sds" size="50"/>
                     </div>
                     <!--submit button-->
                     <div class="container text-center">

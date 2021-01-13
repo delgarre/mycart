@@ -61,7 +61,7 @@ resultSet = statement.executeQuery(sql);
           <%@include file="components/user_navbar.jsp" %>
           <div class="panel panel-primary">
             <div>
-                <div class="panel-heading">
+                <div class="panel-heading col-md-8">
                     <table>
                         
                         <%
@@ -96,14 +96,14 @@ resultSet = statement.executeQuery(sql);
                 <tr>
                 
 
-                
+                <th>Photo</th>
                 <th>Price</th>
-                
-                <th>Quantity</th>
                 <th>Item Number</th>
+                <th>Quantity</th>
+                
                 <th>Vendor</th>
                 
-                <th>Photo</th>
+
                 
                 
                 <th>Actions</th>
@@ -122,18 +122,15 @@ resultSet = statement.executeQuery(sql);
                     %>
                 
                 <tr>
-                    
-
-
-                    <td><%= price%></td>
-                    
-                    <td><%= quantity%></td>
-                    <td><%= itemNumber%></td>
-                    <td><%=vendor%></td>
-                    
                     <td>
                         <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
                     </td>
+                    <td><%= price%></td>
+                    <td><%= itemNumber%></td>
+                    <td><%= quantity%></td>
+                    <td><%=vendor%></td>
+                    
+                    
                    
                     <td>
                         <a href="o.jsp?id=<%= id%>">

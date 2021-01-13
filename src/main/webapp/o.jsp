@@ -77,6 +77,8 @@ div {text-align: center;}
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
 <input type="hidden" name="date">
 <input type="hidden" name="user_id" value="<%=user.getUserId()%>">
+
+<input type="hidden" name="photo" value="<%=resultSet.getString("photo")%>">
 <br>
 Name:<br>
 <input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>">
