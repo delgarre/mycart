@@ -26,7 +26,7 @@ public class Item implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+  
     private String price;
     private String photo;
     private String quantity;
@@ -59,9 +59,9 @@ public class Item implements Serializable {
     public Item() {
     }
 
-    public Item(int id, String name, String price, String photo, String quantity, Category category, String location, Vendor vendors, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, String itemNumber, String alternateItem, String stat, String cTitle, String vTitle, String locationType) {
+    public Item(int id,  String price, String photo, String quantity, Category category, String location, Vendor vendors, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, String itemNumber, String alternateItem, String stat, String cTitle, String vTitle, String locationType) {
         this.id = id;
-        this.name = name;
+        
         this.price = price;
         this.photo = photo;
         this.quantity = quantity;
@@ -89,14 +89,6 @@ public class Item implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPrice() {
@@ -248,7 +240,7 @@ public class Item implements Serializable {
     
     @Override
     public String toString() {
-        return "Item{" + "id=" + id + ", name=" + name + ", price=" + price + ", photo=" + photo + ", quantity=" + quantity + '}';
+        return "Item{" + "id=" + id + ",  price=" + price + ", photo=" + photo + ", quantity=" + quantity + '}';
     }
     
     

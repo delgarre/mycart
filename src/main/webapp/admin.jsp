@@ -195,7 +195,7 @@
       </div>
       <div class="modal-body">
         
-          <form action="AddItemServlet" method="post">
+          <form action="ProductOperationServlet" method="post">
               
               <input type="hidden" name="operation" value="addcategory">
               
@@ -279,11 +279,7 @@
                         <h6>Enter NDC</h6>
                         <input type="text" class="form-control" placeholder="Enter NDC" name="ndc"/>
                     </div>
-                    <!--product title-->
-                    <div class="form-group">
-                        <h6>Enter Item Title</h6>
-                        <input type="text" class="form-control" placeholder="Enter Title of item" name="pName" required/>
-                    </div>
+                    
                     <!--location
                     <div>
                         <h6>Enter Location</h6>
@@ -340,17 +336,25 @@
                             
                             <div class="form-group">
                                 <h6>Select Location Type</h6>
-                                <select name="location" class="form-control" id="location">
-                                    <option value="OFFICE">OFFICE</option>
-                                    <option value="JACKSONVILLE ONLY">JACKSONVILLE ONLY</option>
-                                    <option value="OFFICE-ADMIN">OFFICE-ADMIN</option>
-                                    <option value="DIVERSIFIED SERVICE ENTERPRISES">DIVERSIFIED SERVICE ENTERPRISES</option>
-                                    <option value="PHYSICIANS GROUP INC">PHYSICIANS GROUP INC</option>
-                                    <option value="FROG HOP">FROG HOP</option>
-                                    <option value="HOTELS">HOTELS</option>
-                                    <option value="PHARMACY">PHARMACY</option>
-                                    <option value="WEST COAST LAW">WEST COAST LAW</option>
-                                </select>
+               
+                                <input type="checkbox" name="location" value="OFFICE">OFFICE<br>
+                                <input type="checkbox" name="location" value="JACKSONVILLE ONLY">JACKSONVILLE ONLY<br>
+                                <input type="checkbox" name="location" value="OFFICE-ADMIN">OFFICE-ADMIN<br>
+                                <input type="checkbox" name="location" value="DIVERSIFIED SERVICE ENTERPRISES INC">DIVERSIFIED SERVICE ENTERPRISES INC<br>
+                                <input type="checkbox" name="location" value="FROG HOP">FROG HOP<br>
+                                <input type="checkbox" name="location" value="HOTELS">HOTELS<br>
+                                <input type="checkbox" name="location" value="PHARMACY">PHARMACY<br>
+                                <input type="checkbox" name="location" value="WEST COAST LAW">WEST COAST LAW<br>
+                                <input type="checkbox" name="location" value="1ST HEALTH INC">1ST HEALTH INC<br>
+                                <input type="checkbox" name="location" value="PHYSICIANS GROUP LLC">PHYSICIANS GROUP LLC<br>
+                                <input type="checkbox" name="location" value="PHYSICIANS GROUP(MN)LLC">PHYSICIANS GROUP(MN)LLC<br>
+                                <input type="checkbox" name="location" value="IT-SUPPLIES">IT-SUPPLIES<br>
+                                <input type="checkbox" name="location" value="HIMES-ONLY">HIMES-ONLY<br>
+                                <input type="checkbox" name="location" value="PHYSICIANS GROUP LLC-HAND SANITIZER">PHYSICIANS GROUP LLC-HAND SANITIZER<br>
+                                <input type="checkbox" name="location" value="PAIN MANAGEMENT">PAIN MANAGEMENT<br>
+                                <input type="checkbox" name="location" value="PALM INSURE">PALM INSURE<br>
+                                <input type="checkbox" name="location" value="ORTHOPEDIC">ORTHOPEDIC<br>
+                                <input type="checkbox" name="location" value="LUCKY SPOT">LUCKY SPOT<br>
                             </div>
                         </div>
                     <!--product file-->

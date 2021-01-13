@@ -53,7 +53,7 @@
         <table class="table table-bordered" id="myTable">
             <tr>
                         
-                        <th>Name</th>
+                        
                         <th>Price</th>
                         <th>Item Number</th>
                         <th>QTY Per UOM</th>
@@ -73,7 +73,7 @@
             %>
             <tr>
 
-                <td><%=i.getName()%></td>
+
                 <td><%=i.getPrice()%></td>
                 <td><%=i.getItemNumber()%></td>
                 <td><%=i.getQuantity()%></td>

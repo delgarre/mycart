@@ -88,16 +88,19 @@ resultSet = statement.executeQuery(sql);
         <div class="col-md-8">
             <div div class="table-responsive-sm mt-3">
         
-        
+                <div>
+                    <a href="dropdown.jsp?id=<%= user.getUserId()%>"><h3>Select Location</h3></a>
+                </div>
         
             <table class="table table-bordered " id="myTable">
                 <tr>
                 
-                <th>Name</th>
+
                 
                 <th>Price</th>
-                <th>Item Number</th>
+                
                 <th>Quantity</th>
+                <th>Item Number</th>
                 <th>Vendor</th>
                 
                 <th>Photo</th>
@@ -109,7 +112,7 @@ resultSet = statement.executeQuery(sql);
                     while(resultSet.next()){
                         ;
                         Integer id = resultSet.getInt("id");
-                        String names = resultSet.getString("name");
+                        
                         String price = resultSet.getString("price");
                         String quantity = resultSet.getString("quantity");
                         String photo = resultSet.getString("photo");
@@ -120,11 +123,12 @@ resultSet = statement.executeQuery(sql);
                 
                 <tr>
                     
-                    <td><%= names%></td>
+
 
                     <td><%= price%></td>
-                    <td><%= itemNumber%></td>
+                    
                     <td><%= quantity%></td>
+                    <td><%= itemNumber%></td>
                     <td><%=vendor%></td>
                     
                     <td>

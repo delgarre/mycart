@@ -15,6 +15,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -78,7 +81,7 @@ public class AddItemServlet extends HttpServlet {
             else if(op.trim().equals("addproduct"))
             {
             
-                String name = request.getParameter("pName");
+                
                 String pDesc = request.getParameter("pDesc");
                 String price = request.getParameter("pPrice");
                 
@@ -93,112 +96,42 @@ public class AddItemServlet extends HttpServlet {
                 String manufacturerNum = request.getParameter("manufacturerNum");
                 Part part = request.getPart("file");
                 String fileName = part.getSubmittedFileName();
-                String locationType = request.getParameter("location");
+                
                 String stat = "Active";
-                
-                
-                
-                
-                Item i = new Item();
-                i.setName(name);
-                i.setpDesc(pDesc);
-                i.setManufacturer(manufacturer);
-                i.setItemNumber(itemNumber);
-                i.setCpt(cpt);
-                i.setNdc(ndc);
-                i.setManufacturerNum(manufacturerNum);
-                i.setPrice(price);
-                i.setQuantity(quantity);
-                i.setUnitOfMeasure(unitOfMeasure);
-                i.setPhoto(fileName);
-                i.setcTitle(catId);
-                i.setvTitle(vendor);
-                i.setStat(stat);
-              
+                String chooselocations="";
 
+                String location[]=request.getParameterValues("location");
+                for(int i=0;i < location.length; i++){
+                chooselocations += location[i] + ","; 
                 
-                
-                i.setLocationType(locationType);
-                
+                try
+                {
 
-                ItemDao idao = new ItemDao(FactoryProvider.getFactory());
-                idao.saveProduct(i);
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
+                Statement st=conn.createStatement();
+                int s=st.executeUpdate("insert into Item(photo ,price, quantity, locationType, cpt, itemNumber, manufacturer, manufacturerNum, ndc,pDesc , unitOfMeasure, cTitle, vTitle, stat)values('"+fileName+"','"+price+"','"+quantity+"','"+chooselocations+"', '"+cpt+"', '"+itemNumber+"', '"+manufacturer+"', '"+manufacturerNum+"', '"+ndc+"', '"+pDesc+"', '"+unitOfMeasure+"','"+catId+"', '"+vendor+"','"+stat+"')");
+                HttpSession httpSession = request.getSession();
+                httpSession.setAttribute("message","Product added successfully... ");
                 
-                //uploading code
-                
-                
-                    
-              /*  
-                FileOutputStream fos = new FileOutputStream(path);
-                
-                InputStream is = part.getInputStream();
-                
-                
-                //reading data
-                byte []data = new byte[is.available()];
-                
-                is.read(data);
-                
-                //write the data
-                fos.write(data);
-                
-                fos.close();
-                
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-                */
-              if( !isMultipart ) {
-                  System.out.println("No File Uploaded");
-                    return;
-                                 }
-              
-              
-      DiskFileItemFactory factory = new DiskFileItemFactory();
-   
-      // maximum size that will be stored in memory
-      factory.setSizeThreshold(maxMemSize);
-   
-      // Location to save data that is larger than maxMemSize.
-      factory.setRepository(new File("c:\\temp"));
-
-      // Create a new file upload handler
-      ServletFileUpload upload = new ServletFileUpload(factory);
-   
-      // maximum file size to be uploaded.
-      upload.setSizeMax( maxFileSize );
-
-      try { 
-         // Parse the request to get file items.
-         List fileItems = upload.parseRequest(request);
-	
-         // Process the uploaded file items
-         Iterator it = fileItems.iterator();
-         
-          while ( it.hasNext () ) {
-            FileItem fi = (FileItem)it.next();
-            if ( !fi.isFormField () ) {
-               // Get the uploaded file parameters
-               String fieldName = fi.getFieldName();
-               fileName = fi.getName();
-               String contentType = fi.getContentType();
-               boolean isInMemory = fi.isInMemory();
-               long sizeInBytes = fi.getSize();
-            
-               // Write the file
-               if( fileName.lastIndexOf("\\") >= 0 ) {
-                  file = new File( filePath + fileName.substring( fileName.lastIndexOf("\\"))) ;
-               } else {
-                  file = new File( filePath + fileName.substring(fileName.lastIndexOf("\\")+1)) ;
-               }
-               fi.write( file ) ;
-               out.println("Uploaded Filename: " + fileName);
-            }
-         }
-          } catch(Exception ex) {
-            System.out.println(ex);
-         }
+                catch(Exception e)
+                {
+                System.out.print(e);
+                e.printStackTrace();
+                }
+}
                 
+                
+                
+                
+                
+               
+              
+              
+
+
+      
           HttpSession httpSession = request.getSession();
                 httpSession.setAttribute("message","Item added successfully... ");
                 response.sendRedirect("admin.jsp");
