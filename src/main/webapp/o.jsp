@@ -79,7 +79,7 @@ div {text-align: center;}
 <input type="hidden" name="user_id" value="<%=user.getUserId()%>">
 <br>
 Name:<br>
-<input type="text" name="itemName" value="<%=resultSet.getString("name") %>">
+<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>">
 <br>
 Price:<br>
 <input type="text" name="price" value="<%=resultSet.getString("price") %>">

@@ -82,7 +82,7 @@ resultSet = statement.executeQuery(sql);
             <table class="table table-bordered ">
                 <tr>
                     <th>Photo</th>
-                    <th>Name</th>
+                    <th>Item Number</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>User Name</th>
@@ -93,7 +93,7 @@ resultSet = statement.executeQuery(sql);
                 <tr>
                    <%
                     while(resultSet.next()){
-                        String aPName = resultSet.getString("itemName");
+                        String aPName = resultSet.getString("itemNumber");
                         String aPPrice = resultSet.getString("price");
                         String quantity = resultSet.getString("quantity");
                         String name = resultSet.getString("name");

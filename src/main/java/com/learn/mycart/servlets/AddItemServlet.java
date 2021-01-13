@@ -103,7 +103,7 @@ public class AddItemServlet extends HttpServlet {
                 String location[]=request.getParameterValues("location");
                 for(int i=0;i < location.length; i++){
                 chooselocations += location[i] + ","; 
-                
+                }
                 try
                 {
 
@@ -138,7 +138,7 @@ public class AddItemServlet extends HttpServlet {
                 return;
         }
         }
-    }
+    
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
          throws ServletException, java.io.IOException {

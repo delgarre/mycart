@@ -30,6 +30,7 @@ public class Approve implements Serializable {
     private String quantity;
     private Date date;
     private String stat;
+    private String itemNumber;
     
     private String locations;
     
@@ -40,7 +41,8 @@ public class Approve implements Serializable {
     public Approve() {
     }
 
-    public Approve(int id, String name, String price, String photo, String quantity, Date date, String locations, User users, String itemName, String stat) {
+    public Approve(int id, String name, String price, String photo, String quantity, Date date, String locations, User users, 
+            String itemName, String stat, String itemNumber) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -51,6 +53,7 @@ public class Approve implements Serializable {
         this.users = users;
         this.itemName = itemName;
         this.stat = stat;
+        this.itemNumber = itemNumber;
     }
 
     public int getId() {
@@ -131,6 +134,14 @@ public class Approve implements Serializable {
 
     public void setStat(String stat) {
         this.stat = stat;
+    }
+
+    public String getItemNumber() {
+        return itemNumber;
+    }
+
+    public void setItemNumber(String itemNumber) {
+        this.itemNumber = itemNumber;
     }
     
     

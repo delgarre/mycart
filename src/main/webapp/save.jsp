@@ -11,7 +11,7 @@ String price=request.getParameter("price");
 String quantity=request.getParameter("quantity");
 
 int user_id = Integer.parseInt(request.getParameter("user_id"));
-String name = request.getParameter("name");
+String itemNumber = request.getParameter("itemNumber");
 String locations = request.getParameter("locations");
 Date today = new Date();
 SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
@@ -28,7 +28,7 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
 Statement st=conn.createStatement();
 
-int i=st.executeUpdate("insert into Approve(date,locations, name,price, quantity, itemName, user_id, stat)values('"+ddMMyyyyToday+"','"+locations+"','"+name+"','"+price+"','"+quantity+"','"+itemName+"','"+user_id+"', '"+stat+"')");
+int i=st.executeUpdate("insert into Approve(date,locations, itemNumber,price, quantity, itemName, user_id, stat)values('"+ddMMyyyyToday+"','"+locations+"','"+itemNumber+"','"+price+"','"+quantity+"','"+itemName+"','"+user_id+"', '"+stat+"')");
 
 JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
 response.sendRedirect("items.jsp");

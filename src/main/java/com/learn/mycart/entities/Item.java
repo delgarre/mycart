@@ -42,6 +42,7 @@ public class Item implements Serializable {
     private String stat;
     private String cTitle;
     private String vTitle;
+    private String discontinued;
     
     @ManyToOne
     @JoinColumn(name="categoryTitle", referencedColumnName="categoryTitle")
@@ -59,7 +60,9 @@ public class Item implements Serializable {
     public Item() {
     }
 
-    public Item(int id,  String price, String photo, String quantity, Category category, String location, Vendor vendors, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, String itemNumber, String alternateItem, String stat, String cTitle, String vTitle, String locationType) {
+    public Item(int id,  String price, String photo, String quantity, Category category, String location, Vendor vendors, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, 
+            String itemNumber, String alternateItem, String stat, 
+            String cTitle, String vTitle, String locationType,String discontinued) {
         this.id = id;
         
         this.price = price;
@@ -80,6 +83,7 @@ public class Item implements Serializable {
         this.cTitle = cTitle;
         this.vTitle = vTitle;
         this.locationType = locationType;
+        this.discontinued = discontinued;
         
     }
 
@@ -233,6 +237,14 @@ public class Item implements Serializable {
 
     public void setLocationType(String locationType) {
         this.locationType = locationType;
+    }
+
+    public String getDiscontinued() {
+        return discontinued;
+    }
+
+    public void setDiscontinued(String discontinued) {
+        this.discontinued = discontinued;
     }
 
     
