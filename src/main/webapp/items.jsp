@@ -56,6 +56,16 @@ resultSet = statement.executeQuery(sql);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Items</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+        
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <body>
           <%@include file="components/user_navbar.jsp" %>
@@ -99,11 +109,14 @@ resultSet = statement.executeQuery(sql);
                 <th>Photo</th>
                 <th>Price</th>
                 <th>Item Number</th>
-                <th>Quantity</th>
-                
+                <th>Description</th>
+                <th>Quantity Per UOM</th>
                 <th>Vendor</th>
-                
-
+                <th>Unit Of Measure</th>
+                <th>Manufacturer</th>
+                <th>Manufacturer Number</th>
+                <th>CPT</th>
+                <th>NDC</th>
                 
                 
                 <th>Actions</th>
@@ -117,8 +130,13 @@ resultSet = statement.executeQuery(sql);
                         String quantity = resultSet.getString("quantity");
                         String photo = resultSet.getString("photo");
                         String itemNumber = resultSet.getString("ItemNumber");
-                        String vendor = resultSet.getString("vendorName");
-                        
+                        String vendor = resultSet.getString("vTitle");
+                        String desc = resultSet.getString("pDesc");
+                        String unit = resultSet.getString("unitOfMeasure");
+                        String man = resultSet.getString("manufacturer");
+                        String manNum = resultSet.getString("manufacturerNum");
+                        String cpt = resultSet.getString("cpt");
+                        String ndc = resultSet.getString("ndc");
                     %>
                 
                 <tr>
@@ -127,9 +145,14 @@ resultSet = statement.executeQuery(sql);
                     </td>
                     <td><%= price%></td>
                     <td><%= itemNumber%></td>
+                    <td><%=desc%></td>
                     <td><%= quantity%></td>
                     <td><%=vendor%></td>
-                    
+                    <td><%=unit%></td>
+                    <td><%=man%></td>
+                    <td><%= manNum%></td>
+                    <td><%=cpt%></td>
+                    <td><%=ndc%></td>
                     
                    
                     <td>
