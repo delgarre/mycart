@@ -65,14 +65,18 @@ while(resultSet.next()){
 Name:<br>
 <input type="text" name="user_name" value="<%=resultSet.getString("user_name") %>">
 <br>
-Type:<br>
-<input type="text" name="user_type" value="<%=resultSet.getString("user_type") %>">
-<br>
+
 Password:<br>
 <input type="text" name="user_password" value="<%=resultSet.getString("user_password") %>">
 <br>
 Email Id:<br>
 <input type="email" name="user_email" value="<%=resultSet.getString("user_email") %>">
+<br>
+Type:<br>
+<select name="user_type" id="user_type">
+    <option value="admin">Admin</option>
+    <option value="normal">Normal</option>
+</select>
 <br><br>
 <input type="submit" value="Edit">
 </form>

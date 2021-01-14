@@ -43,7 +43,10 @@
             <input type="text" name="user_password"/>
             <br>
             Authority:<br>
-            <input type="text" name="user_type" placeholder=" 'admin' or 'normal' all lowercase letters"/>
+            <select name="user_type" id="user_type">
+                <option value="admin">Admin</option>
+                <option value="normal">Normal</option>
+            </select>
             <br> <br> 
             
             
