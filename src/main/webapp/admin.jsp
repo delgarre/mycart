@@ -275,18 +275,18 @@
                         <input type="text" class="form-control" placeholder="Enter NDC" name="ndc"/>
                     </div>
                     
-                    <!--location
+                    <!--alternate Item-->
                     <div>
-                        <h6>Enter Location</h6>
-                        <input type="text" class="form-control" placeholder="Enter Item Location" name="locations" required/>
+                        <h6>Enter Alternate Item</h6>
+                        <input type="text" class="form-control" placeholder="Enter Alternate Item" name="alt"/>
                     </div>
-                    -->
+                    
                     <!--product manufacturer  -->
                     <div>
                         <h6>Enter Manufacturer</h6>
                         <input type="text" class="form-control" placeholder="Enter Manufacturer" name="manufacturer" required/>
                     </div>
-                                        <!--product manufacturerNum -->
+                    <!--product manufacturerNum -->
                     <div>
                         <h6>Enter Manufacturer #</h6>
                         <input type="text" class="form-control" placeholder="Enter Manufacturer Number" name="manufacturerNum" required/>

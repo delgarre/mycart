@@ -43,7 +43,7 @@ ResultSet resultSet2 = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Item inner join  LocationType as LT on LT.locationType = Item.locationType where LT.location = '"+name+"' and stat = 'Active'";
+String sql ="Select I.* from Item I inner Join LocationType LT ON FIND_IN_SET(LT.locationType,I.locationType)Where LT.location ='"+name+"'";
 
 resultSet = statement.executeQuery(sql);
 
@@ -111,6 +111,7 @@ resultSet = statement.executeQuery(sql);
                 <th>Item Number</th>
                 <th>Description</th>
                 <th>Quantity Per UOM</th>
+                <th>Alternate Item</th>
                 <th>Vendor</th>
                 <th>Unit Of Measure</th>
                 <th>Manufacturer</th>
@@ -137,6 +138,7 @@ resultSet = statement.executeQuery(sql);
                         String manNum = resultSet.getString("manufacturerNum");
                         String cpt = resultSet.getString("cpt");
                         String ndc = resultSet.getString("ndc");
+                        String alt = resultSet.getString("alternateItem");
                     %>
                 
                 <tr>
@@ -147,6 +149,7 @@ resultSet = statement.executeQuery(sql);
                     <td><%= itemNumber%></td>
                     <td><%=desc%></td>
                     <td><%= quantity%></td>
+                    <td><%=alt%></td>
                     <td><%=vendor%></td>
                     <td><%=unit%></td>
                     <td><%=man%></td>
