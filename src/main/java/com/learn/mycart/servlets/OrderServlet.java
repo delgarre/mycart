@@ -42,7 +42,7 @@ public class OrderServlet extends HttpServlet {
                     int i = st.executeUpdate("insert into Orders(aPName, aPPrice, date, locations, name, quantity, user_id) select itemName, price, date, locations, name, quantity, user_id from Approve where user_id ="+user_id);
                     
                     JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
-                    response.sendRedirect("home.jsp");
+                    response.sendRedirect("items.jsp");
                     httpSession.setAttribute("message", "Order processed successfully!");
                 } catch (Exception e) {
                 }

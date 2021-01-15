@@ -77,7 +77,7 @@ resultSet = statement.executeQuery(sql);
         <div class="center">
             <form method="post" action="OrderServlet">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
-                <input type="submit" value="Submit Cart" onclick="myFunction()"/>
+                <input type="submit" value="Submit Cart" onclick="mySub()"/>
             </form>
             <table class="table table-bordered ">
                 <tr>
@@ -145,6 +145,11 @@ function myFunction() {
     window.location.href = "pending_orders.jsp";
   }
   document.getElementById("demo").innerHTML = txt;
+}
+
+
+function mySub() {
+  alert("Order submitted for approval!");
 }
 </script>
 
