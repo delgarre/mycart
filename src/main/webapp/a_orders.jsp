@@ -74,7 +74,7 @@ resultSet = statement.executeQuery(sql);
             <table class="table table-bordered ">
                 <tr>
                     <th>Id</th>
-                    <th>Item Name</th>
+                    <th>Item Number</th>
                     <th>Price</th>
                     <th>Ordered By</th>
                     <th>QTY Per UOM</th>
@@ -86,7 +86,7 @@ resultSet = statement.executeQuery(sql);
                    <%
                     while(resultSet.next()){
                         
-                        String item = resultSet.getString("aPName");
+                        String item = resultSet.getString("itemNumber");
                         String price = resultSet.getString("aPPrice");
                         String name = resultSet.getString("name");
                         String quantity = resultSet.getString("quantity");

@@ -52,7 +52,7 @@ while(resultSet.next()){
 
 <br>
 Name:<br>
-<input type="text" name="itemName" value="<%=resultSet.getString("itemName") %>">
+<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>">
 <br>
 Price:<br>
 <input type="text" name="price" value="<%=resultSet.getString("price") %>">
@@ -67,7 +67,7 @@ Quantity:<br>
 Location:<br>
 <input type="text" name="locations" value="<%=resultSet.getString("locations")%>">
 <br><br>
-<input type="submit" value="submit">
+<input type="submit" value="Edit">
 </form>
 <%
 }

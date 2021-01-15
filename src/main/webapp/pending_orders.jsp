@@ -15,6 +15,7 @@
 <%@page import="com.learn.mycart.entities.Company"%>
 <%
     Company company = (Company)session.getAttribute("location");
+    String com = company.getCompanyName();
     ApproveOrder a = new ApproveOrder();
     Test test = (Test)session.getAttribute("locations");
     User user = (User)session.getAttribute("current-user");
@@ -44,7 +45,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Approve where user_id = "+id;
+String sql ="select * from Approve where user_id ='"+id+"' and locations = '"+com+"' ";
 resultSet = statement.executeQuery(sql);
 
 %>

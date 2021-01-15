@@ -5,6 +5,7 @@
  */
 package com.learn.mycart.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +17,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Orders {
+public class Orders implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +35,8 @@ public class Orders {
     
     private String locations;
     
+    private String itemNumber;
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns({
     @JoinColumn(name="user_id", referencedColumnName="user_id"),
@@ -46,7 +49,7 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(int id, String aPName, double aPPrice, int quantity, String name, Date date, String locations, User users, String status) {
+    public Orders(int id, String aPName, double aPPrice, int quantity, String name, Date date, String locations, User users, String status, String itemNumber) {
         this.id = id;
         this.aPName = aPName;
         this.aPPrice = aPPrice;
@@ -56,6 +59,7 @@ public class Orders {
         this.locations = locations;
         this.users = users;
         this.status = status;
+        this.itemNumber = itemNumber;
     }
     
 
@@ -129,6 +133,14 @@ public class Orders {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getItemNumber() {
+        return itemNumber;
+    }
+
+    public void setItemNumber(String itemNumber) {
+        this.itemNumber = itemNumber;
     }
     
     
