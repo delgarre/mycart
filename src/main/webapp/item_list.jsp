@@ -100,6 +100,7 @@ resultSet = statement.executeQuery(sql);
                         <th>Location Type</th>
                         <th>Status</th>
                         <th>Discontinued</th>
+                        <th>SDS</th>
                         <th>Actions</th>
             </tr>
             <%
@@ -121,6 +122,7 @@ resultSet = statement.executeQuery(sql);
             String locationType = resultSet.getString("locationType");
             String disc = request.getParameter("discontinued");
             String cat = request.getParameter("cTitle");
+            String sds = request.getParameter("sds");
             %>
             
             <tr>
@@ -143,6 +145,7 @@ resultSet = statement.executeQuery(sql);
                 <td><%=locationType%></td>
                 <td><%=stat%></td>
                 <td><%=disc%></td>
+                <td><%=sds%></td>
                 <td>
                     <a href="">
                         <button></button>

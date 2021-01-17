@@ -43,6 +43,7 @@ public class Item implements Serializable {
     private String cTitle;
     private String vTitle;
     private String discontinued;
+    private String sds;
     
     @ManyToOne
     @JoinColumn(name="categoryTitle", referencedColumnName="categoryTitle")
@@ -62,7 +63,7 @@ public class Item implements Serializable {
 
     public Item(int id,  String price, String photo, String quantity, Category category, String location, Vendor vendors, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, 
             String itemNumber, String alternateItem, String stat, 
-            String cTitle, String vTitle, String locationType,String discontinued) {
+            String cTitle, String vTitle, String locationType,String discontinued, String sds) {
         this.id = id;
         
         this.price = price;
@@ -84,7 +85,7 @@ public class Item implements Serializable {
         this.vTitle = vTitle;
         this.locationType = locationType;
         this.discontinued = discontinued;
-        
+        this.sds = sds;
     }
 
     public int getId() {
@@ -245,6 +246,14 @@ public class Item implements Serializable {
 
     public void setDiscontinued(String discontinued) {
         this.discontinued = discontinued;
+    }
+
+    public String getSds() {
+        return sds;
+    }
+
+    public void setSds(String sds) {
+        this.sds = sds;
     }
 
     
