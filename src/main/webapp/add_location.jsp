@@ -13,19 +13,24 @@ String user = request.getParameter("user");
 try
 {
 
-    
-Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
-Statement st=conn.createStatement();   
-HttpSession httpSession=request.getSession();
-int i = st.executeUpdate("insert into Test(comp_name, user_id) values('"+location+"','"+user+"')");
-                    
+
+Statement st=conn.createStatement();
+
+String strQuery = "SELECT COUNT(*) FROM Test where comp_name='"+location+"' and user_id='"+user+"'";
+ResultSet rs = st.executeQuery(strQuery);
+rs.next();
+String Countrow = rs.getString(1); 
+Class.forName("com.mysql.jdbc.Driver");
+if(Countrow.equals("0")){
+int i=st.executeUpdate("insert into Test(comp_name,user_id)values('"+location+"','"+user+"')");
 response.sendRedirect("company_user.jsp?id="+user);
-httpSession.setAttribute("message", "Location added successfully!");
 }
-catch(Exception e)
-{
-System.out.print(e);
+else{
+out.println("Location already exists !");
+}
+}
+catch (Exception e){
 e.printStackTrace();
 }
 %>
