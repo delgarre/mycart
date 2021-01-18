@@ -45,23 +45,14 @@ public class Item implements Serializable {
     private String discontinued;
     private String sds;
     
-    @ManyToOne
-    @JoinColumn(name="categoryTitle", referencedColumnName="categoryTitle")
-    private Category category;
-    
-
-    private String location;
-    
     private String locationType;
     
-    @ManyToOne
-    @JoinColumn(name="vendorName", referencedColumnName="vendorName")
-    private Vendor vendors;
+
 
     public Item() {
     }
 
-    public Item(int id,  String price, String photo, String quantity, Category category, String location, Vendor vendors, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, 
+    public Item(int id,  String price, String photo, String quantity, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, 
             String itemNumber, String alternateItem, String stat, 
             String cTitle, String vTitle, String locationType,String discontinued, String sds) {
         this.id = id;
@@ -69,9 +60,6 @@ public class Item implements Serializable {
         this.price = price;
         this.photo = photo;
         this.quantity = quantity;
-        this.category = category;
-        this.location = location;
-        this.vendors = vendors;
         this.unitOfMeasure = unitOfMeasure;
         this.cpt = cpt;
         this.ndc = ndc;
@@ -118,30 +106,6 @@ public class Item implements Serializable {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public Vendor getVendors() {
-        return vendors;
-    }
-
-    public void setVendors(Vendor vendors) {
-        this.vendors = vendors;
     }
 
     public String getUnitOfMeasure() {

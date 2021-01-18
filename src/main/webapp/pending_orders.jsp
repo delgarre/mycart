@@ -14,8 +14,8 @@
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.entities.Company"%>
 <%
-    Company company = (Company)session.getAttribute("location");
-    String com = company.getCompanyName();
+    Company company1 = (Company)session.getAttribute("location");
+    String com = company1.getCompanyName();
     ApproveOrder a = new ApproveOrder();
     Test test = (Test)session.getAttribute("locations");
     User user = (User)session.getAttribute("current-user");
@@ -73,7 +73,7 @@ resultSet = statement.executeQuery(sql);
     String ddMMyyyyToday = DATE_FORMAT.format(today);
     %>
     <body>
-           <%@include file="components/navbar.jsp" %>
+           <%@include file="components/user_navbar.jsp" %>
         <h1>Cart Items:</h1>
         <div class="center">
             <form method="post" action="OrderServlet">

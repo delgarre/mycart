@@ -28,8 +28,7 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "category")
     private List<Vendor> vendors = new ArrayList<>();
     
-    @OneToMany(mappedBy = "category")
-    private List<Item> items = new ArrayList<>();
+    
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns({
@@ -55,12 +54,12 @@ public class Category implements Serializable {
         this.categoryDesc = categoryDesc;
     }
 
-    public Category(String categoryTitle, String categoryDesc, List<Product> products, List<Vendor> vendors, List<Item> items, Company companies, LocationType locationType) {
+    public Category(String categoryTitle, String categoryDesc, List<Product> products, List<Vendor> vendors, Company companies, LocationType locationType) {
         this.categoryTitle = categoryTitle;
         this.categoryDesc = categoryDesc;
         this.products = products;
         this.vendors = vendors;
-        this.items = items;
+       
         this.companies = companies;
         this.locationType = locationType;
     }
@@ -103,14 +102,6 @@ public class Category implements Serializable {
 
     public void setVendor(List<Vendor> vendors) {
         this.vendors = vendors;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
     }
 
     public Company getCompanies() {

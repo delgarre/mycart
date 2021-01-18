@@ -23,7 +23,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="home.jsp">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="items.jsp">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
           <a class="nav-link" href="pending_orders.jsp?id=<%=user1.getUserId()%>">Cart <span class="sr-only">(current)</span></a>
@@ -57,7 +57,7 @@
            %> 
         
             <li class="nav-item active">
-              <a class="nav-link" href="#!"><%= company.getCompanyName()%> </a>
+              <a class="nav-link" href="dropdown.jsp?id=<%= user1.getUserId()%>"><%= company.getCompanyName()%> </a>
             </li>  
           
            

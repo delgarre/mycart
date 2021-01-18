@@ -1,9 +1,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.learn.mycart.entities.User"%>
-<%@page import="com.learn.mycart.entities.Product"%>
+<%@page import="com.learn.mycart.entities.Item"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="java.util.List"%>
-<%@page import="com.learn.mycart.dao.ProductDao"%>
+<%@page import="com.learn.mycart.dao.ItemDao"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
                     <tr>
          
                         <th>Item Number</th>
-                        <th>Name</th>
+                       
                         <th>Price</th>
                         <th>QTY Per UOM</th>
                         <th>Unit of Measure</th>
@@ -31,23 +31,23 @@
                     <%
              response.setContentType("application/vnd.ms-excel");
              response.setHeader("Content-Disposition", "inline; filename=items.xls");
-                     ArrayList<Product> products = (ArrayList<Product>) session.getAttribute("products");
+                     ArrayList<Item> items = (ArrayList<Item>) session.getAttribute("items");
                     %>
                     
                     <%
-                    for(Product p: products){
+                    for(Item i: items){
                     %>
                     
                     <tr>
                         
-                        <td><%= p.getItemNumber()%></td>
-                        <td><%=p.getpName() %></td>
-                        <td><%=p.getpPrice() %></td>
-                        <td><%=p.getpQuanity()%></td>
-                        <td><%=p.getUnitOfMeasure() %></td>
-                        <td><%=p.getpDesc()%></td>
-                        <td><%=p.getCpt()%></td>
-                        <td><%=p.getNdc()%></td>
+                        <td><%= i.getItemNumber()%></td>
+                       
+                        <td><%=i.getPrice() %></td>
+                        <td><%=i.getQuantity()%></td>
+                        <td><%=i.getUnitOfMeasure() %></td>
+                        <td><%=i.getpDesc()%></td>
+                        <td><%=i.getCpt()%></td>
+                        <td><%=i.getNdc()%></td>
                         
                     </tr>
                     <%
