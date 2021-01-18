@@ -37,7 +37,7 @@ int i = ps.executeUpdate();
 if(i > 0)
 {
 session.setAttribute("message", "Order edited successfully!");
-response.sendRedirect("items.jsp");
+response.sendRedirect("pending_orders.jsp?id="+id);
 }
 else
 {

@@ -11,9 +11,9 @@
     
     Statement st = conn.createStatement();
     
-    int i = st.executeUpdate("DELETE FROM Product WHERE pId="+id);
-    session.setAttribute("message", "User deleted successfully!");
-    response.sendRedirect("products.jsp");
+    int i = st.executeUpdate("DELETE FROM Item WHERE id="+id);
+    session.setAttribute("message", "Item deleted successfully!");
+    response.sendRedirect("item_list.jsp");
     }
     catch(Exception e)
     {

@@ -86,8 +86,8 @@
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/product.png" alt="user_icon">
                             </div>
-                            <a href="products.jsp" class="card-link">Click me!</a>
-                            <h3 class="text-muted">Products</h3>
+                            <a href="item_list.jsp" class="card-link">Click me!</a>
+                            <h3 class="text-muted">Items</h3>
                         </div>
                     </div>
                 </div>

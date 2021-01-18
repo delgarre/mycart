@@ -7,11 +7,13 @@
 <%!String psw = "ordering";%>
 
 <%
-String id = request.getParameter("pId");
-String pName=request.getParameter("pName");
-int intpPrice = Integer.parseInt(request.getParameter("pPrice"));
-int intpQuantity = Integer.parseInt(request.getParameter("pQuantity"));
+String id = request.getParameter("id");
+String itemNumber=request.getParameter("itemNumber");
+String price = request.getParameter("price");
+String quantity = request.getParameter("quantity");
 String unitOfMeasure=request.getParameter("unitOfMeasure");
+String stat=request.getParameter("stat");
+String discontinued = request.getParameter("discontinued");
 if(id != null)
 {
 Connection con = null;
@@ -21,23 +23,25 @@ try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql="Update Product set pId=?,pName=?,pPrice=?,pQuanity=?,unitOfMeasure=? where pId="+id;
+String sql="Update Item set id=?,itemNumber=?,price=?,quantity=?,unitOfMeasure=?, stat=?, discontinued=? where id="+id;
 ps = con.prepareStatement(sql);
 ps.setString(1,id);
-ps.setString(2, pName);
-ps.setInt(3, intpPrice);
-ps.setInt(4, intpQuantity);
+ps.setString(2, itemNumber);
+ps.setString(3, price);
+ps.setString(4, quantity);
 ps.setString(5, unitOfMeasure);
+ps.setString(6, stat);
+ps.setString(7, discontinued);
 int i = ps.executeUpdate();
 if(i > 0)
 {
-session.setAttribute("message", "Product updated successfully!");
-response.sendRedirect("products.jsp");
+session.setAttribute("message", "Item edited successfully!");
+response.sendRedirect("item_list.jsp");
 }
 else
 {
-session.setAttribute("message", "There was a problem updating the product.");
-response.sendRedirect("products.jsp");
+session.setAttribute("message", "There was a problem editing the item.");
+response.sendRedirect("item_list.jsp");
 }
 }
 catch(SQLException sql)

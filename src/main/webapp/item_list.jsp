@@ -147,11 +147,11 @@ resultSet = statement.executeQuery(sql);
                 <td><%=disc%></td>
                 <td><%=sds%></td>
                 <td>
-                    <a href="">
-                        <button></button>
+                    <a href="update_product_page.jsp?id=<%= id%>">
+                        <button>Edit</button>
                     </a>
-                    <a href="">
-                        <button></button>
+                    <a href="delete_prod.jsp?id=<%=id %>">
+                        <button>Delete</button>
                     </a>
                 </td>
                 

@@ -32,7 +32,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Product where pId = "+id;
+String sql ="select * from Item where id = "+id;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
@@ -44,35 +44,51 @@ while(resultSet.next()){
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Update Product</title>
         <%@include file="components/common_css_js.jsp" %>
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <body>
            <%@include file="components/navbar.jsp" %>
         <h1>Make Changes</h1>
+        <div class="center">
 <form method="post" action="update_product.jsp">
-<input type="hidden" name="pId" value="<%=resultSet.getString("pId") %>">
+<input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
 <br>
 Name:<br>
-<input type="text" name="pName" value="<%=resultSet.getString("pName") %>">
+<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>">
 <br>
 Type:<br>
-<input type="text" name="pPrice" value="<%=resultSet.getString("pPrice") %>">
+<input type="text" name="price" value="<%=resultSet.getString("price") %>">
 <br>
-Quantity:<br>
-<input type="text" name="pQuantity" value="<%=resultSet.getString("pQuanity") %>">
+Quantity Per UOM:<br>
+<input type="text" name="quantity" value="<%=resultSet.getString("quantity") %>">
 <br>
 Unit of Measure:<br>
 <input type="text" name="unitOfMeasure" value="<%=resultSet.getString("unitOfMeasure") %>">
+<br>
+Active/Inactive:<br>
+<select name="stat" id="stat">
+    <option value="Active">Active</option>
+    <option value="Inactive">Inactive</option>
+</select>
+<br>
+Discontinued/Continued:<br>
+<select name="discontinued" id="discontinued">
+    <option value="discontinued">Discontinued</option>
+    <option value="continued">Continued</option>
+</select>
 <br><br>
-Update Product<br>
-<input type="submit" value="submit">
+Edit Item<br>
+<input type="submit" value="Edit">
 </form>
-<form action="uploadImage" method="post" enctype="multipart/form-data">
-<input type="hidden" name="pId" value="<%=resultSet.getString("pId") %>">
-Upload Image:<br>
-<input type="file" name="image"/><br/><br/>
-For Picture<br>
-<input type="submit"/>
-</form>
+        </div>
+
 <%
 }
 connection.close();
