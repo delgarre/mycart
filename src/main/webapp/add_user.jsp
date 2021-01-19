@@ -29,9 +29,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add User</title>
         <%@include file="components/common_css_js.jsp" %>
+
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
+        <div class="center">
         <form method="post" action="new_user.jsp">
             Name:<br>
             <input type="text" name="user_name"/>
@@ -52,5 +62,6 @@
             
             <input type="submit" value="submit">
         </form>
+        </div>
     </body>
 </html>

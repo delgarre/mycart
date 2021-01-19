@@ -9,7 +9,7 @@
 
 <%
  User user1 = (User)session.getAttribute("current-user");
-
+Integer Id = user1.getUserId();
 String id = request.getParameter("id");
 String itemNumber=request.getParameter("itemNumber");
 String price = request.getParameter("price");
@@ -37,7 +37,7 @@ int i = ps.executeUpdate();
 if(i > 0)
 {
 session.setAttribute("message", "Order edited successfully!");
-response.sendRedirect("pending_orders.jsp?id="+id);
+response.sendRedirect("pending_orders.jsp?id="+Id);
 }
 else
 {

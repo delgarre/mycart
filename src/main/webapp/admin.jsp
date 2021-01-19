@@ -143,6 +143,20 @@
                         </div>
                     </div>
                 </div>
+                                <!--eighth row -->
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            
+                            <div class="container">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
+                            </div>
+                            <a href="past_orders.jsp" class="card-link">Click me!</a>
+                            <h3 class="text-muted"> Order History</h3>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
             
             <!--second row-->

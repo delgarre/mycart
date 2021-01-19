@@ -37,6 +37,8 @@ public class Orders implements Serializable {
     
     private String itemNumber;
     
+    
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns({
     @JoinColumn(name="user_id", referencedColumnName="user_id"),

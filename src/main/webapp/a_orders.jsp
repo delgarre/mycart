@@ -103,7 +103,7 @@ resultSet = statement.executeQuery(sql);
                     <td><%= locations%></td>
                     <td>
                         <a href="update_a_orders_page.jsp?id=<%=order_id%>">
-                            <button>Approve</button>
+                            <button>Edit</button>
                         </a>
                             <a href="delete_a_orders.jsp?id=<%=order_id%>">
                                 <button>Delete</button>

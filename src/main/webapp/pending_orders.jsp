@@ -45,7 +45,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Approve where user_id ='"+id+"' and locations = '"+com+"' ";
+String sql ="select * from Approve where user_id ='"+id+"' and locations = '"+com+"' and stat = 'Not Approved' ";
 resultSet = statement.executeQuery(sql);
 
 %>

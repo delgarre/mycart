@@ -18,6 +18,15 @@
         response.sendRedirect("index.jsp");
         return;
     }
+    else
+    {
+        if(user.getUserType().equals("normal"))
+        {
+            session.setAttribute("message", "Admin level required!");
+            response.sendRedirect("index.jsp");
+            return;
+        }
+    }
 %>
 <%
 String id = request.getParameter("id");
@@ -93,7 +102,7 @@ resultSet = statement.executeQuery(sql);
                     <td><%=locations%></td>
                     <td>
                         <a href="a_orders.jsp?id=<%= locations%>">
-                            <button>Approve</button>
+                            <button>View</button>
                         </a>
                            
                     </td>

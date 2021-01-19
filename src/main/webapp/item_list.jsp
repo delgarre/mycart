@@ -48,6 +48,11 @@
     </head>
     <body>
 <%@include file="components/navbar.jsp" %>
+        <div class="row ml-2">
+            <a href="add_item_page.jsp">
+                <button>Add Item</button>
+            </a>
+        </div>
 
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search Item Number" onkeyup="searchFunction()" aria-label="Search" id="myInput">

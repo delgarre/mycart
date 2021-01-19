@@ -17,7 +17,7 @@ Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/my
 Statement st=conn.createStatement();
 int i=st.executeUpdate("insert into User(user_name,user_password,user_type, user_email)values('"+user_name+"','"+user_password+"','"+user_type+"','"+user_email+"')");
 session.setAttribute("message", "User added successfully!");
-response.sendRedirect("admin.jsp");
+response.sendRedirect("users.jsp");
 }
 catch(Exception e)
 {
