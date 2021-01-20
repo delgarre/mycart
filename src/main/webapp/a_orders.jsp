@@ -39,7 +39,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Orders where locations = '"+id+"'";
+String sql ="select * from Orders where locations = '"+id+"' and status= 'not approved'";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -49,7 +49,7 @@ resultSet = statement.executeQuery(sql);
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Approval Page</title>
          
     <%@include file="components/common_css_js.jsp" %>
     </head>
@@ -69,11 +69,12 @@ resultSet = statement.executeQuery(sql);
                                 
                <input type="submit" value="Approve Orders"/>
              
-            
+            </form>
             
             <table class="table table-bordered ">
                 <tr>
                     <th>Id</th>
+                    <th>Photo</th>
                     <th>Item Number</th>
                     <th>Price</th>
                     <th>Ordered By</th>
@@ -92,10 +93,14 @@ resultSet = statement.executeQuery(sql);
                         String quantity = resultSet.getString("quantity");
                         String locations = resultSet.getString("locations");
                         String order_id = resultSet.getString("id");
+                        String photo = resultSet.getString("photo");
                         
                     %>
                     
                     <td><%=order_id%></td>
+                    <td>
+                        <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
+                    </td>
                     <td><%=item%></td>
                     <td><%= price%></td>
                     <td><%=name%></td>
@@ -121,7 +126,7 @@ resultSet = statement.executeQuery(sql);
                
             </table>
                 
-            </form>
+
                 
         </div>
 

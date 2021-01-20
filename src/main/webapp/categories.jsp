@@ -40,6 +40,12 @@
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
+        
+        <div class="row ml-2">
+            <a href="add_category.jsp">
+                <button>Add Category</button>
+            </a>
+        </div>
         <div class="center">
             <div div class="table-responsive-sm mt-3">
                 <table class="table table-bordered ">

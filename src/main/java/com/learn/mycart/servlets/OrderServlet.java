@@ -39,7 +39,7 @@ public class OrderServlet extends HttpServlet {
                     Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
                     Statement st=conn.createStatement();   
                     HttpSession httpSession=request.getSession();
-                    int i = st.executeUpdate("insert into Orders(itemNumber, aPPrice, date, locations, name, quantity, user_id) select itemNumber, price, date, locations, name, quantity, user_id from Approve where user_id ="+user_id);
+                    int i = st.executeUpdate("insert into Orders(itemNumber, aPPrice, date, locations, name, quantity, user_id, photo) select itemNumber, price, date, locations, name, quantity, user_id, photo from Approve where user_id ="+user_id);
                     
                     JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
                     response.sendRedirect("items.jsp");

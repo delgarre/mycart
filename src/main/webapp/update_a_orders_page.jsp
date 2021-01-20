@@ -43,16 +43,26 @@ while(resultSet.next()){
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Approve Order</title>
         <%@include file="components/common_css_js.jsp" %>
+
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
         <h1>Check</h1>
+        <div class="center">
     <form method="post" action="update_a_order.jsp">
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
 
 <br>
 Name:<br>
-<input type="text" name="aPName" value="<%=resultSet.getString("aPName") %>">
+<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>">
 <br>
 Price:<br>
 <input type="text" name="aPPrice" value="<%=resultSet.getString("aPPrice") %>">
@@ -64,11 +74,12 @@ Quantity:<br>
 <input type="text" name="quantity" value="<%=resultSet.getString("quantity") %>">
 <br>
 
-Location:<br>
-<input type="text" name="locations" value="<%=resultSet.getString("locations")%>">
+
+<input type="hidden" name="locations" value="<%=resultSet.getString("locations")%>">
 <br><br>
-<input type="submit" value="submit">
+<input type="submit" value="Edit">
 </form>
+</div>
 <%
 }
 connection.close();

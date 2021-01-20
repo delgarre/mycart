@@ -16,8 +16,7 @@
 <%
     Company company1 = (Company)session.getAttribute("location");
     String com = company1.getCompanyName();
-    ApproveOrder a = new ApproveOrder();
-    Test test = (Test)session.getAttribute("locations");
+    
     User user = (User)session.getAttribute("current-user");
     if(user==null){
         session.setAttribute("message", "You are not logged in!");

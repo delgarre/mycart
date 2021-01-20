@@ -27,10 +27,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Vendor</title>
         <%@include file="components/common_css_js.jsp" %>
+
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <div class="col-md-8">
+        <div class="center">
         <h1>Info:</h1>
         <form method="POST" action="new_vendor.jsp">
             Name:<br>

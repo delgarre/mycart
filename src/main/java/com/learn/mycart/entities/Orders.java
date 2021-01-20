@@ -37,6 +37,8 @@ public class Orders implements Serializable {
     
     private String itemNumber;
     
+    private String photo;
+    
     
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -51,7 +53,8 @@ public class Orders implements Serializable {
     public Orders() {
     }
 
-    public Orders(int id, String aPName, double aPPrice, int quantity, String name, Date date, String locations, User users, String status, String itemNumber) {
+    public Orders(int id, String aPName, double aPPrice, int quantity, String name, Date date, String locations, 
+            User users, String status, String itemNumber, String photo) {
         this.id = id;
         this.aPName = aPName;
         this.aPPrice = aPPrice;
@@ -62,6 +65,7 @@ public class Orders implements Serializable {
         this.users = users;
         this.status = status;
         this.itemNumber = itemNumber;
+        this.photo = photo;
     }
     
 
@@ -143,6 +147,14 @@ public class Orders implements Serializable {
 
     public void setItemNumber(String itemNumber) {
         this.itemNumber = itemNumber;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
     
     
