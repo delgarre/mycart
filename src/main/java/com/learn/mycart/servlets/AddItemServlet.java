@@ -38,47 +38,15 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 @MultipartConfig
 public class AddItemServlet extends HttpServlet {
 
-   private boolean isMultipart;
-   private String filePath;
-   private int maxFileSize = 100 * 1024;
-   private int maxMemSize = 4 * 1024;
-   private File file ;
-   
-   public void init( ){
-      // Get the file location where it would be stored.
-      filePath = getServletContext().getInitParameter("file-upload"); 
-   }
+  
    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        isMultipart = ServletFileUpload.isMultipartContent(request);
+        
         try (PrintWriter out = response.getWriter()) {
             String op = request.getParameter("operation");
-            
-            if(op.trim().equals("addcategory"))
-            {
-                //add category
-                //fetching category data
-                String title = request.getParameter("catTitle");
-                
-                
-                Category category = new Category();
-                category.setCategoryTitle(title);
-                
-                
-                //category save data:
-                CategoryDao categoryDao = new CategoryDao(FactoryProvider.getFactory());
-                
-                int catId=categoryDao.saveCategory(category);
-                
-                //out.println("Category saved");
-                HttpSession httpSession=request.getSession();
-                httpSession.setAttribute("message", "Category added sucessfully! Item number: "+catId);
-                response.sendRedirect("admin.jsp");
-                return;
-            }
-            else if(op.trim().equals("addproduct"))
+
             {
             
                 
@@ -115,6 +83,8 @@ public class AddItemServlet extends HttpServlet {
                 HttpSession httpSession = request.getSession();
                 httpSession.setAttribute("message","Product added successfully... ");
                 
+                
+                
                 }
                 catch(Exception e)
                 {
@@ -135,7 +105,7 @@ public class AddItemServlet extends HttpServlet {
       
           HttpSession httpSession = request.getSession();
                 httpSession.setAttribute("message","Item added successfully... ");
-                response.sendRedirect("admin.jsp");
+                response.sendRedirect("upload.jsp");
                 return;
         }
         }

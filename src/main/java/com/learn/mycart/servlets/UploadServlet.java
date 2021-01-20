@@ -82,11 +82,7 @@ public class UploadServlet extends HttpServlet {
          // Process the uploaded file items
          Iterator i = fileItems.iterator();
 
-         out.println("<html>");
-         out.println("<head>");
-         out.println("<title>Servlet upload</title>");  
-         out.println("</head>");
-         out.println("<body>");
+         
    
          while ( i.hasNext () ) {
             FileItem fi = (FileItem)i.next();
@@ -105,11 +101,11 @@ public class UploadServlet extends HttpServlet {
                   file = new File( filePath + fileName.substring(fileName.lastIndexOf("\\")+1)) ;
                }
                fi.write( file ) ;
-               out.println("Uploaded Filename: " + fileName + "<br>");
+               response.sendRedirect("item_list.jsp");
+               System.out.println("Uploaded Filename: " + fileName );
             }
          }
-         out.println("</body>");
-         out.println("</html>");
+
          } catch(Exception ex) {
             System.out.println(ex);
          }
