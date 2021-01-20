@@ -66,8 +66,8 @@ resultSet = statement.executeQuery(sql);
             <form method="post" action="a.jsp">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
                 <input type="text" name="locations" value="<%=id%>"/>
-                
-                <input type="submit" value="Approve Orders"/>
+                                
+               <input type="submit" value="Approve Orders"/>
              
             
             
@@ -112,14 +112,17 @@ resultSet = statement.executeQuery(sql);
                     </td>
                     
                 </tr>
-                
+               <input type="hidden" name="oId" value="<%=order_id%>"/>
+
+              
                 <%
                     }
                 %>
-                
+               
             </table>
                 
             </form>
+                
         </div>
 
         

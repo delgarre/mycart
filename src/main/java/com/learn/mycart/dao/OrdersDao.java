@@ -37,5 +37,17 @@ public class OrdersDao {
         }
         return orders;
     }
+    public List<Orders> getOrdersByLocation(String location){
+        
+        
+            String query="from Orders where locations =: l";
+            Session session = this.factory.openSession();
+            Query q= session.createQuery(query);
+            q.setParameter("l", location);
+            List<Orders> list = q.list();
+        
+        return list;
+        
+    }
 
 }

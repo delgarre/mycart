@@ -46,7 +46,8 @@ public class ApproveOrderServlet extends HttpServlet {
                     Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
                     Statement st=conn.createStatement();   
                     HttpSession httpSession=request.getSession();
-                    int i = st.executeUpdate("insert into OrderHistory(aName, aPrice, date, locations, cName, quantity) select aPName, aPPrice, date, locations, name, quantity from Orders where locations = "+id);
+                    int i = st.executeUpdate("insert into OrderHistory(aName, aPrice, date, locations, cName, quantity) select aPName, aPPrice, date, locations, name, quantity from Orders where locations = '"+id+"'; "
+                            + "UPDATE `mycart`.`Orders` SET `status` = 'approved' WHERE (`id` = '"+id+"') ");
                     
                     JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
                     response.sendRedirect("home.jsp");
