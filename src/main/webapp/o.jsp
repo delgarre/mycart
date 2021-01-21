@@ -80,20 +80,20 @@ div {text-align: center;}
 
 <input type="hidden" name="photo" value="<%=resultSet.getString("photo")%>">
 <br>
-Name:<br>
-<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>">
+Item Number<br>
+<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>" readonly>
 <br>
 Price:<br>
-<input type="text" name="price" value="<%=resultSet.getString("price") %>">
+<input type="text" name="price" value="<%=resultSet.getString("price") %>" readonly>
 <br>
-Member Name:<br>
-<input value="<%= user.getUserName()%>" type="text" name="name">
-<br>
-Quantity:<br>
+
+<input value="<%= user.getUserName()%>" type="hidden" name="name">
+
+Quantity Per UOM:<br>
 <input type="text" name="quantity" placeholder="Enter Amount">
 <br>
 Location:<br>
-<input value="<%=company.getCompanyName()%>" name="locations">
+<input value="<%=company.getCompanyName()%>" name="locations" readonly>
 <br><br>
 
 <input type="submit" value="submit">
