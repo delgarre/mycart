@@ -39,7 +39,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Orders where locations = '"+id+"' and status= 'not approved'";
+String sql ="select * from Orders where locations = '"+id+"' and status= 'Not Approved'";
 resultSet = statement.executeQuery(sql);
 
 %>
