@@ -54,7 +54,7 @@ public class Item implements Serializable {
 
     public Item(int id,  String price, String photo, String quantity, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, 
             String itemNumber, String alternateItem, String stat, 
-            String cTitle, String vTitle, String locationType,String discontinued, String sds) {
+            String cTitle, String vTitle, String locationType,String discontinued, String sds, String pDesc) {
         this.id = id;
         
         this.price = price;

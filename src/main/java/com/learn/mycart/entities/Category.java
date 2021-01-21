@@ -22,11 +22,9 @@ public class Category implements Serializable {
     private int categoryId;
     private String categoryTitle;
     private String categoryDesc;
-    @OneToMany(mappedBy = "category")
-    private List<Product> products = new ArrayList<>();
+   
     
-    @OneToMany(mappedBy = "category")
-    private List<Vendor> vendors = new ArrayList<>();
+
     
     
     
@@ -54,11 +52,11 @@ public class Category implements Serializable {
         this.categoryDesc = categoryDesc;
     }
 
-    public Category(String categoryTitle, String categoryDesc, List<Product> products, List<Vendor> vendors, Company companies, LocationType locationType) {
+    public Category(String categoryTitle, String categoryDesc, Company companies, LocationType locationType) {
         this.categoryTitle = categoryTitle;
         this.categoryDesc = categoryDesc;
-        this.products = products;
-        this.vendors = vendors;
+   
+     
        
         this.companies = companies;
         this.locationType = locationType;
@@ -88,21 +86,9 @@ public class Category implements Serializable {
         this.categoryDesc = categoryDesc;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 
-    public List<Vendor> getVendor() {
-        return vendors;
-    }
-
-    public void setVendor(List<Vendor> vendors) {
-        this.vendors = vendors;
-    }
+    
 
     public Company getCompanies() {
         return companies;

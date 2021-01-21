@@ -31,6 +31,13 @@ public class Approve implements Serializable {
     private Date date;
     private String stat;
     private String itemNumber;
+    private String manufacturer;
+    private String manufacturerNum;
+    private String alternateItem;
+    private String pDesc;
+    private String cTitle;
+    private String vTitle;
+    private String unitOfMeasure;
     
     private String locations;
     
@@ -42,7 +49,8 @@ public class Approve implements Serializable {
     }
 
     public Approve(int id, String name, String price, String photo, String quantity, Date date, String locations, User users, 
-            String itemName, String stat, String itemNumber) {
+            String itemName, String stat, String itemNumber, String cTitle, String vTitle, String unitOfMeasure
+            , String manufacturer, String manufacturerNum, String alternateItem, String pDesc) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -54,6 +62,13 @@ public class Approve implements Serializable {
         this.itemName = itemName;
         this.stat = stat;
         this.itemNumber = itemNumber;
+        this.cTitle = cTitle;
+        this.vTitle = vTitle;
+        this.unitOfMeasure = unitOfMeasure;
+        this.manufacturer = manufacturer;
+        this.manufacturerNum = manufacturerNum;
+        this.alternateItem = alternateItem;
+        this.pDesc = pDesc;
     }
 
     public int getId() {
@@ -142,6 +157,62 @@ public class Approve implements Serializable {
 
     public void setItemNumber(String itemNumber) {
         this.itemNumber = itemNumber;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getManufacturerNum() {
+        return manufacturerNum;
+    }
+
+    public void setManufacturerNum(String manufacturerNum) {
+        this.manufacturerNum = manufacturerNum;
+    }
+
+    public String getAlternateItem() {
+        return alternateItem;
+    }
+
+    public void setAlternateItem(String alternateItem) {
+        this.alternateItem = alternateItem;
+    }
+
+    public String getpDesc() {
+        return pDesc;
+    }
+
+    public void setpDesc(String pDesc) {
+        this.pDesc = pDesc;
+    }
+
+    public String getcTitle() {
+        return cTitle;
+    }
+
+    public void setcTitle(String cTitle) {
+        this.cTitle = cTitle;
+    }
+
+    public String getvTitle() {
+        return vTitle;
+    }
+
+    public void setvTitle(String vTitle) {
+        this.vTitle = vTitle;
+    }
+
+    public String getUnitOfMeasure() {
+        return unitOfMeasure;
+    }
+
+    public void setUnitOfMeasure(String unitOfMeasure) {
+        this.unitOfMeasure = unitOfMeasure;
     }
     
     

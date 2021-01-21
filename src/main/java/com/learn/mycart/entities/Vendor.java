@@ -20,13 +20,11 @@ public class Vendor implements Serializable {
     
     private String vendorName;
     
-    @OneToMany(mappedBy = "vendor")
-    private List<Product> products = new ArrayList<>();
+    
     
 
     
-    @ManyToOne
-    private Category category;
+
 
     public Vendor() {
     }
@@ -36,11 +34,11 @@ public class Vendor implements Serializable {
         this.vendorName = vendorName;
     }
 
-    public Vendor(int vendorId, String vendorName, Category category, List<Product> products) {
+    public Vendor(int vendorId, String vendorName, Category category) {
         this.vendorId = vendorId;
         this.vendorName = vendorName;
-        this.category = category;
-        this.products = products;
+        
+       
       
     }
     
@@ -62,22 +60,6 @@ public class Vendor implements Serializable {
 
     public void setVendorName(String vendorName) {
         this.vendorName = vendorName;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
     
     

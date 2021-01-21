@@ -6,7 +6,6 @@
 package com.learn.mycart.dao;
 
 import com.learn.mycart.entities.Item;
-import com.learn.mycart.entities.Product;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

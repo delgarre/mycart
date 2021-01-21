@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-  
     <!--
     <context-param>
         <description>Location to store uploaded file</description>
@@ -10,7 +9,6 @@
       </param-value>
     </context-param>
     -->
-        
     <context-param>
         <description>Location to store uploaded file</description>
         <param-name>file-upload</param-name>
@@ -18,7 +16,6 @@
          172.20.29.70\mycart\src\main\webapp\image\
       </param-value>
     </context-param>
-    
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.LoginServlet</servlet-class>
@@ -26,10 +23,6 @@
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.LogoutServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ProductOperationServlet</servlet-name>
-        <servlet-class>com.learn.mycart.servlets.ProductOperationServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UserServlet</servlet-name>
@@ -90,10 +83,6 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ProductOperationServlet</servlet-name>
-        <url-pattern>/ProductOperationServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>OrderServlet</servlet-name>
