@@ -99,7 +99,7 @@ resultSet = statement.executeQuery(sql);
             <div div class="table-responsive-sm mt-3">
         
                 <div>
-                    <a href="dropdown.jsp?id=<%= user.getUserId()%>"><h3>Select Location</h3></a>
+                    <a href="dropdown.jsp?id=<%= user.getUserId()%>"><h3>Change Location</h3></a>
                 </div>
         
             <table class="table table-bordered " id="myTable">

@@ -113,6 +113,9 @@ resultSet = statement.executeQuery(sql);
                             <a href="delete_a_orders.jsp?id=<%=order_id%>">
                                 <button>Delete</button>
                             </a>
+                         <a href="submit_single.jsp?id=<%=order_id%>">
+                                <button>Approve</button>
+                         </a>
                         
                     </td>
                     
