@@ -6,7 +6,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.entities.User"%>
-<%@page import="com.learn.mycart.entities.Product"%>
+
 <%@page import="com.learn.mycart.dao.CompanyDao"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.entities.Company"%>
@@ -48,7 +48,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select locations from Orders group by locations";
+String sql ="select locations from Orders where status = 'Not Approved' group by locations";
 resultSet = statement.executeQuery(sql);
 
 %>
