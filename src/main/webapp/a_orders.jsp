@@ -79,7 +79,11 @@ resultSet = statement.executeQuery(sql);
                <input type="submit" value="Approve Orders"/>
              
             </form>
-            
+            <div class="row ml-2">
+            <a href="single_add.jsp?id=<%=id%>">
+                <button>Add Item</button>
+            </a>
+        </div>
             <table class="table table-bordered ">
                 <tr>
                     <th>Id</th>
@@ -152,6 +156,7 @@ resultSet = statement.executeQuery(sql);
               
                 <%
                     }
+                    session.setAttribute("single", id);
                 %>
                
             </table>

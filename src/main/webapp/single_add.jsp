@@ -20,10 +20,10 @@
         response.sendRedirect("index.jsp");
         return;
     }
-Company companys = (Company)session.getAttribute("location");
+ 
 %>
 <%
-String name = companys.getCompanyName();
+String name = request.getParameter("id");
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
 String database = "mycart";
@@ -37,13 +37,13 @@ e.printStackTrace();
 Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
-ResultSet resultSet2 = null;
+
 %>
 <%
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="Select I.* from Item I inner Join LocationType LT ON FIND_IN_SET(LT.locationType,I.locationType)Where LT.location ='"+name+"'";
+String sql ="Select * from Item";
 
 resultSet = statement.executeQuery(sql);
 
@@ -69,37 +69,12 @@ resultSet = statement.executeQuery(sql);
     </head>
     <body>
           <%@include file="components/user_navbar.jsp" %>
-          <div class="panel panel-primary">
-            <div>
-                <div class="panel-heading col-md-8">
-                    <table>
-                        
-                        <%
-                        NoticeDao ldao = new NoticeDao(FactoryProvider.getFactory());
-                        List<Notice> notice = ldao.getStatus();
-                        %>
-                        <tr>
-                            <th>Message:</th>
-                        </tr>
-                        
-                        <%
-                        for(Notice n: notice){
-                        %>
-                        <tr>
-                            <td><%=n.getMessage()%></td>
-                        </tr>
-                        <%
-                            }
-                        %>
-                    </table>
-                </div>
-            </div>
-        </div>
+          
         <div class="col-md-8">
             <div div class="table-responsive-sm mt-3">
         
                 <div>
-                    <a href="dropdown.jsp?id=<%= user.getUserId()%>"><h3>Inventory Items:</h3></a>
+                    <h3>Add an item for: <%=name%></h3>
                 </div>
         
             <table class="table table-bordered " id="myTable">
@@ -159,7 +134,7 @@ resultSet = statement.executeQuery(sql);
                     
                    
                     <td>
-                        <a href="o.jsp?id=<%= id%>">
+                        <a href="s.jsp?id=<%= id%>">
                     <button class="btn btn-outline-success">Add To Cart</button>
                     </a>
                     </td>
