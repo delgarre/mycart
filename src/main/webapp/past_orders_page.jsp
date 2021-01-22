@@ -48,7 +48,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Orders where locations = '"+id+"' and status= 'Not Approved'";
+String sql ="select * from OrderHistory where locations = '"+id+"'";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -58,9 +58,17 @@ resultSet = statement.executeQuery(sql);
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Approval Page</title>
-         
-    <%@include file="components/common_css_js.jsp" %>
+        <title>Pending Orders</title>
+        <%@include file="components/common_css_js.jsp" %>
+        
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <%
     Date today = new Date();
@@ -68,101 +76,77 @@ resultSet = statement.executeQuery(sql);
     String ddMMyyyyToday = DATE_FORMAT.format(today);
     %>
     <body>
-        <%@include file="components/navbar.jsp" %>
-        <h1>Approve:</h1>
-        <div class="col-md-8">
-            
-            <form method="post" action="a.jsp">
-                <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
-                <input type="text" name="locations" value="<%=id%>"/>
-                                
-               <input type="submit" value="Approve Orders"/>
-             
-            </form>
+           <%@include file="components/navbar.jsp" %>
+        <h1>Locations Waiting Approval:</h1>
+        <div class="center">
+
+
             
             <table class="table table-bordered ">
+                
                 <tr>
-                    <th>Id</th>
+                    <th>Order Number</th>
+                   
                     <th>Photo</th>
+                    
+                    <th>Approval Date</th>
                     <th>Item Number</th>
                     <th>Description</th>
                     <th>Price</th>
-                    <th>Ordered By</th>
-                    <th>QTY Per UOM</th>
+                    <th>Quantity</th>
                     <th>Unit Of Measure</th>
                     <th>Vendor</th>
                     <th>Category</th>
                     <th>Manufacturer</th>
                     <th>Manufacturer Number</th>
-
-                    <th>Actions</th>
                     
                 </tr>
                 <tr>
                    <%
                     while(resultSet.next()){
+                        ;
+                        String oId = resultSet.getString("id");
                         
-                        String item = resultSet.getString("itemNumber");
-                        String price = resultSet.getString("aPPrice");
-                        String name = resultSet.getString("name");
-                        String quantity = resultSet.getString("quantity");
-                        String locations = resultSet.getString("locations");
-                        String order_id = resultSet.getString("id");
                         String photo = resultSet.getString("photo");
+                        String itemNumber = resultSet.getString("ItemNumber");
+                        String date = resultSet.getString("date");
+                        String quantity = resultSet.getString("quantity");
+                        String uom = resultSet.getString("unitOfMeasure");
                         String pDesc = resultSet.getString("pDesc");
                         String vTitle = resultSet.getString("vTitle");
                         String cTitle = resultSet.getString("cTitle");
                         String man = resultSet.getString("manufacturer");
                         String manNum = resultSet.getString("manufacturerNum");
-                        String uom = resultSet.getString("unitOfMeasure");
+                        String price = resultSet.getString("aPrice");
                         
                     %>
                     
-                    <td><%=order_id%></td>
+
+                    <td><%=oId%></td>
                     <td>
                         <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
+                           
                     </td>
-                    <td><%=item%></td>
+                    
+                    <td><%=date%></td>
+                    <td><%=itemNumber%></td>
                     <td><%=pDesc%></td>
-                    <td><%= price%></td>
-                    <td><%=name%></td>
+                    <td><%=price%></td>
                     <td><%=quantity%></td>
                     <td><%=uom%></td>
                     <td><%=vTitle%></td>
                     <td><%=cTitle%></td>
                     <td><%=man%></td>
                     <td><%=manNum%></td>
-
-                    <td>
-                        <a href="update_a_orders_page.jsp?id=<%=order_id%>">
-                            <button>Edit</button>
-                        </a>
-                            <a href="delete_a_orders.jsp?id=<%=order_id%>">
-                                <button>Delete</button>
-                            </a>
-                         <a href="submit_single.jsp?id=<%=order_id%>">
-                                <button>Approve</button>
-                         </a>
-                        
-                    </td>
+                    
                     
                 </tr>
-               <input type="hidden" name="oId" value="<%=order_id%>"/>
-
-              
                 <%
                     }
                 %>
-               
             </table>
-                
-
-                
+        
         </div>
-
-        
-        
-        
 <%
 
 connection.close();

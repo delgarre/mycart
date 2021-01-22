@@ -37,7 +37,7 @@ ResultSet resultSet2 = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from OrderHistory";
+String sql ="select * from Company";
 
 resultSet = statement.executeQuery(sql);
 
@@ -57,33 +57,27 @@ resultSet = statement.executeQuery(sql);
             <div class="table-responsive-sm mt-3">
                 <table class="table table-bordered " >
                     <tr>
-                        <th>Order Number</th>
-                        <th>Item</th>
-                        <th>Price</th>
+                        <th>Location</th>
                         
-                        <th>Amount Ordered</th>
-                        <th>Order Date</th>
+                        <th>Actions</th>
                     </tr>
-                    <%
-                     
-                     while(resultSet.next()){
-                         
-                     Integer id = resultSet.getInt("id");
-                     String names = resultSet.getString("aName");
-                     String price = resultSet.getString("aPrice");
-                     String quantity = resultSet.getString("quantity");
-                     String date = resultSet.getString("date");
-                    %>
+
                     
                     
                     
                     <tr>
-                        <td><%= id%></td>
-                        <td><%= names%></td>
-                        <td><%= price%></td>
-
-                        <td><%=quantity%></td>
-                        <td><%=date%></td>
+                           <%
+                    while(resultSet.next()){
+                        ;
+                        String companyName = resultSet.getString("companyName");
+                        
+                    %>
+                        <td><%=companyName%></td>
+                        <td>
+                            <a href="past_orders_page.jsp?id=<%= companyName%>">
+                            <button>View</button>
+                        </a>
+                        </td>
                         
                     </tr>
                     <%

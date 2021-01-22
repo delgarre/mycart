@@ -19,7 +19,7 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
 Statement st=conn.createStatement();
 
-int i=st.executeUpdate("insert into OrderHistory(itemNumber, aPrice, date, locations, cName, quantity, photo) select itemNumber, aPPrice, curdate(), locations, name, quantity, photo from Orders where id = '"+id+"'");
+int i=st.executeUpdate("insert into OrderHistory(itemNumber, aPrice, date, locations, cName, quantity, photo, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle) select itemNumber, aPPrice, curdate(), locations, name, quantity, photo, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle from Orders where id = '"+id+"'");
 
 JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
 response.sendRedirect("n.jsp?id="+id);
