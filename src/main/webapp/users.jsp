@@ -90,7 +90,7 @@
                         <button type="button" class="delete" onclick="myFunction()">Delete</button>
                     </a>
                     <a href="update_user_page.jsp?id=<%=u.getUserId() %>">
-                        <button type="button" class="update">Update</button>
+                        <button type="button" class="update">Edit</button>
                     </a>
                         <a href="company_user.jsp?id=<%= u.getUserId()%>">
                         <button type="">Locations</button>    
