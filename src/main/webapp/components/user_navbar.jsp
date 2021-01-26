@@ -32,7 +32,7 @@
           <a class="nav-link" href="user_orders.jsp">Past Orders <span class="sr-only">(current)</span></a>
       </li>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search Item Number" onkeyup="searchFunction()" aria-label="Search" id="myInput">
+          <input id="myInput" type="text" placeholder="Search..">
     </form>
     </ul>
       <ul class="navbar-nav ml-auto">

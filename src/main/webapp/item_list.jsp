@@ -37,6 +37,19 @@
         <title>Items List</title>
         <%@include file="components/common_css_js.jsp" %>
         
+        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+        
 <style>
 .center {
   margin: auto;
@@ -54,9 +67,7 @@
             </a>
         </div>
 
-    <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search Item Number" onkeyup="searchFunction()" aria-label="Search" id="myInput">
-    </form>
+    <input id="myInput" type="text" placeholder="Search..">
  <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <h3>Excel Reports</h3>
                </a>
@@ -75,6 +86,7 @@
         <h1>List of Items</h1>
         <div class="col-md-8">
         <table class="table table-bordered" id="myTable">
+            <thead>
             <tr>
                         
                         
@@ -98,6 +110,8 @@
                         <th>SDS</th>
                         <th>Actions</th>
             </tr>
+            </thead>
+            <tbody id="myTable">
             <%
                 
              ItemDao idao = new ItemDao(FactoryProvider.getFactory());
@@ -143,6 +157,7 @@
 
                 session.setAttribute("items", list);
             %>
+            </tbody>
         </table>
         </div>
         

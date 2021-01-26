@@ -61,6 +61,18 @@ resultSet = statement.executeQuery(sql);
         <title>Pending Orders</title>
         <%@include file="components/common_css_js.jsp" %>
         
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+        
 <style>
 .center {
   margin: auto;
@@ -80,10 +92,10 @@ resultSet = statement.executeQuery(sql);
         <h1>Locations Waiting Approval:</h1>
         <div class="center">
 
-
+            <input id="myInput" type="text" placeholder="Search..">
             
             <table class="table table-bordered ">
-                
+                <thead>  
                 <tr>
                     <th>Order Number</th>
                    
@@ -101,6 +113,8 @@ resultSet = statement.executeQuery(sql);
                     <th>Manufacturer Number</th>
                     
                 </tr>
+                </thead>
+                <tbody id="myTable">
                 <tr>
                    <%
                     while(resultSet.next()){
@@ -144,6 +158,7 @@ resultSet = statement.executeQuery(sql);
                 <%
                     }
                 %>
+                </tbody>
             </table>
         
         </div>

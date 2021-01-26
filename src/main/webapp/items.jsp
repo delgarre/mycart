@@ -57,6 +57,17 @@ resultSet = statement.executeQuery(sql);
         <title>Items</title>
         <%@include file="components/common_css_js.jsp" %>
         
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
         
 <style>
 .center {
@@ -102,7 +113,8 @@ resultSet = statement.executeQuery(sql);
                     <a href="dropdown.jsp?id=<%= user.getUserId()%>"><h3>Inventory Items:</h3></a>
                 </div>
         
-            <table class="table table-bordered " id="myTable">
+            <table class="table table-bordered ">
+                <thead>
                 <tr>
                 
 
@@ -122,6 +134,8 @@ resultSet = statement.executeQuery(sql);
                 
                 <th>Actions</th>
                 </tr>
+                </thead>
+                <tbody id="myTable">
                 <%
                     while(resultSet.next()){
                         ;
@@ -167,6 +181,7 @@ resultSet = statement.executeQuery(sql);
                 <%
                     }
                 %>
+                </tbody>
             </table>
             </div>
         </div>
