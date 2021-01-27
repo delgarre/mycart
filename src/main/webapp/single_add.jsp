@@ -20,6 +20,16 @@
         response.sendRedirect("index.jsp");
         return;
     }
+    else
+    {
+        if(user.getUserType().equals("normal"))
+        {
+            session.setAttribute("message", "Admin level required!");
+            response.sendRedirect("index.jsp");
+            return;
+        }
+    }
+
  
 %>
 <%

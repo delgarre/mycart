@@ -48,7 +48,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from OrderHistory where locations = '"+id+"'";
+String sql ="select * from OrderHistory where locations = '"+id+"' order by date desc";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -71,6 +71,39 @@ $(document).ready(function(){
     });
   });
 });
+
+
+          
+    function exportTableToExcel(tableID, filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+}
 </script>
         
 <style>
@@ -91,10 +124,18 @@ $(document).ready(function(){
            <%@include file="components/navbar.jsp" %>
         <h1>Locations Waiting Approval:</h1>
         <div class="center">
+             <input id="myInput"  name="ven" type="text" placeholder="Search and create report">
+            <button onclick="exportTableToExcel('tblData')">Download Report</button>
+            <form method="post" action="v.jsp">
+           
+            <%
+            session.setAttribute("loc", id);
+            %>
+             
 
-            <input id="myInput" type="text" placeholder="Search..">
-            
-            <table class="table table-bordered ">
+            <input type="submit" value="Generate Report for dates">
+            </form>
+            <table id="tblData" class="table table-bordered ">
                 <thead>  
                 <tr>
                     <th>Order Number</th>
@@ -157,6 +198,7 @@ $(document).ready(function(){
                 </tr>
                 <%
                     }
+                    
                 %>
                 </tbody>
             </table>
