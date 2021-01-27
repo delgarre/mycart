@@ -124,13 +124,14 @@ $(document).ready(function(){
            <%@include file="components/navbar.jsp" %>
         <h1>Locations Waiting Approval:</h1>
         <div class="center">
-             <input id="myInput"  name="ven" type="text" placeholder="Search and create report">
-            <button onclick="exportTableToExcel('tblData')">Download Report</button>
             <form method="post" action="v.jsp">
+             <input id="myInput"  name="ven" type="text" placeholder="Search and create report">
+
+            <input type="submit" value="Generate Report for Vendor Only">
+            </form>
+            <form method="post" action="#">
            
-            <%
-            session.setAttribute("loc", id);
-            %>
+           
              
 
             <input type="submit" value="Generate Report for dates">
@@ -199,6 +200,8 @@ $(document).ready(function(){
                 <%
                     }
                     
+            session.setAttribute("loc", id);
+            
                 %>
                 </tbody>
             </table>

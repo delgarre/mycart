@@ -12,7 +12,7 @@
 <%@page import="com.learn.mycart.entities.Company"%>
 
 <%
-    Company company = (Company)session.getAttribute("location");
+    Company company1 = (Company)session.getAttribute("location");
     
     User user = (User)session.getAttribute("current-user");
     if(user==null){
@@ -93,7 +93,7 @@ Quantity Per UOM:<br>
 <input type="text" name="quantity" placeholder="Enter Amount">
 <br>
 Location:<br>
-<input value="<%=company.getCompanyName()%>" name="locations" readonly>
+<input value="<%=company1.getCompanyName()%>" name="locations" readonly>
 <br><br>
 
 <input type="submit" value="submit">
