@@ -26,7 +26,9 @@
     }
 %>
 <%
-String id = request.getParameter("id");
+String vendor = request.getParameter("vendor");
+String date1 = request.getParameter("date1");
+String date2 = request.getParameter("date2");
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
 String database = "mycart";
@@ -45,11 +47,10 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from OrderHistory where vTitle = '"+id+"' and locations='"+session.getAttribute("loc")+"' order by date desc";
+String sql ="select * from OrderHistory where (date BETWEEN '"+date1+"' AND '"+date2+"') and vTitle = '"+vendor+"' and locations='"+session.getAttribute("loc")+"' order by date desc";
 resultSet = statement.executeQuery(sql);
 
 %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -112,7 +113,7 @@ resultSet = statement.executeQuery(sql);
                 String quantity = resultSet.getString("quantity");
                 String date = resultSet.getString("date");
                 String price = resultSet.getString("aPrice");
-                String vendor = resultSet.getString("vTitle");
+                String v = resultSet.getString("vTitle");
                 String man = resultSet.getString("manufacturer");
             %>
             <tr>
@@ -120,7 +121,7 @@ resultSet = statement.executeQuery(sql);
                 <td><%=item%></td>
                 <td><%=quantity%></td>
                 <td><%=price%></td>
-                <td><%=vendor%></td>
+                <td><%=v%></td>
                 <td><%=man%></td>
             </tr>
             <%
@@ -129,7 +130,7 @@ resultSet = statement.executeQuery(sql);
         </table>
       
         </div>
-
+        
 <%
 
 connection.close();

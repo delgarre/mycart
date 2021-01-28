@@ -16,7 +16,7 @@ Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/my
 Statement st=conn.createStatement();
 int i=st.executeUpdate("UPDATE Orders SET status = 'approved' WHERE id = '"+id+"'");
 
-response.sendRedirect("orders.jsp");
+response.sendRedirect("a_orders.jsp?id="+session.getAttribute("single"));
 
 
 

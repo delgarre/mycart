@@ -18,6 +18,12 @@ SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 String ddMMyyyyToday = DATE_FORMAT.format(today);
 String stat = "Not Approved";
 String photo = request.getParameter("photo");
+String man = request.getParameter("man");
+String mannum = request.getParameter("mannum");
+String vTitle = request.getParameter("vTitle");
+String cTitle = request.getParameter("cTitle");
+String pDesc = request.getParameter("pDesc");
+String uom = request.getParameter("uom");
 
 
 
@@ -29,7 +35,7 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
 Statement st=conn.createStatement();
 
-int i=st.executeUpdate("insert into Approve(date,locations, itemNumber,price, quantity, itemName, user_id, stat, name, photo)values('"+ddMMyyyyToday+"','"+locations+"','"+itemNumber+"','"+price+"','"+quantity+"','"+itemName+"','"+user_id+"', '"+stat+"', '"+name+"', '"+photo+"')");
+int i=st.executeUpdate("insert into Approve(date,locations, itemNumber,price, quantity, itemName, user_id, stat, name, photo, unitOfMeasure, manufacturer, manufacturerNum, cTitle, vTitle, pDesc)values('"+ddMMyyyyToday+"','"+locations+"','"+itemNumber+"','"+price+"','"+quantity+"','"+itemName+"','"+user_id+"', '"+stat+"', '"+name+"', '"+photo+"', '"+uom+"', '"+man+"', '"+mannum+"','"+cTitle+"', '"+vTitle+"', '"+pDesc+"')");
 
 JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
 response.sendRedirect("items.jsp");

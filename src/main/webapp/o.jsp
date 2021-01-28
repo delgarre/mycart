@@ -78,6 +78,20 @@ div {text-align: center;}
 <input type="hidden" name="date">
 <input type="hidden" name="user_id" value="<%=user.getUserId()%>">
 
+<input type="hidden" name="uom" value="<%=resultSet.getString("unitOfMeasure")%>">
+
+<input type="hidden" name="man" value="<%=resultSet.getString("manufacturer")%>">
+
+<input type="hidden" name="mannum" value="<%=resultSet.getString("manufacturerNum")%>">
+
+<input type="hidden" name="vTitle" value="<%=resultSet.getString("vTitle")%>">
+
+
+<input type="hidden" name="cTitle" value="<%=resultSet.getString("cTitle")%>">
+
+
+<input type="hidden" name="pDesc" value="<%=resultSet.getString("pDesc")%>">
+
 <input type="hidden" name="photo" value="<%=resultSet.getString("photo")%>">
 <br>
 Item Number<br>

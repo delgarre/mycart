@@ -122,18 +122,24 @@ $(document).ready(function(){
     %>
     <body>
            <%@include file="components/navbar.jsp" %>
-        <h1>Locations Waiting Approval:</h1>
+        <h1>Orders for <%=id%>:</h1>
         <div class="center">
             <form method="post" action="v.jsp">
              <input id="myInput"  name="ven" type="text" placeholder="Search and create report">
 
             <input type="submit" value="Generate Report for Vendor Only">
             </form>
-            <form method="post" action="#">
+            <br>
+            <br>
+            <form method="post" action="d.jsp">
            
            
-             
+                <input type="text" name="vendor" placeholder="Enter Vendor">
 
+                <input type="text" name="date1" placeholder="Enter First Date">
+                
+                <input type="text" name="date2" placeholder="Enter Second date">
+                
             <input type="submit" value="Generate Report for dates">
             </form>
             <table id="tblData" class="table table-bordered ">
