@@ -48,6 +48,8 @@ $(document).ready(function(){
     });
   });
 });
+
+
 </script>
         
 <style>
@@ -67,7 +69,12 @@ $(document).ready(function(){
             </a>
         </div>
 
-    <input id="myInput" type="text" placeholder="Search..">
+        
+        <form method="post" action="item_vendor_report.jsp">
+        <input id="myInput"  name="ven" type="text" placeholder="Search..">
+        <input type="submit" value="Generate Report">
+        </form>
+        <!--
  <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <h3>Excel Reports</h3>
                </a>
@@ -83,10 +90,11 @@ $(document).ready(function(){
                <a class="dropdown-item" href="ndc_product_report.jsp">NDC</a>
                
                 </div>
+        -->
         <h1>List of Items</h1>
         <div class="col-md-8">
         <table class="table table-bordered" id="myTable">
-            <thead>
+
             <tr>
                         
                         
@@ -110,7 +118,7 @@ $(document).ready(function(){
                         <th>SDS</th>
                         <th>Actions</th>
             </tr>
-            </thead>
+           
             <tbody id="myTable">
             <%
                 
