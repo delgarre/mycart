@@ -13,7 +13,7 @@
     Statement st = conn.createStatement();
     
     int i = st.executeUpdate("DELETE FROM Test WHERE id="+id);
-    session.setAttribute("message", "Location detached successfully!");
+    session.setAttribute("message", "Location deleted successfully!");
     response.sendRedirect("users.jsp");
     }
     catch(Exception e)

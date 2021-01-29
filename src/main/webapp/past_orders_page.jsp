@@ -48,7 +48,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from OrderHistory where locations = '"+id+"' order by date desc";
+String sql ="select * from OrderHistory where locations = '"+id+"' and date = '"+session.getAttribute("date")+"'";
 resultSet = statement.executeQuery(sql);
 
 %>

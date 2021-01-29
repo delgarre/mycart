@@ -61,16 +61,95 @@
                     <!--product uOfMeasure-->
                     <div>
                         <h6>Enter Unit of Measure</h6>
-                        <input type="text" class="form-control" placeholder="Enter product unit of measure" name="pMeasure" required/>
+                <select name="pMeasure" id="pMeasure">
+                <option value="BOX (BX)">BOX (BX)</option>
+                <option value="PACK (PK)">PACK (PK)</option>
+                <option value="EACH (EA)">EACH (EA)</option>
+                <option value="PADS">PADS</option>
+                <option value="CASE (CS)">CASE (CS)</option>
+                <option value="SHEETS (SHT)">SHEETS (SHT)</option>
+                <option value="ROLL (RL)">ROLL (RL)</option>
+                <option value="EA">EA</option>
+                <option value="COUNT (CT)">COUNT (CT)</option>
+                <option value="DOZEN (DZ)">DOZEN (DZ)</option>
+                <option value="BOTTLE (BT)">BOTTLE (BT)</option>
+                <option value="GRAM (gm)">GRAM (gm)</option>
+                <option value="CARTON (CTN)">CARTON (CTN)</option>
+                <option value="POUNDS (lbs)">POUNDS (lbs)</option>
+                <option value="GALLON (GAL)">GALLON (GAL)</option>
+                <option value="PAIR (PR)">PAIR (PR)</option>
+                <option value="SET">SET</option>
+                <option value="BAG (bg)">BAG (bg)</option>
+                <option value="REAM">REAM</option>
+                <option value="WA">WA</option>
+                <option value="KILOGRAM (KG)">KILOGRAM (KG)</option>
+                <option value="VIAL (VL)">VIAL (VL)</option>
+                <option value="MILLILITER (ml)">MILLILITER (ml)</option>
+                <option value="PIECES">PIECES</option>
+                <option value="KIT">KIT</option>
+           
+                
+            </select>
                     </div>
                     <!--product cpt -->
                     <div>
                         <h6>Enter CPT</h6>
-                        <input type="text" class="form-control" placeholder="Enter CPT" name="cpt" />
+                      
+               <select name="cpt" id="cpt">
+                <option value="20550">20550</option>
+                <option value="20551">20551</option>
+                <option value="20552">20552</option>
+                <option value="20553">20553</option>
+                <option value="26601">26601</option>
+                <option value="76942">76942</option>
+                <option value="450102-06">450102-06</option>
+                <option value="A4450">A4450</option>
+                <option value="A4452">A4452</option>
+                <option value="A4565">A4565</option>
+                <option value="A4595">A4595</option>
+                <option value="A4649">A4649</option>
+                <option value="A6250">A6250</option>
+                <option value="A6448">A6448</option>
+                <option value="A6449">A6449</option>
+                <option value="A6450">A6450</option>
+                <option value="A9270">A9270</option>
+                <option value="A9300">A9300</option>
+                <option value="ASM363711">ASM363711</option>
+                <option value="E0190">E0190</option>
+                <option value="E0720">E0720</option>
+                <option value="E1399">E1399</option>
+                <option value="L0120">L0120</option>
+                <option value="L0174">L0174</option>
+                <option value="L0180">L0180</option>
+                <option value="L0456/L0457">L0456/L0457</option>
+                <option value="L0627">L0627</option>
+                <option value="L0627/L0642">L0627/L0642</option>
+                <option value="L0637/L0650">L0637/L0650</option>
+                <option value="L1810/L1812">L1810/L1812</option>
+                <option value="L1820">L1820</option>
+                <option value="L1832/L1833">L1832/L1833</option>
+                <option value="L1902">L1902</option>
+                <option value="L2397">L2397</option>
+                <option value="L2999">L2999</option>
+                <option value="L3807/ L3809">L3807/ L3809</option>
+                <option value="L3908">L3908</option>
+                <option value="L3915/L3916">L3915/L3916</option>
+                <option value="L3923/L3924">L3923/L3924</option>
+                <option value="L3960">L3960</option>
+                <option value="L3999">L3999</option>
+                <option value="L4360/ L4361">L4360/ L4361</option>
+                <option value="N/A">N/A</option>
+
+           
+           
+                
+            </select>
                     </div>
                     <div>
                         <h6>Enter NDC</h6>
-                        <input type="text" class="form-control" placeholder="Enter NDC" name="ndc"/>
+                        <select name="ndc" id="ndc">
+                            <option value="N/A">N/A</option>
+                        </select>
                     </div>
                     
                     <!--alternate Item-->

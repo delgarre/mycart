@@ -151,7 +151,7 @@
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
-                            <a href="past_orders.jsp" class="card-link">Click me!</a>
+                            <a href="date_page.jsp" class="card-link">Click me!</a>
                             <h3 class="text-muted"> Order History</h3>
                         </div>
                     </div>

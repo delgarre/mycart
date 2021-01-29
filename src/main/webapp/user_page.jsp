@@ -1,4 +1,6 @@
 
+<%@page import="com.learn.mycart.entities.Notice"%>
+<%@page import="com.learn.mycart.dao.NoticeDao"%>
 <%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.dao.CategoryDao"%>
@@ -45,18 +47,27 @@
             </div>
             <div class="panel-heading col-md-8">
                     <table>
-                        
+                        <%
+                        NoticeDao ldao = new NoticeDao(FactoryProvider.getFactory());
+                        List<Notice> notice = ldao.getStatus();
+                        %>
                         
                         <tr>
                             <th>Message:</th>
                         </tr>
-                        
+                        <%
+                        for(Notice n: notice){
+                        %>
                         
                         <tr>
+                            
+                            <td><%=n.getMessage()%></td>
                             <td><p>Please make sure you selection a location before
                                 Clicking Items, Pending Orders, Cart, or Order History!!!</p></td>
                         </tr>
-
+                        <%
+                            }
+                        %>
                     </table>
             </div>
             
@@ -111,7 +122,7 @@
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/list.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/orders.png" alt="user_icon">
                             </div>
                             <a href="pending_orders.jsp?id=<%=user.getUserId()%>" class="card-link">Click me!</a>
                             <h3 class="text-muted">Cart</h3>
@@ -124,7 +135,7 @@
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/orders.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/list.png" alt="user_icon">
                             </div>
                             <a href="n_a_orders.jsp" class="card-link">Click me!</a>
                             <h3 class="text-muted">Pending Orders</h3>
