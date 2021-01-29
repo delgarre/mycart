@@ -93,6 +93,10 @@ $(document).ready(function(){
         -->
         <h1>List of Items</h1>
         <div class="col-md-8">
+            <div class="container-fluid mt-3">
+                <%@include file="components/message.jsp" %>
+            </div>
+            
         <table class="table table-bordered" id="myTable">
 
             <tr>

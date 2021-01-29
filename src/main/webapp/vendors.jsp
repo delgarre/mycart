@@ -45,6 +45,10 @@
             </a>
         </div>
         <div class="center">
+            <div class="container-fluid mt-3">
+                <%@include file="components/message.jsp" %>
+            </div>
+            
         <div class="table-responsive-sm mt-3">
              <table class="table table-bordered " >
                  <tr>

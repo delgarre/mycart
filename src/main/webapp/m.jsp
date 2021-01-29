@@ -18,7 +18,7 @@ Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/my
 Statement st=conn.createStatement();
 int i=st.executeUpdate("UPDATE Approve SET stat = 'submitted' WHERE user_id = '"+user_id+"' and locations = '"+com+"'");
 
-response.sendRedirect("items.jsp");
+response.sendRedirect("user_page.jsp");
 
 
 

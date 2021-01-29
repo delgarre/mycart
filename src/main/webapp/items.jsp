@@ -82,6 +82,10 @@ $(document).ready(function(){
           <%@include file="components/user_navbar.jsp" %>
           <div class="panel panel-primary">
             <div>
+                <div class="container-fluid mt-3">
+                <%@include file="components/message.jsp" %>
+                </div>
+            
                 <div class="panel-heading col-md-8">
                     <table>
                         
@@ -109,6 +113,11 @@ $(document).ready(function(){
         <div class="col-md-8">
             <div div class="table-responsive-sm mt-3">
         
+                <div>
+
+          <input id="myInput" type="text" placeholder="Search..">
+    
+                </div>
                 <div>
                     <a href="dropdown.jsp?id=<%= user.getUserId()%>"><h3>Inventory Items:</h3></a>
                 </div>

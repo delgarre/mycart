@@ -80,7 +80,10 @@ resultSet = statement.executeQuery(sql);
         <h1>Locations Waiting Approval:</h1>
         <div class="center">
 
-
+            <div class="container-fluid mt-3">
+                <%@include file="components/message.jsp" %>
+            </div>
+            
             
             <table class="table table-bordered ">
                 

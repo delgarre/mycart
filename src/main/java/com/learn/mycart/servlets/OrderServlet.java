@@ -43,7 +43,7 @@ public class OrderServlet extends HttpServlet {
                     
                     JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
                     response.sendRedirect("m.jsp?id="+user_id);
-                    httpSession.setAttribute("message", "Order processed successfully!");
+                    httpSession.setAttribute("message", "Order submitted successfully!");
                 } catch (Exception e) {
                 }
             }

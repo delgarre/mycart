@@ -75,6 +75,10 @@ resultSet = statement.executeQuery(sql);
            <%@include file="components/user_navbar.jsp" %>
         <h1>Cart Items:</h1>
         <div class="center">
+            <div class="container-fluid mt-3">
+                <%@include file="components/message.jsp" %>
+            </div>
+            
             <form method="post" action="OrderServlet">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
                 <input type="submit" value="Submit Cart" onclick="mySub()"/>
@@ -125,7 +129,7 @@ resultSet = statement.executeQuery(sql);
                 %>
 
             
-        
+            </table>
         </div>
 <%
 

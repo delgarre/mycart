@@ -31,9 +31,7 @@
       <li>
           <a class="nav-link" href="user_orders.jsp">Past Orders <span class="sr-only">(current)</span></a>
       </li>
-      <form class="form-inline my-2 my-lg-0">
-          <input id="myInput" type="text" placeholder="Search..">
-    </form>
+      
     </ul>
       <ul class="navbar-nav ml-auto">
           
@@ -88,7 +86,7 @@
            
            
             <li class="nav-item active">
-                <a class="nav-link" href="#!"><%= user1.getUserName()%> </a>
+                <a class="nav-link" href="user_page.jsp"><%= user1.getUserName()%> </a>
             </li>
 
             <li class="nav-item active">

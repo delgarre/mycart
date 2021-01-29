@@ -24,6 +24,7 @@ String Countrow = rs.getString(1);
 Class.forName("com.mysql.jdbc.Driver");
 if(Countrow.equals("0")){
 int i=st.executeUpdate("insert into Test(comp_name,user_id)values('"+location+"','"+user+"')");
+session.setAttribute("message", "Location added!");
 response.sendRedirect("company_user.jsp?id="+user);
 }
 else{

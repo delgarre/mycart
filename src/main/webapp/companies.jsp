@@ -32,6 +32,9 @@
         <%@include file="components/navbar.jsp" %>
         
         <div class="col-md-8">
+            <div class="container-fluid mt-3">
+                <%@include file="components/message.jsp" %>
+            </div>
             <div class="table-responsive-sm">
                 <table class="table table-bordered " >
                     <tr>

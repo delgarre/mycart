@@ -53,6 +53,9 @@ resultSet = statement.executeQuery(sql);
         <%@include file="components/navbar.jsp" %>
         <h1>Locations</h1>
         <div class="container-fluid">
+            <div class="container-fluid mt-3">
+                <%@include file="components/message.jsp" %>
+            </div>
         <div class="col-md-2">
         <form action="add_location.jsp" method="POST">
             <h6>Add Location:</h6>
