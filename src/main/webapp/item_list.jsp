@@ -40,6 +40,19 @@
         
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    
+
+$(document).ready(function(){
+  $("#myIn").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+    
+    
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
@@ -49,6 +62,16 @@ $(document).ready(function(){
   });
 });
 
+
+
+$(document).ready(function(){
+  $("#myIt").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 
 </script>
         
@@ -71,7 +94,12 @@ $(document).ready(function(){
 
         
         <form method="post" action="item_vendor_report.jsp">
-        <input id="myInput"  name="ven" type="text" placeholder="Search..">
+        <input id="myInput"  name="ven" type="text" placeholder="Search Vendor">
+        <br><br>
+        <input id="myIt"  name="ven" type="text" placeholder="Search Category">
+        <br><br>
+        <input id="myIn"  name="ven" type="text" placeholder="Search Description">
+        <br><br>
         <input type="submit" value="Generate Report">
         </form>
         <!--
@@ -98,7 +126,7 @@ $(document).ready(function(){
             </div>
             
         <table class="table table-bordered" id="myTable">
-
+            <thead>
             <tr>
                         
                         
@@ -122,7 +150,7 @@ $(document).ready(function(){
                         <th>SDS</th>
                         <th>Actions</th>
             </tr>
-           
+            </thead>
             <tbody id="myTable">
             <%
                 
