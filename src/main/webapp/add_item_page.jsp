@@ -229,14 +229,17 @@
                                 <input type="checkbox" name="location" value="LUCKY SPOT">LUCKY SPOT<br>
                             </div>
                         </div>
-                    <!--product file-->
+                            
+                            
+                  <!--          
+                  
                     <div class="form-group">
                         <label for="file">Select picture of product:</label>
                         <br>
                         <input type="file" id="file" name="file" size="50"/>
                         <!--
                         <input type="file" id="file" name="file"/>
-                        -->
+                        
                         
                     </div>
                     <div class="form-group">
@@ -244,6 +247,9 @@
                         <br>
                         <input type="file" id="sds" name="sds" size="50"/>
                     </div>
+                    
+                    
+                   -->
                     <!--submit button-->
                     <div class="container text-center">
                         <button class="btn btn-outline-success">Add product</button>

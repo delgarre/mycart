@@ -9,6 +9,8 @@
       </param-value>
     </context-param>
     -->
+    
+    
     <context-param>
         <description>Location to store uploaded file</description>
         <param-name>file-upload</param-name>
@@ -16,6 +18,7 @@
          172.20.29.70\mycart\src\main\webapp\image\
       </param-value>
     </context-param>
+       
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.LoginServlet</servlet-class>

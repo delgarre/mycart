@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -101,7 +102,12 @@ public class UploadServlet extends HttpServlet {
                   file = new File( filePath + fileName.substring(fileName.lastIndexOf("\\")+1)) ;
                }
                fi.write( file ) ;
-               response.sendRedirect("item_list.jsp");
+               
+               HttpSession httpSession = request.getSession();
+               
+               String id = request.getParameter("id");
+               response.sendRedirect("list.jsp");
+               httpSession.setAttribute("file", fileName );
                System.out.println("Uploaded Filename: " + fileName );
             }
          }
