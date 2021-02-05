@@ -76,6 +76,11 @@ $(document).ready(function(){
   border: navy;
   padding: 10px;
 }
+
+th {
+    white-space: nowrap;
+}
+
 </style>
     </head>
     <body>
@@ -122,7 +127,7 @@ $(document).ready(function(){
                     <a href="dropdown.jsp?id=<%= user.getUserId()%>"><h3>Inventory Items:</h3></a>
                 </div>
         
-            <table class="table table-bordered ">
+            <table class="table table-bordered"  style="width:20px">
                 <thead>
                 <tr>
                 

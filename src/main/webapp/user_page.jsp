@@ -110,7 +110,7 @@
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/product.png" alt="user_icon">
                             </div>
-                            <a href="items.jsp" class="card-link">Click me!</a>
+                            <a href="items_dropdown.jsp?id=<%= user.getUserId()%>" class="card-link">Click me!</a>
                             <h3 class="text-muted">Items</h3>
                         </div>
                     </div>
