@@ -35,7 +35,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Orders where status= 'Not Approved' and locations = '"+company1.getCompanyName()+"'";
+String sql ="select * from OrderHistory where cName= '"+user.getUserName()+"'";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -61,7 +61,13 @@ resultSet = statement.executeQuery(sql);
         <%@include file="components/user_navbar.jsp" %>
         <div class="center">
             
-            <h1>Items Pending Approval:</h1>
+            <h1>All Orders:</h1><br>
+            <br>
+            <a href="approved_pending.jsp?id=<%= user.getUserId()%>">
+                
+                
+                <button class="btn btn-outline-success">By Location</button>
+            </a>
             <table class="table table-bordered ">
                 <tr>
                     <th>Id</th>
@@ -70,6 +76,7 @@ resultSet = statement.executeQuery(sql);
                     <th>Description</th>
                     <th>Price</th>
                     <th>Ordered By</th>
+                    <th>Location</th>
                     <th>QTY Per UOM</th>
                     <th>Unit Of Measure</th>
                     <th>Vendor</th>
@@ -85,8 +92,8 @@ resultSet = statement.executeQuery(sql);
                     while(resultSet.next()){
                         
                         String item = resultSet.getString("itemNumber");
-                        String price = resultSet.getString("aPPrice");
-                        String name = resultSet.getString("name");
+                        String price = resultSet.getString("aPrice");
+                        String name = resultSet.getString("cName");
                         String quantity = resultSet.getString("quantity");
                         String locations = resultSet.getString("locations");
                         String order_id = resultSet.getString("id");
@@ -108,6 +115,7 @@ resultSet = statement.executeQuery(sql);
                     <td><%=pDesc%></td>
                     <td><%= price%></td>
                     <td><%=name%></td>
+                    <td><%=locations%></td>
                     <td><%=quantity%></td>
                     <td><%=uom%></td>
                     <td><%=vTitle%></td>

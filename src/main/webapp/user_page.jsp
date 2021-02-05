@@ -38,7 +38,7 @@
     </head>
     <body>
         
-         <%@include file="components/navbar.jsp" %>
+         <%@include file="components/user_navbar.jsp" %>
         <div class="container admin">
            
             <h1 class="center">Hello <%=user.getUserName()%></h1>
@@ -62,8 +62,7 @@
                         <tr>
                             
                             <td><%=n.getMessage()%></td>
-                            <td><p>Please make sure you selection a location before
-                                Clicking Items, Pending Orders, Cart, or Order History!!!</p></td>
+                            
                         </tr>
                         <%
                             }
@@ -124,7 +123,7 @@
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/orders.png" alt="user_icon">
                             </div>
-                            <a href="pending_orders.jsp?id=<%=user.getUserId()%>" class="card-link">Click me!</a>
+                            <a href="pending_orders.jsp" class="card-link">Click me!</a>
                             <h3 class="text-muted">Cart</h3>
                         </div>
                     </div>
@@ -137,7 +136,7 @@
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/list.png" alt="user_icon">
                             </div>
-                            <a href="n_a_orders.jsp" class="card-link">Click me!</a>
+                            <a href="all_pending.jsp" class="card-link">Click me!</a>
                             <h3 class="text-muted">Pending Orders</h3>
                         </div>
                     </div>
@@ -152,7 +151,7 @@
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
-                            <a href="user_orders.jsp" class="card-link">Click me!</a>
+                            <a href="all_approved.jsp" class="card-link">Click me!</a>
                             <h3 class="text-muted"> Order History</h3>
                         </div>
                     </div>

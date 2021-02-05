@@ -9,16 +9,13 @@
       </param-value>
     </context-param>
     -->
-    
-    
     <context-param>
         <description>Location to store uploaded file</description>
         <param-name>file-upload</param-name>
         <param-value>
-         172.20.29.70\mycart\src\main\webapp\image\
+         \\127.0.0.1\tmp\photos\
       </param-value>
     </context-param>
-       
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.LoginServlet</servlet-class>
@@ -79,6 +76,22 @@
         <servlet-name>AddItemServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.AddItemServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TestUploadServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.TestUploadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PDropDownServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.PDropDownServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ADropDownServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.ADropDownServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CDropDownServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.CDropDownServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -134,6 +147,22 @@
     <servlet-mapping>
         <servlet-name>AddItemServlet</servlet-name>
         <url-pattern>/AddItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestUploadServlet</servlet-name>
+        <url-pattern>/TestUploadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PDropDownServlet</servlet-name>
+        <url-pattern>/PDropDownServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ADropDownServlet</servlet-name>
+        <url-pattern>/ADropDownServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CDropDownServlet</servlet-name>
+        <url-pattern>/CDropDownServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

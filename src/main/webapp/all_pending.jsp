@@ -35,7 +35,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Orders where status= 'Not Approved' and locations = '"+company1.getCompanyName()+"'";
+String sql ="select * from Orders where status= 'Not Approved'";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -61,7 +61,13 @@ resultSet = statement.executeQuery(sql);
         <%@include file="components/user_navbar.jsp" %>
         <div class="center">
             
-            <h1>Items Pending Approval:</h1>
+            <h1>Items Pending Approval:</h1><br>
+            <br>
+            <a href="pending_dropdown.jsp?id=<%= user.getUserId()%>">
+                
+                
+                <button class="btn btn-outline-success">By Location</button>
+            </a>
             <table class="table table-bordered ">
                 <tr>
                     <th>Id</th>

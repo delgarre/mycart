@@ -1,10 +1,18 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.learn.mycart.servlets;
 
-import com.learn.mycart.dao.UserDao;
-import com.learn.mycart.entities.User;
-import com.learn.mycart.helper.FactoryProvider;
+import com.learn.mycart.dao.CompanyDao;
+import com.learn.mycart.dao.LocationTypeDao;
+import com.learn.mycart.dao.TestDao;
+import com.learn.mycart.entities.Company;
+import com.learn.mycart.entities.LocationType;
+import com.learn.mycart.entities.Test;
 import java.io.IOException;
+import com.learn.mycart.helper.FactoryProvider;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,55 +20,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ *
+ * @author garre
+ */
+public class CDropDownServlet extends HttpServlet {
 
-public class LoginServlet extends HttpServlet {
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            String name = request.getParameter("comId");
+           
+            LocationTypeDao lDao = new LocationTypeDao(FactoryProvider.getFactory());
+           // LocationType locationType = lDao.getByLocation(location);
             
-
-            //coding area
-            String email = request.getParameter("email");
-            String password= request.getParameter("password");
-            
-            //validations
-            
-            //authenticating user
-            UserDao userDao = new UserDao(FactoryProvider.getFactory()); 
-            User user= userDao.getUserByEmailAndPassword(email, password);
-            //System.out.println(user);
+            CompanyDao cdao  = new CompanyDao(FactoryProvider.getFactory());
+            Company company = cdao.getCompanyByName(name);
             HttpSession httpSession = request.getSession();
+            httpSession.setAttribute("location", company);
             
-            if(user == null)
-            {
-                httpSession.setAttribute("message", "Invalid details. Try again.");
-                response.sendRedirect("index.jsp");
-                return;
-            }
-            else{
-                out.println("<h1>Welcome " + user.getUserName() + "</h1>");
-                //login
-                httpSession.setAttribute("current-user", user);
-                
-                if(user.getUserType().equals("admin")){
-                    //admin-admin.jsp
-                    response.sendRedirect("admin.jsp");
-                }
-                else if(user.getUserType().equals("normal")){
-                    
-                    response.sendRedirect("user_page.jsp");
-                    
-                    //response.sendRedirect("dropdown.jsp?id="+user.getUserId());
-                    //response.sendRedirect("home.jsp");
-                }
-                else
-                {
-                    out.println("We have not identified user type");
-                }
-                  
-            }
+                httpSession.setAttribute("message","Location selected ");
+            //response.sendRedirect("home.jsp");
+            response.sendRedirect("l_pending_orders.jsp");
+            return;
         }
     }
 

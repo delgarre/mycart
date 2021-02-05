@@ -44,7 +44,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Approve where user_id ='"+user.getUserId()+"' and stat = 'Not Approved' ";
+String sql ="select * from Approve where user_id ='"+user.getUserId()+"' and stat = 'Not Approved' and locations = '"+com+"' ";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -73,19 +73,12 @@ resultSet = statement.executeQuery(sql);
     %>
     <body>
            <%@include file="components/user_navbar.jsp" %>
-           <h1>Cart Items:</h1><br>
-           
+        <h1>Cart Items:</h1>
         <div class="center">
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
-            <br><br>
-                <a href="cart_dropdown.jsp?id=<%= user.getUserId()%>">
-                
-                
-                <button class="btn btn-outline-success">By Location</button>
-            </a>
-           <br><br>
+            
             <form method="post" action="OrderServlet">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
                 <input type="submit" value="Submit Cart" onclick="mySub()"/>

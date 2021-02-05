@@ -10,6 +10,11 @@
 <%@page import="com.learn.mycart.entities.OrderHistory"%>
 <%
     User user = (User)session.getAttribute("current-user");
+    
+    Company company1 = (Company)session.getAttribute("location");
+    
+    String c = company1.getCompanyName();
+    
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
         response.sendRedirect("index.jsp");
@@ -37,7 +42,7 @@ ResultSet resultSet2 = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from OrderHistory where cName = '"+name+"'";
+String sql ="select * from OrderHistory where locations = '"+c+"' order by date desc";
 
 resultSet = statement.executeQuery(sql);
 
@@ -55,24 +60,30 @@ resultSet = statement.executeQuery(sql);
         <%@include file="components/user_navbar.jsp" %>
         <div class="col-md-8">
             <div class="table-responsive-sm mt-3">
+                <h2>Orders for <%=c%></h2>
+                <div class="container-fluid mt-3">
+                <%@include file="components/message.jsp" %>
+                </div>
                 <table class="table table-bordered " >
                     <tr>
                         <th>Order Number</th>
                         <th>Item</th>
                         <th>Price</th>
-                        
+                        <th>Ordered By</th>
                         <th>Amount Ordered</th>
-                        <th>Order Date</th>
+                        <th>Approved Date</th>
                     </tr>
                     <%
                      
                      while(resultSet.next()){
                          
                      Integer id = resultSet.getInt("id");
-                     String names = resultSet.getString("aName");
+                     String names = resultSet.getString("itemNumber");
                      String price = resultSet.getString("aPrice");
                      String quantity = resultSet.getString("quantity");
                      String date = resultSet.getString("date");
+                     
+                     String cName = resultSet.getString("cName");
                     %>
                     
                     
@@ -81,7 +92,7 @@ resultSet = statement.executeQuery(sql);
                         <td><%= id%></td>
                         <td><%= names%></td>
                         <td><%= price%></td>
-
+                        <td><%=cName%></td>
                         <td><%=quantity%></td>
                         <td><%=date%></td>
                         

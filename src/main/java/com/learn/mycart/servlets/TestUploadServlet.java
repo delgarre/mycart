@@ -15,22 +15,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.output.*;
-
 
 /**
  *
  * @author garre
  */
-public class UploadServlet extends HttpServlet {
+public class TestUploadServlet extends HttpServlet {
 
-    
-    private boolean isMultipart;
+     private boolean isMultipart;
    private String filePath;
    private int maxFileSize = 100 * 9124;
    private int maxMemSize = 90 * 9124;
@@ -105,9 +100,9 @@ public class UploadServlet extends HttpServlet {
                
                HttpSession httpSession = request.getSession();
                
-               String id = request.getParameter("id");
-               response.sendRedirect("list.jsp");
-               httpSession.setAttribute("file", fileName );
+               
+               response.sendRedirect("test_page.jsp");
+             
                System.out.println("Uploaded Filename: " + fileName );
             }
          }
