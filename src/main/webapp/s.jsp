@@ -97,7 +97,7 @@ Price:<br>
 
 <input value="<%= user.getUserName()%>" type="hidden" name="name">
 
-Quantity Per UOM:<br>
+Quantity:<br>
 <input type="text" name="quantity" placeholder="Enter Amount">
 <br>
 Location:<br>

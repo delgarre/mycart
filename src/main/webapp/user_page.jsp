@@ -74,7 +74,7 @@
                 
                 <!--first column-->
                 <div class="col-md-3">
-                   
+                   <a href="profile.jsp" class="card-link">
                     <!--first box-->
                     <div class="card">
                         <div class="card-body text-center">
@@ -83,78 +83,92 @@
                                 
                             </div>
                             
-                            <a href="profile.jsp" class="card-link">Click me!</a>
+                    
                             <h3 class="text-muted">Your Info</h3>
                         </div>
                     </div>
+                   </a>
                 </div>
                 <!--second column-->
                 <div class="col-md-3">
+                    <a href="dropdown.jsp?id=<%= user.getUserId()%>" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/location.png" alt="user_icon">
                             </div>
-                            <a href="dropdown.jsp?id=<%= user.getUserId()%>" class="card-link">Click me!</a>
+                           
                             <h3 class="text-muted">Locations</h3>
                         </div>
                     </div>
+                    </a>
                 </div>
                
                 <!--third column-->
                 <div class="col-md-3">
+                     <a href="items_dropdown.jsp?id=<%= user.getUserId()%>" class="card-link">
+
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
+                                
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/product.png" alt="user_icon">
+                                
                             </div>
-                            <a href="items_dropdown.jsp?id=<%= user.getUserId()%>" class="card-link">Click me!</a>
+                            
                             <h3 class="text-muted">Items</h3>
                         </div>
                     </div>
+                        </a>
                 </div>
                 <!--fourth box-->
                  <div class="col-md-3">
+                     <a href="pending_orders.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/orders.png" alt="user_icon">
                             </div>
-                            <a href="pending_orders.jsp" class="card-link">Click me!</a>
+                            
                             <h3 class="text-muted">Cart</h3>
                         </div>
                     </div>
+                     </a>
                 </div>
                 <!--fifth row -->
                 <div class="col-md-3">
+                <a href="all_pending.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/list.png" alt="user_icon">
                             </div>
-                            <a href="all_pending.jsp" class="card-link">Click me!</a>
+                       
                             <h3 class="text-muted">Pending Orders</h3>
                         </div>
                     </div>
+                </a>
                 </div>
                 
                 
                                 <!--sixth row -->
                 <div class="col-md-3">
+                  <a href="all_approved.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
-                            <a href="all_approved.jsp" class="card-link">Click me!</a>
+                      
                             <h3 class="text-muted"> Order History</h3>
                         </div>
                     </div>
+                  </a>
                 </div>
                 
             </div>

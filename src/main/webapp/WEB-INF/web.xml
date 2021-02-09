@@ -13,7 +13,7 @@
         <description>Location to store uploaded file</description>
         <param-name>file-upload</param-name>
         <param-value>
-         \\127.0.0.1\tmp\photos\
+         mycart\\src\\main\\webapp\\image\\
       </param-value>
     </context-param>
     <servlet>
@@ -96,6 +96,10 @@
         <servlet-name>IDropDownServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.IDropDownServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>L_OrderServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.L_OrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -171,6 +175,10 @@
     <servlet-mapping>
         <servlet-name>IDropDownServlet</servlet-name>
         <url-pattern>/IDropDownServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>L_OrderServlet</servlet-name>
+        <url-pattern>/L_OrderServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

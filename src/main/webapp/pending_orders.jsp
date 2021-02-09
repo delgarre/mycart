@@ -14,8 +14,7 @@
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.entities.Company"%>
 <%
-    Company company1 = (Company)session.getAttribute("location");
-    String com = company1.getCompanyName();
+
     
     User user = (User)session.getAttribute("current-user");
     if(user==null){

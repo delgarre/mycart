@@ -51,7 +51,7 @@
                 
                 <!--first column-->
                 <div class="col-md-3">
-                   
+                   <a href="users.jsp" class="card-link">
                     <!--first box-->
                     <div class="card">
                         <div class="card-body text-center">
@@ -60,101 +60,116 @@
                                 
                             </div>
                             
-                            <a href="users.jsp" class="card-link">Click me!</a>
+                       
                             <h3 class="text-muted">Users</h3>
                         </div>
                     </div>
+                   </a>
                 </div>
                 <!--second column-->
                 <div class="col-md-3">
+                    <a href="categories.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/list.png" alt="user_icon">
                             </div>
-                            <a href="categories.jsp" class="card-link">Click me!</a>
+                      
                             <h3 class="text-muted">Categories</h3>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <!--third column-->
                 <div class="col-md-3">
+                    <a href="item_list.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/product.png" alt="user_icon">
                             </div>
-                            <a href="item_list.jsp" class="card-link">Click me!</a>
+                         
                             <h3 class="text-muted">Items</h3>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <!--fourth box-->
                 <div class="col-md-3">
+                    <a href="companies.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/location.png" alt="user_icon">
                             </div>
-                            <a href="companies.jsp" class="card-link">Click me!</a>
+                           
                             <h3 class="text-muted">Locations</h3>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <!--fifth row -->
                 <div class="col-md-3">
+                    <a href="orders.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/orders.png" alt="user_icon">
                             </div>
-                            <a href="orders.jsp" class="card-link">Click me!</a>
+                          
                             <h3 class="text-muted">Pending Orders</h3>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <!--sixth row -->
                 <div class="col-md-3">
+                    <a href="notice.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/message.png" alt="user_icon">
                             </div>
-                            <a href="notice.jsp" class="card-link">Click me!</a>
+                   
                             <h3 class="text-muted">Admin Notice</h3>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <!--seventh row -->
                 <div class="col-md-3">
+                    <a href="vendors.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
-                            <a href="vendors.jsp" class="card-link">Click me!</a>
+                     
                             <h3 class="text-muted"> Vendors</h3>
                         </div>
                     </div>
+                    </a>
                 </div>
                                 <!--eighth row -->
                 <div class="col-md-3">
+                    <a href="date_page.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
-                            <a href="date_page.jsp" class="card-link">Click me!</a>
+                            
                             <h3 class="text-muted"> Order History</h3>
                         </div>
                     </div>
+                    </a>
                 </div>
                 
             </div>

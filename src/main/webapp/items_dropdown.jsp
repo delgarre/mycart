@@ -19,7 +19,7 @@ div {text-align: center;}
 
 </head>
 <body>
-    <%@include file="components/login_navbar.jsp" %>
+    <%@include file="components/user_navbar.jsp" %>
     
 <%! String driverName = "com.mysql.jdbc.Driver";%>
 <%!String url = "jdbc:mysql://172.20.29.70:3306/mycart";%>

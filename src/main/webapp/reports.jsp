@@ -26,7 +26,7 @@
         <h1>Reports</h1>
         <div class="center">
             <form method="post" action="v.jsp">
-                <input type="text" name="vendor"
+                <input type="text" name="vendor" placeholder="Enter Vendor">
             </form>
         </div>
     </body>

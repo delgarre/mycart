@@ -53,9 +53,14 @@ while(resultSet.next()){
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Submit Order</title>
         <%@include file="components/common_css_js.jsp" %>
-        <style>
-h1 {text-align: center;}
-div {text-align: center;}
+
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
 </style>
 
     </head>
@@ -66,7 +71,25 @@ div {text-align: center;}
     %>
     <body>
            <%@include file="components/user_navbar.jsp" %>
-<div class="container">
+           <div class="center">
+               <div class="row">
+                    <table>
+                    <tr>
+                        <th class="a">Photo</th>
+                       
+                    </tr> 
+                    <tr>
+                        <td>
+		<img src="getImage.jsp?id=<%=id%>" width="400px"/>
+                        </td>
+                  
+                </tr>
+                </table>
+               </div>
+                        <br>
+                        <br>
+               <div class="row">
+           <div class="container">
     <div class="row mt-5">
 <div class="col-md-8">
     <div class="card">
@@ -124,7 +147,8 @@ e.printStackTrace();
 </div>
 </div>
 </div>
-
+               </div>
+           </div>
     </body>
 </html>
 

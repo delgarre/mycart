@@ -57,7 +57,7 @@ while(resultSet.next()){
 </style>
     </head>
     <body>
-        <%@include file="components/navbar.jsp" %>
+        <%@include file="components/user_navbar.jsp" %>
         <div class="center">
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>

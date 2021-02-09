@@ -6,6 +6,7 @@
 package com.learn.mycart.entities;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,6 +47,7 @@ public class Item implements Serializable {
     private String sds;
     
     private String locationType;
+    private Blob image;
     
 
 
@@ -54,7 +56,8 @@ public class Item implements Serializable {
 
     public Item(int id,  String price, String photo, String quantity, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, 
             String itemNumber, String alternateItem, String stat, 
-            String cTitle, String vTitle, String locationType,String discontinued, String sds, String pDesc) {
+            String cTitle, String vTitle, String locationType,String discontinued, String sds, 
+            String pDesc, Blob image) {
         this.id = id;
         
         this.price = price;
@@ -74,6 +77,7 @@ public class Item implements Serializable {
         this.locationType = locationType;
         this.discontinued = discontinued;
         this.sds = sds;
+        this.image = image;
     }
 
     public int getId() {
@@ -218,6 +222,14 @@ public class Item implements Serializable {
 
     public void setSds(String sds) {
         this.sds = sds;
+    }
+
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
     }
 
     

@@ -35,7 +35,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Orders where status= 'Not Approved'";
+String sql ="select * from Orders where status= 'Not Approved' and name = '"+user.getUserName()+"'";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -68,9 +68,11 @@ resultSet = statement.executeQuery(sql);
                 
                 <button class="btn btn-outline-success">By Location</button>
             </a>
+            <br>
+            <br>
             <table class="table table-bordered ">
                 <tr>
-                    <th>Id</th>
+                
                     <th>Photo</th>
                     <th>Item Number</th>
                     <th>Description</th>
@@ -106,7 +108,7 @@ resultSet = statement.executeQuery(sql);
                         
                     %>
                     
-                    <td><%=order_id%></td>
+                
                     <td>
                         <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
                     </td>

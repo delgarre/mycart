@@ -3,7 +3,7 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.learn.mycart.entities.User"%>
-<%@page import="com.learn.mycart.entities.Product"%>
+
 <%
     User user = (User)session.getAttribute("current-user");
     if(user==null){
@@ -55,8 +55,15 @@ while(resultSet.next()){
     </head>
     <body>
            <%@include file="components/navbar.jsp" %>
-        <h1>Make Changes</h1>
+        
         <div class="center">
+            
+            <h1>Make Changes:</h1>
+            <div class="container-fluid mt-3">
+                <%@include file="components/message.jsp" %>
+            </div>
+            <div class="row">
+            <div class="container-fluid">
 <form method="post" action="update_product.jsp">
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
 <br>
@@ -87,6 +94,22 @@ Discontinued/Continued:<br>
 Edit Item<br>
 <input type="submit" value="Edit">
 </form>
+        </div>
+            </div>
+<br>
+<br>
+<form action="uploadImage" method="post" enctype="multipart/form-data">
+    
+        <h5>Upload Photo:   </h5>
+        
+        <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
+        
+            <input type="file" name="image"/>
+            
+            <input type="submit"/>
+    
+        </form>
+
         </div>
 
 <%

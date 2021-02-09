@@ -79,8 +79,9 @@ resultSet = statement.executeQuery(sql);
                 <%@include file="components/message.jsp" %>
             </div>
             
-            <form method="post" action="OrderServlet">
+            <form method="post" action="L_OrderServlet">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
+                <input type="hidden" name="loc" value="<%=com%>"/>
                 <input type="submit" value="Submit Cart" onclick="mySub()"/>
             </form>
             <table class="table table-bordered ">

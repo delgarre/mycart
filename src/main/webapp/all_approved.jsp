@@ -68,6 +68,8 @@ resultSet = statement.executeQuery(sql);
                 
                 <button class="btn btn-outline-success">By Location</button>
             </a>
+            <br>
+            <br>
             <table class="table table-bordered ">
                 <tr>
                     <th>Id</th>
