@@ -42,15 +42,6 @@
 <script>
     
 
-$(document).ready(function(){
-  $("#myIn").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-
     
     
 $(document).ready(function(){
@@ -62,16 +53,6 @@ $(document).ready(function(){
   });
 });
 
-
-
-$(document).ready(function(){
-  $("#myIt").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
 
 </script>
         
@@ -86,22 +67,30 @@ $(document).ready(function(){
     </head>
     <body>
 <%@include file="components/navbar.jsp" %>
+<br>
+
         <div class="row ml-2">
             <a href="add_item_page.jsp">
                 <button>Add Item</button>
             </a>
         </div>
-
         
-        <form method="post" action="item_vendor_report.jsp">
-        <input id="myInput"  name="ven" type="text" placeholder="Search Vendor">
+        <br>
+        
+     
+        <input id="myInput"  name="ven" type="text" placeholder="Search All">
+        
         <br><br>
-        <input id="myIt"  name="ven" type="text" placeholder="Search Category">
-        <br><br>
-        <input id="myIn"  name="ven" type="text" placeholder="Search Description">
-        <br><br>
-        <input type="submit" value="Generate Report">
-        </form>
+      
+        
+        <a href="items_reports.jsp">
+                
+                
+                <button class="btn btn-outline-success">Reports</button>
+            </a>
+            <br>
+            <br>
+    
         <!--
  <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <h3>Excel Reports</h3>

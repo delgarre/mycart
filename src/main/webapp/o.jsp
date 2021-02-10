@@ -72,6 +72,7 @@ while(resultSet.next()){
     <body>
            <%@include file="components/user_navbar.jsp" %>
            <div class="center">
+               <!--
                <div class="row">
                     <table>
                     <tr>
@@ -86,6 +87,7 @@ while(resultSet.next()){
                 </tr>
                 </table>
                </div>
+                        -->
                         <br>
                         <br>
                <div class="row">

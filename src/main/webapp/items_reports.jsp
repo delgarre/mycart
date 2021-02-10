@@ -34,9 +34,22 @@
                     <div class="card-body">
                         <%@include file="components/message.jsp" %>
                             
-                            <form action="reports_page.jsp" method="post">
+                            <form action="items_reports_page.jsp" method="post">
 
                                   
+                                
+                                
+                                                                <div class="form-group">
+                                  <label for="itemNumber1">Item Number 1:</label>
+                                  <input name="itemNumber1" type="text" class="form-control" id="itemNumber1" placeholder="Enter item number">
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label for="itemNumber2">Item Number 2:</label>
+                                  <input name="itemNumber2" type="text" class="form-control" id="itemNumber2" placeholder="Enter item number">
+                                </div>
+                                
+                                
 
                                 <div class="form-group">
                                   <label for="vendor1">Vendor 1:</label>
@@ -52,26 +65,10 @@
                                 
                              
 
-                                <div class="form-group">
-                                  <label for="location1">Location 1:</label>
-                                  <input name="location1" type="text" class="form-control" id="location1" placeholder="Enter location">
-                                </div>
                                 
-                                <div class="form-group">
-                                  <label for="location2">Location 2:</label>
-                                  <input name="location2" type="text" class="form-control" id="location2" placeholder="Enter location">
-                                </div>
                                  
                              
-                                <div class="form-group">
-                                  <label for="itemNumber1">Item Number 1:</label>
-                                  <input name="itemNumber1" type="text" class="form-control" id="itemNumber1" placeholder="Enter item number">
-                                </div>
-                                
-                                <div class="form-group">
-                                  <label for="itemNumber2">Item Number 2:</label>
-                                  <input name="itemNumber2" type="text" class="form-control" id="itemNumber2" placeholder="Enter item number">
-                                </div>
+
 
                                  <div class="container text-center">
                                     

@@ -40,7 +40,7 @@ int i=st.executeUpdate("insert into Orders(date,locations, itemNumber,aPPrice, q
 
 JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
 response.sendRedirect("a_orders.jsp?id="+locations);
-session.setAttribute("message", "Cart Item added!");
+session.setAttribute("message", "Item approved!");
 }
 catch(Exception e)
 {

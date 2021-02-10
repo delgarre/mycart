@@ -31,8 +31,7 @@
 <%
 String vendor1 = request.getParameter("vendor1");
 String vendor2 = request.getParameter("vendor2");
-String location1 = request.getParameter("location1");
-String location2 = request.getParameter("location2");
+
 String itemNumber1 = request.getParameter("itemNumber1");
 String itemNumber2 = request.getParameter("itemNumber2");
 
@@ -54,7 +53,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from OrderHistory where (locations Like '"+location1+"' or locations Like '"+location2+"') or (vTitle Like '"+vendor1+"' or vTitle Like '"+vendor2+"') or (itemNumber Like '"+itemNumber1+"' or itemNumber Like '"+itemNumber2+"') order by date desc";
+String sql ="select * from Item where (vTitle Like '"+vendor1+"' or vTitle Like '"+vendor2+"') or (itemNumber Like '"+itemNumber1+"' or itemNumber Like '"+itemNumber2+"')";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -107,29 +106,37 @@ resultSet = statement.executeQuery(sql);
         <div class="container-fluid">
         <table id="tblData" class="table table-bordered">
             <tr>
-                <th>Date</th>
+               
                 <th>Item Number</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Vendor</th>
+                <th>Unit Of Measure</th>
                 <th>Manufacturer</th>
+                <th>CPT</th>
+                <th>NDC</th>
             </tr>
             <%
             while(resultSet.next()){
                 String item = resultSet.getString("itemNumber");
                 String quantity = resultSet.getString("quantity");
-                String date = resultSet.getString("date");
-                String price = resultSet.getString("aPrice");
+                String uom = resultSet.getString("unitOfMeasure");
+                String price = resultSet.getString("price");
                 String vendor = resultSet.getString("vTitle");
                 String man = resultSet.getString("manufacturer");
+                String cpt = resultSet.getString("cpt");
+                String ndc = resultSet.getString("ndc");
             %>
             <tr>
-                <td><%=date%></td>
+              
                 <td><%=item%></td>
                 <td><%=quantity%></td>
                 <td><%=price%></td>
                 <td><%=vendor%></td>
+                <td><%=uom%></td>
                 <td><%=man%></td>
+                <td><%=cpt%></td>
+                <td><%=ndc%></td>
             </tr>
             <%
                 }

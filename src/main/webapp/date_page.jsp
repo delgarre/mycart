@@ -59,9 +59,26 @@ resultSet = statement.executeQuery(sql);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Order History</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <body>
         <%@include file="components/user_navbar.jsp" %>
+        <div class="center">
+            <a href="reports.jsp">
+                
+                
+                <button class="btn btn-outline-success">Reports</button>
+            </a>
+            <br>
+            <br>
         <div class="col-md-8">
             <div class="table-responsive-sm mt-3">
                 <table class="table table-bordered " >
@@ -97,7 +114,7 @@ resultSet = statement.executeQuery(sql);
                 </table>
             </div>
         </div>
-                
+        </div>     
 
 <%
 
