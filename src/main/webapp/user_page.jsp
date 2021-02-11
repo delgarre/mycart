@@ -46,7 +46,7 @@
                 <%@include file="components/message.jsp" %>
             </div>
             <div class="panel-heading col-md-8">
-                    <table>
+                <table style="width:100%">
                         <%
                         NoticeDao ldao = new NoticeDao(FactoryProvider.getFactory());
                         List<Notice> notice = ldao.getStatus();
@@ -125,7 +125,7 @@
                 </div>
                 <!--fourth box-->
                  <div class="col-md-3">
-                     <a href="pending_orders.jsp" class="card-link">
+                     <a href="cart_dropdown.jsp?id=<%= user.getUserId()%>" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -140,7 +140,7 @@
                 </div>
                 <!--fifth row -->
                 <div class="col-md-3">
-                <a href="all_pending.jsp" class="card-link">
+                <a href="pending_dropdown.jsp?id=<%= user.getUserId()%>" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -157,7 +157,7 @@
                 
                                 <!--sixth row -->
                 <div class="col-md-3">
-                  <a href="all_approved.jsp" class="card-link">
+                  <a href="approved_pending.jsp?id=<%= user.getUserId()%>" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             

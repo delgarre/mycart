@@ -253,7 +253,7 @@
                     <!--submit button-->
                     <div class="container text-center">
                         <button class="btn btn-outline-success">Add product</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        
                     </div>
                     
                   

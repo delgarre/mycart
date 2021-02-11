@@ -42,13 +42,15 @@
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <div class="row ml-2">
-            <a href="add_user.jsp">
-                <button>Add user</button>
-            </a>
-        </div>
+
         
         <div class="center">
+            
+         <div class="row ml-2">
+            <a href="add_user.jsp">
+                <button class="btn btn-outline-success">Add user</button>
+            </a>
+        </div>
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>

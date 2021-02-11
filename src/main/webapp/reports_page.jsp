@@ -31,10 +31,15 @@
 <%
 String vendor1 = request.getParameter("vendor1");
 String vendor2 = request.getParameter("vendor2");
+
 String location1 = request.getParameter("location1");
 String location2 = request.getParameter("location2");
+
 String itemNumber1 = request.getParameter("itemNumber1");
 String itemNumber2 = request.getParameter("itemNumber2");
+
+String begin = request.getParameter("date1");
+String end = request.getParameter("date2");
 
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
@@ -54,7 +59,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from OrderHistory where (locations Like '"+location1+"' or locations Like '"+location2+"') or (vTitle Like '"+vendor1+"' or vTitle Like '"+vendor2+"') or (itemNumber Like '"+itemNumber1+"' or itemNumber Like '"+itemNumber2+"') order by date desc";
+String sql ="select * from OrderHistory where (date BETWEEN '"+begin+"' AND '"+end+"') or  (locations Like '"+location1+"' or locations Like '"+location2+"') or (vTitle Like '"+vendor1+"' or vTitle Like '"+vendor2+"') or (itemNumber Like '"+itemNumber1+"' or itemNumber Like '"+itemNumber2+"') order by date desc";
 resultSet = statement.executeQuery(sql);
 
 %>

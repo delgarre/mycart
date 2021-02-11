@@ -27,10 +27,28 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Companies</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+        
+
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
-        
+        <div class="center">
+            <h2>Locations:</h2>
+            <br>
+            <div class="row ml-2">
+            <a href="add_company.jsp">
+                <button class="btn btn-outline-success">Add location</button>
+            </a>
+        </div>
         <div class="col-md-8">
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
@@ -39,8 +57,8 @@
                 <table class="table table-bordered " >
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
                         <th>Location</th>
+                        <th>Company</th>
                         <th>Actions</th>
                     </tr>
                     
@@ -57,13 +75,13 @@
                     <tr>
                         <td><%= cp.getCompanyId()%></td>
                         <td><%= cp.getCompanyName()%></td>
-                        <td><%= cp.getTypeLocation()%></td>
+                        <td><%= cp.getType()%></td>
                     <td>
                     <a href="delete_comp.jsp?id=<%= cp.getCompanyId()%>">
                         <button type="button" class="delete">Delete</button>
                     </a>
                     <a href="update_comp_page.jsp?id=<%= cp.getCompanyId()%>">
-                        <button type="button" class="update">Update</button>
+                        <button type="button" class="update">Edit</button>
                     </a> 
                 </td>
             </tr>
@@ -74,5 +92,6 @@
                 </table>
             </div>
         </div>
+        </div>        
     </body>
 </html>

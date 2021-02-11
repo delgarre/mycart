@@ -41,12 +41,15 @@
     <body>
         <%@include file="components/navbar.jsp" %>
         
+        
+        <div class="center">
+            <h2>Categories:</h2>
+            <br>
         <div class="row ml-2">
             <a href="add_category.jsp">
-                <button>Add Category</button>
+                <button class="btn btn-outline-success">Add Category</button>
             </a>
         </div>
-        <div class="center">
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>

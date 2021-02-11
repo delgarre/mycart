@@ -39,6 +39,17 @@
                                   
 
                                 <div class="form-group">
+                                  <label for="date1">Date 1:</label>
+                                  <input name="date1" type="text" class="form-control" id="date1" placeholder="Enter date">
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label for="date2">Date 2:</label>
+                                  <input name="date2" type="text" class="form-control" id="date2" placeholder="Enter date">
+                                </div>
+                                
+                                
+                                <div class="form-group">
                                   <label for="vendor1">Vendor 1:</label>
                                   <input name="vendor1" type="text" class="form-control" id="vendor1" placeholder="Enter vendor name">
                                 </div>

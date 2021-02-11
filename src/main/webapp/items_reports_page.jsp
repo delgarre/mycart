@@ -108,11 +108,15 @@ resultSet = statement.executeQuery(sql);
             <tr>
                
                 <th>Item Number</th>
-                <th>Quantity</th>
-                <th>Price</th>
+                <th>Description</th> 
                 <th>Vendor</th>
                 <th>Unit Of Measure</th>
+                <th>QTY/UOM</th>
+                <th>Price</th>
+
+                
                 <th>Manufacturer</th>
+                <th>Manufacturer Number</th>
                 <th>CPT</th>
                 <th>NDC</th>
             </tr>
@@ -126,15 +130,21 @@ resultSet = statement.executeQuery(sql);
                 String man = resultSet.getString("manufacturer");
                 String cpt = resultSet.getString("cpt");
                 String ndc = resultSet.getString("ndc");
+                String desc = resultSet.getString("pDesc");
+                String manNum = resultSet.getString("manufacturerNum");
             %>
             <tr>
               
                 <td><%=item%></td>
-                <td><%=quantity%></td>
-                <td><%=price%></td>
+                <td><%=desc%></td> 
                 <td><%=vendor%></td>
                 <td><%=uom%></td>
+                <td><%=quantity%></td>
+                <td><%=price%></td>
+              
+                
                 <td><%=man%></td>
+                <td><%=manNum%></td>
                 <td><%=cpt%></td>
                 <td><%=ndc%></td>
             </tr>

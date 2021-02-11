@@ -39,12 +39,16 @@
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <div class="row ml-2">
+        
+        <div class="center">
+            <h2>Vendors:</h2>
+            <br>
+            <div class="row ml-2">
             <a href="add_vendor.jsp">
-                <button>Add vendor</button>
+                <button class="btn btn-outline-success">Add vendor</button>
             </a>
         </div>
-        <div class="center">
+            
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
