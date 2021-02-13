@@ -38,7 +38,7 @@ Statement st=conn.createStatement();
 
 int i=st.executeUpdate("insert into Orders(date,locations, itemNumber,aPPrice, quantity, user_id, status, name, photo, unitOfMeasure, manufacturer, manufacturerNum, pDesc, cTitle, vTitle, alternateItem)values('"+ddMMyyyyToday+"','"+locations+"','"+itemNumber+"','"+price+"','"+quantity+"','"+user_id+"', '"+stat+"', '"+name+"', '"+photo+"','"+uom+"', '"+man+"', '"+manNum+"', '"+pDesc+"','"+cTitle+"','"+vTitle+"','"+alternateItem+"')");
 
-JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
+JavaMailUtil.sendMail("diane.madonna@dseincorporated.com", locations);
 response.sendRedirect("a_orders.jsp?id="+locations);
 session.setAttribute("message", "Item approved!");
 }

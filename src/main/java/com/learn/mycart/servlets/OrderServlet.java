@@ -41,7 +41,7 @@ public class OrderServlet extends HttpServlet {
                     HttpSession httpSession=request.getSession();
                     int i = st.executeUpdate("insert into Orders(itemNumber, aPPrice, date, locations, name, quantity, user_id, photo, status, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle) select itemNumber, price, date, locations, name, quantity, user_id, photo, stat, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle from Approve where user_id ="+user_id);
                     
-                    JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
+                  //  JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
                     response.sendRedirect("m_l.jsp?id="+user_id);
                     httpSession.setAttribute("message", "Order submitted successfully!");
                 } catch (Exception e) {

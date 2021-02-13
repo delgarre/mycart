@@ -37,7 +37,7 @@ Statement st=conn.createStatement();
 
 int i=st.executeUpdate("insert into Approve(date,locations, itemNumber,price, quantity, itemName, user_id, stat, name, photo, unitOfMeasure, manufacturer, manufacturerNum, cTitle, vTitle, pDesc)values('"+ddMMyyyyToday+"','"+locations+"','"+itemNumber+"','"+price+"','"+quantity+"','"+itemName+"','"+user_id+"', '"+stat+"', '"+name+"', '"+photo+"', '"+uom+"', '"+man+"', '"+mannum+"','"+cTitle+"', '"+vTitle+"', '"+pDesc+"')");
 
-JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
+
 response.sendRedirect("items.jsp");
 session.setAttribute("message", "Cart Item added!");
 }

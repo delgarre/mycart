@@ -61,6 +61,32 @@ resultSet = statement.executeQuery(sql);
         <title>Approval Page</title>
          
     <%@include file="components/common_css_js.jsp" %>
+    
+    
+ <script src= 
+    "https://smtpjs.com/v3/smtp.js"> 
+  </script> 
+  
+<script type="text/javascript"> 
+    function sendEmail(tableID) { 
+        
+        var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML;
+      Email.send({ 
+        Host: "east.EXCH092.serverdata.net", 
+        Username: "ordering.portal@dseincorporated.com", 
+        Password: "Rackspace123!!", 
+        To: 'antoine.garrett@dseincorporated.com', 
+        From: "ordering.portal@dseincorporated.com", 
+        Subject: "Sending Email using javascript", 
+        Body: tableHTML, 
+        Link: "www.google.com",
+      }) 
+        .then(function (message) { 
+          alert("mail sent successfully") 
+        }); 
+    } 
+</script>
     </head>
     <%
     Date today = new Date();
@@ -78,7 +104,7 @@ resultSet = statement.executeQuery(sql);
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
                 <input type="text" name="locations" value="<%=id%>"/>
                                 
-               <input type="submit" value="Approve Orders"/>
+               <input type="submit" value="Approve Orders" onclick="sendEmail('td')"/>
              
             </form>
             <div class="row ml-2">
@@ -86,7 +112,7 @@ resultSet = statement.executeQuery(sql);
                 <button>Add Item</button>
             </a>
         </div>
-            <table class="table table-bordered ">
+                <table class="table table-bordered " id="td">
                 <tr>
                     <th>Id</th>
                     <th>Photo</th>

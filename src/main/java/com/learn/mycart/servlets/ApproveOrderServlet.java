@@ -38,7 +38,7 @@ public class ApproveOrderServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
            
             String user_id = request.getParameter("user_id");
-            String id = request.getParameter("locations");
+            String location = request.getParameter("locations");
             
             if(user_id != null){
                 try {
@@ -46,10 +46,10 @@ public class ApproveOrderServlet extends HttpServlet {
                     Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
                     Statement st=conn.createStatement();   
                     HttpSession httpSession=request.getSession();
-                    int i = st.executeUpdate("insert into OrderHistory(aName, aPrice, date, locations, cName, quantity) select aPName, aPPrice, date, locations, name, quantity from Orders where locations = "+id);
+                    int i = st.executeUpdate("insert into OrderHistory(aName, aPrice, date, locations, cName, quantity) select aPName, aPPrice, date, locations, name, quantity from Orders where locations = "+location);
 
                     
-                    JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
+                    JavaMailUtil.sendMail("diane.madonna@dseincorporated.com", location);
                     response.sendRedirect("home.jsp");
                     httpSession.setAttribute("message", "Order saved successfully!");
                 } catch (Exception e) {

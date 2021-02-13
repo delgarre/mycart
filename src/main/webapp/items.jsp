@@ -91,28 +91,7 @@ th {
                 <%@include file="components/message.jsp" %>
                 </div>
             
-                <div class="panel-heading col-md-8">
-                    <table>
-                        
-                        <%
-                        NoticeDao ldao = new NoticeDao(FactoryProvider.getFactory());
-                        List<Notice> notice = ldao.getStatus();
-                        %>
-                        <tr>
-                            <th>Message:</th>
-                        </tr>
-                        
-                        <%
-                        for(Notice n: notice){
-                        %>
-                        <tr>
-                            <td><%=n.getMessage()%></td>
-                        </tr>
-                        <%
-                            }
-                        %>
-                    </table>
-                </div>
+                
             </div>
         </div>
         <div class="col-md-8">
@@ -133,15 +112,19 @@ th {
                 
 
                 <th>Photo</th>
-                <th>Price</th>
                 <th>Item Number</th>
                 <th>Description</th>
-                <th>Quantity Per UOM</th>
-                <th>Alternate Item</th>
                 <th>Vendor</th>
-                <th>Unit Of Measure</th>
+                <th>UOM</th>
+
+
+
+                <th>Quantity Per UOM</th>
+              
+                 <th>Price</th>
+
                 <th>Manufacturer</th>
-                <th>Manufacturer Number</th>
+            
                 <th>CPT</th>
                 <th>NDC</th>
                 
@@ -173,15 +156,19 @@ th {
                     <td>
                         <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
                     </td>
-                    <td><%= price%></td>
                     <td><%= itemNumber%></td>
                     <td><%=desc%></td>
-                    <td><%= quantity%></td>
-                    <td><%=alt%></td>
                     <td><%=vendor%></td>
                     <td><%=unit%></td>
+
+                    
+                    
+                    <td><%= quantity%></td>
+                                        <td><%= price%></td>
+                    
+                    
                     <td><%=man%></td>
-                    <td><%= manNum%></td>
+                
                     <td><%=cpt%></td>
                     <td><%=ndc%></td>
                     

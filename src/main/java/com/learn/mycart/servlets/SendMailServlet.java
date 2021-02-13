@@ -35,7 +35,7 @@ public class SendMailServlet extends HttpServlet {
            
             try {
                 if(request.getParameter("sendMail")!=null){
-                JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
+               // JavaMailUtil.sendMail("diane.madonna@dseincorporated.com", location);
                 }
             } catch (Exception e) {
             }

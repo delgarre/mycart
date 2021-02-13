@@ -1,3 +1,5 @@
+<%@page import="com.learn.mycart.mail.SingleSubmit"%>
+<%@page import="com.learn.mycart.entities.Company"%>
 <%@page import="com.learn.mycart.mail.JavaMailUtil"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -7,7 +9,6 @@
 <%@include file="components/message.jsp" %>
 <%
 Integer id= Integer.parseInt(request.getParameter("id"));
-
 
 
 
@@ -21,13 +22,13 @@ Statement st=conn.createStatement();
 
 int i=st.executeUpdate("insert into OrderHistory(itemNumber, aPrice, date, locations, cName, quantity, photo, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle) select itemNumber, aPPrice, curdate(), locations, name, quantity, photo, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle from Orders where id = '"+id+"'");
 
-JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
+//SingleSubmit.sendMail("diane.madonna@dseincorporated.com", id);
 response.sendRedirect("n.jsp?id="+id);
-session.setAttribute("message", "Cart Item added!");
+session.setAttribute("message", "Item approved!");
 }
 catch(Exception e)
 {
-System.out.print(e);
+out.print(e);
 e.printStackTrace();
 }
 %>

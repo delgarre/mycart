@@ -27,7 +27,7 @@ Statement st=conn.createStatement();
 int i=st.executeUpdate("insert into OrderHistory(itemNumber, aPrice, date, locations, cName, quantity, photo, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle) select itemNumber, aPPrice, curdate(), locations, name, quantity, photo, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle from Orders where locations = '"+id+"'");
 
 session.setAttribute("message", "Order approved successfully!");
-JavaMailUtil.sendMail("antoine.garrett@dseincorporated.com");
+JavaMailUtil.sendMail("diane.madonna@dseincorporated.com", id);
 response.sendRedirect("l.jsp?id="+id);
 }
 catch(Exception e)
