@@ -37,16 +37,20 @@ public class OrdersDao {
         }
         return orders;
     }
-    public List<Orders> getOrdersByLocation(String location){
+    public Orders getOrdersByLocation(String location){
         
-        
-            String query="from Orders where locations =: l";
+        Orders orders = null;
+            try {
+            String query="from Orders where locations =: n and status= 'Not Approved'";
             Session session = this.factory.openSession();
             Query q= session.createQuery(query);
-            q.setParameter("l", location);
-            List<Orders> list = q.list();
+            q.setParameter("n", location);
+            orders =(Orders) q.uniqueResult();
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
         
-        return list;
+        return orders;
         
     }
 

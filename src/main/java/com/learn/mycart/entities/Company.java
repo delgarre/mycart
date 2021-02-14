@@ -31,30 +31,18 @@ public class Company implements Serializable {
     @OneToMany(mappedBy = "companies")
     private List<Test> test = new ArrayList<>();
     
-    
-    
-    @OneToMany(mappedBy = "companies")
-    private List<Category> category = new ArrayList<>();
-    
-    
-    
-
 
 
     public Company() {
     }
 
-    public Company(String companyName, String type, String typeLocation, List<User> user, List<Test> test, List<Category> catgeory) {
+    public Company(String companyName, String type, String typeLocation, List<User> user, List<Test> test) {
         this.companyName = companyName;
         this.type = type;
         this.typeLocation = typeLocation;
         this.user = user;
         this.test = test;
-        
-        this.category = catgeory;
-        
-        
-        
+ 
     }
 
     public int getCompanyId() {
@@ -112,16 +100,6 @@ public class Company implements Serializable {
     public void setTest(List<Test> test) {
         this.test = test;
     }
-
-    public List<Category> getCategory() {
-        return category;
-    }
-
-    public void setCategory(List<Category> category) {
-        this.category = category;
-    }
-
-    
 
     @Override
     public String toString() {

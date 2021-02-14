@@ -1,3 +1,5 @@
+<%@page import="com.learn.mycart.entities.Orders"%>
+<%@page import="com.learn.mycart.dao.OrdersDao"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -76,7 +78,7 @@ resultSet = statement.executeQuery(sql);
         Host: "east.EXCH092.serverdata.net", 
         Username: "ordering.portal@dseincorporated.com", 
         Password: "Rackspace123!!", 
-        To: 'antoine.garrett@dseincorporated.com', 
+        To: 'diane.madonna@dseincorporated.com', 
         From: "ordering.portal@dseincorporated.com", 
         Subject: "Sending Email using javascript", 
         Body: tableHTML, 
@@ -100,6 +102,7 @@ resultSet = statement.executeQuery(sql);
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
+
             <form method="post" action="a.jsp">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
                 <input type="text" name="locations" value="<%=id%>"/>
@@ -189,6 +192,9 @@ resultSet = statement.executeQuery(sql);
                
             </table>
                 
+
+
+
 
                 
         </div>

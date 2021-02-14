@@ -60,37 +60,36 @@ resultSet = statement.executeQuery(sql);
         <form action="add_location.jsp" method="POST">
             <h6>Add Location:</h6>
             <select name="location" id="location">
-                <option value="Admin-Sawyer Road">Admin-Sawyer Road</option>
-                <option value="Beach">Beach</option>
-                <option value="Bethkom-State Street">Bethkom-State Street</option>
-                <option value="Billing">Billing</option>
-                <option value="Bosque">Bosque</option>
-                <option value="Bradenton South">Bradenton South</option>
-                <option value="Brandon">Brandon</option>
-                <option value="Brooklyn Park">Brooklyn Park</option>
-                <option value="Captiva Beach Resort">Captiva Beach Street</option>
-                <option value="Dunn">Dunn</option>
-                <option value="Ellenton">Ellenton</option>
-                <option value="Emerson">Emerson</option>
-                <option value="Frog Hop">Frog Hop</option>
-                <option value="Fort Myers-Phys">Fort Myers-Phys</option>
-                <option value="Hibiscus Inn & Suites">Hibiscus Inn & Suites</option>
-                <option value="Himes Avenue">Himes</option>
-                <option value="IT Department-Sawyer Road">IT Department-Sawyer Road</option>
-                <option value="Kasota">Kasota</option>
-                <option value="Lakeland">Lakeland</option>
-                <option value="Largo">Largo</option>
-                <option value="New Port Richey">New Port Richey</option>
-                <option value="Normandy">Normandy</option>
-                <option value="Orange Park">Orange Park</option>
-                <option value="Palm Insure">Palm Insure</option>
-                <option value="Pharmacy">Pharmacy</option>
-                <option value="Physicians Group Inc">Physicians Group Inc</option>
-                <option value="Port Charlotte">Port Charlotte</option>
-                <option value="Ramada">Ramada</option>
-                <option value="Robbinsdale">Robbinsdale</option>
-                <option value="San Mateo">San Mateo</option>
-                <option value="Sarasota Group">Sarasota Group</option>
+                <option value="ADMIN-SAWYER ROAD">ADMIN-SAWYER ROAD</option>
+                <option value="BEACHBLVD">Beach</option>
+                <option value="BETHKOM-STATE STREET">BETHKOM-STATE STREET</option>
+                <option value="BILLING">BILLING</option>
+                <option value="BRADENTON">BRADENTON</option>
+                <option value="BRANDON">BRANDON</option>
+                <option value="BROOKLYN PARK">BROOKLYN PARK</option>
+                <option value="CAPTIVA BEACH RESORT">CAPTIVA BEACH RESORT</option>
+                <option value="DUNNAVENUE">DUNNAVENUE</option>
+                <option value="ELLENTON">ELLENTON</option>
+                <option value="EMERSON">EMERSON</option>
+                <option value="FROG HOP">FROG HOP</option>
+                <option value="FTMYERS">FTMYERS</option>
+                <option value="HIBISCUS INN & SUITES">HIBISCUS INN & SUITES</option>
+                <option value="HIMES AVENUE">HIMES AVENUE</option>
+                <option value="IT DEPARTMENT-SAWYER ROAD">IT DEPARTMENT-SAWYER ROAD</option>
+                <option value="KASOTA">KASOTA</option>
+                <option value="LAKELAND">LAKELAND</option>
+                <option value="LARGO">LARGO</option>
+                <option value="NEW PORT RICHEY">NEW PORT RICHEY</option>
+                <option value="NORMANDY">NORMANDY</option>
+                <option value="ORANGE PARK">ORANGE PARK</option>
+                <option value="PALM INSURE">PALM INSURE</option>
+                <option value="PHARMACY">PHARMACY</option>
+                <option value="PHYSICIANS GROUP INC-HAND SANITIZER">PHYSICIANS GROUP INC-HAND SANITIZER</option>
+                <option value="PORT CHARLOTTE">PORT CHARLOTTE</option>
+                <option value="RAMADA">RAMADA</option>
+                <option value="ROBBINSDALE">ROBBINSDALE</option>
+                <option value="SAN MATEO">SAN MATEO</option>
+                <option value="SARASOTA GROUP">SARASOTA GROUP</option>
                 <option value="SCOC">SCOC</option>
                 <option value="SCOD">SCOD</option>
                 <option value="SCOJ">SCOJ</option>
@@ -98,19 +97,19 @@ resultSet = statement.executeQuery(sql);
                 <option value="SCOP">SCOP</option>
                 <option value="SCOS">SCOS</option>
                 <option value="SCOT">SCOT</option>
-                <option value="Sebring">Sebring</option>
-                <option value="Spring Hill">Spring Hill</option>
-                <option value="Spruce Tree">Spruce Tree</option>
-                <option value="ST Pete">ST Pete</option>
-                <option value="Tampa North">Tampa North</option>
-                <option value="Temple Terrace">Temple Terrace</option>
-                <option value="The Lucky Spot">The Lucky Spot</option>
-                <option value="West Coast Law">West Coast Law</option>
-                <option value="Winter Haven">Winter Haven</option>
+                <option value="SEBRING">SEBRING</option>
+                <option value="SPRING HILL">SPRING HILL</option>
+                <option value="SPRUCE TREE">SPRUCE TREE</option>
+                <option value="STPETERSBURG">STPETERSBURG</option>
+                <option value="TAMPANORTH">TAMPANORTH</option>
+                <option value="TEMPLE TERRACE">TEMPLE TERRACE</option>
+                <option value="THE LUCKY SPOT">THE LUCKY SPOT</option>
+                <option value="WEST COAST LAW">WEST COAST LAW</option>
+                <option value="WINTER HAVEN">WINTER HAVEN</option>
             </select>
             
             <input type="hidden" name="user" value ="<%=id%>">
-            <input type="submit" value="submit">
+            <input type="submit" value="Add Location">
         </form>
         </div>
         <div class="col-md-8">

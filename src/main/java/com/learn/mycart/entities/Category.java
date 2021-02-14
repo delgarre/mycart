@@ -28,12 +28,7 @@ public class Category implements Serializable {
     
     
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-    @JoinColumn(name="companyName", referencedColumnName="companyName"),
-    @JoinColumn(name="locationType", referencedColumnName="type")
-    })
-    private Company companies;
+
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns({
@@ -52,13 +47,9 @@ public class Category implements Serializable {
         this.categoryDesc = categoryDesc;
     }
 
-    public Category(String categoryTitle, String categoryDesc, Company companies, LocationType locationType) {
+    public Category(String categoryTitle, String categoryDesc, LocationType locationType) {
         this.categoryTitle = categoryTitle;
         this.categoryDesc = categoryDesc;
-   
-     
-       
-        this.companies = companies;
         this.locationType = locationType;
     }
 
@@ -86,17 +77,6 @@ public class Category implements Serializable {
         this.categoryDesc = categoryDesc;
     }
 
-
-
-    
-
-    public Company getCompanies() {
-        return companies;
-    }
-
-    public void setCompanies(Company companies) {
-        this.companies = companies;
-    }
 
     public LocationType getLocationType() {
         return locationType;

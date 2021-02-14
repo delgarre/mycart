@@ -58,29 +58,39 @@ while(resultSet.next()){
     </head>
     <body>
         <%@include file="components/user_navbar.jsp" %>
-        <div class="center">
-            <div class="container-fluid mt-3">
+        <div class="container">
+             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
-        <h1>Your Profile:</h1>
-        
+            <div class="row"> 
+                <div class="col-md-6 offset-md-3">
+                    <div class="card-header custom-bg text-white">
+                            <h3>Your Info:</h3>
+                    </div>
+        <div class="card-body">
 <form method="post" action="update_user_profile.jsp">
 <input type="hidden" name="user_id" value="<%=resultSet.getString("user_id") %>">
-
-<br>
-Name:<br>
-<input type="text" name="user_name" value="<%=resultSet.getString("user_name") %>" readonly>
-<br>
-
-Password:<br>
-<input type="text" name="user_password" value="<%=resultSet.getString("user_password") %>">
-<br>
-Email Id:<br>
-<input type="email" name="user_email" value="<%=resultSet.getString("user_email") %>" readonly>
-<br>
-<br><br>
-<input type="submit" value="Edit Password">
+                        <div class="form-group">
+                       <label for="user_name">Name:</label>
+                    
+                    <input type="text" name="user_name" value="<%=resultSet.getString("user_name") %>" class="form-control" id="user_name" readonly>
+                        </div>
+                    <div class="form-group">
+                       <label for="user_password">Password:</label>
+                    
+                    <input type="text" name="user_password" value="<%=resultSet.getString("user_password") %>" class="form-control" id="user_password">
+                    </div>
+                    <div class="form-group">
+                       <label for="user_email">Email Id:</label>
+                    
+                    <input type="email" name="user_email" value="<%=resultSet.getString("user_email") %>" class="form-control" id="user_email" readonly>
+                    </div>
+                    
+                    <input type="submit" class="btn btn-primary" value="Update Password">
 </form>
+                    </div>
+                </div>
+            </div>
         </div>
 <%
 }

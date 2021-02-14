@@ -71,33 +71,19 @@ while(resultSet.next()){
     %>
     <body>
            <%@include file="components/user_navbar.jsp" %>
-           <div class="center">
-               <!--
-               <div class="row">
-                    <table>
-                    <tr>
-                        <th class="a">Photo</th>
-                       
-                    </tr> 
-                    <tr>
-                        <td>
-		<img src="getImage.jsp?id=<%=id%>" width="400px"/>
-                        </td>
-                  
-                </tr>
-                </table>
-               </div>
-                        -->
-                        <br>
-                        <br>
-               <div class="row">
            <div class="container">
-    <div class="row mt-5">
-<div class="col-md-8">
+               
+                        
+               <div class="row">
+           <div class="col-md-6 offset-md-3">
+    
     <div class="card">
-        <div class="card-body">
-        <h1>Enter Amount</h1>
-        Date: <%=today%>
+        <div class="card-header custom-bg text-white">
+                            <h1>Enter Amount:</h1>
+                                    
+                    </div>
+                <div class="card-body">
+                    Date: <%=today%>
 <form method="post" action="save.jsp">
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
 <input type="hidden" name="date">
@@ -118,24 +104,33 @@ while(resultSet.next()){
 <input type="hidden" name="pDesc" value="<%=resultSet.getString("pDesc")%>">
 
 <input type="hidden" name="photo" value="<%=resultSet.getString("photo")%>">
-<br>
-Item Number<br>
-<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>" readonly>
-<br>
-Price:<br>
-<input type="text" name="price" value="<%=resultSet.getString("price") %>" readonly>
-<br>
+
+
+                    <div class="form-group">
+                       <label for="itemNumber">Item Number:</label>
+
+            <input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>" class="form-control" id="itemNumber" readonly>
+                    </div>
+                    <div class="form-group">
+                       <label for="price">Price:</label>
+
+<input type="text" name="price" value="<%=resultSet.getString("price") %>" class="form-control" id="price" readonly>
+                    </div>
 
 <input value="<%= user.getUserName()%>" type="hidden" name="name">
 
-Quantity:<br>
-<input type="text" name="quantity" placeholder="Enter Amount">
-<br>
-Location:<br>
-<input value="<%=company1.getCompanyName()%>" name="locations" readonly>
-<br><br>
+                <div class="form-group">
+                       <label for="quantity">Quantity:</label>
 
-<input type="submit" value="submit">
+<input type="text" name="quantity" placeholder="Enter Amount" class="form-control" id="quantity" >
+            </div>
+                <div class="form-group">
+                       <label for="locations">Location:</label>
+
+<input value="<%=company1.getCompanyName()%>" name="locations" class="form-control" id="locations" readonly>
+                </div>
+
+<input type="submit" class="btn btn-primary" value="Add Item">
 </form>
 <%
 }
@@ -146,8 +141,7 @@ e.printStackTrace();
 %>
   </div>
 </div>
-</div>
-</div>
+
 </div>
                </div>
            </div>

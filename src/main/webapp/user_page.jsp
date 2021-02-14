@@ -7,6 +7,7 @@
 <%@page import="com.learn.mycart.entities.User"%>
 <%@page import="com.learn.mycart.entities.Company"%>
 <%@page import="com.learn.mycart.dao.CompanyDao"%>
+
 <%
 
     User user = (User)session.getAttribute("current-user");
@@ -91,7 +92,7 @@
                 </div>
                 <!--second column-->
                 <div class="col-md-3">
-                    <a href="dropdown.jsp?id=<%= user.getUserId()%>" class="card-link">
+                    <a href="locations.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             

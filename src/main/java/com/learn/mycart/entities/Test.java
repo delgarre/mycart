@@ -18,11 +18,8 @@ public class Test implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-    @JoinColumn(name="comp_id", referencedColumnName="companyId"),
+
     @JoinColumn(name="comp_name", referencedColumnName="companyName")
-    })
     private Company companies;
     
     @ManyToOne(fetch = FetchType.LAZY)

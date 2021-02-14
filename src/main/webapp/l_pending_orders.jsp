@@ -82,8 +82,14 @@ resultSet = statement.executeQuery(sql);
             <form method="post" action="L_OrderServlet">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
                 <input type="hidden" name="loc" value="<%=com%>"/>
-                <input type="submit" value="Submit Cart" onclick="mySub()"/>
+                <input type="submit" class="btn btn-info" value="Submit Cart For Approval" onclick="mySub()"/>
             </form>
+                <br>
+                <a href="items.jsp">
+                <button type="button" class="btn btn-warning">
+    Add More Items
+  </button>
+                </a>
             <table class="table table-bordered ">
                 <tr>
                     <th>Photo</th>

@@ -84,7 +84,7 @@ th {
 </style>
     </head>
     <body>
-          <%@include file="components/user_navbar.jsp" %>
+          <%@include file="components/user_items_navbar.jsp" %>
           <div class="panel panel-primary">
             <div>
                 <div class="container-fluid mt-3">
@@ -171,6 +171,7 @@ th {
                 
                     <td><%=cpt%></td>
                     <td><%=ndc%></td>
+
                     
                    
                     <td>
