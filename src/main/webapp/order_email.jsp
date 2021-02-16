@@ -50,7 +50,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Orders where locations = '"+id+"' and status= 'Not Approved'";
+String sql ="select * from Orders where locations = '"+id+"' and status= 'Not Approved' order by vTitle";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -88,6 +88,13 @@ resultSet = statement.executeQuery(sql);
           alert("mail sent successfully") 
         }); 
     } 
+    
+    function goBack(){
+        window.history.back();
+    }
+    
+    
+    
 </script>
     </head>
     <%
@@ -97,42 +104,44 @@ resultSet = statement.executeQuery(sql);
     %>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <h1>Approve:</h1>
+        <h1>Confirm Order:</h1>
         <div class="col-md-8">
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
 
-           <!-- <form method="post" action="order_email.jsp">-->
+            <form method="post" action="a.jsp">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
                 <input type="text" name="locations" value="<%=id%>"/>
                                 
-                <a href="order_email.jsp?id=<%=id%>">
-                    <button>Approve</button>
-                </a>
+               <input type="submit" class="btn btn-success" value="Approve Orders" onclick="sendEmail('td')"/>
              
-           <!-- </form>-->
+            </form>
             <div class="row ml-2">
             <a href="single_add.jsp?id=<%=id%>">
-                <button>Add Item</button>
+                <button class="btn btn-primary">Add Item</button>
             </a>
         </div>
+                <br>
+                <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                <br>
                 <table class="table table-bordered " id="td">
                 <tr>
-                    <th>Id</th>
-                    <th>Photo</th>
+                   
+                
                     <th>Item Number</th>
                     <th>Description</th>
-                    <th>Price</th>
-                    <th>Ordered By</th>
-                    <th>QTY Per UOM</th>
-                    <th>Unit Of Measure</th>
                     <th>Vendor</th>
-                    <th>Category</th>
-                    <th>Manufacturer</th>
-                    <th>Manufacturer Number</th>
+                    <th>Cost</th>
+                    <th>QTY Ordered</th>
+                    <th>Ordered By</th>
+                    
+                    <th>Location</th>
+                    <th>Alternate Item Number</th>
+                    
 
-                    <th>Actions</th>
+
+                 
                     
                 </tr>
                 <tr>
@@ -145,43 +154,27 @@ resultSet = statement.executeQuery(sql);
                         String quantity = resultSet.getString("quantity");
                         String locations = resultSet.getString("locations");
                         String order_id = resultSet.getString("id");
-                        String photo = resultSet.getString("photo");
+                        String alt = resultSet.getString("alternateItem");
                         String pDesc = resultSet.getString("pDesc");
                         String vTitle = resultSet.getString("vTitle");
-                        String cTitle = resultSet.getString("cTitle");
-                        String man = resultSet.getString("manufacturer");
-                        String manNum = resultSet.getString("manufacturerNum");
-                        String uom = resultSet.getString("unitOfMeasure");
+                       
                         
                     %>
                     
-                    <td><%=order_id%></td>
-                    <td>
-                        <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
-                    </td>
+                    
                     <td><%=item%></td>
                     <td><%=pDesc%></td>
-                    <td><%= price%></td>
-                    <td><%=name%></td>
-                    <td><%=quantity%></td>
-                    <td><%=uom%></td>
                     <td><%=vTitle%></td>
-                    <td><%=cTitle%></td>
-                    <td><%=man%></td>
-                    <td><%=manNum%></td>
+                    <td><%= price%></td>
+                    <td><%=quantity%></td>
+                    <td><%=name%></td>
+                    
+                    <td><%=id%></td>
+                    <td><%=alt%></td>
+                    
 
-                    <td>
-                        <a href="update_a_orders_page.jsp?id=<%=order_id%>">
-                            <button>Edit</button>
-                        </a>
-                            <a href="delete_a_orders.jsp?id=<%=order_id%>">
-                                <button>Delete</button>
-                            </a>
-                         <a href="submit_single.jsp?id=<%=order_id%>">
-                                <button>Approve</button>
-                         </a>
-                        
-                    </td>
+
+
                     
                 </tr>
                <input type="hidden" name="oId" value="<%=order_id%>"/>

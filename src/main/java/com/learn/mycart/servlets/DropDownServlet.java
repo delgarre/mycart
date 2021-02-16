@@ -51,7 +51,7 @@ public class DropDownServlet extends HttpServlet {
             
                 httpSession.setAttribute("message","Location selected ");
             //response.sendRedirect("home.jsp");
-            response.sendRedirect("user_page.jsp");
+            response.sendRedirect("items.jsp");
             return;
         }
     }

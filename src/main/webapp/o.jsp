@@ -63,6 +63,13 @@ while(resultSet.next()){
 }
 </style>
 
+<script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>
+
     </head>
     <%
     Date today = new Date();
@@ -70,7 +77,7 @@ while(resultSet.next()){
     String ddMMyyyyToday = DATE_FORMAT.format(today);
     %>
     <body>
-           <%@include file="components/user_navbar.jsp" %>
+           <%@include file="components/user_items_navbar.jsp" %>
            <div class="container">
                
                         
@@ -105,6 +112,8 @@ while(resultSet.next()){
 
 <input type="hidden" name="photo" value="<%=resultSet.getString("photo")%>">
 
+<input type="hidden" name="alt" value="<%=resultSet.getString("alternateItem")%>">
+
 
                     <div class="form-group">
                        <label for="itemNumber">Item Number:</label>
@@ -122,15 +131,17 @@ while(resultSet.next()){
                 <div class="form-group">
                        <label for="quantity">Quantity:</label>
 
-<input type="text" name="quantity" placeholder="Enter Amount" class="form-control" id="quantity" >
+<input type="text" name="quantity" placeholder="Enter Amount" class="form-control" id="quantity" required>
             </div>
                 <div class="form-group">
                        <label for="locations">Location:</label>
 
 <input value="<%=company1.getCompanyName()%>" name="locations" class="form-control" id="locations" readonly>
                 </div>
-
+ <div class="container text-center">
 <input type="submit" class="btn btn-primary" value="Add Item">
+<button class="btn btn-warning" onclick="goBack()">Go Back</button>
+ </div>
 </form>
 <%
 }

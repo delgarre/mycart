@@ -20,10 +20,10 @@
         response.sendRedirect("index.jsp");
         return;
     }
-Company companys = (Company)session.getAttribute("location");
+Company companys2 = (Company)session.getAttribute("location");
 %>
 <%
-String name = companys.getCompanyName();
+String name = companys2.getCompanyName();
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
 String database = "mycart";
@@ -67,6 +67,11 @@ $(document).ready(function(){
     });
   });
 });
+
+
+function goBack(){
+        window.history.back();
+    } 
 </script>
         
 <style>
@@ -98,12 +103,14 @@ th {
             <div div class="table-responsive-sm mt-3">
         
                 <div>
-
+                 <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                 <br>
           <input id="myInput" type="text" placeholder="Search..">
+          
     
                 </div>
                 <div>
-                    <a href="dropdown.jsp?id=<%= user.getUserId()%>"><h3>Inventory Items:</h3></a>
+                  <h3>Inventory Items:</h3>
                 </div>
         
             <table class="table table-bordered"  style="width:20px">
@@ -111,7 +118,7 @@ th {
                 <tr>
                 
 
-                <th>Photo</th>
+                <th>Image</th>
                 <th>Item Number</th>
                 <th>Description</th>
                 <th>Vendor</th>

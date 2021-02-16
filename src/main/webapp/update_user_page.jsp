@@ -55,6 +55,13 @@ while(resultSet.next()){
         <title>Edit User</title>
         <%@include file="components/common_css_js.jsp" %>
 
+<script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>
+        
 <style>
 .center {
   margin: auto;
@@ -66,8 +73,16 @@ while(resultSet.next()){
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <div class="center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <br>
+                    <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                    <br>
+                    <div class="card-header custom-bg text-white">
         <h1>Make changes!</h1>
+                    </div>
+                    <div class="card-body">
         <div>
             <form method="post" action="password.jsp">
                 
@@ -79,25 +94,41 @@ while(resultSet.next()){
 <form method="post" action="update_user.jsp">
 <input type="hidden" name="user_id" value="<%=resultSet.getString("user_id") %>">
 
-<br>
-Name:<br>
-<input type="text" name="user_name" value="<%=resultSet.getString("user_name") %>">
-<br>
+<div class="form-group">
+                       <label for="user_name">Name:</label>
 
-Password:<br>
-<input type="text" name="user_password" value="<%=resultSet.getString("user_password") %>">
-<br>
-Email Id:<br>
-<input type="email" name="user_email" value="<%=resultSet.getString("user_email") %>">
-<br>
-Type:<br>
+<input type="text" name="user_name" value="<%=resultSet.getString("user_name") %>" id="user_name">
+</div>
+
+<div class="form-group">
+                       <label for="user_password">Password:</label>
+
+
+<input type="text" name="user_password" value="<%=resultSet.getString("user_password") %>" id="user_password">
+</div>
+<div class="form-group">
+                       <label for="user_email">Email Address:</label>
+
+<input type="email" name="user_email" value="<%=resultSet.getString("user_email") %>" id="user_email">
+</div>
+
+
+<div class="form-group">
+                       <label for="user_type">Type:</label>
+
 <select name="user_type" id="user_type">
     <option value="admin">Admin</option>
     <option value="normal">Normal</option>
 </select>
-<br><br>
-<input type="submit" value="Edit">
+</div>
+<div class="container text-center">
+<input type="submit" value="Edit" class="btn btn-primary">
+
+</div>
 </form>
+                    </div>
+                </div>
+            </div>
         </div>
 <%
 }

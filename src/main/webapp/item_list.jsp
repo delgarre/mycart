@@ -114,19 +114,23 @@ $(document).ready(function(){
                 <%@include file="components/message.jsp" %>
             </div>
             
-        <table class="table table-bordered" id="myTable">
+            <table class="table table-bordered" style="no-wrap">
             <thead>
             <tr>
                         
                         
-                        
+                        <th>Item Number</th>
+                        <th>Description</th>
+                        <th>Vendor</th>
+                        <th>Alternate Item</th>
+                        <th>UOM</th>
                         <th>QTY Per UOM</th>
 
                         <th>Price</th>
-                        <th>Item Number</th>
-                        <th>Unit of Measure</th>
-                        <th>Description</th>
-                        <th>Vendor</th>
+                        
+                        
+
+                        
                         <th>Category</th>
                         <th>Manufacturer</th>
                         <th>Manufacturer Number</th>
@@ -153,14 +157,18 @@ $(document).ready(function(){
             <tr>
 
 
-
+                <td><%=i.getItemNumber()%></td>
+                <td><%=i.getpDesc()%></td>
+                <td><%=i.getvTitle()%></td>
+                <td><%=i.getAlternateItem()%></td>
+                <td><%=i.getUnitOfMeasure()%></td>
                 <td><%=i.getQuantity()%></td>
                
                 <td><%=i.getPrice()%></td>
-                <td><%=i.getItemNumber()%></td>
-                <td><%=i.getUnitOfMeasure()%></td>
-                <td><%=i.getpDesc()%></td>
-                <td><%=i.getvTitle()%></td>
+
+                
+                
+                
                 <td><%=i.getcTitle()%></td>
                 <td><%=i.getManufacturer()%></td>
                 <td><%=i.getManufacturerNum()%></td>

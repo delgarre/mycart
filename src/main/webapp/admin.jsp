@@ -61,7 +61,7 @@
                             </div>
                             
                        
-                            <h3 class="text-muted">Users</h3>
+                            <h3 class="text-muted">USERS</h3>
                         </div>
                     </div>
                    </a>
@@ -76,7 +76,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/list.png" alt="user_icon">
                             </div>
                       
-                            <h3 class="text-muted">Categories</h3>
+                            <h3 class="text-muted">CATEGORIES</h3>
                         </div>
                     </div>
                     </a>
@@ -91,7 +91,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/product.png" alt="user_icon">
                             </div>
                          
-                            <h3 class="text-muted">Items</h3>
+                            <h3 class="text-muted">ITEMS</h3>
                         </div>
                     </div>
                     </a>
@@ -106,7 +106,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/location.png" alt="user_icon">
                             </div>
                            
-                            <h3 class="text-muted">Locations</h3>
+                            <h3 class="text-muted">LOCATIONS</h3>
                         </div>
                     </div>
                     </a>
@@ -121,7 +121,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/orders.png" alt="user_icon">
                             </div>
                           
-                            <h3 class="text-muted">Pending Orders</h3>
+                            <h3 class="text-muted">PENDING ORDERS</h3>
                         </div>
                     </div>
                     </a>
@@ -136,7 +136,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/message.png" alt="user_icon">
                             </div>
                    
-                            <h3 class="text-muted">Admin Notice</h3>
+                            <h3 class="text-muted">ADMIN NOTICE</h3>
                         </div>
                     </div>
                     </a>
@@ -151,7 +151,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
                      
-                            <h3 class="text-muted"> Vendors</h3>
+                            <h3 class="text-muted"> VENDORS</h3>
                         </div>
                     </div>
                     </a>
@@ -166,7 +166,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
                             
-                            <h3 class="text-muted"> Order History</h3>
+                            <h3 class="text-muted"> ORDER HISTORY</h3>
                         </div>
                     </div>
                     </a>
@@ -181,7 +181,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
                             
-                            <h3 class="text-muted">Location Types</h3>
+                            <h3 class="text-muted">LOCATION TYPES</h3>
                         </div>
                     </div>
                     </a>

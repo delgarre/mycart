@@ -44,6 +44,13 @@ while(resultSet.next()){
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Update Product</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+<script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>
 <style>
 .center {
   margin: auto;
@@ -56,46 +63,58 @@ while(resultSet.next()){
     <body>
            <%@include file="components/navbar.jsp" %>
         
-        <div class="center">
-            
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <br>
+                    <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                    <br>
+                    <div class="card-header custom-bg text-white">
             <h1>Make Changes:</h1>
+                    </div>
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
-            <div class="row">
-            <div class="container-fluid">
+          <div class="card-body">
+           
 <form method="post" action="update_product.jsp">
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
-<br>
-Name:<br>
-<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>">
-<br>
-Type:<br>
-<input type="text" name="price" value="<%=resultSet.getString("price") %>">
-<br>
-Quantity Per UOM:<br>
-<input type="text" name="quantity" value="<%=resultSet.getString("quantity") %>">
-<br>
-Unit of Measure:<br>
-<input type="text" name="unitOfMeasure" value="<%=resultSet.getString("unitOfMeasure") %>">
-<br>
-Active/Inactive:<br>
+<div class="form-group">
+                       <label for="itemNumber">Item Number:</label>
+
+<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>" id="itemNumber">
+</div>
+
+<div class="form-group">
+           <label for="price">Cost:</label>
+
+      <input type="text" name="price" value="<%=resultSet.getString("price") %>" id="price">
+</div>
+<div class="form-group">
+           <label for="quantity">Quantity Per UOM:</label>
+<input type="text" name="quantity" value="<%=resultSet.getString("quantity") %>" id="quantity">
+</div>
+<div class="form-group">
+           <label for="unitOfMeasure">Unit of Measure:</label>
+
+<input type="text" name="unitOfMeasure" value="<%=resultSet.getString("unitOfMeasure") %>" id="unitOfMeasure">
+</div>
+<div class="form-group">
+           <label for="unitOfMeasure">Unit of Measure:</label>
+Active/Discontinued:<br>
 <select name="stat" id="stat">
     <option value="Active">Active</option>
-    <option value="Inactive">Inactive</option>
-</select>
-<br>
-Discontinued/Continued:<br>
-<select name="discontinued" id="discontinued">
     <option value="discontinued">Discontinued</option>
-    <option value="continued">Continued</option>
 </select>
-<br><br>
-Edit Item<br>
-<input type="submit" value="Edit">
+</div>
+
+<div class="container text-center">
+
+<input type="submit" value="Edit" class="btn btn-primary">
+</div>
 </form>
-        </div>
-            </div>
+        
+        
 <br>
 <br>
 <form action="uploadImage" method="post" enctype="multipart/form-data">
@@ -105,10 +124,15 @@ Edit Item<br>
         <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
         
             <input type="file" name="image"/>
-            
-            <input type="submit"/>
+            <div class="container text-center">
+            <input type="submit" value="Add Photo" class="btn btn-primary"/>
+         
+            </div>
     
         </form>
+          </div>
+                </div>
+            </div>
 
         </div>
 

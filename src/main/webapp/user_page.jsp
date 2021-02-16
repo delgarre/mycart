@@ -54,7 +54,7 @@
                         %>
                         
                         <tr>
-                            <th>Message:</th>
+                            <th>MESSAGE:</th>
                         </tr>
                         <%
                         for(Notice n: notice){
@@ -85,7 +85,7 @@
                             </div>
                             
                     
-                            <h3 class="text-muted">Your Info</h3>
+                            <h3 class="text-muted">YOUR INFO</h3>
                         </div>
                     </div>
                    </a>
@@ -100,7 +100,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/location.png" alt="user_icon">
                             </div>
                            
-                            <h3 class="text-muted">Locations</h3>
+                            <h3 class="text-muted">LOCATIONS</h3>
                         </div>
                     </div>
                     </a>
@@ -119,7 +119,7 @@
                                 
                             </div>
                             
-                            <h3 class="text-muted">Items</h3>
+                            <h3 class="text-muted">ITEMS</h3>
                         </div>
                     </div>
                         </a>
@@ -134,7 +134,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/orders.png" alt="user_icon">
                             </div>
                             
-                            <h3 class="text-muted">Cart</h3>
+                            <h3 class="text-muted">CART</h3>
                         </div>
                     </div>
                      </a>
@@ -149,7 +149,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/list.png" alt="user_icon">
                             </div>
                        
-                            <h3 class="text-muted">Pending Orders</h3>
+                            <h3 class="text-muted">PENDING ORDERS</h3>
                         </div>
                     </div>
                 </a>
@@ -166,7 +166,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
                       
-                            <h3 class="text-muted"> Order History</h3>
+                            <h3 class="text-muted"> ORDER HISTORY</h3>
                         </div>
                     </div>
                   </a>

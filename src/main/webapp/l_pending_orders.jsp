@@ -56,7 +56,12 @@ resultSet = statement.executeQuery(sql);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pending Orders</title>
         <%@include file="components/common_css_js.jsp" %>
-        
+<script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>
 <style>
 .center {
   margin: auto;
@@ -78,10 +83,13 @@ resultSet = statement.executeQuery(sql);
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
-            
+            <br>
+            <button class="btn btn-primary" onclick="goBack()">Go Back</button>
+            <br>
             <form method="post" action="L_OrderServlet">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
                 <input type="hidden" name="loc" value="<%=com%>"/>
+                <br>
                 <input type="submit" class="btn btn-info" value="Submit Cart For Approval" onclick="mySub()"/>
             </form>
                 <br>

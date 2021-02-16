@@ -48,6 +48,12 @@ resultSet = statement.executeQuery(sql);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>User Info</title>
         <%@include file="components/common_css_js.jsp" %>
+<script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
@@ -109,7 +115,8 @@ resultSet = statement.executeQuery(sql);
             </select>
             
             <input type="hidden" name="user" value ="<%=id%>">
-            <input type="submit" value="Add Location">
+            <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+            <input type="submit" value="Add Location" class="btn btn-success">
         </form>
         </div>
         <div class="col-md-8">

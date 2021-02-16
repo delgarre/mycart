@@ -78,7 +78,7 @@ resultSet = statement.executeQuery(sql);
 </style>
     </head>
     <body>
-          <%@include file="components/user_navbar.jsp" %>
+          <%@include file="components/navbar.jsp" %>
           
         <div class="col-md-8">
             <div div class="table-responsive-sm mt-3">

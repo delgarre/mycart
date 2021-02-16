@@ -47,6 +47,13 @@ while(resultSet.next()){
         <title>Edit User</title>
         <%@include file="components/common_css_js.jsp" %>
 
+<script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>
+        
 <style>
 .center {
   margin: auto;
@@ -64,6 +71,9 @@ while(resultSet.next()){
             </div>
             <div class="row"> 
                 <div class="col-md-6 offset-md-3">
+                    <br>
+                    <button type="button" class="btn btn-warning" onclick="goBack()">Go Back</button>
+                    <br>
                     <div class="card-header custom-bg text-white">
                             <h3>Your Info:</h3>
                     </div>
