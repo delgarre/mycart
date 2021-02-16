@@ -118,7 +118,7 @@ $(document).ready(function(){
             <thead>
             <tr>
                         
-                        
+                        <th>Image</th>
                         <th>Item Number</th>
                         <th>Description</th>
                         <th>Vendor</th>
@@ -156,7 +156,9 @@ $(document).ready(function(){
             
             <tr>
 
-
+                <td>
+                    <img style="max-width: 125px" src="image/<%=i.getPhoto()%>" alt="user_icon">
+                </td>
                 <td><%=i.getItemNumber()%></td>
                 <td><%=i.getpDesc()%></td>
                 <td><%=i.getvTitle()%></td>

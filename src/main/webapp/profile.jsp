@@ -95,8 +95,9 @@ function goBack(){
                     
                     <input type="email" name="user_email" value="<%=resultSet.getString("user_email") %>" class="form-control" id="user_email" readonly>
                     </div>
-                    
-                    <input type="submit" class="btn btn-primary" value="Update Password">
+                    <div class="container text-center">
+                    <input type="submit" class="btn btn-primary" value="EDIT PASSWORD">
+                    </div>
 </form>
                     </div>
                 </div>

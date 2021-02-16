@@ -103,7 +103,7 @@ resultSet = statement.executeQuery(sql);
                 <%@include file="components/message.jsp" %>
             </div>
 
-           <!-- <form method="post" action="order_email.jsp">-->
+         
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
                 <input type="text" name="locations" value="<%=id%>"/>
                                 
@@ -111,7 +111,7 @@ resultSet = statement.executeQuery(sql);
                     <button>Approve</button>
                 </a>
              
-           <!-- </form>-->
+          
             <div class="row ml-2">
             <a href="single_add.jsp?id=<%=id%>">
                 <button>Add Item</button>
@@ -185,6 +185,7 @@ resultSet = statement.executeQuery(sql);
                     
                 </tr>
                <input type="hidden" name="oId" value="<%=order_id%>"/>
+               
 
               
                 <%

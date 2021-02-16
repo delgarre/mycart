@@ -9,7 +9,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark custom-bg">
     <div class="container">
-         <a class="navbar-brand" href="#">DSE Portal</a> 
+         <a class="navbar-brand" href="#">Ordering Portal</a> 
      <!--<div>
      <img src="img/Diversified Services Enterprises Inc Logo.png" class="img-fluid rounded-circle">
      </div> -->

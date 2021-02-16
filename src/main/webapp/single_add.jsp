@@ -67,7 +67,22 @@ resultSet = statement.executeQuery(sql);
         <title>Items</title>
         <%@include file="components/common_css_js.jsp" %>
         
-        
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+
+function goBack(){
+        window.history.back();
+    } 
+</script>
 <style>
 .center {
   margin: auto;
@@ -82,12 +97,19 @@ resultSet = statement.executeQuery(sql);
           
         <div class="col-md-8">
             <div div class="table-responsive-sm mt-3">
-        
+        <div>
+                 <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                 <br>
+          <input id="myInput" type="text" placeholder="Search..">
+          
+    
+                </div>
                 <div>
                     <h3>Add an item for: <%=name%></h3>
                 </div>
         
-            <table class="table table-bordered " id="myTable">
+            <table class="table table-bordered ">
+                <thead>
                 <tr>
                 
 
@@ -107,6 +129,8 @@ resultSet = statement.executeQuery(sql);
                 
                 <th>Actions</th>
                 </tr>
+                </thead>
+                <tbody id="myTable">
                 <%
                     while(resultSet.next()){
                         ;
@@ -152,6 +176,7 @@ resultSet = statement.executeQuery(sql);
                 <%
                     }
                 %>
+                </tbody>
             </table>
             </div>
         </div>
