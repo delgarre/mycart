@@ -4,6 +4,10 @@
     Author     : garre
 --%>
 
+<%@page import="com.learn.mycart.entities.CPT"%>
+<%@page import="com.learn.mycart.dao.CptDAO"%>
+<%@page import="com.learn.mycart.entities.Manufacturers"%>
+<%@page import="com.learn.mycart.dao.ManDAO"%>
 <%@page import="com.learn.mycart.entities.Vendor"%>
 <%@page import="com.learn.mycart.dao.VendorDao"%>
 <%@page import="com.learn.mycart.entities.Category"%>
@@ -92,55 +96,27 @@
             </select>
                     </div>
                     <!--product cpt -->
+                    <%
+                    CptDAO cpDao = new CptDAO(FactoryProvider.getFactory());
+                    
+                    List<CPT> cplist = cpDao.getCodes();
+                    
+                    %>
+                    
+                    
                     <div>
                         <h6>Enter CPT</h6>
                       
                <select name="cpt" id="cpt">
-                <option value="20550">20550</option>
-                <option value="20551">20551</option>
-                <option value="20552">20552</option>
-                <option value="20553">20553</option>
-                <option value="26601">26601</option>
-                <option value="76942">76942</option>
-                <option value="450102-06">450102-06</option>
-                <option value="A4450">A4450</option>
-                <option value="A4452">A4452</option>
-                <option value="A4565">A4565</option>
-                <option value="A4595">A4595</option>
-                <option value="A4649">A4649</option>
-                <option value="A6250">A6250</option>
-                <option value="A6448">A6448</option>
-                <option value="A6449">A6449</option>
-                <option value="A6450">A6450</option>
-                <option value="A9270">A9270</option>
-                <option value="A9300">A9300</option>
-                <option value="ASM363711">ASM363711</option>
-                <option value="E0190">E0190</option>
-                <option value="E0720">E0720</option>
-                <option value="E1399">E1399</option>
-                <option value="L0120">L0120</option>
-                <option value="L0174">L0174</option>
-                <option value="L0180">L0180</option>
-                <option value="L0456/L0457">L0456/L0457</option>
-                <option value="L0627">L0627</option>
-                <option value="L0627/L0642">L0627/L0642</option>
-                <option value="L0637/L0650">L0637/L0650</option>
-                <option value="L1810/L1812">L1810/L1812</option>
-                <option value="L1820">L1820</option>
-                <option value="L1832/L1833">L1832/L1833</option>
-                <option value="L1902">L1902</option>
-                <option value="L2397">L2397</option>
-                <option value="L2999">L2999</option>
-                <option value="L3807/ L3809">L3807/ L3809</option>
-                <option value="L3908">L3908</option>
-                <option value="L3915/L3916">L3915/L3916</option>
-                <option value="L3923/L3924">L3923/L3924</option>
-                <option value="L3960">L3960</option>
-                <option value="L3999">L3999</option>
-                <option value="L4360/ L4361">L4360/ L4361</option>
-                <option value="N/A">N/A</option>
+                   <%
+                   for(CPT cp: cplist){
+                   %>
+                <option value="<%=cp.getCodes()%>"><%=cp.getCodes()%></option>
 
-           
+
+                    <%
+                        }
+                    %>
            
                 
             </select>
@@ -159,9 +135,22 @@
                     </div>
                     
                     <!--product manufacturer  -->
+                    <%
+                    ManDAO mDao = new ManDAO(FactoryProvider.getFactory());
+                    List<Manufacturers> mlist = mDao.getManufacturers();
+                    %>
                     <div>
                         <h6>Enter Manufacturer</h6>
-                        <input type="text" class="form-control" placeholder="Enter Manufacturer" name="manufacturer" required/>
+                        <select name="manufacturer" class="form-control" id="manufacturer">
+                            <%
+                            for(Manufacturers m: mlist){
+                            %>
+                            <option value="<%=m.getName()%>"><%=m.getName()%></option>
+                            <%
+                                }
+                            %>
+                        </select>
+                       
                     </div>
                     <!--product manufacturerNum -->
                     <div>

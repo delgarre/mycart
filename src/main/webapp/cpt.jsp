@@ -1,7 +1,7 @@
-<%@page import="com.learn.mycart.entities.Manufacturers"%>
+<%@page import="com.learn.mycart.entities.CPT"%>
 <%@page import="java.util.List"%>
+<%@page import="com.learn.mycart.dao.CptDAO"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
-<%@page import="com.learn.mycart.dao.ManDAO"%>
 <%@page import="com.learn.mycart.entities.User"%>
 <%
     User user = (User)session.getAttribute("current-user");
@@ -25,7 +25,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Manufacturers</title>
+        <title>CPT Codes</title>
         <%@include file="components/common_css_js.jsp" %>
         
 
@@ -36,66 +36,66 @@
   border: navy;
   padding: 10px;
 }
-</style>
+</style>        
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
         
         <div class="center">
-        <h2>Manufacturers</h2>
+        <h2>CPT</h2>
         <br>
         <div class="row ml-2">
-            <a href="add_manufacturers.jsp">
-                <button class="btn btn-outline-success">Add manufacturer</button>
+            <a href="add_cpt.jsp">
+                <button class="btn btn-outline-success">Add CPT Code</button>
             </a>
         </div>
         <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
         </div>
         
-        
         <div class="table-responsive-sm mt-3">
             <table class="table table-bordered " >
                 <tr>
-                    <th>Name</th>
+                    <th>Codes</th>
                     <th>Actions</th>
                 </tr>
                 <%
-                 ManDAO mdao = new ManDAO(FactoryProvider.getFactory());
-                 List<Manufacturers> mlist = mdao.getManufacturers();
+                 CptDAO cdao = new CptDAO(FactoryProvider.getFactory());
+                 List<CPT> clist = cdao.getCodes();
                  %>
                  <%
-                 for(Manufacturers m: mlist){
+                 for(CPT c: clist){
                  %>
                 <tr>
-                    <td><%=m.getName()%></td>
+                    <td><%=c.getCodes()%></td>
                     <td>
-                        <a href="delete_man.jsp?id=<%=m.getId()%>">
+                        <a href="delete_cpt.jsp?id=<%=c.getId()%>">
                              <button type="button" class="delete" onclick="myFunction()">Delete</button>
                          </a>
-                         <a href="update_man_page.jsp?id=<%=m.getId()%>">
+                         <a href="update_cpt_page.jsp?id=<%=c.getId()%>">
                              <button type="button" class="update">Edit</button>
                          </a>
                     </td>
                 </tr>
-                 <%
-                     }
-                 %>
+                <%
+                    }
+                %>
             </table>
         </div>
-            
+        
         </div>
+            
             
 <script>
 function myFunction() {
   var txt;
   var r = confirm("Are you sure?");
   if (r == true) {
-window.location.href = "manufacturer.jsp";
+window.location.href = "cpt.jsp";
 
 
   } else {
-   window.location.href = "manufacturer.jsp";
+   window.location.href = "cpt.jsp";
   }
   document.getElementById("demo").innerHTML = txt;
 }

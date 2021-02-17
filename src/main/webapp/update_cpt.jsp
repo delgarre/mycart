@@ -30,33 +30,33 @@ User user1 = (User)session.getAttribute("current-user");
 %>
 
 <%
-String vendorId = request.getParameter("vendorId");
-String vendorName=request.getParameter("vendorName");
+String cId = request.getParameter("cId");
+String codes=request.getParameter("codes");
 
-if(vendorId != null)
+if(cId != null)
 {
 Connection con = null;
 PreparedStatement ps = null;
-int personID = Integer.parseInt(vendorId);
+int personID = Integer.parseInt(cId);
 try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql="Update Vendor set vendorId=?, vendorName=? where vendorId="+vendorId;
+String sql="Update CPT set id=?, codes=? where id="+cId;
 ps = con.prepareStatement(sql);
-ps.setString(1,vendorId);
-ps.setString(2, vendorName);
+ps.setString(1,cId);
+ps.setString(2, codes);
 
 int i = ps.executeUpdate();
 if(i > 0)
 {
-session.setAttribute("message", "Vendor info changed successfully!");
-response.sendRedirect("vendors.jsp");
+session.setAttribute("message", "CPT code changed successfully!");
+response.sendRedirect("cpt.jsp");
 }
 else
 {
-session.setAttribute("message", "There was a problem updating the user.");
-response.sendRedirect("vendors.jsp");
+session.setAttribute("message", "There was a problem updating the cpt code.");
+response.sendRedirect("cpt.jsp");
 }
 }
 catch(SQLException sql)
