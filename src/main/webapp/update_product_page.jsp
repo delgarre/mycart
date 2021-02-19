@@ -288,9 +288,9 @@ while(resultSet.next()){
                   
                     <div class="form-group">
                         <label for="stat">Active/Discontinued:</label>
-                        <select name="stat" id="stat">
-                            <option value="Active">Active</option>
-                            <option value="discontinued">Discontinued</option>
+                        <select name="stat" id="stat" class="form-control">
+                            <option value="1">Active</option>
+                            <option value="2">Discontinued</option>
                         </select>
                     </div>
                      <!--   

@@ -100,10 +100,11 @@ function goBack(){
                 </a>
             <table class="table table-bordered ">
                 <tr>
-                    <th>Photo</th>
+                    <th>Image</th>
                     <th>Item Number</th>
                     <th>Description</th>
-                    <th>Price</th>
+                    <th>Vendor</th>
+                    <th>Cost</th>
                     <th>Quantity</th>
                     <th>User Name</th>
                     <th>Location</th>
@@ -121,6 +122,7 @@ function goBack(){
                         String Id = resultSet.getString("id");
                         String photo = resultSet.getString("photo");
                         String pDesc = resultSet.getString("pDesc");
+                        String vendor = resultSet.getString("vTitle");
                     %>
                     
                     <td>
@@ -128,6 +130,7 @@ function goBack(){
                     </td>
                     <td><%=aPName%></td>
                     <td><%=pDesc%></td>
+                    <td><%=vendor%></td>
                     <td><%=aPPrice%></td>
                     <td><%=quantity%></td>
                     <td><%=name%></td>

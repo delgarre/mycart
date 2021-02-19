@@ -53,7 +53,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="Select * from Item";
+String sql ="Select * from Item AND stat=1";
 
 resultSet = statement.executeQuery(sql);
 

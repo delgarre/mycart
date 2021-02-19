@@ -43,7 +43,7 @@ ResultSet resultSet2 = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="Select I.* from Item I inner Join LocationType LT ON FIND_IN_SET(LT.locationType,I.locationType)Where LT.location ='"+name+"'";
+String sql ="Select I.* from Item I inner Join LocationType LT ON FIND_IN_SET(LT.locationType,I.locationType)Where LT.location ='"+name+"' AND stat=1";
 
 resultSet = statement.executeQuery(sql);
 
@@ -128,7 +128,7 @@ th {
 
                 <th>Quantity Per UOM</th>
               
-                 <th>Price</th>
+                 <th>Cost</th>
 
                 <th>Manufacturer</th>
             
