@@ -8,12 +8,23 @@
 
 <%
 String id = request.getParameter("id");
-String itemNumber=request.getParameter("itemNumber");
-String price = request.getParameter("price");
-String quantity = request.getParameter("quantity");
-String unitOfMeasure=request.getParameter("unitOfMeasure");
+
+
+
+
 String stat=request.getParameter("stat");
-String discontinued = request.getParameter("discontinued");
+String pDesc = request.getParameter("pDesc");
+                String price = request.getParameter("pPrice");
+                String alt = request.getParameter("alt");
+                String quantity = request.getParameter("pQuantity");
+                String unitOfMeasure = request.getParameter("pMeasure");
+                String catId = request.getParameter("catId");
+                String vendor = request.getParameter("vendorId");
+                String cpt = request.getParameter("cpt");
+                String ndc = request.getParameter("ndc");
+                String itemNumber = request.getParameter("itemNumber");
+                String manufacturer = request.getParameter("manufacturer");
+                String manufacturerNum = request.getParameter("manufacturerNum");
 if(id != null)
 {
 Connection con = null;
@@ -23,7 +34,7 @@ try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql="Update Item set id=?,itemNumber=?,price=?,quantity=?,unitOfMeasure=?, stat=?, discontinued=? where id="+id;
+String sql="Update Item set id=?,itemNumber=?,price=?,quantity=?,unitOfMeasure=?, stat=?, ndc=?, cTitle=?, vTitle=?, manufacturer=?, manufacturerNum=?, pDesc=?, cpt=?, alternateItem=? where id="+id;
 ps = con.prepareStatement(sql);
 ps.setString(1,id);
 ps.setString(2, itemNumber);
@@ -31,17 +42,25 @@ ps.setString(3, price);
 ps.setString(4, quantity);
 ps.setString(5, unitOfMeasure);
 ps.setString(6, stat);
-ps.setString(7, discontinued);
+ps.setString(7, ndc);
+ps.setString(8, catId);
+ps.setString(9, vendor);
+ps.setString(10, manufacturer);
+ps.setString(11, manufacturerNum);
+ps.setString(12, pDesc);
+ps.setString(13, cpt);
+ps.setString(14, alt);
+
 int i = ps.executeUpdate();
 if(i > 0)
 {
 session.setAttribute("message", "Item edited successfully!");
-response.sendRedirect("item_list.jsp");
+response.sendRedirect("update_product_page.jsp?id="+id);
 }
 else
 {
 session.setAttribute("message", "There was a problem editing the item.");
-response.sendRedirect("item_list.jsp");
+response.sendRedirect("update_product_page.jsp?id="+id);
 }
 }
 catch(SQLException sql)

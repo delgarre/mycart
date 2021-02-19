@@ -85,7 +85,7 @@ public class AddItemServlet extends HttpServlet {
                 
                
                 httpSession.setAttribute("message","Item added successfully... ");
-                response.sendRedirect("upload.jsp?id="+itemNumber);
+                response.sendRedirect("item_list.jsp");
                 httpSession.setAttribute("number", itemNumber);
                 }
                 catch(Exception e)

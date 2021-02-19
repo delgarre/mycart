@@ -126,7 +126,7 @@ $(document).ready(function(){
                         <th>UOM</th>
                         <th>QTY Per UOM</th>
 
-                        <th>Price</th>
+                        <th>Cost</th>
                         
                         
 
@@ -139,7 +139,7 @@ $(document).ready(function(){
                      
                         <th>Location Type</th>
                         <th>Status</th>
-                        <th>Discontinued</th>
+                    
                         <th>SDS</th>
                         <th>Actions</th>
             </tr>
@@ -179,7 +179,7 @@ $(document).ready(function(){
                 
                 <td><%=i.getLocationType()%></td>
                 <td><%=i.getStat()%></td>
-                <td><%=i.getDiscontinued()%></td>
+             
                 <td><%=i.getSds()%></td>
                 <td>
                     <a href="update_product_page.jsp?id=<%= i.getId()%>">

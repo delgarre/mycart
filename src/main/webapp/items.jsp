@@ -20,10 +20,10 @@
         response.sendRedirect("index.jsp");
         return;
     }
-Company companys2 = (Company)session.getAttribute("location");
+Company companys3 = (Company)session.getAttribute("location");
 %>
 <%
-String name = companys2.getCompanyName();
+String name = companys3.getCompanyName();
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
 String database = "mycart";

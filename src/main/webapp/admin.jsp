@@ -118,15 +118,31 @@
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/orders.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/category.png" alt="user_icon">
                             </div>
                           
-                            <h3 class="text-muted">PENDING ORDERS</h3>
+                            <h4 class="text-muted">ORDERS PENDING APPROVAL </h4>
                         </div>
                     </div>
                     </a>
                 </div>
-                <!--sixth row -->
+                <!--SIXTH row -->
+                <div class="col-md-3">
+                    <a href="open.jsp" class="card-link">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            
+                            <div class="container">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/oo.png" alt="user_icon">
+                            </div>
+                          
+                            <h4 class="text-muted">OPEN ORDERS </h4>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <!--seventh row -->
                 <div class="col-md-3">
                     <a href="notice.jsp" class="card-link">
                     <div class="card">
@@ -141,14 +157,14 @@
                     </div>
                     </a>
                 </div>
-                <!--seventh row -->
+                <!--eighth row -->
                 <div class="col-md-3">
                     <a href="vendors.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendors.png" alt="user_icon">
                             </div>
                      
                             <h3 class="text-muted"> VENDORS</h3>
@@ -156,14 +172,14 @@
                     </div>
                     </a>
                 </div>
-                                <!--eighth row -->
+                                <!--ninth row -->
                 <div class="col-md-3">
                     <a href="date_page.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/history.png" alt="user_icon">
                             </div>
                             
                             <h3 class="text-muted"> ORDER HISTORY</h3>
@@ -171,14 +187,14 @@
                     </div>
                     </a>
                 </div>
-              <!--ninth row -->
+              <!--tenth row -->
                 <div class="col-md-3">
                     <a href="types.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/types.jpg" alt="user_icon">
                             </div>
                             
                             <h3 class="text-muted">LOCATION TYPES</h3>
@@ -186,32 +202,32 @@
                     </div>
                     </a>
                 </div>
-               <!--tenth row -->
+               <!--eleventh row -->
                 <div class="col-md-3">
                     <a href="manufacturers.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/manufacturer.png" alt="user_icon">
                             </div>
                             
-                            <h3 class="text-muted">MANUFACTURERS</h3>
+                            <h4 class="text-muted">MANUFACTURERS</h4>
                         </div>
                     </div>
                     </a>
                 </div>
-                <!--eleventh row -->
+                <!--twelve row -->
                 <div class="col-md-3">
                     <a href="cpt.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/cpt.png" alt="user_icon">
                             </div>
                             
-                            <h3 class="text-muted">CPT</h3>
+                            <h3 class="text-muted">CPT Codes</h3>
                         </div>
                     </div>
                     </a>

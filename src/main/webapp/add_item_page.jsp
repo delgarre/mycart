@@ -54,7 +54,7 @@
                     </div>
                     <!--product price-->
                     <div class="form-group">
-                        <h6>Enter Item Price</h6>
+                        <h6>Enter Item Cost</h6>
                         <input type="number" step="any" class="form-control" placeholder="Enter price of product" name="pPrice" required/>
                     </div>
                     <!--product quantity-->
@@ -241,7 +241,7 @@
                    -->
                     <!--submit button-->
                     <div class="container text-center">
-                        <button class="btn btn-outline-success">Add product</button>
+                        <button class="btn btn-outline-success">Add Item</button>
                         
                     </div>
                     
