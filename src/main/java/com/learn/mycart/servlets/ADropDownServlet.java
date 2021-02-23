@@ -7,10 +7,7 @@ package com.learn.mycart.servlets;
 
 import com.learn.mycart.dao.CompanyDao;
 import com.learn.mycart.dao.LocationTypeDao;
-import com.learn.mycart.dao.TestDao;
 import com.learn.mycart.entities.Company;
-import com.learn.mycart.entities.LocationType;
-import com.learn.mycart.entities.Test;
 import java.io.IOException;
 import com.learn.mycart.helper.FactoryProvider;
 import java.io.PrintWriter;

@@ -25,7 +25,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add Manufacturer</title>
+        <title>Add Measurement</title>
         <%@include file="components/common_css_js.jsp" %>
 
 <style>
@@ -41,11 +41,11 @@
         <%@include file="components/navbar.jsp" %>
         <div class="center">
         <h1>Info:</h1>
-        <form method="POST" action="new_manufacturer.jsp">
-            Name:<br>
-            <input type="text" name="name"/>
+        <form method="POST" action="new_measurement.jsp">
+            Measurement:<br>
+            <input type="text" name="measurement"/>
             <br><br>
-            <input type="submit" value="Add Manufactuer">
+            <input type="submit" value="Add Measurement">
         </form>
         </div>
     </body>

@@ -64,18 +64,15 @@ resultSet = statement.executeQuery(sql);
             <h1>Items Pending Approval:</h1>
             <table class="table table-bordered ">
                 <tr>
-                    <th>Id</th>
-                    <th>Photo</th>
+                    
+                    <th>Image</th>
                     <th>Item Number</th>
                     <th>Description</th>
-                    <th>Price</th>
+                    <th>Cost</th>
+                    <th>Quantity Ordered</th>
                     <th>Ordered By</th>
-                    <th>QTY Per UOM</th>
-                    <th>Unit Of Measure</th>
-                    <th>Vendor</th>
-                    <th>Category</th>
-                    <th>Manufacturer</th>
-                    <th>Manufacturer Number</th>
+                    <th>Location</th>
+                   
 
 
                     
@@ -89,31 +86,23 @@ resultSet = statement.executeQuery(sql);
                         String name = resultSet.getString("name");
                         String quantity = resultSet.getString("quantity");
                         String locations = resultSet.getString("locations");
-                        String order_id = resultSet.getString("id");
                         String photo = resultSet.getString("photo");
                         String pDesc = resultSet.getString("pDesc");
-                        String vTitle = resultSet.getString("vTitle");
-                        String cTitle = resultSet.getString("cTitle");
-                        String man = resultSet.getString("manufacturer");
-                        String manNum = resultSet.getString("manufacturerNum");
-                        String uom = resultSet.getString("unitOfMeasure");
+
                         
                     %>
                     
-                    <td><%=order_id%></td>
+                  
                     <td>
                         <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
                     </td>
                     <td><%=item%></td>
                     <td><%=pDesc%></td>
                     <td><%= price%></td>
-                    <td><%=name%></td>
                     <td><%=quantity%></td>
-                    <td><%=uom%></td>
-                    <td><%=vTitle%></td>
-                    <td><%=cTitle%></td>
-                    <td><%=man%></td>
-                    <td><%=manNum%></td>
+                    <td><%=name%></td>
+                    <td><%=locations%></td>
+                    
                     
                 </tr>
 

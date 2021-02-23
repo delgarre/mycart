@@ -112,7 +112,9 @@ th {
                 <div>
                   <h3>Inventory Items:</h3>
                 </div>
-        
+             
+                    
+   
             <table class="table table-bordered"  style="width:20px">
                 <thead>
                 <tr>
@@ -143,7 +145,8 @@ th {
                 <%
                     while(resultSet.next()){
                         ;
-                        Integer id = resultSet.getInt("id");
+                        String id = resultSet.getString("id");
+                        
                         
                         String price = resultSet.getString("price");
                         String quantity = resultSet.getString("quantity");
@@ -154,6 +157,7 @@ th {
                         String unit = resultSet.getString("unitOfMeasure");
                         String man = resultSet.getString("manufacturer");
                         String manNum = resultSet.getString("manufacturerNum");
+                        String cTitle = resultSet.getString("cTitle");
                         String cpt = resultSet.getString("cpt");
                         String ndc = resultSet.getString("ndc");
                         String alt = resultSet.getString("alternateItem");
@@ -178,23 +182,78 @@ th {
                 
                     <td><%=cpt%></td>
                     <td><%=ndc%></td>
-
                     
-                   
+
                     <td>
+                        
                         <a href="o.jsp?id=<%= id%>">
                     <button class="btn btn-outline-success">Add To Cart</button>
-                    </a>
+                        
                     </td>
+                   
+
+                
+                   
                 </tr>
+                <input type="hidden" value="<%=companys3.getCompanyName()%>" name="locations" class="form-control" id="locations" readonly>
+                    <input type="hidden" name="date">
+<input type="hidden" name="user_id" value="<%=user.getUserId()%>">
+
+<input type="hidden" name="name" value="<%=user.getUserName()%>">
+
+<input type="hidden" name="uom" value="<%=unit%>">
+
+<input type="hidden" name="man" value="<%=man%>">
+
+<input type="hidden" name="itemNumber" value="<%=itemNumber%>">
+
+<input type="hidden" name="mannum" value="<%=manNum%>">
+
+<input type="hidden" name="vTitle" value="<%=vendor%>">
+
+
+<input type="hidden" name="cTitle" value="<%=cTitle%>">
+
+
+<input type="hidden" name="pDesc" value="<%=desc%>">
+
+<input type="hidden" name="photo" value="<%=photo%>">
+
+<input type="hidden" name="alt" value="<%=alt%>">
+<input type="hidden" name="price" value="<%=price%>">
+                
                 <%
                     }
                 %>
                 </tbody>
             </table>
+                <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                
+          <input type="number" name="quantity">
+             
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+            
             </div>
         </div>
-            
+                
 <%
 
 connection.close();

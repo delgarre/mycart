@@ -27,6 +27,8 @@
         <mapping class = "com.learn.mycart.entities.Types"/>
         <mapping class = "com.learn.mycart.entities.Manufacturers"/>
         <mapping class = "com.learn.mycart.entities.CPT"/>
+        <mapping class = "com.learn.mycart.entities.Modal"/>
+        <mapping class = "com.learn.mycart.entities.UOM"/>
         
     </session-factory>
 </hibernate-configuration>

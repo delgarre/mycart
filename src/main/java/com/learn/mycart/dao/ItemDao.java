@@ -44,7 +44,7 @@ public class ItemDao {
     public List<Item> getAllItemsByName(String name)
     {
         Session s = this.factory.openSession();
-        Query query = s.createQuery("from Item as i inner join  location as LT on LT.locationType = i.locationType where LT.location =: name");
+        Query query = s.createQuery("from Item as i where i.itemNumbera =: name");
         query.setParameter("name", name);
         List<Item> list = query.list();
         return list;

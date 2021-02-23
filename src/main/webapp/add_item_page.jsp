@@ -1,9 +1,6 @@
-<%-- 
-    Document   : add_item_page
-    Created on : Jan 19, 2021, 2:11:52 PM
-    Author     : garre
---%>
 
+<%@page import="com.learn.mycart.entities.UOM"%>
+<%@page import="com.learn.mycart.dao.UOMDao"%>
 <%@page import="com.learn.mycart.entities.CPT"%>
 <%@page import="com.learn.mycart.dao.CptDAO"%>
 <%@page import="com.learn.mycart.entities.Manufacturers"%>
@@ -59,39 +56,28 @@
                     </div>
                     <!--product quantity-->
                     <div class="form-group">
-                        <h6>Enter Quantity</h6>
+                        <h6>Enter Quantity Per UOM</h6>
                         <input type="number" class="form-control" placeholder="Enter product quantity" name="pQuantity" required/>
                     </div>
+                    <%
+                    UOMDao uDao = new UOMDao(FactoryProvider.getFactory());
+                    List<UOM> uList = uDao.getMeasurements();
+                    
+
+                    %>
                     <!--product uOfMeasure-->
-                    <div>
-                        <h6>Enter Unit of Measure</h6>
+                    <div class="form-group">
+                        <h6>Select Unit of Measure</h6>
                 <select name="pMeasure" id="pMeasure">
-                <option value="BOX (BX)">BOX (BX)</option>
-                <option value="PACK (PK)">PACK (PK)</option>
-                <option value="EACH (EA)">EACH (EA)</option>
-                <option value="PADS">PADS</option>
-                <option value="CASE (CS)">CASE (CS)</option>
-                <option value="SHEETS (SHT)">SHEETS (SHT)</option>
-                <option value="ROLL (RL)">ROLL (RL)</option>
-                <option value="EA">EA</option>
-                <option value="COUNT (CT)">COUNT (CT)</option>
-                <option value="DOZEN (DZ)">DOZEN (DZ)</option>
-                <option value="BOTTLE (BT)">BOTTLE (BT)</option>
-                <option value="GRAM (gm)">GRAM (gm)</option>
-                <option value="CARTON (CTN)">CARTON (CTN)</option>
-                <option value="POUNDS (lbs)">POUNDS (lbs)</option>
-                <option value="GALLON (GAL)">GALLON (GAL)</option>
-                <option value="PAIR (PR)">PAIR (PR)</option>
-                <option value="SET">SET</option>
-                <option value="BAG (bg)">BAG (bg)</option>
-                <option value="REAM">REAM</option>
-                <option value="WA">WA</option>
-                <option value="KILOGRAM (KG)">KILOGRAM (KG)</option>
-                <option value="VIAL (VL)">VIAL (VL)</option>
-                <option value="MILLILITER (ml)">MILLILITER (ml)</option>
-                <option value="PIECES">PIECES</option>
-                <option value="KIT">KIT</option>
-           
+                    
+                    <%
+                    for(UOM u: uList){
+                    %>
+                <option value="<%=u.getVal()%>"><%=u.getVal()%></option>
+                
+           <%
+               }
+           %>
                 
             </select>
                     </div>
@@ -104,8 +90,8 @@
                     %>
                     
                     
-                    <div>
-                        <h6>Enter CPT</h6>
+                    <div class="form-group">
+                        <h6>Select CPT Code</h6>
                       
                <select name="cpt" id="cpt">
                    <%
@@ -121,15 +107,14 @@
                 
             </select>
                     </div>
-                    <div>
-                        <h6>Enter NDC</h6>
-                        <select name="ndc" id="ndc">
-                            <option value="N/A">N/A</option>
-                        </select>
+                    <div class="form-group">
+                        <h6>Enter NDC Number</h6>
+                        <input type="text" class="form-control" placeholder="Enter NDC Number" name="ndc" id="ndc"/>
+                       
                     </div>
                     
                     <!--alternate Item-->
-                    <div>
+                    <div class="form-group">
                         <h6>Enter Alternate Item</h6>
                         <input type="text" class="form-control" placeholder="Enter Alternate Item" name="alt"/>
                     </div>
@@ -140,7 +125,7 @@
                     List<Manufacturers> mlist = mDao.getManufacturers();
                     %>
                     <div>
-                        <h6>Enter Manufacturer</h6>
+                        <h6>Select Manufacturer</h6>
                         <select name="manufacturer" class="form-control" id="manufacturer">
                             <%
                             for(Manufacturers m: mlist){

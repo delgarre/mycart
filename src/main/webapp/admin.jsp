@@ -141,8 +141,24 @@
                     </div>
                     </a>
                 </div>
-
+                
                 <!--seventh row -->
+                <div class="col-md-3">
+                    <a href="uom.jsp" class="card-link">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            
+                            <div class="container">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/ruler.png" alt="user_icon">
+                            </div>
+                          
+                            <h4 class="text-muted">UOM List </h4>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <!--eighth row -->
                 <div class="col-md-3">
                     <a href="notice.jsp" class="card-link">
                     <div class="card">
@@ -157,7 +173,7 @@
                     </div>
                     </a>
                 </div>
-                <!--eighth row -->
+                <!--ninth row -->
                 <div class="col-md-3">
                     <a href="vendors.jsp" class="card-link">
                     <div class="card">
@@ -172,7 +188,7 @@
                     </div>
                     </a>
                 </div>
-                                <!--ninth row -->
+                <!--tenth row -->
                 <div class="col-md-3">
                     <a href="date_page.jsp" class="card-link">
                     <div class="card">
@@ -187,7 +203,7 @@
                     </div>
                     </a>
                 </div>
-              <!--tenth row -->
+              <!--eleventh row -->
                 <div class="col-md-3">
                     <a href="types.jsp" class="card-link">
                     <div class="card">
@@ -202,7 +218,7 @@
                     </div>
                     </a>
                 </div>
-               <!--eleventh row -->
+               <!--twelve row -->
                 <div class="col-md-3">
                     <a href="manufacturers.jsp" class="card-link">
                     <div class="card">
@@ -217,7 +233,7 @@
                     </div>
                     </a>
                 </div>
-                <!--twelve row -->
+                <!--thirteenth row -->
                 <div class="col-md-3">
                     <a href="cpt.jsp" class="card-link">
                     <div class="card">

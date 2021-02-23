@@ -44,7 +44,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Manufacturers where id="+id;
+String sql ="select * from UOM where id="+id;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
@@ -54,7 +54,7 @@ while(resultSet.next()){
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Manufacturer</title>
+        <title>Edit Measurement</title>
         <%@include file="components/common_css_js.jsp" %>
         
 <script>
@@ -78,15 +78,15 @@ function goBack(){
       <h1>Make Changes!</h1>
                       </div>
       <div class="card-body">
-      <form method="POST" action="update_man.jsp">
+      <form method="POST" action="update_uom.jsp">
           
-          <input type="hidden" name="mId" value="<%=resultSet.getString("id") %>">
+          <input type="hidden" name="uId" value="<%=resultSet.getString("id") %>">
 
             <div class="form-group">
-                       <label for="name">Name:</label>
+                       <label for="measurement">Measurement:</label>
           
             
-          <input type="text" name="name" value="<%=resultSet.getString("name") %>" id="name">
+          <input type="text" name="measurement" value="<%=resultSet.getString("val") %>" id="measurement">
             </div>
             <div class="container text-center">
           <input type="submit" value="Edit" class="btn btn-primary">

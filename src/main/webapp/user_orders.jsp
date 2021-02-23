@@ -66,12 +66,15 @@ resultSet = statement.executeQuery(sql);
                 </div>
                 <table class="table table-bordered " >
                     <tr>
-                        <th>Order Number</th>
+                     
                         <th>Item</th>
-                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Vendor</th>
                         <th>Ordered By</th>
+                        <th>Location</th>
+                        
                         <th>Amount Ordered</th>
-                        <th>Approved Date</th>
+                    
                     </tr>
                     <%
                      
@@ -82,19 +85,24 @@ resultSet = statement.executeQuery(sql);
                      String price = resultSet.getString("aPrice");
                      String quantity = resultSet.getString("quantity");
                      String date = resultSet.getString("date");
-                     
+                     String desc = resultSet.getString("pDesc");
+                     String location = resultSet.getString("locations");
                      String cName = resultSet.getString("cName");
+                     String vendor = resultSet.getString("vTitle");
                     %>
                     
                     
                     
                     <tr>
-                        <td><%= id%></td>
+                 
                         <td><%= names%></td>
-                        <td><%= price%></td>
+                        <td><%=desc%></td>
+                        <td><%=vendor%></td>
                         <td><%=cName%></td>
+                        <td><%= location%></td>
+                        
                         <td><%=quantity%></td>
-                        <td><%=date%></td>
+                       
                         
                     </tr>
                     <%

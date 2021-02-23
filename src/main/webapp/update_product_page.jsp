@@ -89,18 +89,6 @@ while(resultSet.next()){
          <form action="update_product.jsp" method="post">
              <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
 <input type="hidden" name="date">
-
-
-
-
-
-
-
-
-
-
-
-
                   
                     <!--product Item number -->
                     <div>

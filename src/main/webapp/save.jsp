@@ -35,6 +35,7 @@ try
 Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
 Statement st=conn.createStatement();
+
 String strQuery = "SELECT COUNT(*) FROM Approve where itemNumber='"+itemNumber+"' and stat ='"+stat+"' and locations='"+locations+"'";
 ResultSet rs = st.executeQuery(strQuery);
 rs.next();
@@ -42,11 +43,13 @@ String Countrow = rs.getString(1);
 out.println(Countrow);
 
 if(Countrow.equals("0")){
-int i=st.executeUpdate("insert into Approve(date,locations, itemNumber,price, quantity, itemName, user_id, stat, name, photo, unitOfMeasure, manufacturer, manufacturerNum, cTitle, vTitle, pDesc, alternateItem)values('"+ddMMyyyyToday+"','"+locations+"','"+itemNumber+"','"+price+"','"+quantity+"','"+itemName+"','"+user_id+"', '"+stat+"', '"+name+"', '"+photo+"', '"+uom+"', '"+man+"', '"+mannum+"','"+cTitle+"', '"+vTitle+"', '"+pDesc+"', '"+alt+"')");
+    
+int i=st.executeUpdate("insert into Approve(date,locations, itemNumber,price, quantity, user_id, stat, name, photo, unitOfMeasure, manufacturer, manufacturerNum, cTitle, vTitle, pDesc, alternateItem)values('"+ddMMyyyyToday+"','"+locations+"','"+itemNumber+"','"+price+"','"+quantity+"', '"+user_id+"', '"+stat+"', '"+name+"', '"+photo+"', '"+uom+"', '"+man+"', '"+mannum+"','"+cTitle+"', '"+vTitle+"', '"+pDesc+"', '"+alt+"')");
 response.sendRedirect("items.jsp");
 session.setAttribute("message", "Cart Item added!");
 
 }
+
 else{
 response.sendRedirect("items.jsp");
 session.setAttribute("message", "Cart Item already exist!");
