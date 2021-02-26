@@ -104,6 +104,10 @@
         <servlet-name>A_OrderServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.A_OrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ItemReportServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.ItemReportServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -187,6 +191,10 @@
     <servlet-mapping>
         <servlet-name>A_OrderServlet</servlet-name>
         <url-pattern>/A_OrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ItemReportServlet</servlet-name>
+        <url-pattern>/ItemReportServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

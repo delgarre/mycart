@@ -102,7 +102,9 @@ resultSet = statement.executeQuery(sql);
     <body>
         <%@include file="components/navbar.jsp" %>
         <h2>Report:</h2>
-    <button onclick="exportTableToExcel('tblData')">Download Excel Report</button>
+        <form method="post" action="ItemReportServlet">
+        <button class="btn btn-outline-warning">Download Excel Report</button>
+        </form>
         <div class="container-fluid">
         <table id="tblData" class="table table-bordered">
             <tr>

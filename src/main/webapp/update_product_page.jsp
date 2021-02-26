@@ -174,7 +174,7 @@ while(resultSet.next()){
                     <div>
                         <h6>Enter NDC</h6>
                     
-                            <input type="text" name="ndc" value="<%=resultSet.getString("ndc")%>"
+                            <input type="text" name="ndc" value="<%=resultSet.getString("ndc")%>">
                         
                     </div>
                     
