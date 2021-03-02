@@ -131,7 +131,7 @@ function goBack(){
                     <td><%=aPName%></td>
                     <td><%=pDesc%></td>
                     <td><%=vendor%></td>
-                    <td><%=aPPrice%></td>
+                    <td><span>$<%=aPPrice%></span></td>
                     <td><%=quantity%></td>
                     <td><%=name%></td>
                     <td><%=locations%></td>

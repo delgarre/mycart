@@ -86,6 +86,13 @@ th {
     white-space: nowrap;
 }
 
+.currencyinput {
+    border: 1px inset #ccc;
+}
+.currencyinput input {
+    border: 0;
+}
+
 </style>
     </head>
     <body>
@@ -175,7 +182,7 @@ th {
                     
                     
                     <td><%= quantity%></td>
-                                        <td><%= price%></td>
+                    <td><span>$<%= price%></span></td>
                     
                     
                     <td><%=man%></td>

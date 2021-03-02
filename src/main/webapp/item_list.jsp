@@ -63,6 +63,13 @@ $(document).ready(function(){
   border: navy;
   padding: 10px;
 }
+
+.currencyinput {
+    border: 1px inset #ccc;
+}
+.currencyinput input {
+    border: 0;
+}
 </style>
     </head>
     <body>
@@ -166,7 +173,7 @@ $(document).ready(function(){
                 <td><%=i.getUnitOfMeasure()%></td>
                 <td><%=i.getQuantity()%></td>
                
-                <td><%=i.getPrice()%></td>
+                <td><span>$<%=i.getPrice()%></span></td>
 
                 
                 

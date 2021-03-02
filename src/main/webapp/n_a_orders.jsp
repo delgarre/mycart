@@ -98,7 +98,7 @@ resultSet = statement.executeQuery(sql);
                     </td>
                     <td><%=item%></td>
                     <td><%=pDesc%></td>
-                    <td><%= price%></td>
+                    <td><span>$<%= price%></span></td>
                     <td><%=quantity%></td>
                     <td><%=name%></td>
                     <td><%=locations%></td>
