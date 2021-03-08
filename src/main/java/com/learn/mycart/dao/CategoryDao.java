@@ -29,7 +29,7 @@ public class CategoryDao {
     public List<Category> getCategories()
     {
         Session s= this.factory.openSession();
-        Query query = s.createQuery("from Category");
+        Query query = s.createQuery("from Category ORDER BY categoryTitle");
         List<Category> list= query.list();
         return list;
     }

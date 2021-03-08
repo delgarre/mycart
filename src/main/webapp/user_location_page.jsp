@@ -10,18 +10,15 @@
 <%@page import="com.learn.mycart.entities.OrderHistory"%>
 <%
     User user = (User)session.getAttribute("current-user");
-    
-    
-    
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
         response.sendRedirect("index.jsp");
         return;
     }
+     
 %>
 <%
 String id = request.getParameter("id");
-String name = user.getUserName();
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
 String database = "mycart";
@@ -35,13 +32,12 @@ e.printStackTrace();
 Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
-ResultSet resultSet2 = null;
 %>
 <%
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from OrderHistory where locations = '"+id+"' and date = '"+session.getAttribute("date")+"'";
+String sql ="select distinct locations from OrderHistory where date ='"+id+"';";
 
 resultSet = statement.executeQuery(sql);
 
@@ -59,55 +55,34 @@ resultSet = statement.executeQuery(sql);
         <%@include file="components/user_navbar.jsp" %>
         <div class="col-md-8">
             <div class="table-responsive-sm mt-3">
-                <h2>Orders for <%=id%></h2>
-                <div class="container-fluid mt-3">
-                <%@include file="components/message.jsp" %>
-                </div>
                 <table class="table table-bordered " >
                     <tr>
-                     
-                        <th>ITEM</th>
-                        <th>DESCRIPTION</th>
-                        <th>VENDOR</th>
-                        <th>COST</th>
-                        <th>ORDERED BY</th>
-                        <th>LOCATION</th>
+                        <th>Location</th>
                         
-                        <th>QTY ORDERED</th>
-                    
+                        <th>Actions</th>
                     </tr>
-                    <%
-                     
-                     while(resultSet.next()){
-                         
-                  
-                     String names = resultSet.getString("itemNumber");
-                     String price = resultSet.getString("aPrice");
-                     String quantity = resultSet.getString("quantity");
-                     String date = resultSet.getString("date");
-                     String desc = resultSet.getString("pDesc");
-                     String location = resultSet.getString("locations");
-                     String cName = resultSet.getString("cName");
-                     String vendor = resultSet.getString("vTitle");
-                    %>
+
                     
                     
                     
                     <tr>
-                 
-                        <td><%= names%></td>
-                        <td><%=desc%></td>
-                        <td><%=vendor%></td>
-                        <td><span>$<%= price%></span></td>
-                        <td><%=cName%></td>
-                        <td><%= location%></td>
+                           <%
+                    while(resultSet.next()){
+                        ;
+                        String locations = resultSet.getString("locations");
                         
-                        <td><%=quantity%></td>
-                       
+                    %>
+                        <td><%=locations%></td>
+                        <td>
+                            <a href="user_orders.jsp?id=<%= locations%>">
+                            <button>View</button>
+                        </a>
+                        </td>
                         
                     </tr>
                     <%
                         }
+                        session.setAttribute("date", id);
                     %>
                 </table>
             </div>

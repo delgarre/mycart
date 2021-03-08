@@ -3,7 +3,7 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.learn.mycart.entities.User"%>
-<%@page import="com.learn.mycart.entities.Company"%>
+<%@page import="com.learn.mycart.entities.Vendor"%>
 <%
     User user = (User)session.getAttribute("current-user");
     if(user==null){
@@ -11,6 +11,18 @@
         response.sendRedirect("index.jsp");
         return;
     }
+    
+        
+    else 
+    {
+        if(user.getUserType().equals("normal"))
+        {
+            session.setAttribute("message", "Admin level required!");
+            response.sendRedirect("index.jsp");
+            return;
+        }
+    }
+    
 %>
 <%
 String id = request.getParameter("id");
@@ -32,7 +44,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Company where companyId="+id;
+String sql ="select * from Types where id="+id;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
@@ -42,7 +54,7 @@ while(resultSet.next()){
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Update Site</title>
+        <title>Edit Type</title>
         <%@include file="components/common_css_js.jsp" %>
         
 <script>
@@ -53,52 +65,46 @@ function goBack(){
 </script>
     </head>
     <body>
-        <%@include file="components/navbar.jsp" %>
-        <h1>Make Changes!</h1>
-        <div class="container"> 
-            <div class="row">
-                 <div class="col-md-6 offset-md-3">
+      <%@include file="components/navbar.jsp" %>
+      <div class="container">  
+          <div class="row">
+              <div class="col-md-6 offset-md-3">
                   <br>
                   <button class="btn btn-warning" onclick="goBack()">Go Back</button>
                       <br>
-                      <div class="card">
-                        <div class="card-header custom-bg text-white">
+                  <div class="card">
+                      
+                      <div class="card-header custom-bg text-white">
       <h1>Make Changes!</h1>
                       </div>
-            <div class="card-body">
-        <form method="post" action="update_comp.jsp">
-            <input type="hidden" name="companyId" value="<%=resultSet.getString("companyId") %>">
-            <br>
-            <div class="form-group">
-                       <label for="companyName">Location:</label>
-           
-            <input type="text" name="companyName" value="<%=resultSet.getString("companyName")%>" id="companyName">
-            </div>
-              <div class="form-group">
-                       <label for="type">Company:</label>
-        
-            <input type="text" name="type" value="<%=resultSet.getString("type")%>" id="type">
-              </div>
-              <div class="form-group">
-                       <label for="typeLocation">Type Location:</label>
+      <div class="card-body">
+      <form method="POST" action="update_l_type.jsp">
           
-            <input type="text" name="typeLocation" value="<%=resultSet.getString("typeLocation")%>" id="typeLocation">
-              </div>
-                          <div class="container text-center">
-              <input type="submit" class="btn btn-outline-primary" value="submit">
-                          </div>
-        </form>
-                        </div>
-                      </div>
-                 </div>
+          <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
+
+            <div class="form-group">
+                       <label for="type">Name:</label>
+          
+            
+          <input type="text" name="type" value="<%=resultSet.getString("locationType") %>" id="type">
             </div>
-        </div>
-    <%
+            <div class="container text-center">
+          <input type="submit" value="Edit" class="btn btn-primary">
+          
+            </div>
+      </form>
+      </div>
+                  </div>
+              </div>
+          </div>
+    </div>
+      
+<%
 }
 connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
-%>
+%>      
     </body>
 </html>

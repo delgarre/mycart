@@ -141,7 +141,7 @@
                 </div>
                 <!--fifth row -->
                 <div class="col-md-3">
-                <a href="pending_dropdown.jsp?id=<%= user.getUserId()%>" class="card-link">
+                <a href="n_location.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -158,7 +158,7 @@
                 
                                 <!--sixth row -->
                 <div class="col-md-3">
-                  <a href="approved_pending.jsp?id=<%= user.getUserId()%>" class="card-link">
+                  <a href="user_date_page.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             

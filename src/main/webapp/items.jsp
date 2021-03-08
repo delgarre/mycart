@@ -127,25 +127,25 @@ th {
                 <tr>
                 
 
-                <th>Image</th>
-                <th>Item Number</th>
-                <th>Description</th>
-                <th>Vendor</th>
+                <th>IMAGE</th>
+                <th>ITEM NUMBER</th>
+                <th>DESCRIPTION</th>
+                <th>VENDOR</th>
                 <th>UOM</th>
 
 
 
-                <th>Quantity Per UOM</th>
+                <th>QUANTITY PER UOM</th>
               
-                 <th>Cost</th>
+                 <th>COST</th>
 
-                <th>Manufacturer</th>
+                <th>MANUFACTURER</th>
             
                 <th>CPT</th>
                 <th>NDC</th>
                 
                 
-                <th>Actions</th>
+                <th>ACTIONS</th>
                 </tr>
                 </thead>
                 <tbody id="myTable">

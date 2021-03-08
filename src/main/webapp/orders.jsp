@@ -105,7 +105,7 @@ resultSet = statement.executeQuery(sql);
                     <td><%=locations%></td>
                     <td>
                         <a href="a_orders.jsp?id=<%= locations%>">
-                            <button>View</button>
+                            <button class="btn btn-outline-primary">View</button>
                         </a>
                            
                     </td>

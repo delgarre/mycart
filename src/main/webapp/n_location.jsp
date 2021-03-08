@@ -3,10 +3,15 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.entities.User"%>
+
+<%@page import="com.learn.mycart.dao.CompanyDao"%>
+<%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.entities.Company"%>
 <%
-    Company company1 = (Company)session.getAttribute("location");
+    
     User user = (User)session.getAttribute("current-user");
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
@@ -35,18 +40,18 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Orders where status= 'Not Approved' and locations = '"+id+"'";
+String sql ="select locations from Orders where status = 'Not Approved' and name = '"+user.getUserName()+"' group by locations";
 resultSet = statement.executeQuery(sql);
 
 %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pending Orders</title>
-                <%@include file="components/common_css_js.jsp" %>
-        
+        <%@include file="components/common_css_js.jsp" %>
         
 <style>
 .center {
@@ -57,68 +62,53 @@ resultSet = statement.executeQuery(sql);
 }
 </style>
     </head>
+    <%
+    Date today = new Date();
+    SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
+    String ddMMyyyyToday = DATE_FORMAT.format(today);
+    %>
     <body>
-        <%@include file="components/user_navbar.jsp" %>
+           <%@include file="components/navbar.jsp" %>
+        <h1>Locations Waiting Approval:</h1>
         <div class="center">
+
+            <div class="container-fluid mt-3">
+                <%@include file="components/message.jsp" %>
+            </div>
             
-            <h1>Items Pending Approval:</h1>
+            
             <table class="table table-bordered ">
+                
                 <tr>
-                    
-                    <th>Image</th>
-                    <th>Item Number</th>
-                    <th>Description</th>
-                    <th>Cost</th>
-                    <th>Quantity Ordered</th>
-                    <th>Ordered By</th>
-                    <th>Location</th>
+                    <th>Locations</th>
                    
-
-
+                    <th>Actions</th>
                     
                 </tr>
                 <tr>
                    <%
                     while(resultSet.next()){
-                        
-                        String item = resultSet.getString("itemNumber");
-                        String price = resultSet.getString("aPPrice");
-                        String name = resultSet.getString("name");
-                        String quantity = resultSet.getString("quantity");
+                        ;
                         String locations = resultSet.getString("locations");
-                        String photo = resultSet.getString("photo");
-                        String pDesc = resultSet.getString("pDesc");
-
                         
                     %>
                     
-                  
-                    <td>
-                        <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
-                    </td>
-                    <td><%=item%></td>
-                    <td><%=pDesc%></td>
-                    <td><span>$<%= price%></span></td>
-                    <td><%=quantity%></td>
-                    <td><%=name%></td>
+
                     <td><%=locations%></td>
-                    
+                    <td>
+                        <a href="n_a_orders.jsp?id=<%= locations%>">
+                            <button>View</button>
+                        </a>
+                           
+                    </td>
                     
                 </tr>
-
-
-              
                 <%
                     }
-                  
                 %>
-               
             </table>
-                
+        
         </div>
-        
-        
-        
 <%
 
 connection.close();

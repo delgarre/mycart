@@ -42,19 +42,17 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from LocationType";
+String sql ="select * from Types";
 resultSet = statement.executeQuery(sql);
 
 %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Location Types</title>
+        <title>JSP Page</title>
         <%@include file="components/common_css_js.jsp" %>
-        
         
 <style>
 .center {
@@ -63,23 +61,20 @@ resultSet = statement.executeQuery(sql);
   border: navy;
   padding: 10px;
 }
-</style>        
+</style>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
         <div class="center">
-        
         <h2>Location Types</h2>
-        <br>
+        
         <div class="row ml-2">
-            <a href="add_type.jsp">
-                <button class="btn btn-outline-success">Tie Location Type</button>
+            <a href="add_l_type.jsp">
+                <button class="btn btn-outline-success">Add Location Type</button>
             </a>
-            <br>
-            <a href="tie_type.jsp">
-                <button class="btn btn-outline-primary">Add Location Type</button>
-            </a>
+            
         </div>
+        
         <div class="col-md-8">
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
@@ -88,25 +83,29 @@ resultSet = statement.executeQuery(sql);
             <table class="table table-bordered">
                
                 <tr>
-                <th>Location</th>
-                <th>Type</th>
+              
+                <th>Name</th>
                 <th>Action</th>
                 </tr>
                 <tr>
                     <%
                     while(resultSet.next()){
                         
-                        String loc = resultSet.getString("location");
+                        
                         String type = resultSet.getString("locationType");
                         String id = resultSet.getString("id");
 
                         
                     %>
-                    <td><%=loc%></td>
+                  
                     <td><%=type%></td>
                     <td>
                         
-                        <a href="delete_type.jsp?id=<%=id%>">
+                        <a href="l_type_page.jsp?id=<%=id%>">
+                            <button class="btn btn-outline-primary">Edit Name</button>
+                        </a>
+                        
+                        <a href="delete_l_type.jsp?id=<%=id%>">
                             <button class="btn btn-outline-danger">Delete</button>
                         </a>
                     </td>
@@ -117,10 +116,9 @@ resultSet = statement.executeQuery(sql);
                 %>
             </table>
         </div>
+
         </div>
         
-        
-
 <%
 
 connection.close();

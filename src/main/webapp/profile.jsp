@@ -81,17 +81,17 @@ function goBack(){
 <form method="post" action="update_user_profile.jsp">
 <input type="hidden" name="user_id" value="<%=resultSet.getString("user_id") %>">
                         <div class="form-group">
-                       <label for="user_name">Name:</label>
+                       <label for="user_name">NAME:</label>
                     
                     <input type="text" name="user_name" value="<%=resultSet.getString("user_name") %>" class="form-control" id="user_name" readonly>
                         </div>
                     <div class="form-group">
-                       <label for="user_password">Password:</label>
+                       <label for="user_password">PASSWORD:</label>
                     
                     <input type="text" name="user_password" value="<%=resultSet.getString("user_password") %>" class="form-control" id="user_password">
                     </div>
                     <div class="form-group">
-                       <label for="user_email">Email Id:</label>
+                       <label for="user_email">EMAIL ID:</label>
                     
                     <input type="email" name="user_email" value="<%=resultSet.getString("user_email") %>" class="form-control" id="user_email" readonly>
                     </div>

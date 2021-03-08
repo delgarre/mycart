@@ -69,7 +69,7 @@ div {text-align: center;}
     String ddMMyyyyToday = DATE_FORMAT.format(today);
     %>
     <body>
-           <%@include file="components/user_navbar.jsp" %>
+           <%@include file="components/navbar.jsp" %>
 <div class="container">
     <div class="row mt-5">
 <div class="col-md-8">

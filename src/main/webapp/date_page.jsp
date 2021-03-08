@@ -46,7 +46,7 @@ ResultSet resultSet2 = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select distinct date from OrderHistory order by date desc;";
+String sql ="select distinct date from OrderHistory order by date desc";
 
 resultSet = statement.executeQuery(sql);
 

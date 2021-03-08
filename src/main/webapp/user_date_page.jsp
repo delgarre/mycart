@@ -10,17 +10,14 @@
 <%@page import="com.learn.mycart.entities.OrderHistory"%>
 <%
     User user = (User)session.getAttribute("current-user");
-    
-    
-    
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
         response.sendRedirect("index.jsp");
         return;
     }
+    
 %>
 <%
-String id = request.getParameter("id");
 String name = user.getUserName();
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
@@ -41,7 +38,7 @@ ResultSet resultSet2 = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from OrderHistory where locations = '"+id+"' and date = '"+session.getAttribute("date")+"'";
+String sql ="select distinct date from OrderHistory where cName = '"+user.getUserName()+"' order by date desc";
 
 resultSet = statement.executeQuery(sql);
 
@@ -54,65 +51,58 @@ resultSet = statement.executeQuery(sql);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Order History</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <body>
         <%@include file="components/user_navbar.jsp" %>
+        <div class="center">
+            
+            <br>
+            <br>
         <div class="col-md-8">
             <div class="table-responsive-sm mt-3">
-                <h2>Orders for <%=id%></h2>
-                <div class="container-fluid mt-3">
-                <%@include file="components/message.jsp" %>
-                </div>
                 <table class="table table-bordered " >
                     <tr>
-                     
-                        <th>ITEM</th>
-                        <th>DESCRIPTION</th>
-                        <th>VENDOR</th>
-                        <th>COST</th>
-                        <th>ORDERED BY</th>
-                        <th>LOCATION</th>
+                        <th>Approval Date</th>
                         
-                        <th>QTY ORDERED</th>
-                    
+                        <th>Actions</th>
                     </tr>
-                    <%
-                     
-                     while(resultSet.next()){
-                         
-                  
-                     String names = resultSet.getString("itemNumber");
-                     String price = resultSet.getString("aPrice");
-                     String quantity = resultSet.getString("quantity");
-                     String date = resultSet.getString("date");
-                     String desc = resultSet.getString("pDesc");
-                     String location = resultSet.getString("locations");
-                     String cName = resultSet.getString("cName");
-                     String vendor = resultSet.getString("vTitle");
-                    %>
+
                     
                     
                     
                     <tr>
-                 
-                        <td><%= names%></td>
-                        <td><%=desc%></td>
-                        <td><%=vendor%></td>
-                        <td><span>$<%= price%></span></td>
-                        <td><%=cName%></td>
-                        <td><%= location%></td>
+                           <%
+                    while(resultSet.next()){
                         
-                        <td><%=quantity%></td>
-                       
+                        String date = resultSet.getString("date");
+                        
+                    %>
+                        <td><%=date%></td>
+                        <td>
+                            <a href="user_location_page.jsp?id=<%= date%>">
+                            <button>View Locations</button>
+                        </a>
+                        </td>
                         
                     </tr>
                     <%
+                        
                         }
+                     
                     %>
                 </table>
             </div>
         </div>
-                
+        </div>     
 
 <%
 

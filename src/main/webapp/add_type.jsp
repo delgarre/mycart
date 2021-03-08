@@ -4,6 +4,8 @@
     Author     : garre
 --%>
 
+<%@page import="com.learn.mycart.entities.Types"%>
+<%@page import="com.learn.mycart.dao.TypesDao"%>
 <%@page import="com.learn.mycart.entities.Company"%>
 <%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.dao.CompanyDao"%>
@@ -51,27 +53,21 @@
                             %>
                         </select>
                     </div>
+                        <%
+                        TypesDao tDao = new TypesDao(FactoryProvider.getFactory());
+                        List<Types> tList = tDao.getTypes();
+                        %>
                         <div class="form-group">
                             <h6>Type:</h6>
-                            <select name="locationType" id="locationType">
-                                <option value="OFFICE">OFFICE</option>
-                                <option value="JACKSONVILLE ONLY">JACKSONVILLE ONLY</option>
-                                <option value="OFFICE-ADMIN">OFFICE-ADMIN</option>
-                                <option value="DIVERSIFIED SERVICE ENTERPRISES INC">DIVERSIFIED SERVICE ENTERPRISES INC</option>
-                                <option value="FROG HOP">FROG HOP</option>
-                                <option value="HOTELS">HOTELS</option>
-                                <option value="PHARMACY">PHARMACY</option>
-                                <option value="WEST COAST LAW">WEST COAST LAW</option>
-                                <option value="1ST HEALTH INC">1ST HEALTH INC</option>
-                                <option value="PHYSICIANS GROUP LLC">PHYSICIANS GROUP LLC</option>
-                                <option value="PHYSICIANS GROUP(MN)LLC">PHYSICIANS GROUP(MN)LLC</option>
-                                <option value="IT-SUPPLIES">IT-SUPPLIES</option>
-                                <option value="HIMES-ONLY">HIMES-ONLY</option>
-                                <option value="PHYSICIANS GROUP LLC-HAND SANITIZER">PHYSICIANS GROUP LLC-HAND SANITIZER</option>
-                                <option value="PAIN MANAGEMENT">PAIN MANAGEMENT</option>
-                                <option value="PALM INSURE">PALM INSURE</option>
-                                <option value="ORTHOPEDIC">ORTHOPEDIC</option>
-                                <option value="LUCKY SPOT">LUCKY SPOT</option>
+                            
+                            <select class="form-control" name="locationType" id="locationType">
+                                <%
+                                for(Types t: tList){
+                                %>
+                                <option value="<%=t.getLocationType()%>"><%=t.getLocationType()%></option>
+                              <%
+                                  }
+                              %>
                             </select>
                         </div>
                         

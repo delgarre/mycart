@@ -205,17 +205,18 @@
                         </div>
                             
                             
-                  <!--          
+                        
                   
                     <div class="form-group">
                         <label for="file">Select picture of product:</label>
                         <br>
                         <input type="file" id="file" name="file" size="50"/>
-                        <!--
+                        
                         <input type="file" id="file" name="file"/>
                         
                         
                     </div>
+                        <!--
                     <div class="form-group">
                         <label for="sds">Select SDS:</label>
                         <br>

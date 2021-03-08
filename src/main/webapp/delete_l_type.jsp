@@ -1,10 +1,10 @@
 
-<%@page import="com.learn.mycart.entities.Company"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*,java.util.*" %>
 <%
     String id = request.getParameter("id");
-    String loc = request.getParameter("location");
+    
     try{
         
     Class.forName("com.mysql.jdbc.Driver");
@@ -13,10 +13,9 @@
     
     Statement st = conn.createStatement();
     
-    int i = st.executeUpdate("DELETE FROM Orders WHERE id="+id);
-    session.setAttribute("message", "Order Item deleted successfully!");
-    response.sendRedirect("a_orders.jsp?id="+loc);
-    
+    int i = st.executeUpdate("DELETE FROM Types WHERE id="+id);
+    session.setAttribute("message", "Location type deleted successfully!");
+    response.sendRedirect("type.jsp");
     }
     catch(Exception e)
     {

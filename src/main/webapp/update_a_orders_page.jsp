@@ -55,7 +55,7 @@ while(resultSet.next()){
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <h1>Check</h1>
+        <h1>UPDATE ITEM QUANTITY</h1>
         <div class="center">
     <form method="post" action="update_a_order.jsp">
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">

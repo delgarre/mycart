@@ -108,13 +108,13 @@ resultSet = statement.executeQuery(sql);
                 <input type="text" name="locations" value="<%=id%>"/>
                                 
                 <a href="order_email.jsp?id=<%=id%>">
-                    <button>Approve</button>
+                    <button class="btn btn-outline-success">Approve</button>
                 </a>
              
           
             <div class="row ml-2">
             <a href="single_add.jsp?id=<%=id%>">
-                <button>Add Item</button>
+                <button class="btn btn-outline-warning">Add Item</button>
             </a>
         </div>
                 <table class="table table-bordered " id="td">
@@ -123,7 +123,7 @@ resultSet = statement.executeQuery(sql);
                     <th>Photo</th>
                     <th>Item Number</th>
                     <th>Description</th>
-                    <th>Price</th>
+                    <th>Cost</th>
                     <th>Ordered By</th>
                     <th>QTY Per UOM</th>
                     <th>Unit Of Measure</th>
@@ -161,7 +161,7 @@ resultSet = statement.executeQuery(sql);
                     </td>
                     <td><%=item%></td>
                     <td><%=pDesc%></td>
-                    <td><%= price%></td>
+                    <td><span>$<%= price%></span></td>
                     <td><%=name%></td>
                     <td><%=quantity%></td>
                     <td><%=uom%></td>
@@ -172,13 +172,13 @@ resultSet = statement.executeQuery(sql);
 
                     <td>
                         <a href="update_a_orders_page.jsp?id=<%=order_id%>">
-                            <button>Edit</button>
+                            <button class="btn btn-outline-primary">Edit</button>
                         </a>
-                            <a href="delete_a_orders.jsp?id=<%=order_id%>">
-                                <button>Delete</button>
+                            <a href="delete_a_orders.jsp?id=<%=order_id%>&location=<%=id%>">
+                                <button class="btn btn-outline-danger">Delete</button>
                             </a>
                          <a href="submit_single.jsp?id=<%=order_id%>">
-                                <button>Approve</button>
+                                <button class="btn btn-outline-success">Approve</button>
                          </a>
                         
                     </td>

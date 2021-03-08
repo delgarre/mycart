@@ -62,12 +62,14 @@ public class NewUser {
            
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("New User!");
+            message.setSubject("Ordering PortalNew User!");
             
              message.setContent(
                     "<p>"
-                   + "Please click the link below or copy and paste it into your browser to reset your password on the ordering portal. \n" +
-                    " \n" +
+                   + "Please click the link below or copy and paste it into your browser to activate your account on the new ordering portal. \n" +
+                    " \n"
+                    + "Please save the link to your favorites or bookmark for future references" 
+                            +
                     "Should you have any issues please call Diane Beckley.  Thank you<br><br>"
                    + "<a href=http://172.20.29.68:8080/mycart/new_user_pass.jsp?id="+recepient+">Reset Password <a/>"
                    

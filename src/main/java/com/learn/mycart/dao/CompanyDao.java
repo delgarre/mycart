@@ -18,7 +18,7 @@ public class CompanyDao {
     
     public List<Company> getCompanies(){
         Session s= this.factory.openSession();
-        Query query = s.createQuery("from Company");
+        Query query = s.createQuery("from Company ORDER BY companyName");
         List<Company> list= query.list();
         return list;
     }
