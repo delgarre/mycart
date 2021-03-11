@@ -89,7 +89,7 @@ resultSet = statement.executeQuery(sql);
                         <td><%=date%></td>
                         <td>
                             <a href="user_location_page.jsp?id=<%= date%>">
-                            <button>View Locations</button>
+                            <button class="btn btn-outline-warning">View Locations</button>
                         </a>
                         </td>
                         

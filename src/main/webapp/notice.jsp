@@ -40,7 +40,7 @@
             <option value="active">active</option>
             <option value="not active"> not active</option>
         </select>
-        <input type="submit"   value="Post Message">
+        <input type="submit" class="btn btn-outline-primary"  value="Post Message">
         </form>
         <div class="col-md-8">
             <table class="table table-bordered">
@@ -63,7 +63,7 @@
                     <td><%=n.getStatus()%></td>
                     <td>
                         <a href="delete_notice.jsp?id=<%= n.getId() %>">
-                        <button type="button" class="delete">Delete</button>
+                        <button type="button" class="btn btn-outline-danger">Delete</button>
                     </a>
                     </td>
                 </tr>

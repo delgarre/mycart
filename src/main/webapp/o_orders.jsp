@@ -88,6 +88,10 @@ resultSet = statement.executeQuery(sql);
           alert("mail sent successfully") 
         }); 
     } 
+    
+    function goBack(){
+        window.history.back();
+    } 
 </script>
     </head>
     <%
