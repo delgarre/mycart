@@ -11,7 +11,35 @@
 <%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.dao.CategoryDao"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+String id = request.getParameter("id");
+String driver = "com.mysql.jdbc.Driver";
+String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
+String database = "mycart";
+String userid = "admin";
+String password = "ordering";
+try {
+Class.forName(driver);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connection = null;
+Statement statement = null;
+ResultSet resultSet = null;
+%>
+<%
+try{
+connection = DriverManager.getConnection(connectionUrl+database, userid, password);
+statement=connection.createStatement();
+String sql ="select * from L_Company";
+resultSet = statement.executeQuery(sql);
+
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -182,25 +210,18 @@
                             
                             <div class="form-group">
                                 <h6>Select Location Type</h6>
-               
-                                <input type="checkbox" name="location" value="OFFICE">OFFICE<br>
-                                <input type="checkbox" name="location" value="JACKSONVILLE ONLY">JACKSONVILLE ONLY<br>
-                                <input type="checkbox" name="location" value="OFFICE-ADMIN">OFFICE-ADMIN<br>
-                                <input type="checkbox" name="location" value="DIVERSIFIED SERVICE ENTERPRISES INC">DIVERSIFIED SERVICE ENTERPRISES INC<br>
-                                <input type="checkbox" name="location" value="FROG HOP">FROG HOP<br>
-                                <input type="checkbox" name="location" value="HOTELS">HOTELS<br>
-                                <input type="checkbox" name="location" value="PHARMACY">PHARMACY<br>
-                                <input type="checkbox" name="location" value="WEST COAST LAW">WEST COAST LAW<br>
-                                <input type="checkbox" name="location" value="1ST HEALTH INC">1ST HEALTH INC<br>
-                                <input type="checkbox" name="location" value="PHYSICIANS GROUP LLC">PHYSICIANS GROUP LLC<br>
-                                <input type="checkbox" name="location" value="PHYSICIANS GROUP(MN)LLC">PHYSICIANS GROUP(MN)LLC<br>
-                                <input type="checkbox" name="location" value="IT-SUPPLIES">IT-SUPPLIES<br>
-                                <input type="checkbox" name="location" value="HIMES-ONLY">HIMES-ONLY<br>
-                                <input type="checkbox" name="location" value="PHYSICIANS GROUP LLC-HAND SANITIZER">PHYSICIANS GROUP LLC-HAND SANITIZER<br>
-                                <input type="checkbox" name="location" value="PAIN MANAGEMENT">PAIN MANAGEMENT<br>
-                                <input type="checkbox" name="location" value="PALM INSURE">PALM INSURE<br>
-                                <input type="checkbox" name="location" value="ORTHOPEDIC">ORTHOPEDIC<br>
-                                <input type="checkbox" name="location" value="LUCKY SPOT">LUCKY SPOT<br>
+                <%
+                    while(resultSet.next()){
+                        
+                        String company = resultSet.getString("company");
+                        
+                    %>
+                                <input type="checkbox" name="location" value="<%=company%>"><%=company%><br>
+                               
+                            
+                                <%
+                                    }
+                                %>
                             </div>
                         </div>
                             
@@ -234,5 +255,12 @@
                   
          </form>
          </div>
+<%
+
+connection.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
     </body>
 </html>

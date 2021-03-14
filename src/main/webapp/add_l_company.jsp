@@ -41,11 +41,11 @@
         <%@include file="components/navbar.jsp" %>
         <div class="center">
         <h1>Info:</h1>
-        <form method="POST" action="new_cpt.jsp">
+        <form method="POST" action="new_l_company.jsp">
             Name:<br>
-            <input type="text" name="codes"/>
+            <input type="text" name="company"/>
             <br><br>
-            <input type="submit" class="btn btn-outline-success" value="Add CPT Code">
+            <input type="submit" class="btn btn-outline-success" value="Add Company">
         </form>
         </div>
     </body>

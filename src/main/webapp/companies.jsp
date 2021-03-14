@@ -25,7 +25,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Companies</title>
+        <title>Locations</title>
         <%@include file="components/common_css_js.jsp" %>
         
         
@@ -47,6 +47,9 @@
             <div class="row ml-2">
             <a href="add_company.jsp">
                 <button class="btn btn-outline-success">Add location</button>
+            </a>
+                <a href="l_company.jsp">
+                <button class="btn btn-outline-primary">Companies</button>
             </a>
         </div>
         <div class="col-md-8">
@@ -78,10 +81,10 @@
                         <td><%= cp.getType()%></td>
                     <td>
                     <a href="delete_comp.jsp?id=<%= cp.getCompanyId()%>">
-                        <button type="button" class="delete">Delete</button>
+                        <button type="button" class="btn btn-outline-danger">Delete</button>
                     </a>
                     <a href="update_comp_page.jsp?id=<%= cp.getCompanyId()%>">
-                        <button type="button" class="update">Edit</button>
+                        <button type="button" class="btn btn-outline-warning">Edit</button>
                     </a> 
                 </td>
             </tr>
