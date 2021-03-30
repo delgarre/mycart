@@ -73,11 +73,11 @@ resultSet = statement.executeQuery(sql);
         <br>
         <div class="row ml-2">
             <a href="add_type.jsp">
-                <button class="btn btn-outline-success">Tie Location Type</button>
+                <button class="btn btn-outline-success">Assign Location Type</button>
             </a>
             <br>
-            <a href="tie_type.jsp">
-                <button class="btn btn-outline-primary">Add Location Type</button>
+            <a href="type.jsp">
+                <button class="btn btn-outline-primary">Maintain Location Type</button>
             </a>
         </div>
         <div class="col-md-8">

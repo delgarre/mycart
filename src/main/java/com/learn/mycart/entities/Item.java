@@ -45,6 +45,7 @@ public class Item implements Serializable {
     
     private String locationType;
     private Blob image;
+    private String notes;
     
 
 
@@ -54,7 +55,7 @@ public class Item implements Serializable {
     public Item(int id,  String price, String photo, String quantity, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, 
             String itemNumber, String alternateItem, String stat, 
             String cTitle, String vTitle, String locationType,String discontinued, String sds, 
-            String pDesc, Blob image) {
+            String pDesc, Blob image, String notes) {
         this.id = id;
         
         this.price = price;
@@ -75,6 +76,7 @@ public class Item implements Serializable {
         this.discontinued = discontinued;
         this.sds = sds;
         this.image = image;
+        this.notes = notes;
     }
 
     public int getId() {
@@ -227,6 +229,14 @@ public class Item implements Serializable {
 
     public void setImage(Blob image) {
         this.image = image;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     

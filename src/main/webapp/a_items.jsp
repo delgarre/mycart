@@ -119,21 +119,21 @@ function goBack(){
                 <tr>
                 
 
-                <th>Photo</th>
-                <th>Price</th>
-                <th>Item Number</th>
-                <th>Description</th>
-                <th>Quantity Per UOM</th>
-                <th>Alternate Item</th>
-                <th>Vendor</th>
-                <th>Unit Of Measure</th>
-                <th>Manufacturer</th>
-                <th>Manufacturer Number</th>
+                <th>IMAGE</th>
+                <th>COST</th>
+                <th>ITEM NUMBER</th>
+                <th>DESCRIPTION</th>
+                <th>QTY PER UOM</th>
+                <th>ALTERNATE ITEM</th>
+                <th>VENDOR</th>
+                <th>UNIT OF MEASURE</th>
+                <th>MANUFACTURER</th>
+                <th>MANUFACTURER #</th>
                 <th>CPT</th>
                 <th>NDC</th>
                 
                 
-                <th>Actions</th>
+                <th>ACTIONS</th>
                 </tr>
                 </thead>
                 <tbody id="myTable">
@@ -160,7 +160,7 @@ function goBack(){
                     <td>
                         <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
                     </td>
-                    <td><%= price%></td>
+                    <td><span>$<%= price%></span></td>
                     <td><%= itemNumber%></td>
                     <td><%=desc%></td>
                     <td><%= quantity%></td>
@@ -175,7 +175,7 @@ function goBack(){
                    
                     <td>
                         <a href="a_s.jsp?id=<%= id%>">
-                    <button class="btn btn-outline-success">Add To Cart</button>
+                    <button class="btn btn-outline-success">ADD TO CART</button>
                     </a>
                     </td>
                 </tr>

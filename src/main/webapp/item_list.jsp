@@ -64,12 +64,28 @@ $(document).ready(function(){
   padding: 10px;
 }
 
-.currencyinput {
-    border: 1px inset #ccc;
+table.table-fit {
+    width: auto !important;
+    table-layout: auto !important;
 }
-.currencyinput input {
-    border: 0;
+table.table-fit thead th, table.table-fit tfoot th {
+    width: auto !important;
 }
+table.table-fit tbody td, table.table-fit tfoot td {
+    width: auto !important;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #008080;}
 </style>
     </head>
     <body>
@@ -121,34 +137,34 @@ $(document).ready(function(){
                 <%@include file="components/message.jsp" %>
             </div>
             
-            <table class="table table-bordered" style="no-wrap">
+            <table class="table table-bordered table-fit" style="no-wrap">
             <thead>
             <tr>
                         
-                        <th>Image</th>
-                        <th>Item Number</th>
-                        <th>Description</th>
-                        <th>Vendor</th>
-                        <th>Alternate Item</th>
+                        <th>IMAGE</th>
+                        <th>ITEM NUMBER</th>
+                        <th>DESCRIPTION</th>
+                        <th>VENDOR</th>
+                        <th>ALTERNATE ITEM</th>
                         <th>UOM</th>
-                        <th>QTY Per UOM</th>
+                        <th>QTY PER UOM</th>
 
-                        <th>Cost</th>
+                        <th>COST</th>
                         
                         
 
                         
-                        <th>Category</th>
-                        <th>Manufacturer</th>
-                        <th>Manufacturer Number</th>
+                        <th>CATEGORY</th>
+                        <th>MANUFACTURER</th>
+                        <th>MANUFACTURER NUMBER</th>
                         <th>CPT</th>
                         <th>NDC</th>
                      
-                        <th>Location Type</th>
-                        <th>Status</th>
+                        <th>LOCATION TYPE</th>
+                        <th>STATUS</th>
                     
                         <th>SDS</th>
-                        <th>Actions</th>
+                        <th>ACTIONS</th>
             </tr>
             </thead>
             <tbody id="myTable">
@@ -190,10 +206,10 @@ $(document).ready(function(){
                 <td><%=i.getSds()%></td>
                 <td>
                     <a href="update_product_page.jsp?id=<%= i.getId()%>">
-                        <button>Edit</button>
+                        <button>EDIT</button>
                     </a>
                     <a href="delete_prod.jsp?id=<%=i.getId()%>">
-                        <button>Delete</button>
+                        <button>DELETE</button>
                     </a>
                 </td>
                 

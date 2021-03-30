@@ -213,7 +213,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/types.jpg" alt="user_icon">
                             </div>
                             
-                            <h3 class="text-muted">LOCATION TYPES</h3>
+                            <h3 class="text-muted">Maintenance Location Types</h3>
                         </div>
                     </div>
                     </a>
@@ -244,21 +244,6 @@
                             </div>
                             
                             <h3 class="text-muted">CPT Codes</h3>
-                        </div>
-                    </div>
-                    </a>
-                </div>
-                <!--fourteenth row -->
-                <div class="col-md-3">
-                    <a href="type.jsp" class="card-link">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            
-                            <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/types.png" alt="user_icon">
-                            </div>
-                            
-                            <h3 class="text-muted">Types</h3>
                         </div>
                     </div>
                     </a>

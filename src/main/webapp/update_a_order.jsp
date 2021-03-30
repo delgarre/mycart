@@ -38,12 +38,12 @@ ps.setString(5, quantity);
 int i = ps.executeUpdate();
 if(i > 0)
 {
-session.setAttribute("message", "Order edited successfully!");
+session.setAttribute("message", "Order updated successfully!");
 response.sendRedirect("a_orders.jsp?id="+locations);
 }
 else
 {
-session.setAttribute("message", "There was a problem edited the order.");
+session.setAttribute("message", "There was a problem updating the order.");
 response.sendRedirect("a_orders.jsp?id="+locations);
 }
 }

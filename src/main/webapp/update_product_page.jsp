@@ -66,7 +66,7 @@ while(resultSet.next()){
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add Item</title>
+        <title>Edit Item</title>
         <%@include file="components/common_css_js.jsp" %>
         
 <style>
@@ -82,7 +82,7 @@ while(resultSet.next()){
          <%@include file="components/navbar.jsp" %>
          <div class="center">
              <%@include file="components/message.jsp" %>
-        <h1>Info:</h1>
+        <h1>MANAGE INVENTORY:</h1>
         
          <input type="hidden" name="operation" value="addcategory">
          
@@ -294,7 +294,7 @@ while(resultSet.next()){
                    -->
                     <!--submit button-->
                     <div class="container text-center">
-                        <button class="btn btn-outline-success">Edit Item</button>
+                        <button class="btn btn-outline-success">SAVE CHANGES</button>
                         
                     </div>
                     

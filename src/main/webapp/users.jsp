@@ -37,6 +37,16 @@
   width: 60%;
   border: navy;
   padding: 10px;
+  
+ table.table-fit {
+    width: auto !important;
+    table-layout: auto !important;
+}
+table.table-fit thead th, table.table-fit tfoot th {
+    width: auto !important;
+}
+table.table-fit tbody td, table.table-fit tfoot td {
+    width: auto !important;
 }
 </style>
     </head>
@@ -55,8 +65,8 @@
                 <%@include file="components/message.jsp" %>
             </div>
             
-        <div class="table-responsive-sm mt-3">
-        <table class="table table-bordered " >
+    
+        <table class="table table-bordered table-fit" >
             <tr>
                 <th>Id</th>
                 <th>Name</th>
@@ -111,7 +121,7 @@
           
         </div>
       
-    </div>
+  
         
 <script>
 function myFunction() {

@@ -237,6 +237,12 @@ resultSet = statement.executeQuery(sql);
                         
                         
                     </div>
+                    
+                    <!--product notes-->
+                    <div class="form-group">
+                        <h6>Enter Notes</h6>
+                        <textarea style="height: 100px" class="form-control" placeholder="Enter product notes" name="notes"></textarea>
+                    </div>
                         <!--
                     <div class="form-group">
                         <label for="sds">Select SDS:</label>
@@ -248,7 +254,7 @@ resultSet = statement.executeQuery(sql);
                    -->
                     <!--submit button-->
                     <div class="container text-center">
-                        <button class="btn btn-outline-success">Add Item</button>
+                        <button class="btn btn-outline-success">SAVE NEW ITEM</button>
                         
                     </div>
                     

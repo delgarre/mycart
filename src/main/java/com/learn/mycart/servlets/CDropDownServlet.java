@@ -46,6 +46,7 @@ public class CDropDownServlet extends HttpServlet {
             
             CompanyDao cdao  = new CompanyDao(FactoryProvider.getFactory());
             Company company = cdao.getCompanyByName(name);
+         
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute("location", company);
             

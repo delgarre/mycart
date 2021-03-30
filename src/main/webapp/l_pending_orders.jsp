@@ -137,7 +137,7 @@ function goBack(){
                     <td><%=locations%></td>
                     <td>
                         <a href="update_order_page.jsp?id=<%= Id%>">
-                            <button>Edit</button>
+                            <button>Update</button>
                         </a>
                             <a href="delete_order.jsp?id=<%= Id%>">
                                 <button onclick="myFunction()">Delete</button>

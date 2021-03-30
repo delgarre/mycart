@@ -66,11 +66,18 @@ resultSet = statement.executeQuery(sql);
     <body>
         <%@include file="components/navbar.jsp" %>
         <div class="center">
-        <h2>Location Types</h2>
+        <h2>Maintenance Location Types</h2>
         
         <div class="row ml-2">
             <a href="add_l_type.jsp">
-                <button class="btn btn-outline-success">Add Location Type</button>
+                <button class="btn btn-outline-success">Add New Location Type</button>
+            </a>
+            
+        </div>
+        
+        <div class="row ml-2">
+            <a href="types.jsp">
+                <button class="btn btn-outline-success">Assigned Location Types</button>
             </a>
             
         </div>
