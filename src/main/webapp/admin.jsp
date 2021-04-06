@@ -1,3 +1,5 @@
+<%@page import="com.learn.mycart.entities.Notice"%>
+<%@page import="com.learn.mycart.dao.NoticeDao"%>
 <%@page import="com.learn.mycart.entities.Category"%>
 <%@page import="com.learn.mycart.entities.Vendor"%>
 <%@page import="com.learn.mycart.dao.VendorDao"%>
@@ -34,8 +36,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Admin Page</title>
-        <%@include file="components/common_css_js.jsp" %>
         
+        <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
@@ -45,7 +47,30 @@
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
-            
+            <div class="panel-heading col-md-8">
+                <table class="table table-bordered table-fit">
+                        <%
+                        NoticeDao ldao = new NoticeDao(FactoryProvider.getFactory());
+                        List<Notice> notice = ldao.getStatus();
+                        %>
+                        
+                        <tr>
+                            <th>MESSAGE:</th>
+                        </tr>
+                        <%
+                        for(Notice n: notice){
+                        %>
+                        
+                        <tr>
+                            
+                            <td><%=n.getMessage()%></td>
+                            
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </table>
+            </div>
             
             <div class="row mt-3">
                 
@@ -61,7 +86,7 @@
                             </div>
                             
                        
-                            <h3 class="text-muted">USERS</h3>
+                            <h4 class="text-muted">USERS</h4>
                         </div>
                     </div>
                    </a>
@@ -76,7 +101,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/list.png" alt="user_icon">
                             </div>
                       
-                            <h3 class="text-muted">CATEGORIES</h3>
+                            <h4 class="text-muted">CATEGORIES</h4>
                         </div>
                     </div>
                     </a>
@@ -91,7 +116,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/product.png" alt="user_icon">
                             </div>
                          
-                            <h3 class="text-muted">ITEMS</h3>
+                            <h4 class="text-muted">ITEMS</h4>
                         </div>
                     </div>
                     </a>
@@ -106,7 +131,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/location.png" alt="user_icon">
                             </div>
                            
-                            <h3 class="text-muted">LOCATIONS</h3>
+                            <h4 class="text-muted">LOCATIONS</h4>
                         </div>
                     </div>
                     </a>
@@ -168,7 +193,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/message.png" alt="user_icon">
                             </div>
                    
-                            <h3 class="text-muted">ADMIN NOTICE</h3>
+                            <h4 class="text-muted">MESSAGE BOARD</h4>
                         </div>
                     </div>
                     </a>
@@ -183,7 +208,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendors.png" alt="user_icon">
                             </div>
                      
-                            <h3 class="text-muted"> VENDORS</h3>
+                            <h4 class="text-muted"> VENDORS</h4>
                         </div>
                     </div>
                     </a>
@@ -198,7 +223,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/history.png" alt="user_icon">
                             </div>
                             
-                            <h3 class="text-muted"> ORDER HISTORY</h3>
+                            <h4 class="text-muted"> ORDER HISTORY</h4>
                         </div>
                     </div>
                     </a>
@@ -213,7 +238,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/types.jpg" alt="user_icon">
                             </div>
                             
-                            <h3 class="text-muted">Maintenance Location Types</h3>
+                            <h4 class="text-muted">Maintenance Location Types</h4>
                         </div>
                     </div>
                     </a>
@@ -243,7 +268,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/cpt.png" alt="user_icon">
                             </div>
                             
-                            <h3 class="text-muted">CPT Codes</h3>
+                            <h4 class="text-muted">CPT Codes</h4>
                         </div>
                     </div>
                     </a>

@@ -77,7 +77,7 @@ Quantity:<br>
 Location:<br>
 <input type="text" name="locations" value="<%=resultSet.getString("locations")%>">
 <br><br>
-<input type="submit" value="Edit">
+<input type="submit" value="SAVE CHANGES">
 </form>
 </div>
 <%

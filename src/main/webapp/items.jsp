@@ -72,7 +72,10 @@ $(document).ready(function(){
 function goBack(){
         window.history.back();
     } 
+    
+
 </script>
+
         
 <style>
 .center {
@@ -93,10 +96,31 @@ th {
     border: 0;
 }
 
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+
 </style>
     </head>
     <body>
           <%@include file="components/user_items_navbar.jsp" %>
+          
           <div class="panel panel-primary">
             <div>
                 <div class="container-fluid mt-3">
@@ -106,6 +130,7 @@ th {
                 
             </div>
         </div>
+                <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         <div class="col-md-8">
             <div div class="table-responsive-sm mt-3">
         
@@ -261,6 +286,30 @@ th {
             </div>
         </div>
                 
+<script>
+    
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction();};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}   
+</script>
+
+
 <%
 
 connection.close();

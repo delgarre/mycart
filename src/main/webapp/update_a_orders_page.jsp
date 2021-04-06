@@ -77,7 +77,7 @@ Quantity:<br>
 
 <input type="hidden" name="locations" value="<%=resultSet.getString("locations")%>" readonly>
 <br><br>
-<input type="submit" value="Edit">
+<input class="btn btn-primary" type="submit" value="SAVE CHANGES">
 </form>
 </div>
 <%

@@ -69,10 +69,10 @@
                     <td><%=u.getVal()%></td>
                     <td>
                         <a href="delete_uom.jsp?id=<%=u.getId()%>">
-                             <button type="button" class="delete" onclick="myFunction()">Delete</button>
+                             <button type="button" class="delete" onclick="myFunction()">DELETE</button>
                          </a>
                          <a href="update_uom_page.jsp?id=<%=u.getId()%>">
-                             <button type="button" class="update">SAVE CHANGES</button>
+                             <button type="button" class="update">EDIT</button>
                          </a>
                     </td>
                 </tr>

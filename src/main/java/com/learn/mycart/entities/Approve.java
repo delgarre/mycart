@@ -28,7 +28,7 @@ public class Approve implements Serializable {
     private String price;
     private String photo;
     private String quantity;
-    private Date date;
+    private String date;
     private String stat;
     private String itemNumber;
     private String manufacturer;
@@ -48,7 +48,7 @@ public class Approve implements Serializable {
     public Approve() {
     }
 
-    public Approve(int id, String name, String price, String photo, String quantity, Date date, String locations, User users, 
+    public Approve(int id, String name, String price, String photo, String quantity, String date, String locations, User users, 
             String itemName, String stat, String itemNumber, String cTitle, String vTitle, String unitOfMeasure
             , String manufacturer, String manufacturerNum, String alternateItem, String pDesc) {
         this.id = id;
@@ -111,11 +111,11 @@ public class Approve implements Serializable {
         this.quantity = quantity;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

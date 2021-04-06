@@ -31,7 +31,7 @@ public class Orders implements Serializable {
     
     private String name;
     
-    private Date date;
+    private String date;
     
     private String locations;
     
@@ -67,7 +67,7 @@ public class Orders implements Serializable {
     public Orders() {
     }
 
-    public Orders(int id, String aPName, double aPPrice, int quantity, String name, Date date, String locations, 
+    public Orders(int id, String aPName, double aPPrice, int quantity, String name, String date, String locations, 
             User users, String status, String itemNumber, String photo, String cTitle, String vTitle
             , String unitOfMeasure, String manufacturer, String manufacturerNum, String alternateItem, String pDesc) {
         this.id = id;
@@ -131,11 +131,11 @@ public class Orders implements Serializable {
         this.name = name;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

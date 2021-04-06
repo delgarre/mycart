@@ -24,7 +24,7 @@ public class UOMDao {
     
     public List<UOM> getMeasurements(){
         Session s = this.factory.openSession();
-        Query query = s.createQuery("from UOM");
+        Query query = s.createQuery("from UOM ORDER BY val");
         List<UOM> list = query.list();
         return list;
     }

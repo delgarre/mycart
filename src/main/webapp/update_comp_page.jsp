@@ -85,7 +85,7 @@ function goBack(){
             <input type="text" name="typeLocation" value="<%=resultSet.getString("typeLocation")%>" id="typeLocation">
               </div>
                           <div class="container text-center">
-              <input type="submit" class="btn btn-outline-primary" value="submit">
+              <input type="submit" class="btn btn-outline-primary" value="SAVE CHANGES">
                           </div>
         </form>
                         </div>

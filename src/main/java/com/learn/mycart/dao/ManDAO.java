@@ -25,7 +25,7 @@ public class ManDAO {
     
      public List<Manufacturers> getManufacturers(){
         Session s = this.factory.openSession();
-        Query query = s.createQuery("from Manufacturers");
+        Query query = s.createQuery("from Manufacturers ORDER BY name");
         List<Manufacturers> list = query.list();
         return list;
     }

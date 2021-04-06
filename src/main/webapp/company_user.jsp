@@ -67,7 +67,7 @@ function goBack(){
             <h6>Add Location:</h6>
             <select name="location" id="location">
                 <option value="ADMIN-SAWYER ROAD">ADMIN-SAWYER ROAD</option>
-                <option value="BEACHBLVD">Beach</option>
+                <option value="BEACHBLVD">BEACHBLVD</option>
                 <option value="BETHKOM-STATE STREET">BETHKOM-STATE STREET</option>
                 <option value="BILLING">BILLING</option>
                 <option value="BRADENTON">BRADENTON</option>
@@ -139,7 +139,7 @@ function goBack(){
                 <td><%=comp_name%></td>
                 <td>
                     
-                    <a href="delete_location.jsp?id=<%=t_id%>">
+                    <a href="delete_location.jsp?id=<%=t_id%>&user=<%=id%>">
                         <button type="button" class="btn-outline-danger">Remove</button>
                     </a>
                 </td>

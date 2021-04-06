@@ -89,7 +89,7 @@ function goBack(){
           <input type="text" name="codes" value="<%=resultSet.getString("codes") %>" id="codes">
             </div>
             <div class="container text-center">
-          <input type="submit" value="Edit" class="btn btn-primary">
+          <input type="submit" value="SAVE CHANGES" class="btn btn-primary">
           
             </div>
       </form>

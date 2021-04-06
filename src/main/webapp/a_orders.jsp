@@ -125,13 +125,13 @@ resultSet = statement.executeQuery(sql);
                     <th>Description</th>
                     <th>Cost</th>
                     <th>Ordered By</th>
-                    <th>QTY Per UOM</th>
+                    
                     <th>Unit Of Measure</th>
                     <th>Vendor</th>
                     <th>Category</th>
                     <th>Manufacturer</th>
                     <th>Manufacturer Number</th>
-
+                    <th>Order QTY</th>
                     <th>Actions</th>
                     
                 </tr>
@@ -162,14 +162,13 @@ resultSet = statement.executeQuery(sql);
                     <td><%=item%></td>
                     <td><%=pDesc%></td>
                     <td><span>$<%= price%></span></td>
-                    <td><%=name%></td>
-                    <td><%=quantity%></td>
+                    <td><%=name%></td>  
                     <td><%=uom%></td>
                     <td><%=vTitle%></td>
                     <td><%=cTitle%></td>
                     <td><%=man%></td>
                     <td><%=manNum%></td>
-
+                    <td><%=quantity%></td>
                     <td>
                         <a href="update_a_orders_page.jsp?id=<%=order_id%>">
                             <button class="btn btn-outline-primary">Edit</button>

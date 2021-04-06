@@ -62,7 +62,7 @@ while(resultSet.next()){
                 
             <input type="hidden" name="catId" value="<%=resultSet.getString("categoryId") %>">
             <input type="text" name="catTitle" value="<%=resultSet.getString("categoryTitle")%>">
-            <input type="submit" value="Edit" onclick="myFunction()">
+            <input type="submit" value="SAVE CHANGES" onclick="myFunction()">
             </form>
         </div>
         

@@ -39,8 +39,8 @@ String location2 = request.getParameter("location2");
 String itemNumber1 = request.getParameter("itemNumber1");
 String itemNumber2 = request.getParameter("itemNumber2");
 
-String begin = request.getParameter("date1");
-String end = request.getParameter("date2");
+String begin = request.getParameter("begin");
+String end = request.getParameter("end");
 
 
 
@@ -162,21 +162,13 @@ th, td {
             <div id="orders">
       
                 <button class="btn btn-warning" onclick="javascript:report()">Download Report</button>
-                <form method="POST" action="reports_desc_page.jsp">
+                <a href="reports_page.jsp?begin=<%=begin%>&end=<%=end%>&vendor1=<%=vendor1%>&vendor2=<%=vendor2%>&location1=<%=location1%>&location2<%=location2%>&itemNumber1=<%=itemNumber1%>&itemNumber2=<%=itemNumber2%>">
                 <button>By Description</button>
-                <input type="hidden" name="begin" value="<%=begin%>">
-                <input type="hidden" name="end" value="<%=end%>">
-                <input type="hidden" name="location1" value="<%=location1%>">
-                <input type="hidden" name="location2" value="<%=location2%>">
-                <input type="hidden" name="vendor1" value="<%=vendor1%>">
-                <input type="hidden" name="vendor2" value="<%=vendor2%>">
-                <input type="hidden" name="itemNumber1" value="<%=itemNumber1%>">
-                <input type="hidden" name="itemNumber2" value="<%=itemNumber2%>">
-                <input type="submit">
-                </form>
+                </a>
         <table class="table table-bordered table-fit">
             <tr>
                 <th>Date</th>
+                <th>Desc</th>
                 <th>Item #</th>
                 <th>Vendor</th>
                 <th>QTY</th>
@@ -200,8 +192,8 @@ th, td {
             %>
             <tr>
                 <td><%=date%></td>
+                <td><%=desc%></td>
                 <td><%=item%></td>
-                <td><%=vendor%></td>
                 <td><%=quantity%></td>
                 <td><span>$<%=price%></span></td>
              
