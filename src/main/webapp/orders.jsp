@@ -97,7 +97,7 @@ resultSet = statement.executeQuery(sql);
     %>
     <body>
            <%@include file="components/navbar.jsp" %>
-        <h1>Locations Waiting Approval:</h1>
+        <h1>PENDING APPROVAL:</h1>
         <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         <div class="center">
 
@@ -109,9 +109,9 @@ resultSet = statement.executeQuery(sql);
             <table class="table table-bordered ">
                 
                 <tr>
-                    <th>Locations</th>
+                    <th>LOCATIONS</th>
                    
-                    <th>Actions</th>
+                    <th>ACTIONS</th>
                     
                 </tr>
                 <tr>
@@ -126,7 +126,7 @@ resultSet = statement.executeQuery(sql);
                     <td><%=locations%></td>
                     <td>
                         <a href="a_orders.jsp?id=<%= locations%>">
-                            <button class="btn btn-outline-primary">View</button>
+                            <button class="btn btn-outline-primary">VIEW</button>
                         </a>
                            
                     </td>
