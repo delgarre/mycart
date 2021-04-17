@@ -38,7 +38,7 @@ public class UserDao {
     }
     public List<User> getUsers(){
         Session s= this.factory.openSession();
-        Query query = s.createQuery("from User");
+        Query query = s.createQuery("from User ORDER BY userName");
         List<User> list= query.list();
         return list;
     }
