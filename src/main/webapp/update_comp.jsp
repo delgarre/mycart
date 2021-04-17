@@ -12,7 +12,7 @@
 String id = request.getParameter("companyId");
 String companyName=request.getParameter("companyName");
 String type=request.getParameter("type");
-String typeLocation=request.getParameter("typeLocation");
+
 
 if(id != null)
 {
@@ -23,12 +23,11 @@ try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql="Update Company set companyId=?,companyName=?,type=?,typeLocation=? where companyId="+id;
+String sql="Update Company set companyId=?,companyName=upper(?),type=upper(?) where companyId="+id;
 ps = con.prepareStatement(sql);
 ps.setString(1,id);
 ps.setString(2, companyName);
 ps.setString(3, type);
-ps.setString(4, typeLocation);
 int i = ps.executeUpdate();
 if(i > 0)
 {
