@@ -69,9 +69,11 @@ table.table-fit tbody td, table.table-fit tfoot td {
     
         <table class="table table-bordered table-fit" >
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Authority</th>
+               
+                <th>NAME</th>
+                <th>PASSWORD</th>
+                <th>EMAIL</th>
+                <th>ACCESS LEVEL</th>
                 <th>Actions</th>
             </tr>
             
@@ -95,22 +97,22 @@ table.table-fit tbody td, table.table-fit tfoot td {
             
             
             <tr>
-                <td><%= u.getUserId()%></td>
+              
                 <td><%= u.getUserName()%></td>
                 
-                
-                
+                <td><%=u.getUserPassword()%></td>
+                <td><%=u.getUserEmail()%></td>
                 
                 <td><%= u.getUserType()%></td>
                 <td>
-                    <a href="delete.jsp?id=<%= u.getUserId() %>">
-                        <button type="button" class="delete" onclick="myFunction()">Delete</button>
+                    <a href="delete.jsp?id=<%= u.getUserId() %>" onclick="return confirm('Are you sure?');">
+                        <button type="button" class="btn btn-outline-danger">Delete</button>
                     </a>
                     <a href="update_user_page.jsp?id=<%=u.getUserId() %>">
-                        <button type="button" class="update">Edit</button>
+                        <button type="button" class="btn btn-outline-warning">Edit</button>
                     </a>
-                        <a href="company_user.jsp?id=<%= u.getUserId()%>">
-                        <button type="">Locations</button>    
+                        <a href="company_user.jsp?id=<%= u.getUserId()%>&name=<%=u.getUserName()%>">
+                        <button type="button" class="btn btn-outline-success">Locations</button>    
                     </a>
                 </td>
             </tr>
@@ -124,17 +126,6 @@ table.table-fit tbody td, table.table-fit tfoot td {
       
   
         
-<script>
-function myFunction() {
-  var txt;
-  var r = confirm("Are you sure?");
-  if (r == true) {
-    txt = "Category edited!";
-  } else if(r == false){
-    txt = "You changed your mind!";
-  }
-  document.getElementById("demo").innerHTML = txt;
-}
-</script>
+
     </body>
 </html>
