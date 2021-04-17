@@ -1,3 +1,4 @@
+<%@page import="com.learn.mycart.mail.CartUpdate"%>
 <%@page import="java.sql.*,java.util.*" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -39,7 +40,8 @@ int i = ps.executeUpdate();
 if(i > 0)
 {
 session.setAttribute("message", "Order updated successfully!");
-response.sendRedirect("a_orders.jsp?id="+locations);
+
+response.sendRedirect("update_email.jsp?locations="+locations+"&itemNumber="+itemNumber+"&name="+name);
 }
 else
 {
