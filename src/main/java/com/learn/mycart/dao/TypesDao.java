@@ -25,7 +25,7 @@ public class TypesDao {
     
      public List<Types> getTypes(){
         Session s = this.factory.openSession();
-        Query query = s.createQuery("from Types");
+        Query query = s.createQuery("from Types ORDER BY locationType");
         List<Types> list = query.list();
         return list;
     }
