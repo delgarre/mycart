@@ -44,7 +44,7 @@ try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql="Update Types set id=?, locationType=? where id="+id;
+String sql="Update Types set id=?, locationType=upper(?) where id="+id;
 ps = con.prepareStatement(sql);
 ps.setString(1,id);
 ps.setString(2, type);
