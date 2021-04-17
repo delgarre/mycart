@@ -1,3 +1,4 @@
+<%@page import="com.learn.mycart.entities.UOM"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -26,6 +27,7 @@
 %>
 <%
 String id = request.getParameter("id");
+
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
 String database = "mycart";
@@ -45,8 +47,12 @@ try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
 String sql ="select * from UOM where id="+id;
+
+
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
+    
+String uom = resultSet.getString("val");
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -86,12 +92,13 @@ function goBack(){
                        <label for="measurement">Measurement:</label>
           
             
-          <input type="text" name="measurement" value="<%=resultSet.getString("val") %>" id="measurement">
+          <input type="text" name="measurement" value="<%=uom %>" id="measurement">
             </div>
             <div class="container text-center">
-          <input type="submit" value="Save Changes" class="btn btn-primary">
+          <input type="submit" onclick="return confirm('Are you sure?');" value="Save Changes" class="btn btn-primary">
           
             </div>
+            <input type="hidden" name="uom" value="<%=uom%>">
       </form>
       </div>
                   </div>
@@ -99,7 +106,9 @@ function goBack(){
           </div>
     </div>
       
-<%
+<% 
+   
+    
 }
 connection.close();
 } catch (Exception e) {
