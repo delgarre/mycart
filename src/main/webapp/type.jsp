@@ -1,11 +1,20 @@
+<%@page import="com.learn.mycart.entities.Notice"%>
+<%@page import="com.learn.mycart.dao.NoticeDao"%>
+<%@page import="com.learn.mycart.helper.FactoryProvider"%>
+<%@page import="java.util.List"%>
+<%@page import="com.learn.mycart.dao.ItemDao"%>
+<%@page import="com.learn.mycart.entities.Item"%>
+<%@page import="com.learn.mycart.dao.LocationTypeDao"%>
+<%@page import="com.learn.mycart.entities.LocationType"%>
+<%@page import="com.learn.mycart.entities.Company"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="com.learn.mycart.entities.User"%>
-<%
 
-    User user = (User)session.getAttribute("current-user");
+
+<%
+        User user = (User)session.getAttribute("current-user");
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
         response.sendRedirect("index.jsp");
@@ -20,10 +29,11 @@
             return;
         }
     }
+
+ 
 %>
-
 <%
-
+String name = request.getParameter("id");
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
 String database = "mycart";
@@ -37,23 +47,42 @@ e.printStackTrace();
 Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
+
 %>
 <%
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Types";
+String sql ="Select * from Item";
+
 resultSet = statement.executeQuery(sql);
 
 %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Items</title>
         <%@include file="components/common_css_js.jsp" %>
         
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+
+function goBack(){
+        window.history.back();
+    } 
+</script>
 <style>
 .center {
   margin: auto;
@@ -64,68 +93,99 @@ resultSet = statement.executeQuery(sql);
 </style>
     </head>
     <body>
-        <%@include file="components/navbar.jsp" %>
-        <div class="center">
-        <h2>Maintenance Location Types</h2>
-        
-        <div class="row ml-2">
-            <a href="add_l_type.jsp">
-                <button class="btn btn-outline-success">Add New Location Type</button>
-            </a>
-            
-        </div>
-        
-        <div class="row ml-2">
-            <a href="types.jsp">
-                <button class="btn btn-outline-success">Assigned Location Types</button>
-            </a>
-            
-        </div>
-        
+          <%@include file="components/navbar.jsp" %>
+          
         <div class="col-md-8">
-            <div class="container-fluid mt-3">
-                <%@include file="components/message.jsp" %>
-            </div>
-            
-            <table class="table table-bordered">
-               
+            <div div class="table-responsive-sm mt-3">
+        <div>
+                 <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                 <br>
+          <input id="myInput" type="text" placeholder="Search..">
+          
+    
+                </div>
+                <div>
+                    <h3>ADD AN ITEM FOR: <%=name%></h3>
+                </div>
+        
+            <table class="table table-bordered ">
+                <thead>
                 <tr>
-              
-                <th>Name</th>
-                <th>Action</th>
-                </tr>
-                <tr>
-                    <%
-                    while(resultSet.next()){
-                        
-                        
-                        String type = resultSet.getString("locationType");
-                        String id = resultSet.getString("id");
+                
 
+                <th>IMAGE</th>
+                <th>ITEM NUMBER</th>
+                <th>DESCRIPTION</th>
+                <th>VENDOR</th>
+                <th>UOM</th>
+
+
+
+                <th>QUANTITY PER UOM</th>
+              
+                 <th>COST</th>
+
+                <th>MANUFACTURER</th>
+            
+                <th>CPT</th>
+                <th>NDC</th>
+                
+                
+                <th>ACTIONS</th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                <%
+                    while(resultSet.next()){
+                        ;
+                        Integer id = resultSet.getInt("id");
                         
+                        String price = resultSet.getString("price");
+                        String quantity = resultSet.getString("quantity");
+                        String photo = resultSet.getString("photo");
+                        String itemNumber = resultSet.getString("ItemNumber");
+                        String vendor = resultSet.getString("vTitle");
+                        String desc = resultSet.getString("pDesc");
+                        String unit = resultSet.getString("unitOfMeasure");
+                        String man = resultSet.getString("manufacturer");
+                        String manNum = resultSet.getString("manufacturerNum");
+                        String cpt = resultSet.getString("cpt");
+                        String ndc = resultSet.getString("ndc");
+                        String alt = resultSet.getString("alternateItem");
                     %>
-                  
-                    <td><%=type%></td>
+                
+                <tr>
                     <td>
-                        
-                        <a href="l_type_page.jsp?id=<%=id%>">
-                            <button class="btn btn-outline-primary">Edit Name</button>
-                        </a>
-                        
-                        <a href="delete_l_type.jsp?id=<%=id%>">
-                            <button class="btn btn-outline-danger">Delete</button>
-                        </a>
+                        <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
+                    </td>
+                    <td><%= itemNumber%></td>
+                    <td><%=desc%></td>
+                    <td><%=vendor%></td>
+                    <td><%=unit%></td>
+                    <td><%= quantity%></td>
+                    <td><span>$<%= price%></span></td>
+                    
+                    <td><%=man%></td>
+                    <td><%=cpt%></td>
+                    <td><%=ndc%></td>
+                    
+                    
+                    
+                   
+                    <td>
+                        <a href="s.jsp?id=<%= id%>">
+                    <button class="btn btn-outline-success">Add To Cart</button>
+                    </a>
                     </td>
                 </tr>
                 <%
                     }
-                  
                 %>
+                </tbody>
             </table>
+            </div>
         </div>
-
-        </div>
-        
+            
 <%
 
 connection.close();
