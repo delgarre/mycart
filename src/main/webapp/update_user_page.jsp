@@ -95,34 +95,34 @@ function goBack(){
 <input type="hidden" name="user_id" value="<%=resultSet.getString("user_id") %>">
 
 <div class="form-group">
-                       <label for="user_name">Name:</label>
+                       <label for="user_name">NAME:</label>
 
 <input type="text" name="user_name" value="<%=resultSet.getString("user_name") %>" id="user_name">
 </div>
 
 <div class="form-group">
-                       <label for="user_password">Password:</label>
+                       <label for="user_password">PASSWORD:</label>
 
 
 <input type="text" name="user_password" value="<%=resultSet.getString("user_password") %>" id="user_password">
 </div>
 <div class="form-group">
-                       <label for="user_email">Email Address:</label>
+                       <label for="user_email">EMAIL ADDRESS:</label>
 
 <input type="email" name="user_email" value="<%=resultSet.getString("user_email") %>" id="user_email">
 </div>
 
 
 <div class="form-group">
-                       <label for="user_type">Type:</label>
+                       <label for="user_type">ACCESS LEVEL:</label>
 
 <select name="user_type" id="user_type">
-    <option value="admin">Admin</option>
-    <option value="normal">Normal</option>
+    <option value="admin">ADMIN</option>
+    <option value="normal">NORMAL</option>
 </select>
 </div>
 <div class="container text-center">
-<input type="submit" value="SAVE CHANGES" class="btn btn-primary">
+<input type="submit" value="SAVE CHANGES" onclick="return confirm('Are you sure?');" class="btn btn-primary">
 
 </div>
 </form>
