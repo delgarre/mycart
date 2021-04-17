@@ -5,11 +5,21 @@
 <%@page import="com.learn.mycart.entities.User"%>
 <%@page import="com.learn.mycart.entities.ApproveOrder"%>
 <%
+  
     User user = (User)session.getAttribute("current-user");
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
         response.sendRedirect("index.jsp");
         return;
+    }
+    else
+    {
+        if(user.getUserType().equals("normal"))
+        {
+            session.setAttribute("message", "Admin level required!");
+            response.sendRedirect("index.jsp");
+            return;
+        }
     }
 %>
 <%
@@ -44,6 +54,13 @@ while(resultSet.next()){
         <title>Approve Order</title>
         <%@include file="components/common_css_js.jsp" %>
 
+        
+<script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>        
 <style>
 .center {
   margin: auto;
@@ -55,30 +72,47 @@ while(resultSet.next()){
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <h1>UPDATE ITEM QUANTITY</h1>
-        <div class="center">
+      
+         <div class="container">
+             <div class="container-fluid mt-3">
+                <%@include file="components/message.jsp" %>
+            </div>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <br>
+                    <button type="button" class="btn btn-warning" onclick="goBack()">Go Back</button>
+                    <br>
+                    <div class="card-header custom-bg text-white">
+                            <h3>UPDATE ITEM QUANTITY:</h3>
+                    </div>
+                    <div class="card-body">
     <form method="post" action="update_a_order.jsp">
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
-
-<br>
-Name:<br>
-<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>" readonly>
-<br>
-Cost:<br>
-<input type="text" name="aPPrice" value="<%=resultSet.getString("aPPrice") %>"readonly>
-<br>
-Member Name:<br>
-<input type="text" name="name" value="<%=resultSet.getString("name") %>"readonly>
-<br>
-Quantity:<br>
-<input type="text" name="quantity" value="<%=resultSet.getString("quantity") %>">
-<br>
+                <div class="form-group">
+                            <label for="itemNumber"><b>ITEM NUMBER:</b></label>
+                                <input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>" class="form-control" id="itemNumber" readonly>
+                </div>
+                <div class="form-group">
+                            <label for="aPPrice"><b>COST:</b></label>
+                                <input type="text" name="aPPrice" value="<%=resultSet.getString("aPPrice") %>" class="form-control" id="aPPrice" readonly>
+                </div>
+                <div class="form-group">
+                            <label for="name"><b>MEMBER NAME:</b></label>
+<input type="text" name="name" value="<%=resultSet.getString("name") %>" class="form-control" id="name" readonly>
+                </div>
+                <div class="form-group">
+                            <label for="quantity"><b>QUANTITY:</b></label>
+<input type="text" name="quantity" value="<%=resultSet.getString("quantity") %>" class="form-control" id="quantity">
+                </div>
 
 
 <input type="hidden" name="locations" value="<%=resultSet.getString("locations")%>" readonly>
 <br><br>
-<input class="btn btn-primary" type="submit" value="SAVE CHANGES">
+<input onclick="return confirm('Are you sure?');" class="btn btn-primary" type="submit" value="SAVE CHANGES">
 </form>
+                    </div>
+                </div>
+            </div>
 </div>
 <%
 }
