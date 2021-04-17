@@ -5,11 +5,21 @@
 <%@page import="com.learn.mycart.entities.User"%>
 <%@page import="com.learn.mycart.entities.ApproveOrder"%>
 <%
+    
     User user = (User)session.getAttribute("current-user");
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
         response.sendRedirect("index.jsp");
         return;
+    }
+    else
+    {
+        if(user.getUserType().equals("normal"))
+        {
+            session.setAttribute("message", "Admin level required!");
+            response.sendRedirect("index.jsp");
+            return;
+        }
     }
 %>
 <%
@@ -55,30 +65,53 @@ while(resultSet.next()){
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <h1>Make Changes</h1>
-<div class="center">
+        
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <br>
+                  <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                      <br>
+                      <div class="card">
+                           <div class="card-header custom-bg text-white">
+      <h1>MAKE CHANGES!</h1>
+                      </div>
+              <div class="card-body">
     <form method="post" action="update_order.jsp">
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
 
-<br>
-Name:<br>
-<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>">
-<br>
-Price:<br>
-<input type="text" name="price" value="<%=resultSet.getString("price") %>">
-<br>
-Member Name:<br>
-<input type="text" name="name" value="<%=resultSet.getString("name") %>">
-<br>
-Quantity:<br>
-<input type="text" name="quantity" value="<%=resultSet.getString("quantity") %>">
-<br>
+<div class="form-group">
+<label for="itemNumber">ITEM NUMBER:</label>
+<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>" id="itemNumber" readonly>
+</div>
 
-Location:<br>
-<input type="text" name="locations" value="<%=resultSet.getString("locations")%>">
-<br><br>
-<input type="submit" value="SAVE CHANGES">
+<div class="form-group">
+<label for="price">PRICE:</label>
+<input type="text" name="price" value="<%=resultSet.getString("price") %>" id="price" readonly>
+</div>
+
+<div class="form-group">
+<label for="name">MEMBER NAME:</label>
+<input type="text" name="name" value="<%=resultSet.getString("name") %>" id="name" readonly>
+</div>
+<div class="form-group">
+<label for="quantity">QUANTITY:</label>
+<input type="text" name="quantity" value="<%=resultSet.getString("quantity") %>" id="quantity">
+</div>
+
+<div class="form-group">
+<label for="locations">LOCATION:</label>
+<input type="text" name="locations" value="<%=resultSet.getString("locations")%>" id="locations" readonly>
+</div>
+                       <!--submit button-->
+                    <div class="container text-center">
+<input onclick="return confirm('Are you sure?');" class="btn btn-outline-warning" type="submit" value="SAVE CHANGES">
+                    </div>
 </form>
+              </div>
+                      </div>
+        </div>
+    </div>
 </div>
 <%
 }
