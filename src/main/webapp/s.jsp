@@ -51,12 +51,19 @@ while(resultSet.next()){
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Submit Order</title>
+        <title>Add To Order</title>
         <%@include file="components/common_css_js.jsp" %>
         <style>
 h1 {text-align: center;}
 div {text-align: center;}
 </style>
+
+<script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>
 
     </head>
     <%
@@ -67,9 +74,17 @@ div {text-align: center;}
     <body>
            <%@include file="components/user_navbar.jsp" %>
 <div class="container">
-    <div class="row mt-5">
-<div class="col-md-8">
+               
+                        
+               <div class="row">
+           <div class="col-md-6 offset-md-3">
+    
+    
     <div class="card">
+        <div class="card-header custom-bg text-white">
+                            <h1>Enter Amount:</h1>
+                                    
+                    </div>
         <div class="card-body">
         <h1>Enter Amount</h1>
         Date: <%=today%>
@@ -87,24 +102,30 @@ div {text-align: center;}
 <input type="hidden" name="user_id" value="<%=user.getUserId()%>">
 
 <input type="hidden" name="photo" value="<%=resultSet.getString("photo")%>">
-<br>
-Item Number<br>
-<input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>" readonly>
-<br>
-Price:<br>
-<input type="text" name="price" value="<%=resultSet.getString("price") %>" readonly>
-<br>
+<div class="form-group">
+                       <label for="itemNumber">Item Number:</label>
+
+<input type="text" name="itemNumber" class="form-control" id="itemNumber" value="<%=resultSet.getString("itemNumber") %>" readonly>
+</div>
+<div class="form-group">
+                       <label for="price">COST:</label>
+<input type="text" name="price" class="form-control" value="<%=resultSet.getString("price") %>" id="price" readonly>
+</div>
 
 <input value="<%= user.getUserName()%>" type="hidden" name="name">
 
-Quantity:<br>
-<input type="text" name="quantity" placeholder="Enter Amount">
-<br>
-Location:<br>
-<input value="<%=session.getAttribute("single")%>" name="locations" readonly>
-<br><br>
-
-<input type="submit" value="submit">
+<div class="form-group">
+                       <label for="quantity">QUANTITY:</label>
+<input type="text" name="quantity" placeholder="Enter Amount" id="quantity" class="form-control">
+</div>
+<div class="form-group">
+                       <label for="locations">LOCATION:</label>
+                       <input value="<%=session.getAttribute("single")%>" name="locations" class="form-control" id="locations" readonly>
+</div>
+ <div class="container text-center">
+<input type="submit" class="btn btn-primary" value="ADD TO ORDER">
+<button class="btn btn-warning" onclick="goBack()">Go Back</button>
+ </div>
 </form>
 <%
 }
