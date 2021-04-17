@@ -4,6 +4,8 @@
     Author     : garre
 --%>
 
+<%@page import="com.learn.mycart.entities.UOM"%>
+<%@page import="com.learn.mycart.dao.UOMDao"%>
 <%@page import="com.learn.mycart.entities.CPT"%>
 <%@page import="com.learn.mycart.dao.CptDAO"%>
 <%@page import="com.learn.mycart.entities.Manufacturers"%>
@@ -29,11 +31,21 @@
 <%
     Company company1 = (Company)session.getAttribute("location");
     
+    
     User user = (User)session.getAttribute("current-user");
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
         response.sendRedirect("index.jsp");
         return;
+    }
+    else
+    {
+        if(user.getUserType().equals("normal"))
+        {
+            session.setAttribute("message", "Admin level required!");
+            response.sendRedirect("index.jsp");
+            return;
+        }
     }
 %>
 
@@ -92,56 +104,43 @@ while(resultSet.next()){
                   
                     <!--product Item number -->
                     <div>
-                        <h6>Enter Item Number</h6>
+                        <h6>ENTER ITEM NUMBER</h6>
                         <input type="text" class="form-control" placeholder="Enter Item Number" name="itemNumber" value="<%=resultSet.getString("itemNumber")%>" readonly/>
                     </div>
                     
                     
                     <!--product description-->
                     <div class="form-group">
-                        <h6>Enter Description</h6>
-                        <input  type="text" class="form-control" placeholder="Enter product description" name="pDesc" value="<%=resultSet.getString("pDesc")%>" ></textarea>
+                        <h6>ENTER DESCRIPTION</h6>
+                        <input  type="text" class="form-control" placeholder="Enter product description" name="pDesc" value="<%=resultSet.getString("pDesc")%>" spellcheck="true"></textarea>
                     </div>
                     <!--product price-->
                     <div class="form-group">
-                        <h6>Enter Item Cost</h6>
-                        <input type="number" step="any" class="form-control" placeholder="Enter price of product" name="pPrice"value="<%=resultSet.getString("price")%>" />
+                        <h6>ENTER ITEM COST</h6>
+                        <input type="number" step="any" class="form-control" placeholder="Enter price of product" name="pPrice"value="<%=resultSet.getString("price")%>"/>
                     </div>
                     <!--product quantity-->
                     <div class="form-group">
-                        <h6>Enter Quantity</h6>
+                        <h6>ENTER QUANTITY PER UOM</h6>
                         <input type="number" class="form-control" placeholder="Enter product quantity" name="pQuantity" value="<%=resultSet.getString("quantity")%>"/>
                     </div>
+                     <%
+                    UOMDao uDao = new UOMDao(FactoryProvider.getFactory());
+                    List<UOM> uList = uDao.getMeasurements();
+                    %>
                     <!--product uOfMeasure-->
-                    <div>
-                        <h6>Enter Unit of Measure</h6>
+                    <div class="form-group">
+                        <h6>SELECT UNIT OF MEASURE</h6>
                 <select name="pMeasure" id="pMeasure">
-                <option value="BOX (BX)">BOX (BX)</option>
-                <option value="PACK (PK)">PACK (PK)</option>
-                <option value="EACH (EA)">EACH (EA)</option>
-                <option value="PADS">PADS</option>
-                <option value="CASE (CS)">CASE (CS)</option>
-                <option value="SHEETS (SHT)">SHEETS (SHT)</option>
-                <option value="ROLL (RL)">ROLL (RL)</option>
-                <option value="EA">EA</option>
-                <option value="COUNT (CT)">COUNT (CT)</option>
-                <option value="DOZEN (DZ)">DOZEN (DZ)</option>
-                <option value="BOTTLE (BT)">BOTTLE (BT)</option>
-                <option value="GRAM (gm)">GRAM (gm)</option>
-                <option value="CARTON (CTN)">CARTON (CTN)</option>
-                <option value="POUNDS (lbs)">POUNDS (lbs)</option>
-                <option value="GALLON (GAL)">GALLON (GAL)</option>
-                <option value="PAIR (PR)">PAIR (PR)</option>
-                <option value="SET">SET</option>
-                <option value="BAG (bg)">BAG (bg)</option>
-                <option value="REAM">REAM</option>
-                <option value="WA">WA</option>
-                <option value="KILOGRAM (KG)">KILOGRAM (KG)</option>
-                <option value="VIAL (VL)">VIAL (VL)</option>
-                <option value="MILLILITER (ml)">MILLILITER (ml)</option>
-                <option value="PIECES">PIECES</option>
-                <option value="KIT">KIT</option>
-           
+                    
+                    <%
+                    for(UOM u: uList){
+                    %>
+                <option value="<%=u.getVal()%>"><%=u.getVal()%></option>
+                
+           <%
+               }
+           %>
                 
             </select>
                     </div>
@@ -155,7 +154,7 @@ while(resultSet.next()){
                     
                     
                     <div>
-                        <h6>Enter CPT</h6>
+                        <h6>ENTER CPT</h6>
                       
                <select name="cpt" id="cpt">
                    <%
@@ -172,7 +171,7 @@ while(resultSet.next()){
             </select>
                     </div>
                     <div>
-                        <h6>Enter NDC</h6>
+                        <h6>ENTER NDC</h6>
                     
                             <input type="text" name="ndc" value="<%=resultSet.getString("ndc")%>">
                         
@@ -180,7 +179,7 @@ while(resultSet.next()){
                     
                     <!--alternate Item-->
                     <div>
-                        <h6>Enter Alternate Item</h6>
+                        <h6>ENTER ALTERNATE ITEM</h6>
                         <input type="text" class="form-control" placeholder="Enter Alternate Item" name="alt" value="<%=resultSet.getString("alternateItem")%>"/>
                     </div>
                     
@@ -190,7 +189,7 @@ while(resultSet.next()){
                     List<Manufacturers> mlist = mDao.getManufacturers();
                     %>
                     <div>
-                        <h6>Enter Manufacturer</h6>
+                        <h6>ENTER MANUFACTURER</h6>
                         <select name="manufacturer" class="form-control" id="manufacturer">
                             <%
                             for(Manufacturers m: mlist){
@@ -204,7 +203,7 @@ while(resultSet.next()){
                     </div>
                     <!--product manufacturerNum -->
                     <div>
-                        <h6>Enter Manufacturer #</h6>
+                        <h6>ENTER MANUFACTURER #</h6>
                         <input type="text" class="form-control" placeholder="Enter Manufacturer Number" name="manufacturerNum" value="<%=resultSet.getString("manufacturerNum")%>"/>
                     </div>
                     <!--product category-->
@@ -215,7 +214,7 @@ while(resultSet.next()){
 
                     %>
                     <div class="form-group">
-                        <h6>Select Category:</h6>
+                        <h6>SELECT CATEGORY</h6>
                         <select name="catId" class="form-control" id="catId">
                             
                             <%
@@ -234,7 +233,7 @@ while(resultSet.next()){
                             List<Vendor> vList = vDao.getVendors();
                         %>
                         <div class="form-group">
-                            <h6>Select Vendor:</h6>
+                            <h6>SELECT VENDOR</h6>
                             <select name="vendorId" class="form-control" id="vendorId">
                                 <%
                                 for(Vendor v: vList){
@@ -275,11 +274,16 @@ while(resultSet.next()){
                             
                   
                     <div class="form-group">
-                        <label for="stat">Active/Discontinued:</label>
+                        <label for="stat">ACTIVE/DISCONTINUED</label>
                         <select name="stat" id="stat" class="form-control">
                             <option value="1">Active</option>
                             <option value="2">Discontinued</option>
                         </select>
+                    </div>
+                    <!--product notes-->
+                    <div class="form-group">
+                        <h6>SPECIAL INSTRUCTIONS</h6>
+                        <input class="form-control" value="<%=resultSet.getString("notes")%>" name="notes" spellcheck="true">
                     </div>
                      <!--   
                         
@@ -294,7 +298,7 @@ while(resultSet.next()){
                    -->
                     <!--submit button-->
                     <div class="container text-center">
-                        <button class="btn btn-outline-success">SAVE CHANGES</button>
+                        <button onclick="return confirm('Are you sure?');" class="btn btn-outline-success">SAVE CHANGES</button>
                         
                     </div>
                     
