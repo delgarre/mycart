@@ -38,7 +38,7 @@ public class UserDao {
     }
     public List<User> getUsers(){
         Session s= this.factory.openSession();
-        Query query = s.createQuery("from User");
+        Query query = s.createQuery("from User ORDER BY userName");
         List<User> list= query.list();
         return list;
     }
@@ -57,7 +57,15 @@ public class UserDao {
         return user;
     }
     
-    
+    //get user by name
+   
+     public List<User> getUserByName(String name){
+        Session s= this.factory.openSession();
+        Query query = s.createQuery("from User as u where u.userName = : name");
+        query.setParameter("name", name);
+        List<User> list= query.list();
+        return list;
+    }
     
     //save user to database
     public int saveCategory(User user)
