@@ -97,7 +97,7 @@ resultSet = statement.executeQuery(sql);
     %>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <h1>Approve:</h1>
+        <h1>CONFIRM ORDER:</h1>
         <div class="col-md-8">
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
@@ -108,31 +108,31 @@ resultSet = statement.executeQuery(sql);
                 <input type="text" name="locations" value="<%=id%>"/>
                                 
                 <a href="order_email.jsp?id=<%=id%>">
-                    <button class="btn btn-outline-success">Approve</button>
+                    <button class="btn btn-outline-success">CONFIRM</button>
                 </a>
              
           
             <div class="row ml-2">
             <a href="single_add.jsp?id=<%=id%>">
-                <button class="btn btn-outline-warning">Add Item</button>
+                <button class="btn btn-outline-warning">ADD ITEM</button>
             </a>
         </div>
                 <table class="table table-bordered " id="td">
                 <tr>
-                    <th>Id</th>
-                    <th>Photo</th>
-                    <th>Item Number</th>
-                    <th>Description</th>
-                    <th>Cost</th>
-                    <th>Ordered By</th>
-                    <th>QTY Per UOM</th>
-                    <th>Unit Of Measure</th>
-                    <th>Vendor</th>
-                    <th>Category</th>
-                    <th>Manufacturer</th>
-                    <th>Manufacturer Number</th>
-
-                    <th>Actions</th>
+                    
+                    <th>PHOTO</th>
+                    <th>ITEM NUMBER</th>
+                    <th>DESCRIPTION</th>
+                    <th>COST</th>
+                    <th>ORDERED BY</th>
+                    
+                    <th>UOM</th>
+                    <th>VENDOR</th>
+                    <th>CATEGORY</th>
+                    <th>MANUFACTURER</th>
+                    <th>MANUFACTURER NUMBER</th>
+                    <th>ORDER QTY</th>
+                    <th>ACTIONS</th>
                     
                 </tr>
                 <tr>
@@ -155,26 +155,25 @@ resultSet = statement.executeQuery(sql);
                         
                     %>
                     
-                    <td><%=order_id%></td>
+                    
                     <td>
                         <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
                     </td>
                     <td><%=item%></td>
                     <td><%=pDesc%></td>
                     <td><span>$<%= price%></span></td>
-                    <td><%=name%></td>
-                    <td><%=quantity%></td>
+                    <td><%=name%></td>  
                     <td><%=uom%></td>
                     <td><%=vTitle%></td>
                     <td><%=cTitle%></td>
                     <td><%=man%></td>
                     <td><%=manNum%></td>
-
+                    <td><%=quantity%></td>
                     <td>
                         <a href="update_a_orders_page.jsp?id=<%=order_id%>">
                             <button class="btn btn-outline-primary">Edit</button>
                         </a>
-                            <a href="delete_a_orders.jsp?id=<%=order_id%>&location=<%=id%>">
+                            <a href="delete_a_orders.jsp?id=<%=order_id%>&location=<%=id%>" onclick="return confirm('Are you sure?');">
                                 <button class="btn btn-outline-danger">Delete</button>
                             </a>
                          <a href="submit_single.jsp?id=<%=order_id%>">
