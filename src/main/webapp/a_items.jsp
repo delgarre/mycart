@@ -90,12 +90,39 @@ function goBack(){
   border: navy;
   padding: 10px;
 }
+
+th {
+  background: white;
+  position: sticky;
+  top: 0;
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
 </style>
     </head>
     <body>
           <%@include file="components/navbar.jsp" %>
           
         <div class="col-md-8">
+            <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
             <div div class="table-responsive-sm mt-3">
         <div>
             
@@ -119,21 +146,21 @@ function goBack(){
                 <tr>
                 
 
-                <th>Photo</th>
-                <th>Price</th>
-                <th>Item Number</th>
-                <th>Description</th>
-                <th>Quantity Per UOM</th>
-                <th>Alternate Item</th>
-                <th>Vendor</th>
-                <th>Unit Of Measure</th>
-                <th>Manufacturer</th>
-                <th>Manufacturer Number</th>
+                <th>IMAGE</th>
+                <th>COST</th>
+                <th>ITEM NUMBER</th>
+                <th>DESCRIPTION</th>
+                <th>QTY PER UOM</th>
+                <th>ALTERNATE ITEM</th>
+                <th>VENDOR</th>
+                <th>UNIT OF MEASURE</th>
+                <th>MANUFACTURER</th>
+                <th>MANUFACTURER #</th>
                 <th>CPT</th>
                 <th>NDC</th>
                 
                 
-                <th>Actions</th>
+                <th>ACTIONS</th>
                 </tr>
                 </thead>
                 <tbody id="myTable">
@@ -160,7 +187,7 @@ function goBack(){
                     <td>
                         <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
                     </td>
-                    <td><%= price%></td>
+                    <td><span>$<%= price%></span></td>
                     <td><%= itemNumber%></td>
                     <td><%=desc%></td>
                     <td><%= quantity%></td>
@@ -175,7 +202,7 @@ function goBack(){
                    
                     <td>
                         <a href="a_s.jsp?id=<%= id%>">
-                    <button class="btn btn-outline-success">Add To Cart</button>
+                    <button class="btn btn-outline-success">ADD TO CART</button>
                     </a>
                     </td>
                 </tr>
@@ -186,6 +213,29 @@ function goBack(){
             </table>
             </div>
         </div>
+                
+<script>
+    
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction();};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}   
+</script>
             
 <%
 
