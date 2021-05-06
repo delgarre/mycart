@@ -42,7 +42,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Types";
+String sql ="select * from Types order by locationType";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -51,7 +51,7 @@ resultSet = statement.executeQuery(sql);
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Location Types</title>
         <%@include file="components/common_css_js.jsp" %>
         
 <style>
@@ -66,15 +66,32 @@ resultSet = statement.executeQuery(sql);
     <body>
         <%@include file="components/navbar.jsp" %>
         <div class="center">
-        <h2>Location Types</h2>
+        <h2>Maintenance Location Types</h2>
         
         <div class="row ml-2">
             <a href="add_l_type.jsp">
-                <button class="btn btn-outline-success">Add Location Type</button>
+                <button class="btn btn-outline-success">ADD NEW LOCATION TYPE</button>
             </a>
             
-        </div>
+        <br>
         
+        
+            <a href="types.jsp">
+                <button class="btn btn-outline-success">ASSIGNED LOCATION TYPES</button>
+            </a>
+            
+        <br>
+        
+            <a href="l_company.jsp">
+                <button class="btn btn-outline-primary">COMPANIES</button>
+            </a>
+        <br>
+    
+            <a href="companies.jsp">
+                <button class="btn btn-outline-primary">LOCATIONS</button>
+            </a>
+       
+        </div>
         <div class="col-md-8">
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
@@ -84,8 +101,8 @@ resultSet = statement.executeQuery(sql);
                
                 <tr>
               
-                <th>Name</th>
-                <th>Action</th>
+                <th>NAMES</th>
+                <th>ACTIONS</th>
                 </tr>
                 <tr>
                     <%
@@ -102,11 +119,11 @@ resultSet = statement.executeQuery(sql);
                     <td>
                         
                         <a href="l_type_page.jsp?id=<%=id%>">
-                            <button class="btn btn-outline-primary">Edit Name</button>
+                            <button class="btn btn-outline-primary">EDIT NAME</button>
                         </a>
                         
-                        <a href="delete_l_type.jsp?id=<%=id%>">
-                            <button class="btn btn-outline-danger">Delete</button>
+                        <a href="delete_l_type.jsp?id=<%=id%>" onclick="return confirm('Are you sure?');">
+                            <button class="btn btn-outline-danger">DELETE</button>
                         </a>
                     </td>
                 </tr>
