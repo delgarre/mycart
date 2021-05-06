@@ -59,7 +59,7 @@ resultSet = statement.executeQuery(sql);
         <%@include file="components/user_navbar.jsp" %>
         <div class="col-md-8">
             <div class="table-responsive-sm mt-3">
-                <h2>Orders for <%=id%></h2>
+                <h2>ORDER FOR <%=id%></h2>
                 <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
                 </div>
