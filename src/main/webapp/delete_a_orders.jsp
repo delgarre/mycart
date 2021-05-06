@@ -22,5 +22,7 @@
     {
         System.out.println();
         e.printStackTrace();
+        session.setAttribute("message", "error deleted order item!");
+    response.sendRedirect("a_orders.jsp?id="+loc);
     }
     %>
