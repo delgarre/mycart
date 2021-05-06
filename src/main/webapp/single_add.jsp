@@ -105,7 +105,7 @@ function goBack(){
     
                 </div>
                 <div>
-                    <h3>Add an item for: <%=name%></h3>
+                    <h3>ADD AN ITEM FOR: <%=name%></h3>
                 </div>
         
             <table class="table table-bordered ">
@@ -113,21 +113,25 @@ function goBack(){
                 <tr>
                 
 
-                <th>Photo</th>
-                <th>Price</th>
-                <th>Item Number</th>
-                <th>Description</th>
-                <th>Quantity Per UOM</th>
-                <th>Alternate Item</th>
-                <th>Vendor</th>
-                <th>Unit Of Measure</th>
-                <th>Manufacturer</th>
-                <th>Manufacturer Number</th>
+                <th>IMAGE</th>
+                <th>ITEM NUMBER</th>
+                <th>DESCRIPTION</th>
+                <th>VENDOR</th>
+                <th>UOM</th>
+
+
+
+                <th>QUANTITY PER UOM</th>
+              
+                 <th>COST</th>
+
+                <th>MANUFACTURER</th>
+            
                 <th>CPT</th>
                 <th>NDC</th>
                 
                 
-                <th>Actions</th>
+                <th>ACTIONS</th>
                 </tr>
                 </thead>
                 <tbody id="myTable">
@@ -154,22 +158,23 @@ function goBack(){
                     <td>
                         <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
                     </td>
-                    <td><%= price%></td>
                     <td><%= itemNumber%></td>
                     <td><%=desc%></td>
-                    <td><%= quantity%></td>
-                    <td><%=alt%></td>
                     <td><%=vendor%></td>
                     <td><%=unit%></td>
+                    <td><%= quantity%></td>
+                    <td><span>$<%= price%></span></td>
+                    
                     <td><%=man%></td>
-                    <td><%= manNum%></td>
                     <td><%=cpt%></td>
                     <td><%=ndc%></td>
+                    
+                    
                     
                    
                     <td>
                         <a href="s.jsp?id=<%= id%>">
-                    <button class="btn btn-outline-success">Add To Cart</button>
+                    <button class="btn btn-outline-success">ADD TO CART</button>
                     </a>
                     </td>
                 </tr>
