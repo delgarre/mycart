@@ -51,20 +51,47 @@ while(resultSet.next()){
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Update Category</title>
+        
+<script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>
         <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <h1>Make Changes</h1>
-        <div class="col-md-8">
+         <div class="container"> 
+            <div class="row">
+                 <div class="col-md-6 offset-md-3">
+                  <br>
+                  <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                      <br>
+                      
+                      <div class="card">
+                          <div class="card-header custom-bg text-white">
+                            <h1>Make Changes!</h1>
+                      </div>
+                          <div class="card-body">
             <form method="POST" action="update_category.jsp">
                 
             <input type="hidden" name="catId" value="<%=resultSet.getString("categoryId") %>">
-            <input type="text" name="catTitle" value="<%=resultSet.getString("categoryTitle")%>">
-            <input type="submit" value="Edit" onclick="myFunction()">
+            <div class="form-group">
+                       <label for="catTitle">Location:</label>
+           
+            <input type="text" name="catTitle" value="<%=resultSet.getString("categoryTitle")%>" id="catTitle">
+            </div>
+            <div class="container text-center">
+            <input type="submit" class="btn btn-info" value="SAVE CHANGES" onclick="return confirm('Are you sure?');">
+            </div>
             </form>
+                          </div>
+                      </div>
         </div>
+            </div>
+         </div>
         
         
 <%
@@ -74,17 +101,6 @@ connection.close();
 e.printStackTrace();
 }
 %>     
-<script>
-function myFunction() {
-  var txt;
-  var r = confirm("Are you sure?");
-  if (r == true) {
-    txt = "Category edited!";
-  } else {
-    txt = "You changed your mind!";
-  }
-  document.getElementById("demo").innerHTML = txt;
-}
-</script>
+
     </body>
 </html>
