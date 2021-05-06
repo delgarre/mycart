@@ -42,7 +42,7 @@ try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql="Update Vendor set vendorId=?, vendorName=? where vendorId="+vendorId;
+String sql="Update Vendor set vendorId=?, vendorName=upper(?) where vendorId="+vendorId;
 ps = con.prepareStatement(sql);
 ps.setString(1,vendorId);
 ps.setString(2, vendorName);
