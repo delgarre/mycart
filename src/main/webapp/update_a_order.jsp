@@ -1,3 +1,4 @@
+<%@page import="com.learn.mycart.mail.CartUpdate"%>
 <%@page import="java.sql.*,java.util.*" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -12,6 +13,7 @@
 String id = request.getParameter("id");
 String itemNumber = request.getParameter("itemNumber");
 String price = request.getParameter("aPPrice");
+String email = request.getParameter("email");
 String name=request.getParameter("name");
 String quantity = request.getParameter("quantity");
 String locations = request.getParameter("locations");
@@ -38,12 +40,13 @@ ps.setString(5, quantity);
 int i = ps.executeUpdate();
 if(i > 0)
 {
-session.setAttribute("message", "Order edited successfully!");
-response.sendRedirect("a_orders.jsp?id="+locations);
+session.setAttribute("message", "Order updated successfully!");
+CartUpdate.sendMail(email, itemNumber, locations);
+response.sendRedirect("update_email.jsp?locations="+locations+"&itemNumber="+itemNumber+"&name="+name);
 }
 else
 {
-session.setAttribute("message", "There was a problem edited the order.");
+session.setAttribute("message", "There was a problem updating the order.");
 response.sendRedirect("a_orders.jsp?id="+locations);
 }
 }
