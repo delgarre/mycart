@@ -36,7 +36,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from L_Company";
+String sql ="select * from Types order by locationType";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -59,7 +59,7 @@ resultSet = statement.executeQuery(sql);
     <body>
          <%@include file="components/navbar.jsp" %>
          <div class="center">
-        <h1>Info:</h1>
+        <h1>ADD ITEM:</h1>
         
          <input type="hidden" name="operation" value="addcategory">
          
@@ -67,25 +67,25 @@ resultSet = statement.executeQuery(sql);
                     <input type="hidden" name="operation" value="addproduct"/>
                     <!--product Item number -->
                     <div>
-                        <h6>Enter Item Number</h6>
-                        <input type="text" class="form-control" placeholder="Enter Item Number" name="itemNumber" required/>
+                        <h6>ENTER ITEM NUMBER</h6>
+                        <input type="text" placeholder="Enter Item Number" class="form-control" name="itemNumber" required spellcheck="true"/>
                     </div>
                     
                     
                     <!--product description-->
                     <div class="form-group">
-                        <h6>Enter Description</h6>
-                        <textarea style="height: 100px" class="form-control" placeholder="Enter product description" name="pDesc" required></textarea>
+                        <h6>ENTER DESCRIPTION</h6>
+                        <textarea style="height: 100px" class="form-control" placeholder="Enter product description" name="pDesc" required spellcheck="true"></textarea>
                     </div>
                     <!--product price-->
                     <div class="form-group">
-                        <h6>Enter Item Cost</h6>
+                        <h6>ENTER ITEM COST($)</h6>
                         <input type="number" step="any" class="form-control" placeholder="Enter price of product" name="pPrice" required/>
                     </div>
                     <!--product quantity-->
                     <div class="form-group">
-                        <h6>Enter Quantity Per UOM</h6>
-                        <input type="number" class="form-control" placeholder="Enter product quantity" name="pQuantity" required/>
+                        <h6>ENTER QUANTITY PER UOM</h6>
+                        <input type="number" placeholder="Enter product quantity" class="form-control" name="pQuantity" required/>
                     </div>
                     <%
                     UOMDao uDao = new UOMDao(FactoryProvider.getFactory());
@@ -95,8 +95,8 @@ resultSet = statement.executeQuery(sql);
                     %>
                     <!--product uOfMeasure-->
                     <div class="form-group">
-                        <h6>Select Unit of Measure</h6>
-                <select name="pMeasure" id="pMeasure">
+                        <h6>SELECT UNIT OF MEASURE</h6>
+                <select name="pMeasure" id="pMeasure" class="form-control">
                     
                     <%
                     for(UOM u: uList){
@@ -119,9 +119,9 @@ resultSet = statement.executeQuery(sql);
                     
                     
                     <div class="form-group">
-                        <h6>Select CPT Code</h6>
+                        <h6>SELECT CPT CODE</h6>
                       
-               <select name="cpt" id="cpt">
+               <select name="cpt" id="cpt" class="form-control">
                    <%
                    for(CPT cp: cplist){
                    %>
@@ -136,14 +136,14 @@ resultSet = statement.executeQuery(sql);
             </select>
                     </div>
                     <div class="form-group">
-                        <h6>Enter NDC Number</h6>
+                        <h6>ENTER NDC NUMBER</h6>
                         <input type="text" class="form-control" placeholder="Enter NDC Number" name="ndc" id="ndc"/>
                        
                     </div>
                     
                     <!--alternate Item-->
                     <div class="form-group">
-                        <h6>Enter Alternate Item</h6>
+                        <h6>ENTER ALTERNATE ITEM</h6>
                         <input type="text" class="form-control" placeholder="Enter Alternate Item" name="alt"/>
                     </div>
                     
@@ -153,7 +153,7 @@ resultSet = statement.executeQuery(sql);
                     List<Manufacturers> mlist = mDao.getManufacturers();
                     %>
                     <div>
-                        <h6>Select Manufacturer</h6>
+                        <h6>SELECT MANUFACTURER</h6>
                         <select name="manufacturer" class="form-control" id="manufacturer">
                             <%
                             for(Manufacturers m: mlist){
@@ -167,7 +167,7 @@ resultSet = statement.executeQuery(sql);
                     </div>
                     <!--product manufacturerNum -->
                     <div>
-                        <h6>Enter Manufacturer #</h6>
+                        <h6>ENTER MANUFACTURER #</h6>
                         <input type="text" class="form-control" placeholder="Enter Manufacturer Number" name="manufacturerNum" required/>
                     </div>
                     <!--product category-->
@@ -178,7 +178,7 @@ resultSet = statement.executeQuery(sql);
 
                     %>
                     <div class="form-group">
-                        <h6>Select Category:</h6>
+                        <h6>SELECT CATEGORY</h6>
                         <select name="catId" class="form-control" id="catId">
                             
                             <%
@@ -197,7 +197,7 @@ resultSet = statement.executeQuery(sql);
                             List<Vendor> vList = vDao.getVendors();
                         %>
                         <div class="form-group">
-                            <h6>Select Vendor:</h6>
+                            <h6>SELECT VENDOR</h6>
                             <select name="vendorId" class="form-control" id="vendorId">
                                 <%
                                 for(Vendor v: vList){
@@ -209,11 +209,11 @@ resultSet = statement.executeQuery(sql);
                             </select>
                             
                             <div class="form-group">
-                                <h6>Select Location Type</h6>
+                                <h6>SELECT LOCATION TYPE</h6>
                 <%
                     while(resultSet.next()){
                         
-                        String company = resultSet.getString("company");
+                        String company = resultSet.getString("locationType");
                         
                     %>
                                 <input type="checkbox" name="location" value="<%=company%>"><%=company%><br>
@@ -229,13 +229,19 @@ resultSet = statement.executeQuery(sql);
                         
                   
                     <div class="form-group">
-                        <label for="file">Select picture of product:</label>
+                        <label for="file">SELECT PICTURE OF ITEM</label>
                         <br>
                         <input type="file" id="file" name="file" size="50"/>
                         
-                        <input type="file" id="file" name="file"/>
                         
                         
+                        
+                    </div>
+                    
+                    <!--product notes-->
+                    <div class="form-group">
+                        <h6>SPECIAL INSTRUCTIONS</h6>
+                        <textarea style="height: 100px" placeholder="Enter product notes" class="form-control" name="notes" spellcheck="true"></textarea>
                     </div>
                         <!--
                     <div class="form-group">
@@ -248,7 +254,7 @@ resultSet = statement.executeQuery(sql);
                    -->
                     <!--submit button-->
                     <div class="container text-center">
-                        <button class="btn btn-outline-success">Add Item</button>
+                        <button class="btn btn-outline-success">SAVE NEW ITEM</button>
                         
                     </div>
                     
