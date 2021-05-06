@@ -17,6 +17,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Type</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+        <script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>
 
 <style>
 .center {
@@ -29,8 +36,18 @@
     </head>
     <body>
          <%@include file="components/navbar.jsp" %>
-        <h2>Add a type:</h2>
-        <div class="center">
+  
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <br>
+                  <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                      <br>
+                      <div class="card">
+                           <div class="card-header custom-bg text-white">
+      <h1>ADD A TYPE:</h1>
+                      </div>
+                          <div class="card-body">
         <form method="POST" action="new_type.jsp">
              <!-- Location dropdown-->
                     <%
@@ -41,7 +58,7 @@
                     %>
                     <div class="form-group">
                         <h6>Select Location:</h6>
-                        <select name="comId" class="form-control" id="comId">
+                        <select name="comId" id="comId">
                             
                             <%
                                 for(Company c: list){
@@ -60,7 +77,7 @@
                         <div class="form-group">
                             <h6>Type:</h6>
                             
-                            <select class="form-control" name="locationType" id="locationType">
+                            <select name="locationType" id="locationType">
                                 <%
                                 for(Types t: tList){
                                 %>
@@ -73,10 +90,14 @@
                         
                                             <!--submit button-->
                     <div class="container text-center">
-                        <button class="btn btn-outline-success">Add type</button>
+                        <button class="btn btn-outline-success">ADD TYPE</button>
                         
                     </div>
         </form>
+                          </div>
+                      </div>
+                </div>
+            </div>
         </div>
               
     </body>
