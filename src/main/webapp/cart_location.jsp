@@ -60,6 +60,17 @@ resultSet = statement.executeQuery(sql);
   border: navy;
   padding: 10px;
 }
+
+table.table-fit {
+    width: auto !important;
+    table-layout: auto !important;
+}
+table.table-fit thead th, table.table-fit tfoot th {
+    width: auto !important;
+}
+table.table-fit tbody td, table.table-fit tfoot td {
+    width: auto !important;
+}
 </style>
     </head>
     <%
@@ -75,7 +86,7 @@ resultSet = statement.executeQuery(sql);
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
-            <form method="post" action="CDropDownServlet">
+            
             
             <table class="table table-bordered ">
                 
@@ -90,24 +101,25 @@ resultSet = statement.executeQuery(sql);
                     while(resultSet.next()){
                         ;
                         String locations = resultSet.getString("locations");
-                        
+                        session.setAttribute("cart", locations);
                     %>
                     
 
                     <td><%=locations%></td>
                     <td>
-                        
-                            <button>View</button>
-                        
+                        <a href="cart.jsp?id=<%=locations%>">
+                            <button class="btn btn-outline-success">View</button>
+                        </a>
                            
                     </td>
                 <input type="hidden" name="name" value="<%=locations%>">
                 </tr>
                 <%
                     }
+                
                 %>
             </table>
-            </form>
+         
         </div>
 <%
 
