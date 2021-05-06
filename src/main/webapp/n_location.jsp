@@ -68,8 +68,8 @@ resultSet = statement.executeQuery(sql);
     String ddMMyyyyToday = DATE_FORMAT.format(today);
     %>
     <body>
-           <%@include file="components/navbar.jsp" %>
-        <h1>Locations Waiting Approval:</h1>
+           <%@include file="components/user_navbar.jsp" %>
+        <h1>LOCATIONS PENDING ORDER APPROVAL:</h1>
         <div class="center">
 
             <div class="container-fluid mt-3">
@@ -80,9 +80,9 @@ resultSet = statement.executeQuery(sql);
             <table class="table table-bordered ">
                 
                 <tr>
-                    <th>Locations</th>
+                    <th>LOCATIONS</th>
                    
-                    <th>Actions</th>
+                    <th>ACTIONS</th>
                     
                 </tr>
                 <tr>
@@ -97,7 +97,7 @@ resultSet = statement.executeQuery(sql);
                     <td><%=locations%></td>
                     <td>
                         <a href="n_a_orders.jsp?id=<%= locations%>">
-                            <button>View</button>
+                            <button class="btn btn-primary">VIEW</button>
                         </a>
                            
                     </td>
