@@ -21,7 +21,7 @@
                             
                             <%@include file="components/message.jsp" %>
                             
-                            <form action="LoginServlet" method="post">
+                            <form action="selectLogin.jsp" method="post">
                                 <div class="form-group">
                                   <label for="exampleInputEmail1">Email address</label>
                                   <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
