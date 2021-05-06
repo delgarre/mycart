@@ -42,7 +42,7 @@ try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql="Update CPT set id=?, codes=? where id="+cId;
+String sql="Update CPT set id=?, codes=upper(?) where id="+cId;
 ps = con.prepareStatement(sql);
 ps.setString(1,cId);
 ps.setString(2, codes);
