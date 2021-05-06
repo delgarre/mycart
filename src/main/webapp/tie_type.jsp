@@ -43,7 +43,7 @@
             Name:<br>
             <input type="text" name="type"/>
             <br><br>
-            <input type="submit" value="Add Location Type">
+            <input type="submit" class="btn btn-success" value="Add Location Type">
         </form>
         </div>
     </body>
