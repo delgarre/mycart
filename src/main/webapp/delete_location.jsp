@@ -3,6 +3,7 @@
 <%@page import="java.sql.*,java.util.*" %>
 <%
     String id = request.getParameter("id");
+    String user = request.getParameter("user");
     
     try{
         
@@ -12,13 +13,15 @@
     
     Statement st = conn.createStatement();
     
-    int i = st.executeUpdate("DELETE FROM Test WHERE id="+id);
+    int i = st.executeUpdate("DELETE FROM UserLocation WHERE id="+id);
     session.setAttribute("message", "Location deleted successfully!");
-    response.sendRedirect("users.jsp");
+    response.sendRedirect("company_user.jsp?id="+user);
     }
     catch(Exception e)
     {
         System.out.println();
         e.printStackTrace();
+        session.setAttribute("message", "error deleted location!");
+        response.sendRedirect("company_user.jsp?id="+user);
     }
     %>
