@@ -47,6 +47,7 @@ statement=connection.createStatement();
 String sql ="select * from Types where id="+id;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
+    String l_user = resultSet.getString("locationType");
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -86,12 +87,13 @@ function goBack(){
                        <label for="type">Name:</label>
           
             
-          <input type="text" name="type" value="<%=resultSet.getString("locationType") %>" id="type">
+          <input type="text" name="type" value="<%=l_user %>" id="type">
             </div>
             <div class="container text-center">
           <input type="submit" value="Edit" class="btn btn-primary">
           
             </div>
+            <input type="hidden" name="locationType" value="<%=l_user%>">
       </form>
       </div>
                   </div>
