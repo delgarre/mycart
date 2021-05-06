@@ -86,10 +86,10 @@ function goBack(){
                        <label for="name">Name:</label>
           
             
-          <input type="text" name="name" value="<%=resultSet.getString("name") %>" id="name">
+          <input type="text" name="name" value="<%=resultSet.getString("name") %>" id="name" spellcheck="true">
             </div>
             <div class="container text-center">
-          <input type="submit" value="Edit" class="btn btn-primary">
+          <input type="submit" onclick="return confirm('Are you sure?');" value="SAVE CHANGES" class="btn btn-primary">
           
             </div>
       </form>
