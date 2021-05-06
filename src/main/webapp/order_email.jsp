@@ -104,7 +104,7 @@ resultSet = statement.executeQuery(sql);
     %>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <h1>Confirm Order:</h1>
+        <h1>APPROVE ORDER:</h1>
         <div class="col-md-8">
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
@@ -114,7 +114,7 @@ resultSet = statement.executeQuery(sql);
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
                 <input type="text" name="locations" value="<%=id%>"/>
                                 
-               <input type="submit" class="btn btn-success" value="Approve Orders" onclick="sendEmail('td')"/>
+               <input type="submit" class="btn btn-success" value="Approve Order" onclick="sendEmail('td')"/>
              
             </form>
             <div class="row ml-2">
@@ -133,11 +133,12 @@ resultSet = statement.executeQuery(sql);
                     <th>Description</th>
                     <th>Vendor</th>
                     <th>Cost</th>
-                    <th>QTY Ordered</th>
+                    <th>Alternate Item Number</th>
                     <th>Ordered By</th>
                     
                     <th>Location</th>
-                    <th>Alternate Item Number</th>
+                    
+                    <th>QTY Ordered</th>
                     
 
 
@@ -166,11 +167,13 @@ resultSet = statement.executeQuery(sql);
                     <td><%=pDesc%></td>
                     <td><%=vTitle%></td>
                     <td><%= price%></td>
-                    <td><%=quantity%></td>
+                    <td><%=alt%></td>
+                    
                     <td><%=name%></td>
                     
                     <td><%=id%></td>
-                    <td><%=alt%></td>
+                    <td><%=quantity%></td>
+                    
                     
 
 
