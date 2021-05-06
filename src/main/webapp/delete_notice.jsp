@@ -14,11 +14,13 @@
     
     int i = st.executeUpdate("DELETE FROM Notice WHERE id="+id);
     session.setAttribute("message", "Message deleted successfully!");
-    response.sendRedirect("admin.jsp");
+    response.sendRedirect("notice.jsp");
     }
     catch(Exception e)
     {
         System.out.println();
         e.printStackTrace();
+        session.setAttribute("message", "Message deleted successfully!");
+    response.sendRedirect("notice.jsp");
     }
     %>
