@@ -21,5 +21,7 @@
     {
         System.out.println();
         e.printStackTrace();
+        session.setAttribute("message", "error deleted location type!");
+    response.sendRedirect("type.jsp");
     }
     %>
