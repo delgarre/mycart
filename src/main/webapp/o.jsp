@@ -55,12 +55,12 @@ while(resultSet.next()){
         <%@include file="components/common_css_js.jsp" %>
 
 <style>
-.center {
-  margin: auto;
-  width: 60%;
-  border: navy;
-  padding: 10px;
+.input[type=text] {
+  background-color: #E0E0E0;
+  color: black;
 }
+
+
 </style>
 
 <script>
@@ -86,11 +86,12 @@ function goBack(){
     
     <div class="card">
         <div class="card-header custom-bg text-white">
-                            <h1>Enter Amount:</h1>
+                            <h1>ENTER AMOUNT:</h1>
                                     
                     </div>
                 <div class="card-body">
-                    Date: <%=today%>
+                    Date: <%=today%><br>
+                    <br>
 <form method="post" action="save.jsp">
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
 <input type="hidden" name="date">
@@ -115,32 +116,32 @@ function goBack(){
 <input type="hidden" name="alt" value="<%=resultSet.getString("alternateItem")%>">
 
 
-                    <div class="form-group">
-                       <label for="itemNumber">Item Number:</label>
+                <div class="form-group">
+                    <label for="itemNumber">ITEM NUMBER:</label>
 
-            <input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>" class="form-control" id="itemNumber" readonly>
-                    </div>
+                    <input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>" class="input" id="itemNumber" readonly>
+                </div>
                     <div class="form-group">
-                       <label for="price">Price:</label>
+                       <label for="price">COST($):</label>
 
-<input type="text" name="price" value="<%=resultSet.getString("price") %>" class="form-control" id="price" readonly>
+<input type="text" name="price" value="<%=resultSet.getString("price") %>" id="price" class="input" readonly>
                     </div>
 
 <input value="<%= user.getUserName()%>" type="hidden" name="name">
 
                 <div class="form-group">
-                       <label for="quantity">Quantity:</label>
+                       <label for="quantity">QUANTITY:</label>
 
-<input type="text" name="quantity" placeholder="Enter Amount" class="form-control" id="quantity" required>
+<input type="text" name="quantity" placeholder="Enter Amount" id="quantity" required>
             </div>
                 <div class="form-group">
-                       <label for="locations">Location:</label>
+                       <label for="locations">LOCATION:</label>
 
-<input value="<%=company1.getCompanyName()%>" name="locations" class="form-control" id="locations" readonly>
+<input value="<%=company1.getCompanyName()%>" name="locations" id="locations" class="input" readonly>
                 </div>
  <div class="container text-center">
-<input type="submit" class="btn btn-primary" value="Add Item">
-<button class="btn btn-warning" onclick="goBack()">Go Back</button>
+<input type="submit" class="btn btn-primary" value="ADD ITEM">
+<button class="btn btn-warning" onclick="goBack()">GO BACK</button>
  </div>
 </form>
 <%
