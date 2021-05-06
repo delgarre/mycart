@@ -73,11 +73,19 @@ resultSet = statement.executeQuery(sql);
         <br>
         <div class="row ml-2">
             <a href="add_type.jsp">
-                <button class="btn btn-outline-success">Tie Location Type</button>
+                <button class="btn btn-outline-success">ASSIGN LOCATION TYPE</button>
             </a>
             <br>
-            <a href="tie_type.jsp">
-                <button class="btn btn-outline-primary">Add Location Type</button>
+            <a href="type.jsp">
+                <button class="btn btn-outline-primary">MAINTAIN LOCATION TYPE</button>
+            </a>
+            <br>
+            <a href="l_company.jsp">
+                <button class="btn btn-outline-primary">COMPANIES</button>
+            </a>
+            <br>
+            <a href="companies.jsp">
+                <button class="btn btn-outline-primary">LOCATIONS</button>
             </a>
         </div>
         <div class="col-md-8">
@@ -88,9 +96,9 @@ resultSet = statement.executeQuery(sql);
             <table class="table table-bordered">
                
                 <tr>
-                <th>Location</th>
-                <th>Type</th>
-                <th>Action</th>
+                <th>LOCATION</th>
+                <th>TYPE</th>
+                <th>ACTION</th>
                 </tr>
                 <tr>
                     <%
@@ -106,8 +114,8 @@ resultSet = statement.executeQuery(sql);
                     <td><%=type%></td>
                     <td>
                         
-                        <a href="delete_type.jsp?id=<%=id%>">
-                            <button class="btn btn-outline-danger">Delete</button>
+                        <a href="delete_type.jsp?id=<%=id%>" onclick="return confirm('Are you sure?');">
+                            <button class="btn btn-outline-danger">DELETE</button>
                         </a>
                     </td>
                 </tr>
