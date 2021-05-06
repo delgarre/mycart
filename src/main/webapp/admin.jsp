@@ -1,3 +1,5 @@
+<%@page import="com.learn.mycart.entities.Notice"%>
+<%@page import="com.learn.mycart.dao.NoticeDao"%>
 <%@page import="com.learn.mycart.entities.Category"%>
 <%@page import="com.learn.mycart.entities.Vendor"%>
 <%@page import="com.learn.mycart.dao.VendorDao"%>
@@ -34,8 +36,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Admin Page</title>
-        <%@include file="components/common_css_js.jsp" %>
+        <style>
+            
+table.table-fit {
+    width: auto !important;
+    table-layout: auto !important;
+}
+table.table-fit thead th, table.table-fit tfoot th {
+    width: auto !important;
+}
+table.table-fit tbody td, table.table-fit tfoot td {
+    width: auto !important;
+}
+        </style>
         
+        <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
@@ -45,7 +60,30 @@
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
-            
+            <div class="panel-heading col-md-8">
+                <table class="table table-striped table-dark table-bordered table-fit">
+                        <%
+                        NoticeDao ldao = new NoticeDao(FactoryProvider.getFactory());
+                        List<Notice> notice = ldao.getStatus();
+                        %>
+                        
+                        <tr>
+                            <th>MESSAGE:</th>
+                        </tr>
+                        <%
+                        for(Notice n: notice){
+                        %>
+                        
+                        <tr>
+                            
+                            <td><%=n.getMessage()%></td>
+                            
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </table>
+            </div>
             
             <div class="row mt-3">
                 
@@ -61,7 +99,7 @@
                             </div>
                             
                        
-                            <h3 class="text-muted">USERS</h3>
+                            <h4 class="text-muted">USERS</h4>
                         </div>
                     </div>
                    </a>
@@ -76,7 +114,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/list.png" alt="user_icon">
                             </div>
                       
-                            <h3 class="text-muted">CATEGORIES</h3>
+                            <h4 class="text-muted">CATEGORIES</h4>
                         </div>
                     </div>
                     </a>
@@ -91,7 +129,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/product.png" alt="user_icon">
                             </div>
                          
-                            <h3 class="text-muted">ITEMS</h3>
+                            <h4 class="text-muted">INVENTORY ITEMS</h4>
                         </div>
                     </div>
                     </a>
@@ -106,7 +144,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/location.png" alt="user_icon">
                             </div>
                            
-                            <h3 class="text-muted">LOCATIONS</h3>
+                            <h4 class="text-muted">LOCATIONS</h4>
                         </div>
                     </div>
                     </a>
@@ -152,7 +190,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/ruler.png" alt="user_icon">
                             </div>
                           
-                            <h4 class="text-muted">UOM List </h4>
+                            <h4 class="text-muted">UOM LIST</h4>
                         </div>
                     </div>
                     </a>
@@ -165,10 +203,10 @@
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/message.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/message_board.png" alt="user_icon">
                             </div>
                    
-                            <h3 class="text-muted">ADMIN NOTICE</h3>
+                            <h4 class="text-muted">MESSAGE BOARD</h4>
                         </div>
                     </div>
                     </a>
@@ -183,7 +221,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendors.png" alt="user_icon">
                             </div>
                      
-                            <h3 class="text-muted"> VENDORS</h3>
+                            <h4 class="text-muted"> VENDORS</h4>
                         </div>
                     </div>
                     </a>
@@ -198,27 +236,14 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/history.png" alt="user_icon">
                             </div>
                             
-                            <h3 class="text-muted"> ORDER HISTORY</h3>
+                            <h4 class="text-muted"> ORDER HISTORY</h4>
                         </div>
                     </div>
                     </a>
                 </div>
               <!--eleventh row -->
-                <div class="col-md-3">
-                    <a href="types.jsp" class="card-link">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            
-                            <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/types.jpg" alt="user_icon">
-                            </div>
-                            
-                            <h3 class="text-muted">LOCATION TYPES</h3>
-                        </div>
-                    </div>
-                    </a>
-                </div>
-               <!--twelve row -->
+                
+               
                 <div class="col-md-3">
                     <a href="manufacturers.jsp" class="card-link">
                     <div class="card">
@@ -243,22 +268,22 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/cpt.png" alt="user_icon">
                             </div>
                             
-                            <h3 class="text-muted">CPT Codes</h3>
+                            <h4 class="text-muted">CPT CODES</h4>
                         </div>
                     </div>
                     </a>
                 </div>
-                <!--fourteenth row -->
+                <!--fourthteenth row -->
                 <div class="col-md-3">
-                    <a href="type.jsp" class="card-link">
+                    <a href="https://github.com/delgarre/mycart/upload/master/src/main/webapp/image" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/types.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/cpt.png" alt="user_icon">
                             </div>
                             
-                            <h3 class="text-muted">Types</h3>
+                            <h4 class="text-muted">PHOTO UPLOAD</h4>
                         </div>
                     </div>
                     </a>
