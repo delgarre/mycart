@@ -13,8 +13,7 @@ pageEncoding="ISO-8859-1"%>
 <%@include file="components/common_css_js.jsp" %>
 <style>
 
-p {text-align: center;}
-div {text-align: center;}
+
 </style>
 
 </head>
@@ -26,9 +25,12 @@ div {text-align: center;}
 <%!String user = "admin";%>
 <%!String psw = "ordering";%>
 <div class="container">
-    <div class="row mt-5">
-<div class="col-md-8">
+    <div class="row">
+<div class="col-md-6 offset-md-3">
     <div class="card">
+         <div class="card-header custom-bg text-white">
+      <h1>SELECT LOCATION:</h1>
+                      </div>
         <div class="card-body">
 <form method="post" action="IDropDownServlet">
 <%
@@ -39,13 +41,13 @@ try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql = "SELECT * FROM Test where user_id = " +id;
+String sql = "SELECT * FROM UserLocation where user_id = " +id;
 ps = con.prepareStatement(sql);
 ResultSet rs = ps.executeQuery(); 
 %>
 
-
-<p>Select Location :
+<div class="form-group">
+<p>LOCATIONS:
 <select name="comId" id="comId">
 <%
 while(rs.next())
@@ -58,7 +60,10 @@ String cname = rs.getString("comp_name");
 %>
 </select>
 </p>
-<input type="submit" value="submit">
+</div>
+<div class="container text-center">
+<input class="btn btn-outline-success" type="submit" value="SELECT LOCATION">
+</div>
 
 <%
 }
