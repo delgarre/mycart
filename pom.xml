@@ -15,12 +15,14 @@
     </properties>
     
     <dependencies>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>7.0</version>
-            <scope>provided</scope>
-        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax/javaee-web-api -->
+<dependency>
+    <groupId>javax</groupId>
+    <artifactId>javaee-web-api</artifactId>
+    <version>8.0.1</version>
+    <scope>provided</scope>
+</dependency>
+
         
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
     <dependency>
