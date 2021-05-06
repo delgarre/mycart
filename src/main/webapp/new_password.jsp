@@ -13,7 +13,9 @@
 
 
 String email = request.getParameter("id");
+String name = request.getParameter("name");
+String password = request.getParameter("password");
 session.setAttribute("message", "New User created and email sent successfully!");
-NewUser.sendMail(email);
+NewUser.sendMail(email, name, password);
 response.sendRedirect("users.jsp");
 %>
