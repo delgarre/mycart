@@ -4,7 +4,7 @@
 <%@page import="java.sql.*,java.util.*" %>
 <%
     String id = request.getParameter("id");
-    
+  
     try{
         
     Class.forName("com.mysql.jdbc.Driver");
@@ -21,5 +21,7 @@
     {
         System.out.println();
         e.printStackTrace();
+        session.setAttribute("message", "error deleted measurement!");
+        response.sendRedirect("uom.jsp");
     }
     %>
