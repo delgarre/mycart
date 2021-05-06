@@ -69,11 +69,11 @@
                 <tr>
                     <td><%=c.getCodes()%></td>
                     <td>
-                        <a href="delete_cpt.jsp?id=<%=c.getId()%>">
-                             <button type="button" class="delete" onclick="myFunction()">Delete</button>
+                        <a href="delete_cpt.jsp?id=<%=c.getId()%>" onclick="return confirm('Are you sure?');">
+                             <button type="button" class="btn btn-outline-danger">Delete</button>
                          </a>
                          <a href="update_cpt_page.jsp?id=<%=c.getId()%>">
-                             <button type="button" class="update">Edit</button>
+                             <button type="button" class="btn btn-outline-primary">Edit</button>
                          </a>
                     </td>
                 </tr>
