@@ -34,7 +34,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Test where user_id = '"+id+"'";
+String sql ="select * from UserLocation where user_id = '"+id+"'";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -59,19 +59,20 @@ resultSet = statement.executeQuery(sql);
     <body>
         <%@include file="components/user_navbar.jsp" %>
         <div class="center">
-        <h2>Your Locations:</h2>
+        <h2>LOCATIONS:</h2>
         <div class="container-fluid">
             <table class="table table-bordered">
                 <tr>
-                    <th>Name</th>
-                    
+                    <th>Location</th>
+                    <th>Company</th>
                 </tr>
                 <%
                 while(resultSet.next()){
-                    String comp = resultSet.getString("comp_name");
-                    
+                    String loc = resultSet.getString("comp_name");
+                    String comp = resultSet.getString("type");
                     %>
                 <tr>
+                    <td><%=loc%></td>
                     <td><%=comp%></td>
                 </tr>
                 <%
