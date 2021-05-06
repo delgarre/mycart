@@ -35,6 +35,18 @@
   
   h1 {text-align: center;}
 }
+
+
+table.table-fit {
+    width: auto !important;
+    table-layout: auto !important;
+}
+table.table-fit thead th, table.table-fit tfoot th {
+    width: auto !important;
+}
+table.table-fit tbody td, table.table-fit tfoot td {
+    width: auto !important;
+}
 </style>
     </head>
     <body>
@@ -47,14 +59,14 @@
                 <%@include file="components/message.jsp" %>
             </div>
             <div class="panel-heading col-md-8">
-                <table style="width:100%">
+                <table class="table table-striped table-dark" table-bordered table-fit">
                         <%
                         NoticeDao ldao = new NoticeDao(FactoryProvider.getFactory());
                         List<Notice> notice = ldao.getStatus();
                         %>
                         
                         <tr>
-                            <th>MESSAGE:</th>
+                            <th>MESSAGE BOARD:</th>
                         </tr>
                         <%
                         for(Notice n: notice){
@@ -85,7 +97,7 @@
                             </div>
                             
                     
-                            <h3 class="text-muted">YOUR INFO</h3>
+                            <h3 class="text-muted">PROFILE</h3>
                         </div>
                     </div>
                    </a>
@@ -119,14 +131,14 @@
                                 
                             </div>
                             
-                            <h3 class="text-muted">ITEMS</h3>
+                            <h3 class="text-muted">INVENTORY ITEMS</h3>
                         </div>
                     </div>
                         </a>
                 </div>
                 <!--fourth box-->
                  <div class="col-md-3">
-                     <a href="cart_dropdown.jsp?id=<%= user.getUserId()%>" class="card-link">
+                     <a href="cart_location.jsp?id=<%= user.getUserId()%>" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -149,7 +161,7 @@
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/list.png" alt="user_icon">
                             </div>
                        
-                            <h3 class="text-muted">PENDING ORDERS</h3>
+                            <h3 class="text-muted">ORDERS PENDING APPROVAL</h3>
                         </div>
                     </div>
                 </a>
