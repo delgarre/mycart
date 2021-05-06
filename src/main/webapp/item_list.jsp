@@ -26,6 +26,8 @@
             return;
         }
     }
+    
+String itemNumber = request.getParameter("itemNumber");
 %>
 
 
@@ -198,9 +200,7 @@ tr:nth-child(even) {background-color: #008080;}
         </div>
         
         <br>
-        
-     
-        <input id="myInput"  name="ven" type="text" placeholder="Search All">
+        <input id="myInput"  name="ven" type="text" value="<%=itemNumber%>" placeholder="Search All">
         
         <br><br>
       
