@@ -57,9 +57,9 @@ resultSet = statement.executeQuery(sql);
             <div class="table-responsive-sm mt-3">
                 <table class="table table-bordered " >
                     <tr>
-                        <th>Location</th>
+                        <th>LOCATION</th>
                         
-                        <th>Actions</th>
+                        <th>ACTIONS</th>
                     </tr>
 
                     
@@ -75,7 +75,7 @@ resultSet = statement.executeQuery(sql);
                         <td><%=locations%></td>
                         <td>
                             <a href="user_orders.jsp?id=<%= locations%>">
-                            <button>View</button>
+                                <button class="btn btn-primary">VIEW</button>
                         </a>
                         </td>
                         
