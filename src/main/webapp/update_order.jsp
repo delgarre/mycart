@@ -1,4 +1,5 @@
 
+<%@page import="com.learn.mycart.mail.CartUpdate"%>
 <%@page import="com.learn.mycart.entities.User"%>
 <%@ page import="java.sql.*" %>
 <%@include file="components/message.jsp" %>
@@ -9,6 +10,7 @@
 
 <%
  User user1 = (User)session.getAttribute("current-user");
+ String email = user1.getUserEmail();
 Integer Id = user1.getUserId();
 String id = request.getParameter("id");
 String itemNumber=request.getParameter("itemNumber");
@@ -36,12 +38,13 @@ ps.setString(6, locations);
 int i = ps.executeUpdate();
 if(i > 0)
 {
-session.setAttribute("message", "Order edited successfully!");
+session.setAttribute("message", "Order updated successfully!");
+
 response.sendRedirect("l_pending_orders.jsp?id="+Id);
 }
 else
 {
-session.setAttribute("message", "There was a problem editing the order.");
+session.setAttribute("message", "There was a problem updating the order.");
 response.sendRedirect("items.jsp");
 }
 }
