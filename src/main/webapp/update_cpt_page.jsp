@@ -75,7 +75,7 @@ function goBack(){
                   <div class="card">
                       
                       <div class="card-header custom-bg text-white">
-      <h1>Make Changes!</h1>
+      <h1>MAKE CHANGES!</h1>
                       </div>
       <div class="card-body">
       <form method="POST" action="update_cpt.jsp">
@@ -83,13 +83,13 @@ function goBack(){
           <input type="hidden" name="cId" value="<%=resultSet.getString("id") %>">
 
             <div class="form-group">
-                       <label for="codes">Code:</label>
+                       <label for="codes">CODE:</label>
           
             
           <input type="text" name="codes" value="<%=resultSet.getString("codes") %>" id="codes">
             </div>
             <div class="container text-center">
-          <input type="submit" value="Edit" class="btn btn-primary">
+          <input type="submit" onclick="return confirm('Are you sure?');" value="SAVE CHANGES" class="btn btn-primary">
           
             </div>
       </form>
