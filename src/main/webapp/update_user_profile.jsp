@@ -44,7 +44,7 @@ ps.setString(3, password);
 int i = ps.executeUpdate();
 if(i > 0)
 {
-session.setAttribute("message", "Password edited successfully!");
+session.setAttribute("message", "Password changed successfully!");
 response.sendRedirect("profile.jsp");
 }
 else
