@@ -21,5 +21,7 @@
     {
         System.out.println();
         e.printStackTrace();
+        session.setAttribute("message", "error deleted manufacturer!");
+        response.sendRedirect("manufacturers.jsp");
     }
     %>
