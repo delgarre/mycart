@@ -21,5 +21,7 @@
     {
         System.out.println();
         e.printStackTrace();
+        session.setAttribute("message", "error deleting location tie!");
+        response.sendRedirect("types.jsp");
     }
     %>
