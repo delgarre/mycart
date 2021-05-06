@@ -21,5 +21,7 @@
     {
         System.out.println();
         e.printStackTrace();
+        session.setAttribute("message", "error deleted company!");
+    response.sendRedirect("l_company.jsp");
     }
     %>
