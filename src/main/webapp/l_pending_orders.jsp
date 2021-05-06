@@ -1,6 +1,11 @@
+<%@page import="com.learn.mycart.entities.Notice"%>
+<%@page import="com.learn.mycart.dao.NoticeDao"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="com.learn.mycart.entities.SubmitDate"%>
+<%@page import="com.learn.mycart.dao.SubmitDateDao"%>
 <%@page import="com.learn.mycart.entities.ApproveOrder"%>
 <%@page import="com.learn.mycart.dao.ApproveOrderDao"%>
-<%@page import="com.learn.mycart.entities.Test"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -69,46 +74,115 @@ function goBack(){
   border: navy;
   padding: 10px;
 }
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
 </style>
     </head>
     <%
     Date today = new Date();
-    SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
-    String ddMMyyyyToday = DATE_FORMAT.format(today);
+    
     %>
     <body>
+       
            <%@include file="components/user_navbar.jsp" %>
-        <h1>Cart Items:</h1>
+           <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+        <h1>ITEMS IN CART:</h1>
         <div class="center">
+            <div class="panel-heading col-md-8">
+                <table class="table table-striped table-dark" table-bordered table-fit">
+                        <%
+                        NoticeDao ldao = new NoticeDao(FactoryProvider.getFactory());
+                        List<Notice> notice = ldao.getStatus();
+                        %>
+                        
+                        <tr>
+                            <th>MESSAGE BOARD:</th>
+                        </tr>
+                        <%
+                        for(Notice n: notice){
+                        %>
+                        
+                        <tr>
+                            
+                            <td><%=n.getMessage()%></td>
+                            
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </table>
+            </div>
+            
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
             <br>
             <button class="btn btn-primary" onclick="goBack()">Go Back</button>
             <br>
-            <form method="post" action="L_OrderServlet">
+            <form method="post" action="cart_submit.jsp">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
+                <input type="hidden" name="name" value="<%=user.getUserName()%>"/>
                 <input type="hidden" name="loc" value="<%=com%>"/>
                 <br>
-                <input type="submit" class="btn btn-info" value="Submit Cart For Approval" onclick="mySub()"/>
+                <input type="submit" class="btn btn-info" value="SUBMIT CART FOR APPROVAL" onclick="mySub()"/><br>
+                <br>
+                 <%
+        SubmitDateDao sDao = new SubmitDateDao(FactoryProvider.getFactory());
+        List<SubmitDate> sList = sDao.getDate();
+        for(SubmitDate s: sList){
+            
+            
+Calendar cal = new GregorianCalendar();
+		//cal.setTime(today);
+		cal.add(Calendar.DAY_OF_MONTH, -30);
+		Date today30 = cal.getTime();
+SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
+String ddMMyyyyToday = DATE_FORMAT.format(today30);
+        
+        %>
+        
+        <input type="hidden" name="date" value="<%=s.getSubmitDate()%>"/>
+     
+        
+        <%
+            }
+        %>
             </form>
                 <br>
                 <a href="items.jsp">
                 <button type="button" class="btn btn-warning">
-    Add More Items
+    ADD MORE ITEMS
   </button>
                 </a>
             <table class="table table-bordered ">
                 <tr>
-                    <th>Image</th>
-                    <th>Item Number</th>
-                    <th>Description</th>
-                    <th>Vendor</th>
-                    <th>Cost</th>
-                    <th>Quantity</th>
-                    <th>User Name</th>
-                    <th>Location</th>
-                    <th>Actions</th>
+                    <th>IMAGE</th>
+                    <th>ITEM NUMBER</th>
+                    <th>DESCRIPTION</th>
+                    <th>VENDOR</th>
+                    <th>COST</th>
+                    <th>QUANTITY</th>
+                    <th>USER NAME</th>
+                    <th>LOCATION</th>
+                    <th>ACTIONS</th>
                     
                 </tr>
                 <tr>
@@ -137,10 +211,10 @@ function goBack(){
                     <td><%=locations%></td>
                     <td>
                         <a href="update_order_page.jsp?id=<%= Id%>">
-                            <button>Edit</button>
+                            <button class="btn btn-outline-primary">UPDATE</button>
                         </a>
-                            <a href="delete_order.jsp?id=<%= Id%>">
-                                <button onclick="myFunction()">Delete</button>
+                            <a href="delete_order.jsp?id=<%= Id%>&itemNumber=<%=aPName%>&location=<%=locations%>" onclick="return confirm('Are you sure?');">
+                                <button class="btn btn-outline-danger">DELETE</button>
                             </a>
                     </td>
                     
@@ -175,6 +249,26 @@ function myFunction() {
 
 function mySub() {
   alert("Order submitted for approval!");
+}
+
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
 </script>
 
