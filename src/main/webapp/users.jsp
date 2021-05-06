@@ -29,6 +29,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Users</title>
+        
         <%@include file="components/common_css_js.jsp" %>
         
 <style>
@@ -37,6 +38,16 @@
   width: 60%;
   border: navy;
   padding: 10px;
+  
+ table.table-fit {
+    width: auto !important;
+    table-layout: auto !important;
+}
+table.table-fit thead th, table.table-fit tfoot th {
+    width: auto !important;
+}
+table.table-fit tbody td, table.table-fit tfoot td {
+    width: auto !important;
 }
 </style>
     </head>
@@ -55,12 +66,14 @@
                 <%@include file="components/message.jsp" %>
             </div>
             
-        <div class="table-responsive-sm mt-3">
-        <table class="table table-bordered " >
+    
+        <table class="table table-bordered table-fit" >
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Authority</th>
+               
+                <th>NAME</th>
+                <th>PASSWORD</th>
+                <th>EMAIL</th>
+                <th>ACCESS LEVEL</th>
                 <th>Actions</th>
             </tr>
             
@@ -84,22 +97,22 @@
             
             
             <tr>
-                <td><%= u.getUserId()%></td>
+              
                 <td><%= u.getUserName()%></td>
                 
-                
-                
+                <td><%=u.getUserPassword()%></td>
+                <td><%=u.getUserEmail()%></td>
                 
                 <td><%= u.getUserType()%></td>
                 <td>
-                    <a href="delete.jsp?id=<%= u.getUserId() %>">
-                        <button type="button" class="delete" onclick="myFunction()">Delete</button>
+                    <a href="delete.jsp?id=<%= u.getUserId() %>" onclick="return confirm('Are you sure?');">
+                        <button type="button" class="btn btn-outline-danger">Delete</button>
                     </a>
                     <a href="update_user_page.jsp?id=<%=u.getUserId() %>">
-                        <button type="button" class="update">Edit</button>
+                        <button type="button" class="btn btn-outline-warning">Edit</button>
                     </a>
-                        <a href="company_user.jsp?id=<%= u.getUserId()%>">
-                        <button type="">Locations</button>    
+                        <a href="company_user.jsp?id=<%= u.getUserId()%>&name=<%=u.getUserName()%>">
+                        <button type="button" class="btn btn-outline-success">Locations</button>    
                     </a>
                 </td>
             </tr>
@@ -111,19 +124,6 @@
           
         </div>
       
-    </div>
-        
-<script>
-function myFunction() {
-  var txt;
-  var r = confirm("Are you sure?");
-  if (r == true) {
-    txt = "Category edited!";
-  } else {
-    txt = "You changed your mind!";
-  }
-  document.getElementById("demo").innerHTML = txt;
-}
-</script>
+
     </body>
 </html>
