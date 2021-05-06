@@ -27,6 +27,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Vendor</title>
         <%@include file="components/common_css_js.jsp" %>
+        <script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>
 
 <style>
 .center {
@@ -39,14 +45,30 @@
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <div class="center">
-        <h1>Info:</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <br>
+                  <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                      <br>
+                      <div class="card">
+                           <div class="card-header custom-bg text-white">
+      <h1>INFO:</h1>
+                      </div>
+       <div class="card-body">
         <form method="POST" action="new_vendor.jsp">
-            Name:<br>
-            <input type="text" name="vendorName"/>
-            <br><br>
-            <input type="submit" value="Add Vendor">
+            <div class="form-group">
+            <label for="vendorName">NAME:</label>
+            <input type="text" name="vendorName" id="vendorName" spellcheck="true">
+            </div>
+            <div class="container text-center">
+            <input type="submit" value="Add Vendor" class="btn btn-success">
+            </div>
         </form>
+       </div>
+                      </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
