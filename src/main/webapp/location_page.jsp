@@ -60,7 +60,7 @@ resultSet = statement.executeQuery(sql);
         <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
-        <%@include file="components/user_navbar.jsp" %>
+        <%@include file="components/navbar.jsp" %>
         <div class="col-md-8">
             <div class="table-responsive-sm mt-3">
                 <table class="table table-bordered " >
@@ -83,7 +83,7 @@ resultSet = statement.executeQuery(sql);
                         <td><%=locations%></td>
                         <td>
                             <a href="past_orders_page.jsp?id=<%= locations%>">
-                            <button>View</button>
+                                <button class="btn btn-primary">View</button>
                         </a>
                         </td>
                         
