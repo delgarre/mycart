@@ -17,7 +17,7 @@
         <mapping class = "com.learn.mycart.entities.OrderHistory"/>
         <mapping class = "com.learn.mycart.entities.ApproveOrder"/>
         <mapping class = "com.learn.mycart.entities.CompanyUser"/>
-        <mapping class = "com.learn.mycart.entities.Test"/>
+        <mapping class = "com.learn.mycart.entities.UserLocation"/>
         <mapping class = "com.learn.mycart.entities.Notice"/>
         <mapping class = "com.learn.mycart.entities.Orders"/>
         <mapping class = "com.learn.mycart.entities.Item"/>
@@ -30,7 +30,7 @@
         <mapping class = "com.learn.mycart.entities.Modal"/>
         <mapping class = "com.learn.mycart.entities.UOM"/>
         <mapping class = "com.learn.mycart.entities.L_Company"/>
-        <mapping class = "com.learn.mycart.entities.LoginLog"/>
+        <mapping class = "com.learn.mycart.entities.SubmitDate"/>
         
     </session-factory>
 </hibernate-configuration>
