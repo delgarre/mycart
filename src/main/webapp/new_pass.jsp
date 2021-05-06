@@ -29,12 +29,12 @@ ps.setString(2, password);
 int i = ps.executeUpdate();
 if(i > 0)
 {
-session.setAttribute("message", "Password chnaged successfully!");
+session.setAttribute("message", "Password changed successfully!");
 response.sendRedirect("index.jsp");
 }
 else
 {
-session.setAttribute("message", "There was a problem updating the user.");
+session.setAttribute("message", "There was a problem changing the password.");
 response.sendRedirect("index.jsp");
 }
 }
