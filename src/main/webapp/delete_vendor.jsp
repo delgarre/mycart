@@ -20,5 +20,7 @@
     {
         System.out.println();
         e.printStackTrace();
+        session.setAttribute("message", "error deleted vendor!");
+        response.sendRedirect("vendors.jsp");
     }
     %>
