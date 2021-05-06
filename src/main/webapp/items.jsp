@@ -43,7 +43,7 @@ ResultSet resultSet2 = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="Select I.* from Item I inner Join LocationType LT ON FIND_IN_SET(LT.locationType,I.locationType)Where LT.location ='"+name+"' AND stat=1";
+String sql ="Select I.* from Item I inner Join LocationType LT ON FIND_IN_SET(LT.locationType,I.locationType)Where LT.location ='"+name+"' AND stat=1 ORDER BY itemNumber";
 
 resultSet = statement.executeQuery(sql);
 
@@ -72,7 +72,10 @@ $(document).ready(function(){
 function goBack(){
         window.history.back();
     } 
+    
+
 </script>
+
         
 <style>
 .center {
@@ -83,7 +86,9 @@ function goBack(){
 }
 
 th {
-    white-space: nowrap;
+  background: white;
+  position: sticky;
+  top: 0;
 }
 
 .currencyinput {
@@ -93,10 +98,48 @@ th {
     border: 0;
 }
 
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+
+
+* {box-sizing: border-box;}
+
+.img-magnifier-container {
+  position: relative;
+}
+
+.img-magnifier-glass {
+  position: absolute;
+  border: 3px solid #000;
+  border-radius: 50%;
+  cursor: none;
+  /*Set the size of the magnifier glass:*/
+  width: 100px;
+  height: 100px;
+}
+
 </style>
     </head>
     <body>
           <%@include file="components/user_items_navbar.jsp" %>
+          
           <div class="panel panel-primary">
             <div>
                 <div class="container-fluid mt-3">
@@ -106,6 +149,7 @@ th {
                 
             </div>
         </div>
+                <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         <div class="col-md-8">
             <div div class="table-responsive-sm mt-3">
         
@@ -117,10 +161,10 @@ th {
     
                 </div>
                 <div>
-                  <h3>Inventory Items:</h3>
+                  <h3>INVENTORY ITEMS:</h3>
                 </div>
              
-                    
+                <div class="img-magnifier-container"> 
    
             <table class="table table-bordered"  style="width:20px">
                 <thead>
@@ -135,7 +179,7 @@ th {
 
 
 
-                <th>QUANTITY PER UOM</th>
+                <th>QTY PER UOM</th>
               
                  <th>COST</th>
 
@@ -172,7 +216,7 @@ th {
                 
                 <tr>
                     <td>
-                        <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
+                        <img id="myimage" style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
                     </td>
                     <td><%= itemNumber%></td>
                     <td><%=desc%></td>
@@ -193,47 +237,23 @@ th {
 
                     <td>
                         
-                        <a href="o.jsp?id=<%= id%>">
+                        <a href="dup_item_check.jsp?id=<%= id%>">
                     <button class="btn btn-outline-success">Add To Cart</button>
-                        
+                        </a>
+                    
                     </td>
                    
-
                 
                    
                 </tr>
-                <input type="hidden" value="<%=companys3.getCompanyName()%>" name="locations" class="form-control" id="locations" readonly>
-                    <input type="hidden" name="date">
-<input type="hidden" name="user_id" value="<%=user.getUserId()%>">
 
-<input type="hidden" name="name" value="<%=user.getUserName()%>">
-
-<input type="hidden" name="uom" value="<%=unit%>">
-
-<input type="hidden" name="man" value="<%=man%>">
-
-<input type="hidden" name="itemNumber" value="<%=itemNumber%>">
-
-<input type="hidden" name="mannum" value="<%=manNum%>">
-
-<input type="hidden" name="vTitle" value="<%=vendor%>">
-
-
-<input type="hidden" name="cTitle" value="<%=cTitle%>">
-
-
-<input type="hidden" name="pDesc" value="<%=desc%>">
-
-<input type="hidden" name="photo" value="<%=photo%>">
-
-<input type="hidden" name="alt" value="<%=alt%>">
-<input type="hidden" name="price" value="<%=price%>">
-                
                 <%
+                    session.setAttribute("itemNumber", itemNumber);
                     }
                 %>
                 </tbody>
             </table>
+                </div>
                 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -252,7 +272,9 @@ th {
       
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form method="post" action="select_item.jsp">
         <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
       </div>
     </div>
   </div>
@@ -261,6 +283,30 @@ th {
             </div>
         </div>
                 
+<script>
+    
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction();};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}   
+</script>
+
+
 <%
 
 connection.close();
