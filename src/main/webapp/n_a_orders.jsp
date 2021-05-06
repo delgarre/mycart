@@ -61,17 +61,17 @@ resultSet = statement.executeQuery(sql);
         <%@include file="components/user_navbar.jsp" %>
         <div class="center">
             
-            <h1>Items Pending Approval:</h1>
+            <h1>ORDERS PENDING APPROVAL:</h1>
             <table class="table table-bordered ">
                 <tr>
                     
-                    <th>Image</th>
-                    <th>Item Number</th>
-                    <th>Description</th>
-                    <th>Cost</th>
-                    <th>Quantity Ordered</th>
-                    <th>Ordered By</th>
-                    <th>Location</th>
+                    <th>IMAGE</th>
+                    <th>ITEM NUMBER</th>
+                    <th>DESCRIPTION</th>
+                    <th>COST</th>
+                    <th>QUANTITY ORDERED</th>
+                    <th>ORDERED BY</th>
+                    <th>LOCATION</th>
                    
 
 
