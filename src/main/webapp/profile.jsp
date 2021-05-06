@@ -44,7 +44,7 @@ while(resultSet.next()){
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit User</title>
+        <title>User Profile</title>
         <%@include file="components/common_css_js.jsp" %>
 
 <script>
@@ -75,28 +75,28 @@ function goBack(){
                     <button type="button" class="btn btn-warning" onclick="goBack()">Go Back</button>
                     <br>
                     <div class="card-header custom-bg text-white">
-                            <h3>Your Info:</h3>
+                            <h3>PROFILE:</h3>
                     </div>
         <div class="card-body">
 <form method="post" action="update_user_profile.jsp">
 <input type="hidden" name="user_id" value="<%=resultSet.getString("user_id") %>">
                         <div class="form-group">
-                       <label for="user_name">NAME:</label>
+                            <label for="user_name"><b>NAME:</b></label>
                     
-                    <input type="text" name="user_name" value="<%=resultSet.getString("user_name") %>" class="form-control" id="user_name" readonly>
+                    <input type="text" name="user_name" value="<%=resultSet.getString("user_name") %>" id="user_name" readonly>
                         </div>
                     <div class="form-group">
-                       <label for="user_password">PASSWORD:</label>
+                        <label for="user_password"><b>PASSWORD:</b></label>
                     
-                    <input type="text" name="user_password" value="<%=resultSet.getString("user_password") %>" class="form-control" id="user_password">
+                    <input type="text" name="user_password" value="<%=resultSet.getString("user_password") %>" id="user_password">
                     </div>
                     <div class="form-group">
-                       <label for="user_email">EMAIL ID:</label>
+                        <label for="user_email"><b>EMAIL ID:</b></label>
                     
-                    <input type="email" name="user_email" value="<%=resultSet.getString("user_email") %>" class="form-control" id="user_email" readonly>
+                    <input type="email" name="user_email" value="<%=resultSet.getString("user_email") %>" id="user_email" readonly>
                     </div>
                     <div class="container text-center">
-                    <input type="submit" class="btn btn-primary" value="EDIT PASSWORD">
+                    <input type="submit" class="btn btn-primary" value="SAVE CHANGES">
                     </div>
 </form>
                     </div>
