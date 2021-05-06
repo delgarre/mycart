@@ -61,7 +61,7 @@ resultSet = statement.executeQuery(sql);
         <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
-        <%@include file="components/user_navbar.jsp" %>
+        <%@include file="components/navbar.jsp" %>
         <div class="col-md-8">
             <div class="table-responsive-sm mt-3">
                 <table class="table table-bordered " >
