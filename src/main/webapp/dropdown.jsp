@@ -39,7 +39,7 @@ try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql = "SELECT * FROM Test where user_id = " +id;
+String sql = "SELECT * FROM UserLocation where user_id = " +id;
 ps = con.prepareStatement(sql);
 ResultSet rs = ps.executeQuery(); 
 %>
