@@ -40,7 +40,7 @@
     <body>
         <%@include file="components/navbar.jsp" %>
         <div class="center">
-        <h2>Manufacturers</h2>
+        <h2>UNITS OF MEASURES</h2>
         <br>
         <div class="row ml-2">
             <a href="add_measurement.jsp">
@@ -68,16 +68,18 @@
                 <tr>
                     <td><%=u.getVal()%></td>
                     <td>
-                        <a href="delete_uom.jsp?id=<%=u.getId()%>">
-                             <button type="button" class="delete" onclick="myFunction()">Delete</button>
+                        <a href="list_uom.jsp?id=<%=u.getId()%>&uom=<%=u.getVal()%>">
+                             <button type="button" class="btn btn-outline-danger">DELETE</button>
                          </a>
                          <a href="update_uom_page.jsp?id=<%=u.getId()%>">
-                             <button type="button" class="update">Edit</button>
+                             <button type="button" class="btn btn-info">EDIT</button>
                          </a>
                     </td>
                 </tr>
                  <%
+                     
                      }
+                     
                  %>
             </table>
         </div>
