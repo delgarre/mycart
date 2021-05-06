@@ -5,13 +5,23 @@
 <%@page import="com.learn.mycart.entities.User"%>
 <%@page import="com.learn.mycart.entities.Company"%>
 <%
-    User user = (User)session.getAttribute("current-user");
+  User user = (User)session.getAttribute("current-user");
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
         response.sendRedirect("index.jsp");
         return;
     }
+    else
+    {
+        if(user.getUserType().equals("normal"))
+        {
+            session.setAttribute("message", "Admin level required!");
+            response.sendRedirect("index.jsp");
+            return;
+        }
+    }
 %>
+
 <%
 String id = request.getParameter("id");
 String driver = "com.mysql.jdbc.Driver";
@@ -72,20 +82,16 @@ function goBack(){
             <div class="form-group">
                        <label for="companyName">Location:</label>
            
-            <input type="text" name="companyName" value="<%=resultSet.getString("companyName")%>" id="companyName">
+            <input type="text" name="companyName" value="<%=resultSet.getString("companyName")%>" id="companyName" spellcheck="true">
             </div>
               <div class="form-group">
                        <label for="type">Company:</label>
         
             <input type="text" name="type" value="<%=resultSet.getString("type")%>" id="type">
               </div>
-              <div class="form-group">
-                       <label for="typeLocation">Type Location:</label>
-          
-            <input type="text" name="typeLocation" value="<%=resultSet.getString("typeLocation")%>" id="typeLocation">
-              </div>
+              
                           <div class="container text-center">
-              <input type="submit" class="btn btn-outline-primary" value="submit">
+              <input type="submit" onclick="return confirm('Are you sure?');" class="btn btn-outline-primary" value="SAVE CHANGES">
                           </div>
         </form>
                         </div>
