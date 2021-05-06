@@ -4,6 +4,8 @@
     Author     : garre
 --%>
 
+<%@page import="com.learn.mycart.entities.UOM"%>
+<%@page import="com.learn.mycart.dao.UOMDao"%>
 <%@page import="com.learn.mycart.entities.CPT"%>
 <%@page import="com.learn.mycart.dao.CptDAO"%>
 <%@page import="com.learn.mycart.entities.Manufacturers"%>
@@ -29,11 +31,21 @@
 <%
     Company company1 = (Company)session.getAttribute("location");
     
+    
     User user = (User)session.getAttribute("current-user");
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
         response.sendRedirect("index.jsp");
         return;
+    }
+    else
+    {
+        if(user.getUserType().equals("normal"))
+        {
+            session.setAttribute("message", "Admin level required!");
+            response.sendRedirect("index.jsp");
+            return;
+        }
     }
 %>
 
@@ -66,9 +78,16 @@ while(resultSet.next()){
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add Item</title>
+        <title>Edit Item</title>
         <%@include file="components/common_css_js.jsp" %>
         
+
+<script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>
 <style>
 .center {
   margin: auto;
@@ -82,205 +101,266 @@ while(resultSet.next()){
          <%@include file="components/navbar.jsp" %>
          <div class="center">
              <%@include file="components/message.jsp" %>
-        <h1>Info:</h1>
-        
+        <h1>MANAGE INVENTORY:</h1>
+        <a href="item_list.jsp">
+        <button class="btn btn-warning">Go Back</button>
          <input type="hidden" name="operation" value="addcategory">
-         
+        </a>
          <form action="update_product.jsp" method="post">
              <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
+             <input type="hidden" name="stat" value="<%=resultSet.getString("stat") %>">
 <input type="hidden" name="date">
                   
                     <!--product Item number -->
                     <div>
-                        <h6>Enter Item Number</h6>
+                        <h6>ENTER ITEM NUMBER</h6>
                         <input type="text" class="form-control" placeholder="Enter Item Number" name="itemNumber" value="<%=resultSet.getString("itemNumber")%>" readonly/>
                     </div>
                     
                     
                     <!--product description-->
                     <div class="form-group">
-                        <h6>Enter Description</h6>
-                        <input  type="text" class="form-control" placeholder="Enter product description" name="pDesc" value="<%=resultSet.getString("pDesc")%>" ></textarea>
+                        <h6>ENTER DESCRIPTION</h6>
+                        <input  type="text" class="form-control" placeholder="Enter item description" name="pDesc" value="<%=resultSet.getString("pDesc")%>" spellcheck="true">
+                    </div>
+                    <!--product qty per uom-->
+                    <div class="form-group">
+                        <h6>ENTER QTY PER UOM</h6>
+                        <input  type="text" class="form-control" placeholder="Enter item quantity" name="pQuantity" value="<%=resultSet.getString("quantity")%>" spellcheck="true">
                     </div>
                     <!--product price-->
                     <div class="form-group">
-                        <h6>Enter Item Cost</h6>
-                        <input type="number" step="any" class="form-control" placeholder="Enter price of product" name="pPrice"value="<%=resultSet.getString("price")%>" />
+                        <h6>ENTER ITEM COST($)</h6>
+                        <input type="text" class="form-control" step="any" placeholder="Enter item of product" name="pPrice" value="<%=resultSet.getString("price")%>"/>
                     </div>
-                    <!--product quantity-->
+
+
+                    <!--product unitOfMeasure-->
                     <div class="form-group">
-                        <h6>Enter Quantity</h6>
-                        <input type="number" class="form-control" placeholder="Enter product quantity" name="pQuantity" value="<%=resultSet.getString("quantity")%>"/>
+                        <h6>ENTER UNIT OF MEASURE</h6>
+                <input class="form-control" value="<%=resultSet.getString("unitOfMeasure")%>" name="pMeasure" id="pMeasure"/>
+                    
                     </div>
-                    <!--product uOfMeasure-->
+                <!-- product ndc-->
                     <div>
-                        <h6>Enter Unit of Measure</h6>
-                <select name="pMeasure" id="pMeasure">
-                <option value="BOX (BX)">BOX (BX)</option>
-                <option value="PACK (PK)">PACK (PK)</option>
-                <option value="EACH (EA)">EACH (EA)</option>
-                <option value="PADS">PADS</option>
-                <option value="CASE (CS)">CASE (CS)</option>
-                <option value="SHEETS (SHT)">SHEETS (SHT)</option>
-                <option value="ROLL (RL)">ROLL (RL)</option>
-                <option value="EA">EA</option>
-                <option value="COUNT (CT)">COUNT (CT)</option>
-                <option value="DOZEN (DZ)">DOZEN (DZ)</option>
-                <option value="BOTTLE (BT)">BOTTLE (BT)</option>
-                <option value="GRAM (gm)">GRAM (gm)</option>
-                <option value="CARTON (CTN)">CARTON (CTN)</option>
-                <option value="POUNDS (lbs)">POUNDS (lbs)</option>
-                <option value="GALLON (GAL)">GALLON (GAL)</option>
-                <option value="PAIR (PR)">PAIR (PR)</option>
-                <option value="SET">SET</option>
-                <option value="BAG (bg)">BAG (bg)</option>
-                <option value="REAM">REAM</option>
-                <option value="WA">WA</option>
-                <option value="KILOGRAM (KG)">KILOGRAM (KG)</option>
-                <option value="VIAL (VL)">VIAL (VL)</option>
-                <option value="MILLILITER (ml)">MILLILITER (ml)</option>
-                <option value="PIECES">PIECES</option>
-                <option value="KIT">KIT</option>
-           
-                
-            </select>
-                    </div>
-                    <!--product cpt -->
-                    <%
-                    CptDAO cpDao = new CptDAO(FactoryProvider.getFactory());
-                    
-                    List<CPT> cplist = cpDao.getCodes();
-                    
-                    %>
-                    
-                    
-                    <div>
-                        <h6>Enter CPT</h6>
-                      
-               <select name="cpt" id="cpt">
-                   <%
-                   for(CPT cp: cplist){
-                   %>
-                <option value="<%=cp.getCodes()%>"><%=cp.getCodes()%></option>
-
-
-                    <%
-                        }
-                    %>
-           
-                
-            </select>
-                    </div>
-                    <div>
-                        <h6>Enter NDC</h6>
-                    
-                            <input type="text" name="ndc" value="<%=resultSet.getString("ndc")%>">
-                        
+                        <h6>ENTER NDC</h6>
+                  
+                            <input class="form-control" type="text" name="ndc" value="<%=resultSet.getString("ndc")%>">      
                     </div>
                     
                     <!--alternate Item-->
                     <div>
-                        <h6>Enter Alternate Item</h6>
-                        <input type="text" class="form-control" placeholder="Enter Alternate Item" name="alt" value="<%=resultSet.getString("alternateItem")%>"/>
+                        <h6>ENTER ALTERNATE ITEM</h6>
+                        <input class="form-control" type="text" placeholder="Enter Alternate Item" name="alt" value="<%=resultSet.getString("alternateItem")%>"/>
+                    </div>
+                         
+                            <div class="form-group">
+                                <h6>ENTER LOCATION TYPE</h6>
+               
+                                <input class="form-control" name="locationType" value="<%=resultSet.getString("locationType")%>" id="locationType"/>
+                            </div>         
+                 
+                    <!--product notes-->
+                    <div class="form-group">
+                        <h6>SPECIAL INSTRUCTIONS</h6>
+                        <input class="form-control" value="<%=resultSet.getString("notes")%>" name="notes" spellcheck="true">
                     </div>
                     
-                    <!--product manufacturer  -->
-                    <%
-                    ManDAO mDao = new ManDAO(FactoryProvider.getFactory());
-                    List<Manufacturers> mlist = mDao.getManufacturers();
-                    %>
+                                        <!--product manufacturerNum -->
                     <div>
-                        <h6>Enter Manufacturer</h6>
-                        <select name="manufacturer" class="form-control" id="manufacturer">
-                            <%
-                            for(Manufacturers m: mlist){
-                            %>
-                            <option value="<%=m.getName()%>"><%=m.getName()%></option>
-                            <%
-                                }
-                            %>
-                        </select>
-                       
+                        <h6>ENTER MANUFACTURER #</h6>
+                        <input class="form-control" type="text" placeholder="Enter Manufacturer Number" name="manufacturerNum" value="<%=resultSet.getString("manufacturerNum")%>"/>
                     </div>
-                    <!--product manufacturerNum -->
-                    <div>
-                        <h6>Enter Manufacturer #</h6>
-                        <input type="text" class="form-control" placeholder="Enter Manufacturer Number" name="manufacturerNum" value="<%=resultSet.getString("manufacturerNum")%>"/>
-                    </div>
-                    <!--product category-->
-                    <%
-                        
-                    CategoryDao cDao=new CategoryDao(FactoryProvider.getFactory());
-                    List<Category> list = cDao.getCategories();
+                <%
+}
+connection.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
 
-                    %>
-                    <div class="form-group">
-                        <h6>Select Category:</h6>
-                        <select name="catId" class="form-control" id="catId">
-                            
-                            <%
-                                for(Category c: list){
-                            %>
-                            <option value="<%= c.getCategoryTitle() %>"><%= c.getCategoryTitle() %> </option>
-                            
-                            <%
-                                }
-                            %>
-                        </select>
-                    </div>
-                        <!--product vendor-->
-                        <%
-                            VendorDao vDao = new VendorDao(FactoryProvider.getFactory());
-                            List<Vendor> vList = vDao.getVendors();
-                        %>
-                        <div class="form-group">
-                            <h6>Select Vendor:</h6>
-                            <select name="vendorId" class="form-control" id="vendorId">
-                                <%
-                                for(Vendor v: vList){
-                                %>
-                                <option value="<%=v.getVendorName()%>"> <%= v.getVendorName()%></option>
+<!--product manufacturer  -->
+                                       <%
+String man = request.getParameter("man");
+String drivers1 = "com.mysql.jdbc.Driver";
+String connectionUrls1 = "jdbc:mysql://172.20.29.70:3306/";
+String databases1 = "mycart";
+String userids1 = "admin";
+String passwords1 = "ordering";
+try {
+Class.forName(drivers1);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connections1 = null;
+Statement statements1 = null;
+ResultSet resultSets1 = null;
+
+try{
+connections1 = DriverManager.getConnection(connectionUrls1+databases1, userids1, passwords1);
+statements1=connections1.createStatement();
+String sql ="select * from Manufacturers order by case when name='"+man+"' then 1  else 2 end";
+resultSets1 = statements1.executeQuery(sql);
+                    
+%>
+                    <div>
+                        <h6>ENTER MANUFACTURER</h6>
+                                <select name="manufacturer" id="manufacturer" class="form-control">
+                                    <%
+                                    while(resultSets1.next()){
+                                    %>
+                                    <option value="<%=resultSets1.getString("name")%>"><%=resultSets1.getString("name")%></option>
                                 <%
                                     }
                                 %>
-                            </select>
-                        </div>
-                            <!--
-                            <div class="form-group">
-                                <h6>Select Location Type</h6>
-               
-                                <input type="checkbox" name="location" value="OFFICE">OFFICE<br>
-                                <input type="checkbox" name="location" value="JACKSONVILLE ONLY">JACKSONVILLE ONLY<br>
-                                <input type="checkbox" name="location" value="OFFICE-ADMIN">OFFICE-ADMIN<br>
-                                <input type="checkbox" name="location" value="DIVERSIFIED SERVICE ENTERPRISES INC">DIVERSIFIED SERVICE ENTERPRISES INC<br>
-                                <input type="checkbox" name="location" value="FROG HOP">FROG HOP<br>
-                                <input type="checkbox" name="location" value="HOTELS">HOTELS<br>
-                                <input type="checkbox" name="location" value="PHARMACY">PHARMACY<br>
-                                <input type="checkbox" name="location" value="WEST COAST LAW">WEST COAST LAW<br>
-                                <input type="checkbox" name="location" value="1ST HEALTH INC">1ST HEALTH INC<br>
-                                <input type="checkbox" name="location" value="PHYSICIANS GROUP LLC">PHYSICIANS GROUP LLC<br>
-                                <input type="checkbox" name="location" value="PHYSICIANS GROUP(MN)LLC">PHYSICIANS GROUP(MN)LLC<br>
-                                <input type="checkbox" name="location" value="IT-SUPPLIES">IT-SUPPLIES<br>
-                                <input type="checkbox" name="location" value="HIMES-ONLY">HIMES-ONLY<br>
-                                <input type="checkbox" name="location" value="PHYSICIANS GROUP LLC-HAND SANITIZER">PHYSICIANS GROUP LLC-HAND SANITIZER<br>
-                                <input type="checkbox" name="location" value="PAIN MANAGEMENT">PAIN MANAGEMENT<br>
-                                <input type="checkbox" name="location" value="PALM INSURE">PALM INSURE<br>
-                                <input type="checkbox" name="location" value="ORTHOPEDIC">ORTHOPEDIC<br>
-                                <input type="checkbox" name="location" value="LUCKY SPOT">LUCKY SPOT<br>
-                            </div>
-                            -->
-                        
-                            
-                            
-                            
-                  
+                                </select>
+                    </div>
+ 
+<%
+
+connections1.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
+
+<!--product cpt -->
+                    <%
+                    String code = request.getParameter("code");
+String drivers = "com.mysql.jdbc.Driver";
+String connectionUrls = "jdbc:mysql://172.20.29.70:3306/";
+String databases = "mycart";
+String userids = "admin";
+String passwords = "ordering";
+try {
+Class.forName(drivers);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connections = null;
+Statement statements = null;
+ResultSet resultSets = null;
+
+try{
+connections = DriverManager.getConnection(connectionUrls+databases, userids, passwords);
+statements=connections.createStatement();
+String sql ="select * from CPT order by case when codes='"+code+"' then 1  else 2 end";
+resultSets = statements.executeQuery(sql);
+                    
+%>
+                    <div>
+                        <h6>ENTER CPT</h6>
+                 <select name="cpt" id="cpt" class="form-control">
+    <%
+    while(resultSets.next()){
+    %>
+    
+    <option value="<%=resultSets.getString("codes")%>"><%=resultSets.getString("codes")%></option>
+    <%
+        }
+    %>
+</select>
+                    </div>
+<%
+
+connections.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
+                    
+                    
+                    
+
+                    <!--product category-->
+<%
+String categoryTitle = request.getParameter("cTitle");
+String drivers2 = "com.mysql.jdbc.Driver";
+String connectionUrls2 = "jdbc:mysql://172.20.29.70:3306/";
+String databases2 = "mycart";
+String userids2 = "admin";
+String passwords2 = "ordering";
+try {
+Class.forName(drivers2);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connections2 = null;
+Statement statements2 = null;
+ResultSet resultSets2 = null;
+
+try{
+connections2 = DriverManager.getConnection(connectionUrls2+databases2, userids2, passwords2);
+statements2=connections2.createStatement();
+String sql ="select * from Category order by case when categoryTitle='"+categoryTitle+"' then 1  else 2 end";
+resultSets2 = statements2.executeQuery(sql);
+                    
+%>
                     <div class="form-group">
-                        <label for="stat">Active/Discontinued:</label>
-                        <select name="stat" id="stat" class="form-control">
-                            <option value="1">Active</option>
-                            <option value="2">Discontinued</option>
+                        <h6>ENTER CATEGORY</h6>
+                        <select name="catId" id="catId" class="form-control">
+                            <%
+                            while(resultSets2.next()){
+                            %>
+                            <option value="<%=resultSets2.getString("categoryTitle")%>"><%=resultSets2.getString("categoryTitle")%></option>
+                        <%
+                            }
+                        %>
                         </select>
                     </div>
+                        
+
+<%
+
+connections2.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
+                        <!--product vendor-->
+<%
+String vendorName = request.getParameter("vTitle");
+String drivers3 = "com.mysql.jdbc.Driver";
+String connectionUrls3 = "jdbc:mysql://172.20.29.70:3306/";
+String databases3 = "mycart";
+String userids3 = "admin";
+String passwords3 = "ordering";
+try {
+Class.forName(drivers3);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connections3 = null;
+Statement statements3 = null;
+ResultSet resultSets3 = null;
+
+try{
+connections3 = DriverManager.getConnection(connectionUrls3+databases3, userids3, passwords3);
+statements3=connections3.createStatement();
+String sql ="select * from Vendor order by case when vendorName='"+vendorName+"' then 1  else 2 end";
+resultSets3 = statements3.executeQuery(sql);
+                    
+%>
+                        <div class="form-group">
+                            <h6>ENTER VENDOR</h6>
+                            <select name="vendorId" id="vendorId" class="form-control">
+                                <%
+                                while(resultSets3.next()){
+                                %>
+                                <option value="<%=resultSets3.getString("vendorName")%>"><%=resultSets3.getString("vendorName")%></option>
+                            <%
+                                }
+                            %>
+                            </select>
+                        </div>
+
+<%
+
+connections3.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
                      <!--   
                         
                     </div>
@@ -294,20 +374,14 @@ while(resultSet.next()){
                    -->
                     <!--submit button-->
                     <div class="container text-center">
-                        <button class="btn btn-outline-success">Edit Item</button>
+                        <button onclick="return confirm('Are you sure?');" class="btn btn-outline-success">SAVE CHANGES</button>
                         
                     </div>
                     
                   
          </form>
 
-<%
-}
-connection.close();
-} catch (Exception e) {
-e.printStackTrace();
-}
-%>
+
          </div>
     </body>
 </html>
