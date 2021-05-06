@@ -27,9 +27,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add User</title>
+        <title>ADD USER</title>
         <%@include file="components/common_css_js.jsp" %>
-
+<script>
+function goBack(){
+        window.history.back();
+    } 
+    
+</script>
 <style>
 .center {
   margin: auto;
@@ -41,27 +46,48 @@
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <div class="center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <br>
+                  <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                      <br>
+                      <div class="card">
+                           <div class="card-header custom-bg text-white">
+      <h1>ADD USER</h1>
+                      </div>
+                          <div class="card-body">
         <form method="post" action="new_user.jsp">
-            Name:<br>
-            <input type="text" name="user_name"/>
-            <br>
-            Email:<br>
-            <input type="text" name="user_email"/>
-            <br>
-            Password:<br>
-            <input type="text" name="user_password"/>
-            <br>
-            Authority:<br>
+            
+            <div class="form-group">
+            <label for="user_name">NAME:</label>
+            <input type="text" name="user_name" id="user_name">
+            </div>
+            <div class="form-group">
+            <label for="user_email">EMAIL:</label>
+            <input type="text" name="user_email" id="user_email">
+            </div>
+            <div class="form-group">
+            <label for="user_password">PASSWORD:</label>
+            <input type="text" name="user_password" id="user_password">
+            </div>
+            
+            <div class="form-group">
+            <label for="user_type">ACCESS LEVEL:</label>
             <select name="user_type" id="user_type">
-                <option value="admin">Admin</option>
-                <option value="normal">Normal</option>
+                <option value="admin">ADMIN</option>
+                <option value="normal">NORMAL</option>
             </select>
-            <br> <br> 
+            </div> 
             
-            
-            <input type="submit" value="submit">
+            <div class="container text-center">
+                <input type="submit" value="ADD USER" class="btn btn-success">
+            </div>
         </form>
+                          </div>
+                      </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
