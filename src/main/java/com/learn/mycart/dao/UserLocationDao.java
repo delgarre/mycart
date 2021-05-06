@@ -8,33 +8,33 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import com.learn.mycart.entities.Test;
+import com.learn.mycart.entities.UserLocation;
 
-public class TestDao {
+public class UserLocationDao {
     
     private SessionFactory factory;
 
-    public TestDao(SessionFactory factory) {
+    public UserLocationDao(SessionFactory factory) {
         this.factory = factory;
     }
     
-    public List<Test> getAllProductsById(String cname, int uid)
+    public List<UserLocation> getAllProductsById(String cname, int uid)
     {
         Session s = this.factory.openSession();
-        Query query = s.createQuery("from Test as t where t.comp.name =: cname and t.user.id =: uid");
+        Query query = s.createQuery("from UserLocation as t where t.comp.name =: cname and t.user.id =: uid");
         query.setParameter("cname", cname);
         query.setParameter("uid", uid);
-        List<Test> list = query.list();
+        List<UserLocation> list = query.list();
         return list;
     }
-    public Test getLocationByName(String name){
-        Test test = null;
+    public UserLocation getLocationByName(String name){
+        UserLocation test = null;
         try {
-            String query="from Test where comp.name =: n";
+            String query="from UserLocation where comp.name =: n";
             Session session = this.factory.openSession();
             Query q= session.createQuery(query);
             q.setParameter("n", name);
-            test =(Test) q.uniqueResult();
+            test =(UserLocation) q.uniqueResult();
         } catch (Exception e) {
            e.printStackTrace();
         }
