@@ -70,11 +70,11 @@
                 <tr>
                     <td><%=m.getName()%></td>
                     <td>
-                        <a href="delete_man.jsp?id=<%=m.getId()%>">
-                             <button type="button" class="delete" onclick="myFunction()">Delete</button>
+                        <a href="delete_man.jsp?id=<%=m.getId()%>" onclick="return confirm('Are you sure?');">
+                             <button type="button" class="btn btn-outline-danger">Delete</button>
                          </a>
                          <a href="update_man_page.jsp?id=<%=m.getId()%>">
-                             <button type="button" class="update">Edit</button>
+                             <button type="button" class="btn btn-outline-primary">Edit</button>
                          </a>
                     </td>
                 </tr>
