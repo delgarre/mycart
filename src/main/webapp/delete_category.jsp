@@ -19,5 +19,7 @@
     {
         System.out.println();
         e.printStackTrace();
+       session.setAttribute("message", "error deleting category!");
+        response.sendRedirect("categories.jsp");
     }
     %>
