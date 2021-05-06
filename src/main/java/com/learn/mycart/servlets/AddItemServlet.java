@@ -65,8 +65,9 @@ public class AddItemServlet extends HttpServlet {
                 Part part = request.getPart("file");
                 String fileName = part.getSubmittedFileName();
                 String alt = request.getParameter("alt");
+                String notes = request.getParameter("notes");
                 String sds = "COMING SOON";
-                String stat = "Active";
+                String stat = "1";
                 String chooselocations="";
 
                 String location[]=request.getParameterValues("location");
@@ -79,7 +80,7 @@ public class AddItemServlet extends HttpServlet {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
                 Statement st=conn.createStatement();
-                int s=st.executeUpdate("insert into Item(price, quantity, locationType, cpt, itemNumber, manufacturer, manufacturerNum, ndc,pDesc , unitOfMeasure, cTitle, vTitle, stat, alternateItem, sds, photo)values('"+price+"','"+quantity+"','"+chooselocations+"', '"+cpt+"', '"+itemNumber+"', '"+manufacturer+"', '"+manufacturerNum+"', '"+ndc+"', '"+pDesc+"', '"+unitOfMeasure+"','"+catId+"', '"+vendor+"','"+stat+"','"+alt+"','"+sds+"','"+fileName+"')");
+                int s=st.executeUpdate("insert into Item(price, quantity, locationType, cpt, itemNumber, manufacturer, manufacturerNum, ndc,pDesc , unitOfMeasure, cTitle, vTitle, stat, alternateItem, sds, photo, notes)values('"+price+"','"+quantity+"','"+chooselocations+"', upper('"+cpt+"'), upper('"+itemNumber+"'), upper('"+manufacturer+"'), upper('"+manufacturerNum+"'), '"+ndc+"', upper('"+pDesc+"'), '"+unitOfMeasure+"','"+catId+"', '"+vendor+"','"+stat+"',upper('"+alt+"'),'"+sds+"','"+fileName+"', upper('"+notes+"'))");
                 HttpSession httpSession = request.getSession();
                 
                 
