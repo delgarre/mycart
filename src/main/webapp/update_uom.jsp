@@ -1,4 +1,5 @@
 
+<%@page import="com.learn.mycart.entities.UOM"%>
 <%@ page import="java.sql.*" %>
 
 <%@page import="com.learn.mycart.entities.User"%>
@@ -9,7 +10,7 @@
 <%!String psw = "ordering";%>
 <%
 User user1 = (User)session.getAttribute("current-user");
-    
+
     
     if(user1==null){
         session.setAttribute("message", "You are not logged in!");
@@ -32,6 +33,7 @@ User user1 = (User)session.getAttribute("current-user");
 <%
 String uId = request.getParameter("uId");
 String val=request.getParameter("measurement");
+String uom = request.getParameter("uom");
 
 if(uId != null)
 {
@@ -42,7 +44,7 @@ try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql="Update UOM set id=?, val=? where id="+uId;
+String sql="Update UOM set id=?, val=upper(?) where id="+uId;
 ps = con.prepareStatement(sql);
 ps.setString(1,uId);
 ps.setString(2, val);
@@ -51,11 +53,11 @@ int i = ps.executeUpdate();
 if(i > 0)
 {
 session.setAttribute("message", "Measurement info changed successfully!");
-response.sendRedirect("uom.jsp");
+response.sendRedirect("update_uom_item.jsp?val="+val+"&uom="+uom);
 }
 else
 {
-session.setAttribute("message", "There was a problem updating the manufacturer.");
+session.setAttribute("message", "There was a problem updating the measurement.");
 response.sendRedirect("uom.jsp");
 }
 }
