@@ -25,6 +25,8 @@ String pDesc = request.getParameter("pDesc");
                 String itemNumber = request.getParameter("itemNumber");
                 String manufacturer = request.getParameter("manufacturer");
                 String manufacturerNum = request.getParameter("manufacturerNum");
+                String notes = request.getParameter("notes");
+                String locationType = request.getParameter("locationType");
 if(id != null)
 {
 Connection con = null;
@@ -34,7 +36,7 @@ try
 {
 Class.forName(driverName);
 con = DriverManager.getConnection(url,user,psw);
-String sql="Update Item set id=?,itemNumber=?,price=?,quantity=?,unitOfMeasure=?, stat=?, ndc=?, cTitle=?, vTitle=?, manufacturer=?, manufacturerNum=?, pDesc=?, cpt=?, alternateItem=? where id="+id;
+String sql="Update Item set id=?,itemNumber=upper(?),price=?,quantity=?,unitOfMeasure=upper(?), stat=?, ndc=?, cTitle=upper(?), vTitle=upper(?), manufacturer=upper(?), manufacturerNum=upper(?), pDesc=upper(?), cpt=upper(?), alternateItem=upper(?), notes=upper(?), locationType=upper(?) where id="+id;
 ps = con.prepareStatement(sql);
 ps.setString(1,id);
 ps.setString(2, itemNumber);
@@ -50,12 +52,14 @@ ps.setString(11, manufacturerNum);
 ps.setString(12, pDesc);
 ps.setString(13, cpt);
 ps.setString(14, alt);
+ps.setString(15, notes);
+ps.setString(16, locationType);
 
 int i = ps.executeUpdate();
 if(i > 0)
 {
 session.setAttribute("message", "Item edited successfully!");
-response.sendRedirect("update_product_page.jsp?id="+id);
+response.sendRedirect("update_product_page.jsp?id="+id+"&code="+cpt+"&cTitle="+catId+"&vTitle="+vendor+"&man="+manufacturer);
 }
 else
 {
