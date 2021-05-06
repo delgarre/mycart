@@ -21,5 +21,7 @@
     {
         System.out.println();
         e.printStackTrace();
+        session.setAttribute("message", "error deleted CPT code!");
+    response.sendRedirect("cpt.jsp");
     }
     %>
