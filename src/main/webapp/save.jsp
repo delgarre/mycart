@@ -4,6 +4,9 @@
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.sql.*,java.util.*" %>
 <%@page import="java.util.Date"%>
+<%@page import= "java.time.LocalDate"%>
+<%@page import= "java.time.LocalDateTime"%>
+<%@page import= "java.time.format.DateTimeFormatter"%>
 <%@include file="components/message.jsp" %>
 <%
 String itemName=request.getParameter("itemName");
@@ -16,6 +19,9 @@ String locations = request.getParameter("locations");
 Date today = new Date();
 SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 String ddMMyyyyToday = DATE_FORMAT.format(today);
+LocalDateTime ldt = LocalDateTime.now();
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+String date = dtf.format(ldt);
 String stat = "Not Approved";
 String photo = request.getParameter("photo");
 String man = request.getParameter("man");
@@ -44,7 +50,7 @@ out.println(Countrow);
 
 if(Countrow.equals("0")){
     
-int i=st.executeUpdate("insert into Approve(date,locations, itemNumber,price, quantity, user_id, stat, name, photo, unitOfMeasure, manufacturer, manufacturerNum, cTitle, vTitle, pDesc, alternateItem)values('"+ddMMyyyyToday+"','"+locations+"','"+itemNumber+"','"+price+"','"+quantity+"', '"+user_id+"', '"+stat+"', '"+name+"', '"+photo+"', '"+uom+"', '"+man+"', '"+mannum+"','"+cTitle+"', '"+vTitle+"', '"+pDesc+"', '"+alt+"')");
+int i=st.executeUpdate("insert into Approve(date,locations, itemNumber,price, quantity, user_id, stat, name, photo, unitOfMeasure, manufacturer, manufacturerNum, cTitle, vTitle, pDesc, alternateItem)values('"+date+"','"+locations+"','"+itemNumber+"','"+price+"','"+quantity+"', '"+user_id+"', '"+stat+"', '"+name+"', '"+photo+"', '"+uom+"', '"+man+"', '"+mannum+"','"+cTitle+"', '"+vTitle+"', '"+pDesc+"', '"+alt+"')");
 response.sendRedirect("items.jsp");
 session.setAttribute("message", "Cart Item added!");
 
