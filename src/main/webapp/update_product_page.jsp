@@ -72,6 +72,7 @@ statement=connection.createStatement();
 String sql ="select * from Item where id = "+id;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
+String itemNumber = resultSet.getString("itemNumber");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -102,7 +103,7 @@ function goBack(){
          <div class="center">
              <%@include file="components/message.jsp" %>
         <h1>MANAGE INVENTORY:</h1>
-        <a href="item_list.jsp">
+        <a href="item_list.jsp?itemNumber=<%=itemNumber%>">
         <button class="btn btn-warning">Go Back</button>
          <input type="hidden" name="operation" value="addcategory">
         </a>
@@ -114,7 +115,7 @@ function goBack(){
                     <!--product Item number -->
                     <div>
                         <h6>ENTER ITEM NUMBER</h6>
-                        <input type="text" class="form-control" placeholder="Enter Item Number" name="itemNumber" value="<%=resultSet.getString("itemNumber")%>" readonly/>
+                        <input type="text" class="form-control" placeholder="Enter Item Number" name="itemNumber" value="<%=itemNumber%>" readonly/>
                     </div>
                     
                     
@@ -244,7 +245,7 @@ ResultSet resultSets = null;
 try{
 connections = DriverManager.getConnection(connectionUrls+databases, userids, passwords);
 statements=connections.createStatement();
-String sql ="select * from CPT order by case when codes='"+code+"' then 1  else 2 end";
+String sql ="select * from CPT order by case when codes='"+code+"' then 1  else 2 end, codes";
 resultSets = statements.executeQuery(sql);
                     
 %>
@@ -292,7 +293,7 @@ ResultSet resultSets2 = null;
 try{
 connections2 = DriverManager.getConnection(connectionUrls2+databases2, userids2, passwords2);
 statements2=connections2.createStatement();
-String sql ="select * from Category order by case when categoryTitle='"+categoryTitle+"' then 1  else 2 end";
+String sql ="select * from Category order by case when categoryTitle='"+categoryTitle+"' then 1  else 2 end, categoryTitle";
 resultSets2 = statements2.executeQuery(sql);
                     
 %>
@@ -337,7 +338,7 @@ ResultSet resultSets3 = null;
 try{
 connections3 = DriverManager.getConnection(connectionUrls3+databases3, userids3, passwords3);
 statements3=connections3.createStatement();
-String sql ="select * from Vendor order by case when vendorName='"+vendorName+"' then 1  else 2 end";
+String sql ="select * from Vendor order by case when vendorName='"+vendorName+"' then 1  else 2 end, vendorName";
 resultSets3 = statements3.executeQuery(sql);
                     
 %>
