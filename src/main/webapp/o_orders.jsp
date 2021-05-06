@@ -114,35 +114,38 @@ resultSet = statement.executeQuery(sql);
             <button class="btn btn-primary" onclick="goBack()">Go Back</button>
             <br>
             <br>
+           
             <form method="POST" action="A_OrderServlet">
+                 <div>
               <input type="hidden" name="loc" value="<%=id%>"/>
                 <input type="submit" class="btn btn-info" value="Submit Cart For Approval" onclick="mySub()"/>
-             
+                 </div>
             </form>
-            <div class="row ml-2">
+                
+            <div>
             <br>
                 <a href="items.jsp">
                 <button type="button" class="btn btn-warning">
-    Add More Items
+    ADD MORE ITEMS
   </button>
                 </a>
         </div>
                 <table class="table table-bordered " id="td">
                 <tr>
-                    <th>Id</th>
-                    <th>Photo</th>
-                    <th>Item Number</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Ordered By</th>
-                    <th>QTY Per UOM</th>
-                    <th>Unit Of Measure</th>
-                    <th>Vendor</th>
-                    <th>Category</th>
-                    <th>Manufacturer</th>
-                    <th>Manufacturer Number</th>
+                   
+                    <th>IMAGE</th>
+                    <th>ITEM #</th>
+                    <th>DESCRIPTION</th>
+                    <th>COST</th>
+                    <th>ORDERED BY</th>
+                    <th>QTY PER UOM</th>
+                    <th>UOM</th>
+                    <th>VENDOR</th>
+                    <th>CATEGORY</th>
+                    <th>MANUFACTURER</th>
+                    <th>MANUFACTURER NUMBER</th>
 
-                    <th>Actions</th>
+                    <th>ACTIONS</th>
                     
                 </tr>
                 <tr>
@@ -165,13 +168,13 @@ resultSet = statement.executeQuery(sql);
                         
                     %>
                     
-                    <td><%=order_id%></td>
+
                     <td>
                         <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
                     </td>
                     <td><%=item%></td>
                     <td><%=pDesc%></td>
-                    <td><%= price%></td>
+                    <td><span>$<%= price%></span></td>
                     <td><%=name%></td>
                     <td><%=quantity%></td>
                     <td><%=uom%></td>
@@ -182,10 +185,10 @@ resultSet = statement.executeQuery(sql);
 
                     <td>
                         <a href="update_a_orders_page.jsp?id=<%=order_id%>">
-                            <button>Edit</button>
+                            <button class="btn btn-outline-primary">Edit</button>
                         </a>
                             <a href="delete_a_orders.jsp?id=<%=order_id%>">
-                                <button>Delete</button>
+                                <button class="btn btn-outline-danger">Delete</button>
                             </a>
                          
                         
