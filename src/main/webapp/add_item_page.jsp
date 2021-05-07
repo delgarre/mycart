@@ -60,9 +60,21 @@ resultSet = statement.executeQuery(sql);
          <%@include file="components/navbar.jsp" %>
          <div class="center">
         <h1>ADD ITEM:</h1>
+        <div class="container-fluid mt-3">
+                <%@include file="components/message.jsp" %>
+        </div>
         
-         <input type="hidden" name="operation" value="addcategory">
-         
+        <a href="add_man_item.jsp">
+            <button class="btn btn-outline-warning">ADD MANUFACTURER</button>
+        </a><br>
+        <br>
+        <a href="add_cat_item.jsp">
+            <button class="btn btn-outline-warning">ADD CATEGORY</button>
+        </a><br>
+        <br>
+        <a href="add_ven_item.jsp">
+            <button class="btn btn-outline-warning">ADD VENDOR</button>
+        </a>
          <form action="AddItemServlet" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="operation" value="addproduct"/>
                     <!--product Item number -->
@@ -243,7 +255,7 @@ resultSet = statement.executeQuery(sql);
                         <h6>SPECIAL INSTRUCTIONS</h6>
                         <textarea style="height: 100px" placeholder="Enter product notes" class="form-control" name="notes" spellcheck="true"></textarea>
                     </div>
-                        <!--
+                        <!-- sds -->
                     <div class="form-group">
                         <label for="sds">Select SDS:</label>
                         <br>
@@ -251,7 +263,7 @@ resultSet = statement.executeQuery(sql);
                     </div>
                     
                     
-                   -->
+                   
                     <!--submit button-->
                     <div class="container text-center">
                         <button class="btn btn-outline-success">SAVE NEW ITEM</button>
