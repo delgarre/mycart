@@ -20,38 +20,16 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int categoryId;
-    private String categoryTitle;
-    private String categoryDesc;
-   
-    
-
-    
-    
-    
-
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-    @JoinColumn(name="location", referencedColumnName="location"),
-    @JoinColumn(name="type", referencedColumnName="locationType")
-    })
-    private LocationType locationType;
+    private String categoryTitle; 
     
     public Category(){
         
     }
 
-    public Category(int categoryId, String categoryTitle, String categoryDesc) {
+    public Category(int categoryId, String categoryTitle) {
         this.categoryId = categoryId;
         this.categoryTitle = categoryTitle;
-        this.categoryDesc = categoryDesc;
-    }
-
-    public Category(String categoryTitle, String categoryDesc, LocationType locationType) {
-        this.categoryTitle = categoryTitle;
-        this.categoryDesc = categoryDesc;
-        this.locationType = locationType;
-    }
+    }  
 
     public int getCategoryId() {
         return categoryId;
@@ -68,29 +46,10 @@ public class Category implements Serializable {
     public void setCategoryTitle(String categoryTitle) {
         this.categoryTitle = categoryTitle;
     }
-
-    public String getCategoryDesc() {
-        return categoryDesc;
-    }
-
-    public void setCategoryDesc(String categoryDesc) {
-        this.categoryDesc = categoryDesc;
-    }
-
-
-    public LocationType getLocationType() {
-        return locationType;
-    }
-
-    public void setLocationType(LocationType locationType) {
-        this.locationType = locationType;
-    }
-    
-    
-
+        
     @Override
     public String toString() {
-        return "Category{" + "categoryId=" + categoryId + ", categoryTitle=" + categoryTitle + ", categoryDesc=" + categoryDesc + '}';
+        return "Category{" + "categoryId=" + categoryId + ", categoryTitle=" + categoryTitle + ", categoryDesc=" + '}';
     }
     
     
