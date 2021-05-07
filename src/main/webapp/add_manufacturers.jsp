@@ -63,7 +63,7 @@ function goBack(){
             <input type="text" name="name" id="name">
             </div>
             <div class="container text-center">
-            <input type="submit" value="Add Manufactuer">
+            <input type="submit" class="btn btn-outline-success" value="Add Manufactuer">
             </div>
         </form>
                           </div>
