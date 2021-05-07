@@ -21,7 +21,7 @@ public class Company implements Serializable {
     private int companyId;
     private String companyName;
     private String type;
-    private String typeLocation; 
+    private String status;
     @OneToMany(mappedBy = "companies")
     private List<User> user = new ArrayList<>();
    
@@ -29,19 +29,19 @@ public class Company implements Serializable {
     private List<CompanyUser> cTie = new ArrayList<>();
     
     @OneToMany(mappedBy = "companies")
-    private List<Test> test = new ArrayList<>();
+    private List<UserLocation> test = new ArrayList<>();
     
 
 
     public Company() {
     }
 
-    public Company(String companyName, String type, String typeLocation, List<User> user, List<Test> test) {
+    public Company(String companyName, String type, List<User> user, List<UserLocation> test, String status) {
         this.companyName = companyName;
         this.type = type;
-        this.typeLocation = typeLocation;
         this.user = user;
         this.test = test;
+        this.status = status;
  
     }
 
@@ -68,14 +68,6 @@ public class Company implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
-
-    public String getTypeLocation() {
-        return typeLocation;
-    }
-
-    public void setTypeLocation(String typeLocation) {
-        this.typeLocation = typeLocation;
-    }
     
     public List<User> getUser(){
         return user;
@@ -93,17 +85,25 @@ public class Company implements Serializable {
         this.cTie = cTie;
     }
 
-    public List<Test> getTest() {
+    public List<UserLocation> getTest() {
         return test;
     }
 
-    public void setTest(List<Test> test) {
+    public void setTest(List<UserLocation> test) {
         this.test = test;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
-        return "Company{" + "companyId=" + companyId + ", companyName=" + companyName + ", type=" + type + ", typeLocation=" + typeLocation + '}';
+        return "Company{" + "companyId=" + companyId + ", companyName=" + companyName + ", type=" + type + '}';
     }
     
     
