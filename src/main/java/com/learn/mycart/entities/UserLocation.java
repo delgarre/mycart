@@ -12,13 +12,13 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Test implements Serializable {
+public class UserLocation implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-
+    @ManyToOne
     @JoinColumn(name="comp_name", referencedColumnName="companyName")
     private Company companies;
     
@@ -28,14 +28,17 @@ public class Test implements Serializable {
     @JoinColumn(name="user_name", referencedColumnName="user_name")
     })
     private User users;
+    
+    private String type;
 
-    public Test() {
+    public UserLocation() {
     }
 
-    public Test(int id, Company companies, User users) {
+    public UserLocation(int id, Company companies, User users, String type) {
         this.id = id;
         this.companies = companies;
         this.users = users;
+        this.type = type;
     }
 
     public int getId() {
@@ -60,6 +63,14 @@ public class Test implements Serializable {
 
     public void setUsers(User users) {
         this.users = users;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
     
     
