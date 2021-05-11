@@ -53,7 +53,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Item where vTitle = '"+vendor1+"' and vTitle = '"+vendor2+"' and vTitle = '"+vendor3+"'";
+String sql ="select * from Item where vTitle = '"+vendor1+"' or vTitle = '"+vendor2+"' or vTitle = '"+vendor3+"'";
 resultSet = statement.executeQuery(sql);
 
 %>
