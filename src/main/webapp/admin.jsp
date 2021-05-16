@@ -275,15 +275,15 @@ table.table-fit tbody td, table.table-fit tfoot td {
                 </div>
                 <!--fourthteenth row -->
                 <div class="col-md-3">
-                    <a href="https://github.com/delgarre/mycart/upload/master/src/main/webapp/image" class="card-link">
+                    <a href="#" class="card-link" data-toggle="modal" data-target="#exampleModal">
                     <div class="card">
                         <div class="card-body text-center">
                             
                             <div class="container">
-                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/cpt.png" alt="user_icon">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/reports.png" alt="user_icon">
                             </div>
                             
-                            <h4 class="text-muted">PHOTO UPLOAD</h4>
+                            <h4 class="text-muted">REPORTS</h4>
                         </div>
                     </div>
                     </a>
@@ -291,6 +291,35 @@ table.table-fit tbody td, table.table-fit tfoot td {
             </div>
             
         </div>
+                    
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Choose a category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                
+          <h3>Would like to print a download a report for items or orders?</h3>
+       
+             
+      </div>
+      
+      <div class="modal-footer">
+        <a href="items_1.jsp">
+           <input type="button" class="btn btn-outline-info" value="ITEMS">
+        </a>
+        <a href="order_report_1_item.jsp">
+           <input type="button" class="btn btn-outline-info" value="ORDERS">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
       
     </body>
 </html>
