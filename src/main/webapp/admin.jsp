@@ -288,6 +288,22 @@ table.table-fit tbody td, table.table-fit tfoot td {
                     </div>
                     </a>
                 </div>
+                
+                   <!--fifteenth row -->
+                <div class="col-md-3">
+                  <a href="admin_manual.jsp" class="card-link">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            
+                            <div class="container">
+                                <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
+                            </div>
+                      
+                            <h3 class="text-muted">PORTAL USAGE INSTRUCTIONS COMING SOON!</h3>
+                        </div>
+                    </div>
+                  </a>
+                </div>
             </div>
             
         </div>
