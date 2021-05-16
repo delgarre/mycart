@@ -112,6 +112,18 @@
         <servlet-name>CServlet</servlet-name>
         <servlet-class>com.learn.mycart.servlets.CServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateItem</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.UpdateItem</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSDS</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.UpdateSDS</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IDropDownPharmServlet</servlet-name>
+        <servlet-class>com.learn.mycart.servlets.IDropDownPharmServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -203,6 +215,18 @@
     <servlet-mapping>
         <servlet-name>CServlet</servlet-name>
         <url-pattern>/CServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateItem</servlet-name>
+        <url-pattern>/UpdateItem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSDS</servlet-name>
+        <url-pattern>/UpdateSDS</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IDropDownPharmServlet</servlet-name>
+        <url-pattern>/IDropDownPharmServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
