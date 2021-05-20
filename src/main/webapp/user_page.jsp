@@ -25,7 +25,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>User Page</title>
         <%@include file="components/common_css_js.jsp" %>
-        
+                <script>
+  function downloadURI(uri, name) {
+  var link = document.createElement("a");
+  link.download = name;
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  delete link;
+}
+        </script>
 <style>
 .center {
   margin: auto;
@@ -186,7 +196,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
                                 
                    <!--seventh row -->
                 <div class="col-md-3">
-                  <a href="user_manual.jsp" class="card-link">
+                  <a href="#" onclick="downloadURI('http://localhost:8080/mycart/manuals/User Training Manual.docx','Order Portal Manual')" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -194,7 +204,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
                       
-                            <h3 class="text-muted">PORTAL USAGE INSTRUCTIONS COMING SOON!</h3>
+                            <h3 class="text-muted">PORTAL USAGE INSTRUCTIONs</h3>
                         </div>
                     </div>
                   </a>
