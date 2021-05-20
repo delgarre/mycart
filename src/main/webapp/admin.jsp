@@ -50,6 +50,17 @@ table.table-fit tbody td, table.table-fit tfoot td {
 }
         </style>
         
+        <script>
+  function downloadURI(uri, name) {
+  var link = document.createElement("a");
+  link.download = name;
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  delete link;
+}
+        </script>
         <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
@@ -291,7 +302,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
                 
                    <!--fifteenth row -->
                 <div class="col-md-3">
-                  <a href="admin_manual.jsp" class="card-link">
+                  <a href="#" onclick="downloadURI('http://localhost:8080/mycart/manuals/User Training Manual.docx','Order Portal Manual')" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -299,7 +310,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
                       
-                            <h3 class="text-muted">PORTAL USAGE INSTRUCTIONS COMING SOON!</h3>
+                            <h4 class="text-muted">PORTAL USAGE INSTRUCTIONS</h4>
                         </div>
                     </div>
                   </a>
