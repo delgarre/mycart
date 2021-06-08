@@ -28,8 +28,13 @@
         }
     }
 %>
+
 <%
-String location = request.getParameter("location");
+    String chooselocations="";
+    String location[]=request.getParameterValues("location");
+                for(int i=0;i < location.length; i++){
+                chooselocations += location[i] + ","; 
+                }
 String date1 = request.getParameter("date1");
 String date2 = request.getParameter("date2");
 String driver = "com.mysql.jdbc.Driver";
@@ -50,7 +55,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from OrderHistory where date between '"+date1+"' and '"+date2+"' and location = '"+location+"'";
+String sql ="select * from OrderHistory where date between '"+date1+"' and '"+date2+"' and FIND_IN_SET(locations,'"+chooselocations+"')";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -122,57 +127,45 @@ function download_table_as_csv(table_id, separator = ',') {
             </a>
             <table id="my_id_table_to_export" class="table table-bordered ">
               
-                <tr>
-                   
-                   
-                  
-                    
+                 <tr>
                     <th>APPROVAL DATE</th>
                     <th>ITEM NUMBER</th>
                     <th>DESCRIPTION</th>
                     <th>COST</th>
                     <th>QUANTITY</th>
+                    <th>LOCATION</th>
                     <th>VENDOR</th>
                     <th>CATEGORY</th>
-                    
-                    
                 </tr>
                 
-                <tr>
+                  <tr>
                    <%
                     while(resultSet.next()){
-                        String itemNumber = resultSet.getString("ItemNumber");
+                        
+                        
+                        String itemNumber = resultSet.getString("itemNumber");
                         String date = resultSet.getString("date");
                         String quantity = resultSet.getString("quantity");
-                        String uom = resultSet.getString("unitOfMeasure");
                         String pDesc = resultSet.getString("pDesc");
                         String vTitle = resultSet.getString("vTitle");
                         String cTitle = resultSet.getString("cTitle");
-                        String man = resultSet.getString("manufacturer");
-                        String manNum = resultSet.getString("manufacturerNum");
-                        String price = resultSet.getString("aPrice");   
+                        String price = resultSet.getString("aPrice"); 
+                        String locations = resultSet.getString("locations");
                     %>
                     
 
-
-                    
                     <td><%=date%></td>
                     <td><%=itemNumber%></td>
                     <td><%=pDesc%></td>
-                    <td><%=price%></td>
+                    <td><span>$<%=price%></span></td>
                     <td><%=quantity%></td>
-                    <td><%=uom%></td>
+                    <td><%=locations%></td>
                     <td><%=vTitle%></td>
                     <td><%=cTitle%></td>
-                    <td><%=man%></td>
-                    <td><%=manNum%></td>
-                    
-                    
                 </tr>
                 <%
                     }
                 %>
-                
             </table>
         
         </div>
