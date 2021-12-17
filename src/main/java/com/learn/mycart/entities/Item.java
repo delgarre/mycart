@@ -6,7 +6,6 @@
 package com.learn.mycart.entities;
 
 import java.io.Serializable;
-import java.sql.Blob;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,18 +42,20 @@ public class Item implements Serializable {
     private String sds;
     private String locationType;
     private String notes;
-    
+    private String createDate;
+    private String contactInfo;
 
 
     public Item() {
     }
 
-    public Item(int id,  String price, String photo, String quantity, String unitOfMeasure, String cpt, String ndc, String manufacturer, String manufacturerNum, 
+    public Item(int id,  String price, String photo, String quantity, String unitOfMeasure, 
+            String cpt, String ndc, String manufacturer, String manufacturerNum, 
             String itemNumber, String alternateItem, String stat, 
             String cTitle, String vTitle, String locationType, String sds, 
-            String pDesc, String notes) {
+            String pDesc, String notes, String createDate, String contactInfo) {
         this.id = id;
-        
+        this.createDate = createDate;
         this.price = price;
         this.photo = photo;
         this.quantity = quantity;
@@ -72,6 +73,7 @@ public class Item implements Serializable {
         this.locationType = locationType;
         this.sds = sds;
         this.notes = notes;
+        this.contactInfo = contactInfo;
     }
 
     public int getId() {
@@ -218,6 +220,21 @@ public class Item implements Serializable {
         this.notes = notes;
     }
 
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getContactInfo() {
+        return contactInfo;
+    }
+
+    public void setContactInfo(String contactInfo) {
+        this.contactInfo = contactInfo;
+    }
     
     
     

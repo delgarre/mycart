@@ -6,7 +6,7 @@
 package com.learn.mycart.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,15 +23,13 @@ public class Orders implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    private String aPName;
-    
     private double aPPrice;
     
     private int quantity;
     
     private String name;
     
-    private Date date;
+    private String date;
     
     private String locations;
     
@@ -53,25 +51,59 @@ public class Orders implements Serializable {
     
     private String unitOfMeasure;
     
+    private String editedBy;
     
+    private String editTime;
+    
+    private String orderId;
+    
+      @Column(length = 10, name = "address1")
+    private String address1;
+    
+    @Column(length = 10, name = "address2")
+    private String address2;
+    
+    @Column(length = 10, name = "city")
+    private String city;
+    
+    @Column(length = 10, name = "phone")
+    private String phone;
+    
+    @Column(length = 10, name = "postalcode")
+    private String postalcode;
+    
+    @Column(length = 10, name = "state")
+    private String state;
+    
+    @Column(length = 10, name = "fax")
+    private String fax;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-    @JoinColumn(name="user_id", referencedColumnName="user_id"),
+    
     @JoinColumn(name="user_name", referencedColumnName="user_name")
-    })
     private User users;
 
     private String status;
+    
+    private String department;
+    
+    @Column(length = 100, name = "first_name")
+    private String firstName;
+    @Column(length = 100, name = "last_name")
+    private String lastName;
+    
+    private int active;
 
     public Orders() {
     }
 
-    public Orders(int id, String aPName, double aPPrice, int quantity, String name, Date date, String locations, 
+    public Orders(int id, double aPPrice, int quantity, String name, String date, String locations, 
             User users, String status, String itemNumber, String photo, String cTitle, String vTitle
-            , String unitOfMeasure, String manufacturer, String manufacturerNum, String alternateItem, String pDesc) {
+            , String unitOfMeasure, String manufacturer, String manufacturerNum, String alternateItem, String pDesc
+            ,String editedBy, String editTime, String orderId, String department, String fax,
+            String address1, String address2, String phone, String postalcode, String city, String firstName, String lastName,
+                int active) {
         this.id = id;
-        this.aPName = aPName;
         this.aPPrice = aPPrice;
         this.quantity = quantity;
         this.name = name;
@@ -88,6 +120,20 @@ public class Orders implements Serializable {
         this.manufacturerNum = manufacturerNum;
         this.alternateItem = alternateItem;
         this.pDesc = pDesc;
+        this.editedBy = editedBy;
+        this.editTime = editTime;
+        this.orderId = orderId;
+        this.department = department;
+        this.city = city;
+        this.state = state;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.fax = fax;
+        this.phone = phone;
+        this.postalcode = postalcode;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.active = active;
     }
     
 
@@ -97,14 +143,6 @@ public class Orders implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getaPName() {
-        return aPName;
-    }
-
-    public void setaPName(String aPName) {
-        this.aPName = aPName;
     }
 
     public double getaPPrice() {
@@ -131,11 +169,11 @@ public class Orders implements Serializable {
         this.name = name;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -234,6 +272,119 @@ public class Orders implements Serializable {
     public void setUnitOfMeasure(String unitOfMeasure) {
         this.unitOfMeasure = unitOfMeasure;
     }
+
+    public String getEditedBy() {
+        return editedBy;
+    }
+
+    public void setEditedBy(String editedBy) {
+        this.editedBy = editedBy;
+    }
+
+    public String getEditTime() {
+        return editTime;
+    }
+
+    public void setEditTime(String editTime) {
+        this.editTime = editTime;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+    
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPostalcode() {
+        return postalcode;
+    }
+
+    public void setPostalcode(String postalcode) {
+        this.postalcode = postalcode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+    
+     public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+    
     
     
 }

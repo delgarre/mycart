@@ -24,6 +24,10 @@ public class User implements Serializable{
     private int userId;
     @Column(length = 100, name = "user_name")
     private String userName;
+    @Column(length = 100, name = "first_name")
+    private String firstName;
+    @Column(length = 100, name = "last_name")
+    private String lastName;
     @Column(length = 100, name = "user_email")
     private String userEmail;
     @Column(length = 100, name = "user_password")
@@ -44,19 +48,22 @@ public class User implements Serializable{
     private List<CompanyUser> cTie = new ArrayList<>();
     
     @OneToMany(mappedBy = "users")
-    private List<Test> test = new ArrayList<>();
+    private List<UserLocation> test = new ArrayList<>();
     
-    @OneToMany(mappedBy = "users")
-    private List<ApproveOrder> ap = new ArrayList<>();
+    private String department;
     
     @OneToMany(mappedBy = "users")
     private List<Orders> orders = new ArrayList<>();
     
     @OneToMany(mappedBy = "users")
     private List<Approve> a = new ArrayList<>();
+    
+    private String status;
    
 
-    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, String locations, List<Test> test, List<ApproveOrder> ap, List<Orders> orders, List<Approve> a) {
+    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, 
+            String userAddress, String userType, String locations, List<UserLocation> test, 
+            List<Orders> orders, List<Approve> a, String department, String status, String firstName, String lastName) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -67,13 +74,18 @@ public class User implements Serializable{
         this.userType = userType;
         this.locations = locations;
         this.test = test;
-        this.ap = ap;
         this.orders = orders;
         this.a = a;
+        this.department = department;
+        this.status = status;
+        this.firstName = firstName;
+        this.lastName = lastName;
        
     }
 
-    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType, Company companies, String locations, List<Test> test, List<ApproveOrder> ap, List<Orders> orders, List<Approve> a) {
+    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, 
+            String userType, Company companies, String locations, List<UserLocation> test, 
+            List<Orders> orders, List<Approve> a) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
@@ -84,7 +96,6 @@ public class User implements Serializable{
         this.companies = companies;
         this.locations = locations;
         this.test = test;
-        this.ap = ap;
         this.orders = orders;
         this.a = a;
         
@@ -182,20 +193,12 @@ public class User implements Serializable{
         this.cTie = cTie;
     }
 
-    public List<Test> getTest() {
+    public List<UserLocation> getTest() {
         return test;
     }
 
-    public void setTest(List<Test> test) {
+    public void setTest(List<UserLocation> test) {
         this.test = test;
-    }
-
-    public List<ApproveOrder> getAp() {
-        return ap;
-    }
-
-    public void setAp(List<ApproveOrder> ap) {
-        this.ap = ap;
     }
 
     public List<Orders> getOrders() {
@@ -212,6 +215,38 @@ public class User implements Serializable{
 
     public void setA(List<Approve> a) {
         this.a = a;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
     
     

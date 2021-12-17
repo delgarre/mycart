@@ -3,6 +3,7 @@ package com.learn.mycart.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,15 +16,13 @@ public class OrderHistory implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    private String aName;
-    
     private double aPrice;
     
     private String cName;
     
     private int quantity;
     
-    private Date date;
+    private String date;
     
     private String locations;
     
@@ -44,15 +43,51 @@ public class OrderHistory implements Serializable {
     private String vTitle;
     
     private String unitOfMeasure;
+    
+    private String log;
+    
+    private String orderId;
+    
+    private String department;
+    
+    private int order_table_id;
+    
+      @Column(length = 10, name = "address1")
+    private String address1;
+    
+    @Column(length = 10, name = "address2")
+    private String address2;
+    
+    @Column(length = 10, name = "city")
+    private String city;
+    
+    @Column(length = 10, name = "phone")
+    private String phone;
+    
+    @Column(length = 10, name = "postalcode")
+    private String postalcode;
+    
+    @Column(length = 10, name = "state")
+    private String state;
+    
+    @Column(length = 10, name = "fax")
+    private String fax;
+    
+    @Column(length = 100, name = "first_name")
+    private String firstName;
+    @Column(length = 100, name = "last_name")
+    private String lastName;
 
     public OrderHistory() {
     }
 
-    public OrderHistory(int id, String aName, double aPrice, String cName, int quantity, 
-            Date date, String locations, String itemNumber, String photo, String cTitle, String vTitle
-            , String unitOfMeasure, String manufacturer, String manufacturerNum, String alternateItem, String pDesc) {
+    public OrderHistory(int id, double aPrice, String cName, int quantity, 
+            String date, String locations, String itemNumber, String photo, String cTitle, String vTitle
+            , String unitOfMeasure, String manufacturer, String manufacturerNum, String alternateItem, 
+            String pDesc, String log,String orderId, String department, String fax,
+            String address1, String address2, String phone, String postalcode, String city, String firstName, String lastName,
+            int order_table_id) {
         this.id = id;
-        this.aName = aName;
         this.aPrice = aPrice;
         this.cName = cName;
         this.quantity = quantity;
@@ -67,7 +102,19 @@ public class OrderHistory implements Serializable {
         this.manufacturerNum = manufacturerNum;
         this.alternateItem = alternateItem;
         this.pDesc = pDesc;
-        
+        this.log = log;
+        this.orderId = orderId;
+        this.department = department;
+        this.city = city;
+        this.state = state;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.fax = fax;
+        this.phone = phone;
+        this.postalcode = postalcode;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.order_table_id = order_table_id;
     }
 
     public int getId() {
@@ -76,14 +123,6 @@ public class OrderHistory implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getaName() {
-        return aName;
-    }
-
-    public void setaName(String aName) {
-        this.aName = aName;
     }
 
     public double getaPrice() {
@@ -110,11 +149,11 @@ public class OrderHistory implements Serializable {
         this.quantity = quantity;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -198,6 +237,110 @@ public class OrderHistory implements Serializable {
         this.unitOfMeasure = unitOfMeasure;
     }
 
+    public String getLog() {
+        return log;
+    }
+
+    public void setLog(String log) {
+        this.log = log;
+    }
+
+    
+     public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+    
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPostalcode() {
+        return postalcode;
+    }
+
+    public void setPostalcode(String postalcode) {
+        this.postalcode = postalcode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+    
+     public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getOrder_table_id() {
+        return order_table_id;
+    }
+
+    public void setOrder_table_id(int order_table_id) {
+        this.order_table_id = order_table_id;
+    }
     
     
     
