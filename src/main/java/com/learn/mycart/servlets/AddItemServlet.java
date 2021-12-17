@@ -5,19 +5,15 @@
  */
 package com.learn.mycart.servlets;
 
-import com.learn.mycart.dao.CategoryDao;
-import com.learn.mycart.dao.ItemDao;
-import com.learn.mycart.entities.Category;
-import com.learn.mycart.entities.Item;
-import com.learn.mycart.helper.FactoryProvider;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -27,9 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 
 /**
  *
@@ -64,35 +58,74 @@ public class AddItemServlet extends HttpServlet {
                 String manufacturerNum = request.getParameter("manufacturerNum");
                 Part part = request.getPart("file");
                 String fileName = part.getSubmittedFileName();
-                String alt = request.getParameter("alt");
+                String alt = "";
+                String contactInfo = request.getParameter("contactInfo");
                 String notes = request.getParameter("notes");
-                String sds = "COMING SOON";
+                if(notes.equals("null")){
+                  
+                    notes = "No notes available";
+                }else{
+                    notes = request.getParameter("notes");
+                }
+                
+                Date now = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss.SSS");
+                String createDate = sdf.format(now);
+                
                 String stat = "1";
+                
                 String chooselocations="";
-
+                Part parts = request.getPart("sds");
+                String sds = parts.getSubmittedFileName();
                 String location[]=request.getParameterValues("location");
                 for(int i=0;i < location.length; i++){
                 chooselocations += location[i] + ","; 
                 }
+                String alts[]=request.getParameterValues("new");
+                if(alts == null){
+                    
+                    alt = "N/A";
+                }else{
+                for(int s=0;s < alts.length; s++){
+                alt += alts[s] + ","; 
+                } 
+                }
+                String query ="insert into Item(price, quantity, locationType, cpt, itemNumber, manufacturer, manufacturerNum, ndc,pDesc , unitOfMeasure, cTitle, vTitle, stat, alternateItem, sds, photo, notes, createDate, contactInfo)values('"+price+"','"+quantity+"','"+chooselocations+"', upper('"+cpt+"'), upper('"+itemNumber+"'), upper('"+manufacturer+"'), upper('"+manufacturerNum+"'), '"+ndc+"', upper('"+pDesc+"'), '"+unitOfMeasure+"','"+catId+"', '"+vendor+"','"+stat+"',upper('"+alt+"'),'"+sds+"','"+fileName+"', upper('"+notes+"'), '"+createDate+"', '"+contactInfo+"')";
+
                 try
                 {
 
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
                 Statement st=conn.createStatement();
-                int s=st.executeUpdate("insert into Item(price, quantity, locationType, cpt, itemNumber, manufacturer, manufacturerNum, ndc,pDesc , unitOfMeasure, cTitle, vTitle, stat, alternateItem, sds, photo, notes)values('"+price+"','"+quantity+"','"+chooselocations+"', upper('"+cpt+"'), upper('"+itemNumber+"'), upper('"+manufacturer+"'), upper('"+manufacturerNum+"'), '"+ndc+"', upper('"+pDesc+"'), '"+unitOfMeasure+"','"+catId+"', '"+vendor+"','"+stat+"',upper('"+alt+"'),'"+sds+"','"+fileName+"', upper('"+notes+"'))");
                 HttpSession httpSession = request.getSession();
+                String strQuery = "SELECT COUNT(*) FROM Item where itemNumber='"+itemNumber+"'";
+                ResultSet rs = st.executeQuery(strQuery);
+                rs.next();
+                String Countrow = rs.getString(1);
+                out.println(Countrow);
+
+                if(Countrow.equals("0")){
+    
+                int s=st.executeUpdate(query);
                 
-                
-               
+
+                    System.out.println(query);
                 httpSession.setAttribute("message","Item added successfully... ");
-                response.sendRedirect("item_list.jsp");
+                response.sendRedirect("replace_space.jsp?itemNumber="+itemNumber);
                 httpSession.setAttribute("number", itemNumber);
+                }
+            else{
+                    response.sendRedirect("add_item_page.jsp");
+                    httpSession.setAttribute("message", "Item already exist!");
+                    System.out.println(query);
+                }
                 }
                 catch(Exception e)
                 {
-                System.out.print(e);
+                out.print(e);
                 e.printStackTrace();
+                System.out.println(query);
                 }
 }
                 

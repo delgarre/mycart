@@ -36,9 +36,18 @@ public class A_OrderServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+          
             
             String location = request.getParameter("loc");
+            
+            double o = Math.random()*200;
+
+            double orderId = Math.random() + (o * 500);
+
+            int x = (int) orderId;
+            String code = request.getParameter("code");
+            String oid = code+x;
+            int active = 1;
             
             if(location != null){
                 try {
@@ -46,7 +55,7 @@ public class A_OrderServlet extends HttpServlet {
                     Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
                     Statement st=conn.createStatement();   
                     HttpSession httpSession=request.getSession();
-                    int i = st.executeUpdate("insert into Orders(itemNumber, aPPrice, date, locations, name, quantity, user_id, photo, status, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle) select itemNumber, price, date, locations, name, quantity, user_id, photo, stat, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle from Approve where locations = '"+location+"'");
+                    int i = st.executeUpdate("insert into Orders(itemNumber, aPPrice, date, locations, name, quantity, user_id, photo, status, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, orderId, alternateItem, department, address1, address2, city, state, postalcode, fax, phone, active) select itemNumber, price, date, locations, name, quantity, user_id, photo, stat, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, '"+oid+"', alternateItem, department, address1, address2, city, state, postalcode, fax, phone, "+active+" from Approve where locations = '"+location+"'");
                     
                 
                     response.sendRedirect("q.jsp?id="+location);
