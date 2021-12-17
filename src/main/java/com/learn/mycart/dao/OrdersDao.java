@@ -2,6 +2,9 @@
 package com.learn.mycart.dao;
 
 import com.learn.mycart.entities.Orders;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.hibernate.query.Query; 
@@ -52,6 +55,22 @@ public class OrdersDao {
         
         return orders;
         
+    }
+
+    public static void updateStatus(String location){
+try
+{
+
+Class.forName("com.mysql.jdbc.Driver");
+Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
+Statement st=conn.createStatement();
+int i=st.executeUpdate("UPDATE Orders SET status = 'approved' WHERE locations = '"+location+"'");
+}
+catch(Exception e)
+{
+System.out.print(e);
+e.printStackTrace();
+}
     }
 
 }
