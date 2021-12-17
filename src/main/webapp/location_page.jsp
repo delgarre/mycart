@@ -45,7 +45,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select distinct locations from OrderHistory where date ='"+id+"';";
+String sql ="select distinct orderId, locations from OrderHistory where date ='"+id+"';";
 
 resultSet = statement.executeQuery(sql);
 
@@ -65,9 +65,9 @@ resultSet = statement.executeQuery(sql);
             <div class="table-responsive-sm mt-3">
                 <table class="table table-bordered " >
                     <tr>
-                        <th>Location</th>
-                        
-                        <th>Actions</th>
+                        <th>LOCATIONS</th>
+                        <th>ORDER #</th>
+                        <th>ACTIONS</th>
                     </tr>
 
                     
@@ -78,12 +78,13 @@ resultSet = statement.executeQuery(sql);
                     while(resultSet.next()){
                         ;
                         String locations = resultSet.getString("locations");
-                        
+                        String orderId = resultSet.getString("orderId");
                     %>
                         <td><%=locations%></td>
+                        <td><%=orderId%></td>
                         <td>
-                            <a href="past_orders_page.jsp?id=<%= locations%>">
-                                <button class="btn btn-primary">View</button>
+                            <a href="past_orders_page.jsp?id=<%= locations%>&oid=<%=orderId%>">
+                                <button class="btn btn-primary">VIEW</button>
                         </a>
                         </td>
                         

@@ -16,6 +16,7 @@
     
 %>
 <%
+   
 String id = request.getParameter("id");
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
@@ -47,7 +48,12 @@ resultSet = statement.executeQuery(sql);
         <title>Pending Orders</title>
                 <%@include file="components/common_css_js.jsp" %>
         
-        
+        <script>
+            //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
+        </script> 
 <style>
 .center {
   margin: auto;
@@ -58,8 +64,19 @@ resultSet = statement.executeQuery(sql);
 </style>
     </head>
     <body>
-        <%@include file="components/user_navbar.jsp" %>
+        <%@include file="components/orders_navbar.jsp" %>
         <div class="center">
+           
+            <a href="order_a_items.jsp?loc=<%=id%>">
+                <button type="button" class="btn btn-warning">
+                    ADD MORE ITEMS
+                </button>
+            </a>
+            <br>
+            
+            <div id="error" class="container-fluid mt-3">
+                    <%@include file="components/message.jsp" %>
+            </div>
             
             <h1>ORDERS PENDING APPROVAL:</h1>
             <table class="table table-bordered ">
@@ -72,6 +89,7 @@ resultSet = statement.executeQuery(sql);
                     <th>QUANTITY ORDERED</th>
                     <th>ORDERED BY</th>
                     <th>LOCATION</th>
+                    <th>ACTIONS</th>
                    
 
 
@@ -88,8 +106,8 @@ resultSet = statement.executeQuery(sql);
                         String locations = resultSet.getString("locations");
                         String photo = resultSet.getString("photo");
                         String pDesc = resultSet.getString("pDesc");
-
                         
+                        String oid = resultSet.getString("id");
                     %>
                     
                   
@@ -102,7 +120,18 @@ resultSet = statement.executeQuery(sql);
                     <td><%=quantity%></td>
                     <td><%=name%></td>
                     <td><%=locations%></td>
-                    
+                    <td>
+                     <a href="update_o_a_orders_page.jsp?id=<%=oid%>">
+                        <button type="button" class="btn btn-info">
+                            UPDATE 
+                        </button>
+                     </a>
+                     <a href="delete_o_a_order.jsp?id=<%=oid%>&location=<%=id%>" onclick="return confirm('Are you sure?');">
+                            <button type="button" class="btn btn-danger">
+                                DELETE ITEM
+                            </button>
+                     </a>
+                    </td>
                     
                 </tr>
 

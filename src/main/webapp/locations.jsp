@@ -47,6 +47,13 @@ resultSet = statement.executeQuery(sql);
         <title>Locations</title>
         
         <%@include file="components/common_css_js.jsp" %>
+        
+        <script>
+            function goBack(){
+            window.history.back();
+                    }
+        </script>
+        
 <style>
 .center {
   margin: auto;
@@ -59,7 +66,10 @@ resultSet = statement.executeQuery(sql);
     <body>
         <%@include file="components/user_navbar.jsp" %>
         <div class="center">
-        <h2>LOCATIONS:</h2>
+            <h2>LOCATIONS:</h2>
+            
+            <button class="btn btn-warning" onclick="goBack()">GO BACK</button><br>
+                <br>
         <div class="container-fluid">
             <table class="table table-bordered">
                 <tr>

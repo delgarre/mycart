@@ -40,7 +40,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select locations from Orders where status = 'Not Approved' and name = '"+user.getUserName()+"' group by locations";
+String sql ="select distinct locations from Orders where status = 'Not Approved' and name = '"+user.getUserName()+"' order by locations";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -90,7 +90,7 @@ resultSet = statement.executeQuery(sql);
                     while(resultSet.next()){
                         ;
                         String locations = resultSet.getString("locations");
-                        
+                    
                     %>
                     
 

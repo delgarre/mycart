@@ -3,7 +3,7 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.learn.mycart.entities.User"%>
-<%@page import="com.learn.mycart.entities.ApproveOrder"%>
+
 <%
    
     User user = (User)session.getAttribute("current-user");
@@ -83,7 +83,10 @@ resultSet = statement.executeQuery(sql);
         window.history.back();
     }
     
-    
+    //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
     
 </script>
 
@@ -116,7 +119,7 @@ resultSet = statement.executeQuery(sql);
         <%@include file="components/navbar.jsp" %>
          <div class="container">
              <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-             <div class="container-fluid mt-3">
+             <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
             <div class="row">
@@ -127,7 +130,7 @@ resultSet = statement.executeQuery(sql);
                     
                   
                        
-                    <h1>Are you Sure?</h1><br>
+                    <h1>ARE YOU SURE?</h1><br>
                     <br>
                     <h2>UOM: <%=uom%></h2>
                   
@@ -137,7 +140,7 @@ resultSet = statement.executeQuery(sql);
                                 <div class="form-group">
                        
                                     <a href="delete_uom.jsp?id=<%=id%>">
-                                        <button class="btn btn-danger" onclick="sendEmail('td')">DELETE</button>
+                                        <button class="btn btn-danger">DELETE</button>
                                     </a>
                                 </div>
                                 

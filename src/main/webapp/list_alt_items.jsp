@@ -3,7 +3,7 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.learn.mycart.entities.User"%>
-<%@page import="com.learn.mycart.entities.ApproveOrder"%>
+
 <%
    
     User user = (User)session.getAttribute("current-user");
@@ -44,7 +44,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Item where itemNumber = '"+itemNumber+"'";
+String sql ="select * from Item where find_in_set('"+itemNumber+"', alternateItem) > 0;";
 resultSet = statement.executeQuery(sql);
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -126,16 +126,16 @@ resultSet = statement.executeQuery(sql);
                     
                   
                        
-                    <h1>Are you Sure?</h1><br>
+                    <h1>ARE YOU SURE?</h1><br>
                     <br>
-                    <h2>UOM: <%=itemNumber%></h2>
+                    <h2>ALTERNATE ITEMS: <%=itemNumber%></h2>
                   
                   
                             
                                  <div class="form-group">
                        
-                                    <a href="delete_prod.jsp?id=<%=id%>&alt=<%=alt%>&itemNumber=<%=itemNumber%>">
-                                        <button class="btn btn-danger" onclick="sendEmail('td')">DELETE</button>
+                                    <a href="delete_prod.jsp?id=<%=id%>&alt=<%=alt%>&itemNumber=<%=itemNumber%>" onclick="return confirm('Are you sure?');">
+                                        <button class="btn btn-danger">DELETE</button>
                                     </a>
                                 </div>
 
@@ -156,13 +156,13 @@ resultSet = statement.executeQuery(sql);
                                                 <%
                                                  while(resultSet.next()){
 
-                                                     String alternateItem = resultSet.getString("alternateItem");
+                                                     String itemNumber1 = resultSet.getString("itemNumber");
                                                      String desc = resultSet.getString("pDesc");
 
                                                  %>
 
 
-                                                 <td><%=alternateItem%></td>
+                                                 <td><%=itemNumber1%></td>
                                                  <td><%=desc%></td>
                                                  
 

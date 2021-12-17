@@ -16,7 +16,7 @@ try
 Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
 Statement st=conn.createStatement();
-int i=st.executeUpdate("UPDATE Approve SET stat = 'submitted' WHERE user_id = '"+user_id+"' and locations = '"+com+"'");
+int i=st.executeUpdate("UPDATE Approve SET stat = 'submitted' WHERE locations = '"+com+"'");
 
 response.sendRedirect("user_page.jsp");
 
@@ -29,5 +29,6 @@ catch(Exception e)
 {
 System.out.print(e);
 e.printStackTrace();
+response.sendRedirect("user_page.jsp");
 }
 %>
