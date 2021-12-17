@@ -27,7 +27,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>CPT Codes</title>
         <%@include file="components/common_css_js.jsp" %>
+        <script>
+            
+            //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
+        </script> 
         
+        <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 
 <style>
 .center {
@@ -35,6 +52,27 @@
   width: 60%;
   border: navy;
   padding: 10px;
+}
+
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
 }
 </style>        
     </head>
@@ -46,18 +84,22 @@
         <br>
         <div class="row ml-2">
             <a href="add_cpt.jsp">
-                <button class="btn btn-outline-success">Add CPT Code</button>
+                <button class="btn btn-outline-success">ADD CPT CODE</button>
             </a>
         </div>
-        <div class="container-fluid mt-3">
+        <br>
+            SEACRH: <input id="myInput" type="text" placeholder="Search..">
+        <div id="error" class="container-fluid mt-3">
+            
                 <%@include file="components/message.jsp" %>
         </div>
-        
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         <div class="table-responsive-sm mt-3">
             <table class="table table-bordered " >
+                <thead>
                 <tr>
-                    <th>Codes</th>
-                    <th>Actions</th>
+                    <th>CODES</th>
+                    <th>ACTIONS</th>
                 </tr>
                 <%
                  CptDAO cdao = new CptDAO(FactoryProvider.getFactory());
@@ -67,19 +109,22 @@
                  for(CPT c: clist){
                  %>
                 <tr>
+                    </thead>
+                 <tbody id="myTable">
                     <td><%=c.getCodes()%></td>
                     <td>
                         <a href="delete_cpt.jsp?id=<%=c.getId()%>" onclick="return confirm('Are you sure?');">
-                             <button type="button" class="btn btn-outline-danger">Delete</button>
+                             <button type="button" class="btn btn-outline-danger">DELETE</button>
                          </a>
                          <a href="update_cpt_page.jsp?id=<%=c.getId()%>">
-                             <button type="button" class="btn btn-outline-primary">Edit</button>
+                             <button type="button" class="btn btn-outline-primary">EDIT</button>
                          </a>
                     </td>
                 </tr>
                 <%
                     }
                 %>
+            </tbody>
             </table>
         </div>
         
@@ -87,18 +132,26 @@
             
             
 <script>
-function myFunction() {
-  var txt;
-  var r = confirm("Are you sure?");
-  if (r == true) {
-window.location.href = "cpt.jsp";
+    
+//Get the button
+var mybutton = document.getElementById("myBtn");
 
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction();};
 
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
   } else {
-   window.location.href = "cpt.jsp";
+    mybutton.style.display = "none";
   }
-  document.getElementById("demo").innerHTML = txt;
 }
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}   
 </script>
     </body>
 </html>
