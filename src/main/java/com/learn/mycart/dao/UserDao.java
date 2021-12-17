@@ -42,6 +42,21 @@ public class UserDao {
         List<User> list= query.list();
         return list;
     }
+    
+    public List<User> getActiveUsers(){
+        Session s= this.factory.openSession();
+        Query query = s.createQuery("from User where status = 'active' ORDER BY userName");
+        List<User> list= query.list();
+        return list;
+    }
+    
+    public List<User> getInactiveUsers(){
+        Session s= this.factory.openSession();
+        Query query = s.createQuery("from User where status = 'inactive' ORDER BY userName");
+        List<User> list= query.list();
+        return list;
+    }
+    
     public User getUserById(int uid)
     {
         User user = null;
