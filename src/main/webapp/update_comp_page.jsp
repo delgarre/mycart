@@ -73,9 +73,10 @@ function goBack(){
                       <br>
                       <div class="card">
                         <div class="card-header custom-bg text-white">
-      <h1>Make Changes!</h1>
+      
                       </div>
             <div class="card-body">
+                <h1>MAKE CHANGES!</h1>
         <form method="post" action="update_comp.jsp">
             <input type="hidden" name="companyId" value="<%=resultSet.getString("companyId") %>">
             <br>
@@ -89,6 +90,33 @@ function goBack(){
         
             <input type="text" name="type" value="<%=resultSet.getString("type")%>" id="type">
               </div>
+              <div class="form-group">
+                       <label for="address1">ADDRESS 1:</label>
+        
+            <input type="text" name="address1" value="<%=resultSet.getString("address1")%>" id="address1">
+              </div>
+              
+              <div class="form-group">
+                       <label for="address2">ADDRESS 2:</label>
+        
+            <input type="text" name="address2" value="<%=resultSet.getString("address2")%>" id="address2">
+              </div>
+              
+              <div class="form-group">
+                       <label for="city">CITY:</label>
+        
+            <input type="text" name="city" value="<%=resultSet.getString("city")%>" id="address2">
+              </div>
+              
+            <div class="form-group">
+                       <label for="states">STATES:</label>
+            <input type="text" name="states" value="<%=resultSet.getString("states")%>" id="states">
+            </div>
+            
+            <div class="form-group">
+                       <label for="zip">ZIP:</label>
+            <input type="text" name="zip" value="<%=resultSet.getString("zip")%>" id="zip">
+            </div>
               
                           <div class="container text-center">
               <input type="submit" onclick="return confirm('Are you sure?');" class="btn btn-outline-primary" value="SAVE CHANGES">
