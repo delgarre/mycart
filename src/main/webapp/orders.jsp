@@ -48,7 +48,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select locations from Orders where status = 'Not Approved' group by locations";
+String sql ="select distinct locations from Orders where status = 'Not Approved' order by locations";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -60,6 +60,14 @@ resultSet = statement.executeQuery(sql);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pending Orders</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+        <script>
+    //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)        
+    </script>
+    
         
 <style>
 .center {
@@ -97,10 +105,10 @@ resultSet = statement.executeQuery(sql);
     %>
     <body>
            <%@include file="components/navbar.jsp" %>
-        <h1>PENDING APPROVAL:</h1>
+        
         <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         <div class="center">
-
+            <h1>ORDERS PENDING APPROVAL:</h1>
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
@@ -117,8 +125,9 @@ resultSet = statement.executeQuery(sql);
                 <tr>
                    <%
                     while(resultSet.next()){
-                        ;
+                        
                         String locations = resultSet.getString("locations");
+                       
                         
                     %>
                     

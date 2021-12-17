@@ -43,7 +43,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select locations from Approve where stat = 'Not Approved' group by locations";
+String sql ="select distinct locations from Approve where stat = 'Not Approved' order by locations";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -72,9 +72,9 @@ resultSet = statement.executeQuery(sql);
     %>
     <body>
            <%@include file="components/navbar.jsp" %>
-        <h1>UNSUBMITTED ORDERS</h1>
+        
         <div class="center">
-
+                <h1>UNSUBMITTED ORDERS</h1>
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>

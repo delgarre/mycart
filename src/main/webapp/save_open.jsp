@@ -25,8 +25,8 @@ DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 String date = dtf.format(ldt);
 String stat = "Not Approved";
 
-
 String query = "insert into Approve(itemNumber, price, date, locations, name, quantity, user_id, photo, stat, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, alternateItem, department) select '"+itemNumber+"', price, '"+date+"', '"+locations+"', '"+name+"', "+quantity+", "+user_id+", photo, 'Not Approved', cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, alternateItem, '"+department+"' from Item where id ="+iid;
+
 
 try
 {
@@ -36,29 +36,21 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
 Statement st=conn.createStatement();
 
-String strQuery = "SELECT COUNT(*) FROM Approve where itemNumber='"+itemNumber+"' and stat ='"+stat+"' and locations='"+locations+"'";
-ResultSet rs = st.executeQuery(strQuery);
-rs.next();
-String Countrow = rs.getString(1);
-out.println(Countrow);
 
-if(Countrow.equals("0")){
+
+
+
     
 int i=st.executeUpdate(query);
-response.sendRedirect("items_pharm.jsp");
+response.sendRedirect("open_null_check.jsp?id="+locations);
 session.setAttribute("message", "Cart Item added!");
-
-}
-
-else{
-response.sendRedirect("items_pharm.jsp");
-session.setAttribute("message", "Cart Item already exist!");
-}
-
-
+System.out.println(query);
 }
 catch(Exception e)
 {
+  System.out.println(query);  
+response.sendRedirect("o_orders.jsp?id="+locations);
+session.setAttribute("message", "Cart Item already exist!");
 System.out.print(e);
 e.printStackTrace();
 }

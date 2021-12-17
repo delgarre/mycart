@@ -28,6 +28,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Measurements</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+        <script>
+            //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
+        </script>
+        
     <style>
 .center {
   margin: auto;
@@ -35,19 +43,41 @@
   border: navy;
   padding: 10px;
 }
+
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
 </style>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">TOP</button>
         <div class="center">
         <h2>UNITS OF MEASURES</h2>
         <br>
         <div class="row ml-2">
             <a href="add_measurement.jsp">
-                <button class="btn btn-outline-success">Add measurement</button>
+                <button class="btn btn-outline-success">ADD MEASUREMENT</button>
             </a>
         </div>
-        <div class="container-fluid mt-3">
+        <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
         </div>
         
@@ -55,8 +85,8 @@
         <div class="table-responsive-sm mt-3">
             <table class="table table-bordered " >
                 <tr>
-                    <th>Measurement</th>
-                    <th>Actions</th>
+                    <th>MEASUREMENT</th>
+                    <th>ACTIONS</th>
                 </tr>
                 <%
                  UOMDao udao = new UOMDao(FactoryProvider.getFactory());
@@ -87,18 +117,26 @@
         </div>
             
 <script>
-function myFunction() {
-  var txt;
-  var r = confirm("Are you sure?");
-  if (r == true) {
-window.location.href = "uom.jsp";
+    
+//Get the button
+var mybutton = document.getElementById("myBtn");
 
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction();};
 
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
   } else {
-   window.location.href = "uom.jsp";
+    mybutton.style.display = "none";
   }
-  
 }
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}   
 </script>
     </body>
 </html>

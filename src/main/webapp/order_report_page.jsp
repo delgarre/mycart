@@ -28,9 +28,26 @@
         }
     }
 %>
+
 <%
-    String orderId = request.getParameter("oid");
-String id = request.getParameter("id");
+    
+    String chooselocations="";
+    String location[]=request.getParameterValues("location");
+                for(int i=0;i < location.length; i++){
+                chooselocations += location[i] + ","; 
+                }
+  
+String itemsList="";
+    String items[]=request.getParameterValues("new");
+    if(items==null){
+      itemsList="none";
+  }
+                for(int i=0;i < items.length; i++){
+                itemsList += items[i] + ","; 
+                }
+    String pDescs = request.getParameter("pDesc");
+String date1 = request.getParameter("date1");
+String date2 = request.getParameter("date2");
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
 String database = "mycart";
@@ -49,8 +66,9 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from OrderHistory where locations = '"+id+"' and date = '"+session.getAttribute("date")+"'";
+String sql ="select * from OrderHistory where date between '"+date1+"' and '"+date2+"' and FIND_IN_SET(locations,'"+chooselocations+"' ) and pDesc like '%"+pDescs+"%' and FIND_IN_SET(itemNumber,'"+itemsList+"' )";
 resultSet = statement.executeQuery(sql);
+
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -94,12 +112,11 @@ function download_table_as_csv(table_id, separator = ',') {
     document.body.removeChild(link);
 }
 
-//this will hide message after 3 seconds
-            setTimeout(function(){
-            $("#error").hide();
-            },3000)
+function goBack(){
+        window.history.back();
+    } 
 </script> 
-          
+        
 <style>
 .center {
   margin: auto;
@@ -116,117 +133,56 @@ function download_table_as_csv(table_id, separator = ',') {
     %>
     <body>
            <%@include file="components/navbar.jsp" %>
-        <h1>ORDER HISTORY FOR <%=id%>:</h1>
+        <h1>REPORT:</h1>
         <div class="center">
-                   <div id="error" class="container-fluid mt-3">
-                <%@include file="components/message.jsp" %>
-                </div>
             <a href="#" onclick="download_table_as_csv('my_id_table_to_export');">
                     <button class="btn btn-info">
                     DOWNLOAD AS CSV
                     </button>
             </a><br>
-                <a href="history_items_list.jsp?loc=<%=id%>&oid=<%=orderId%>">
-                <button class="btn btn-primary">ADD ITEM</button>
-            </a><br> 
             <br>
+            <button class="btn btn-warning" onclick="goBack()">GO BACK</button><br>
             <table id="my_id_table_to_export" class="table table-bordered ">
-                <thead>  
-                <tr>
-                    <th>ORDER #</th>
-                    <th>PHOTO</th>
-                    
+              
+                 <tr>
                     <th>APPROVAL DATE</th>
                     <th>ITEM NUMBER</th>
                     <th>DESCRIPTION</th>
                     <th>COST</th>
-                    <th>QUANTITY ORDERED</th>
-                    <th>ALTERNATE ITEM</th>
-                    <th>ORDERED BY</th>
-                    <th>DEPARTMENT</th>
+                    <th>QUANTITY</th>
                     <th>LOCATION</th>
                     <th>VENDOR</th>
-                    <th>ADDRESS 1</th>
-                    <th>ADDRESS 2</th>
-                    <th>CITY</th>
-                    <th>STATE</th>
-                    <th>ZIP</th>
-                    <th>PHONE</th>
-                    <th>FAX</th>
-                    
-                    <th>ACTION</th>
+                    <th>CATEGORY</th>
                 </tr>
-                </thead>
-                <tbody id="myTable">
-                <tr>
+                
+                  <tr>
                    <%
                     while(resultSet.next()){
-                        ;
-                        String oId = resultSet.getString("id");
-                        String cName = resultSet.getString("cName");
-                        String photo = resultSet.getString("photo");
-                        String itemNumber = resultSet.getString("ItemNumber");
+                        
+                        
+                        String itemNumber = resultSet.getString("itemNumber");
                         String date = resultSet.getString("date");
                         String quantity = resultSet.getString("quantity");
                         String pDesc = resultSet.getString("pDesc");
                         String vTitle = resultSet.getString("vTitle");
-                        String price = resultSet.getString("aPrice");
+                        String cTitle = resultSet.getString("cTitle");
+                        String price = resultSet.getString("aPrice"); 
                         String locations = resultSet.getString("locations");
-                        String alt = resultSet.getString("alternateItem");
-                        String department = resultSet.getString("department");
-                         String oid = resultSet.getString("orderId");
-                         String address1 = resultSet.getString("address1");
-                         String address2 = resultSet.getString("address1");
-                         String city = resultSet.getString("city");
-                         String state = resultSet.getString("state");
-                         String zip = resultSet.getString("postalcode");
-                         String phone = resultSet.getString("phone");
-                         String fax = resultSet.getString("fax");
                     %>
                     
-                    <td><%=oid%></td>
-                   
-                    <td>
-                        <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
-                           
-                    </td>
-                    
+
                     <td><%=date%></td>
                     <td><%=itemNumber%></td>
                     <td><%=pDesc%></td>
                     <td><span>$<%=price%></span></td>
                     <td><%=quantity%></td>
-                    <td><%=alt%></td>
-                    <td><%=cName%></td>
-                    <td><%=department%></td>
                     <td><%=locations%></td>
-                    
                     <td><%=vTitle%></td>
-                    <td><%=address1%></td>
-                    <td><%=address2%></td>
-                    <td><%=city%></td>
-                    <td><%=state%></td>
-                    <td><%=zip%></td>
-                    <td><%=phone%></td>
-                    <td><%=fax%></td>
-                    <td>  <a href="update_history_page.jsp?id=<%= oId%>">
-                    <button class="btn btn-outline-success">UPDATE ORDER</button>
-                        </a>
-                    <a href="delete_history_order.jsp?id=<%=oId%>&locations=<%=id%>" onclick="return confirm('Are you sure?');">
-                        <button class="btn btn-danger">DELETE ITEM</button>
-                    </a>
-                    </td>
-
-                    
-                    
-                    
+                    <td><%=cTitle%></td>
                 </tr>
                 <%
                     }
-                    
-            
                 %>
-                </tbody>
             </table>
         
         </div>
@@ -234,6 +190,8 @@ function download_table_as_csv(table_id, separator = ',') {
 connection.close();
 } catch (Exception e) {
 e.printStackTrace();
+response.sendRedirect("order_report.jsp");
+session.setAttribute("message", "No items selected");
 }
 %>
     </body>

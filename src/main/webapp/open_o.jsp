@@ -12,7 +12,7 @@
 <%@page import="com.learn.mycart.entities.Company"%>
 
 <%
-    Company company1 = (Company)session.getAttribute("location");
+    
     
     User user = (User)session.getAttribute("current-user");
     if(user==null){
@@ -20,9 +20,19 @@
         response.sendRedirect("index.jsp");
         return;
     }
+    else
+    {
+        if(user.getUserType().equals("normal"))
+        {
+            session.setAttribute("message", "Admin level required!");
+            response.sendRedirect("index.jsp");
+            return;
+        }
+    }
 %>
 
 <%
+String location = request.getParameter("location");
 String id = request.getParameter("id");
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
@@ -77,7 +87,7 @@ function goBack(){
     String ddMMyyyyToday = DATE_FORMAT.format(today);
     %>
     <body>
-           <%@include file="components/user_items_navbar.jsp" %>
+           <%@include file="components/navbar.jsp" %>
            <div class="container">
                
                         
@@ -86,13 +96,13 @@ function goBack(){
     
     <div class="card">
         <div class="card-header custom-bg text-white">
-                            <h1>ENTER AMOUNT:</h1>
+                            <h1>ENTER QUANTITY:</h1>
                                     
                     </div>
                 <div class="card-body">
                     Date: <%=today%><br>
                     <br>
-<form method="post" action="contact_check_pharm.jsp">
+<form method="post" action="save_open.jsp">
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
 <input type="hidden" name="date">
 <input type="hidden" name="user_id" value="<%=user.getUserId()%>">
@@ -114,10 +124,7 @@ function goBack(){
 <input type="hidden" name="photo" value="<%=resultSet.getString("photo")%>">
 
 <input type="hidden" name="alt" value="<%=resultSet.getString("alternateItem")%>">
-
 <input type="hidden" name="department" value="<%=user.getDepartment()%>">
-
-
 
                 <div class="form-group">
                     <label for="itemNumber">ITEM NUMBER:</label>
@@ -140,7 +147,7 @@ function goBack(){
                 <div class="form-group">
                        <label for="locations">LOCATION:</label>
 
-<input value="<%=company1.getCompanyName()%>" name="locations" id="locations" class="input" readonly>
+<input value="<%=location%>" name="locations" id="locations" class="input" readonly>
                 </div>
  <div class="container text-center">
 <input type="submit" class="btn btn-primary" value="ADD ITEM">

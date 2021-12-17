@@ -25,9 +25,9 @@ String cTitle = request.getParameter("cTitle");
 String vTitle = request.getParameter("vTitle");
 String pDesc = request.getParameter("pDesc");
 String alternateItem = request.getParameter("alternateItem");
-
-
-
+String department = request.getParameter("department");
+String oid = request.getParameter("oid");
+String query = "insert into Orders(date,locations, itemNumber,aPPrice, quantity, user_id, status, name, photo, unitOfMeasure, manufacturer, manufacturerNum, pDesc, cTitle, vTitle, alternateItem, department, orderId)values('"+ddMMyyyyToday+"','"+locations+"','"+itemNumber+"','"+price+"','"+quantity+"','"+user_id+"', '"+stat+"', '"+name+"', '"+photo+"','"+uom+"', '"+man+"', '"+manNum+"', '"+pDesc+"','"+cTitle+"','"+vTitle+"','"+alternateItem+"','"+department+"', '"+oid+"')";
 try
 {
 
@@ -36,14 +36,16 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
 Statement st=conn.createStatement();
 
-int i=st.executeUpdate("insert into Orders(date,locations, itemNumber,aPPrice, quantity, user_id, status, name, photo, unitOfMeasure, manufacturer, manufacturerNum, pDesc, cTitle, vTitle, alternateItem)values('"+ddMMyyyyToday+"','"+locations+"','"+itemNumber+"','"+price+"','"+quantity+"','"+user_id+"', '"+stat+"', '"+name+"', '"+photo+"','"+uom+"', '"+man+"', '"+manNum+"', '"+pDesc+"','"+cTitle+"','"+vTitle+"','"+alternateItem+"')");
+int i=st.executeUpdate(query);
 
-JavaMailUtil.sendMail("diane.madonna@dseincorporated.com", locations);
-response.sendRedirect("a_orders.jsp?id="+locations);
+
+response.sendRedirect("a_null_check.jsp?id="+locations);
 session.setAttribute("message", "Item approved!");
+System.out.println(query);
 }
 catch(Exception e)
 {
+System.out.println(query);
 System.out.print(e);
 e.printStackTrace();
 }

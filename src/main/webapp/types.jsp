@@ -54,7 +54,12 @@ resultSet = statement.executeQuery(sql);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Location Types</title>
         <%@include file="components/common_css_js.jsp" %>
-        
+        <script>
+            //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
+        </script>       
         
 <style>
 .center {
@@ -63,33 +68,46 @@ resultSet = statement.executeQuery(sql);
   border: navy;
   padding: 10px;
 }
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background: white;
+  position: sticky;
+  top: 0;
+}
+
+tr:nth-child(even) {background-color: #008080;}
 </style>        
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
         <div class="center">
         
-        <h2>Location Types</h2>
+        <h2>LOCATION TYPES</h2>
         <br>
         <div class="row ml-2">
             <a href="add_type.jsp">
-                <button class="btn btn-outline-success">ASSIGN LOCATION TYPE</button>
+                <button class="btn btn-success">ASSIGN LOCATION TYPE</button>
             </a>
             <br>
             <a href="type.jsp">
-                <button class="btn btn-outline-primary">MAINTAIN LOCATION TYPE</button>
+                <button class="btn btn-warning">MAINTAIN LOCATION TYPE</button>
             </a>
             <br>
             <a href="l_company.jsp">
-                <button class="btn btn-outline-primary">COMPANIES</button>
+                <button class="btn btn-primary">COMPANIES</button>
             </a>
             <br>
             <a href="companies.jsp">
-                <button class="btn btn-outline-primary">LOCATIONS</button>
+                <button class="btn btn-info">LOCATIONS</button>
             </a>
         </div>
         <div class="col-md-8">
-            <div class="container-fluid mt-3">
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
             
@@ -115,7 +133,7 @@ resultSet = statement.executeQuery(sql);
                     <td>
                         
                         <a href="delete_type.jsp?id=<%=id%>" onclick="return confirm('Are you sure?');">
-                            <button class="btn btn-outline-danger">DELETE</button>
+                            <button class="btn btn-danger">DELETE</button>
                         </a>
                     </td>
                 </tr>

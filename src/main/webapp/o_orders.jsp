@@ -68,6 +68,14 @@ resultSet = statement.executeQuery(sql);
  <script src= 
     "https://smtpjs.com/v3/smtp.js"> 
   </script> 
+  <style>
+.center {
+  margin: auto;
+  width: 80%;
+  border: navy;
+  padding: 10px;
+}
+  </style>
   
 <script type="text/javascript"> 
     function sendEmail(tableID) { 
@@ -92,6 +100,11 @@ resultSet = statement.executeQuery(sql);
     function goBack(){
         window.history.back();
     } 
+    
+    //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
 </script>
     </head>
     <%
@@ -101,9 +114,10 @@ resultSet = statement.executeQuery(sql);
     %>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <h1>Cart Items:</h1>
-        <div class="col-md-8">
-            <div class="container-fluid mt-3">
+        
+        <div class="center">
+            <h1>ORDER FOR <%=id%>:</h1>
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
                 
@@ -111,42 +125,69 @@ resultSet = statement.executeQuery(sql);
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
                 
                 <br>
-            <button class="btn btn-primary" onclick="goBack()">Go Back</button>
+            <button class="btn btn-primary" onclick="goBack()">GO BACK</button>
             <br>
             <br>
            
             <form method="POST" action="A_OrderServlet">
+                                <%
+
+try {
+Class.forName(driver);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connections = null;
+Statement statements = null;
+ResultSet resultSets = null;
+%>
+<%
+try{
+connections = DriverManager.getConnection(connectionUrl+database, userid, password);
+statements=connection.createStatement();
+String sqlS ="select companyCode from Company where companyName = '"+id+"'";
+resultSets = statements.executeQuery(sqlS);
+while(resultSets.next()){
+    String code = resultSets.getString("companyCode");
+%>
+<input type="hidden" name="code" value="<%=code%>">
                  <div>
               <input type="hidden" name="loc" value="<%=id%>"/>
-                <input type="submit" class="btn btn-info" value="Submit Cart For Approval" onclick="mySub()"/>
+                <input onclick="return confirm('Are you sure?');" type="submit" class="btn btn-info" value="SUBMIT CART FOR APPROVAL" onclick="mySub()"/>
                  </div>
             </form>
                 
-            <div>
+                
+                
+        <div>
             <br>
-                <a href="items.jsp">
+               <a href="open_items_list.jsp?location=<%=id%>">
                 <button type="button" class="btn btn-warning">
-    ADD MORE ITEMS
-  </button>
-                </a>
+                    ADD MORE ITEMS
+                </button>
+               </a><br>
+               <br>
+               <a href="delete_all_o_order.jsp?location=<%=id%>" onclick="return confirm('Are you sure?');">
+                    <button class="btn btn-danger">DELETE ORDER</button>
+                </a><br>
+                <br>
         </div>
                 <table class="table table-bordered " id="td">
-                <tr>
-                   
+                <tr>          
                     <th>IMAGE</th>
                     <th>ITEM #</th>
                     <th>DESCRIPTION</th>
                     <th>COST</th>
                     <th>ORDERED BY</th>
-                    <th>QTY PER UOM</th>
+                    <th>DEPARTMENT</th>
+                    <th>QTY ORDERED</th>
                     <th>UOM</th>
+                    <th>ALTERNATE ITEM</th>
                     <th>VENDOR</th>
                     <th>CATEGORY</th>
                     <th>MANUFACTURER</th>
                     <th>MANUFACTURER NUMBER</th>
-
-                    <th>ACTIONS</th>
-                    
+                    <th>ACTIONS</th>                    
                 </tr>
                 <tr>
                    <%
@@ -165,6 +206,8 @@ resultSet = statement.executeQuery(sql);
                         String man = resultSet.getString("manufacturer");
                         String manNum = resultSet.getString("manufacturerNum");
                         String uom = resultSet.getString("unitOfMeasure");
+                        String department = resultSet.getString("department");
+                        String alt = resultSet.getString("alternateItem");
                         
                     %>
                     
@@ -176,46 +219,53 @@ resultSet = statement.executeQuery(sql);
                     <td><%=pDesc%></td>
                     <td><span>$<%= price%></span></td>
                     <td><%=name%></td>
+                    <td><%=department%></td>
                     <td><%=quantity%></td>
                     <td><%=uom%></td>
+                    <td><%=alt%></td>
                     <td><%=vTitle%></td>
                     <td><%=cTitle%></td>
                     <td><%=man%></td>
                     <td><%=manNum%></td>
 
                     <td>
-                        <a href="update_a_orders_page.jsp?id=<%=order_id%>">
-                            <button class="btn btn-outline-primary">Edit</button>
-                        </a>
-                            <a href="delete_a_orders.jsp?id=<%=order_id%>">
-                                <button class="btn btn-outline-danger">Delete</button>
-                            </a>
-                         
+                        <a href="update_open_orders_page.jsp?id=<%=order_id%>">
+                            <button class="btn btn-primary">EDIT</button>
+                        </a><br>
+                        <br>
+                      
+                        <a href="submit_o_approval.jsp?id=<%=order_id%>&loc=<%=id%>&alt=<%=alt%>&code=<%=code%>" onclick="return confirm('Are you sure?');">
+                            <button class="btn btn-info">APPROVE</button>
+                        </a><br>
                         
+                        <br>
+                        <a href="delete_o_orders.jsp?id=<%=order_id%>&loc=<%=id%>" onclick="return confirm('Are you sure?');">
+                            <button class="btn btn-danger">DELETE</button>
+                        </a>
                     </td>
                     
                 </tr>
                <input type="hidden" name="oId" value="<%=order_id%>"/>
-               
-
-              
+               <input type="hidden" name="itemNumber" value="<%=item%>"/>
+        
+               <input type="hidden" name="alt" value="<%=alt%>"/>
                 <%
+                  
                     }
                     session.setAttribute("single", id);
+                    
                 %>
                
             </table>
                 
-
-
-
-
-                
-        </div>
-
-        
-        
-        
+        </div>        
+        <%
+}
+connection.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
 <%
 
 connection.close();

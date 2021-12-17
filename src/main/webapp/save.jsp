@@ -9,8 +9,9 @@
 <%@page import= "java.time.format.DateTimeFormatter"%>
 <%@include file="components/message.jsp" %>
 <%
-String itemName=request.getParameter("itemName");
-String price=request.getParameter("price");
+
+String iid = request.getParameter("id");
+String department = request.getParameter("department");
 String quantity=request.getParameter("quantity");
 String name = request.getParameter("name");
 int user_id = Integer.parseInt(request.getParameter("user_id"));
@@ -18,20 +19,20 @@ String itemNumber = request.getParameter("itemNumber");
 String locations = request.getParameter("locations");
 Date today = new Date();
 SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-String ddMMyyyyToday = DATE_FORMAT.format(today);
+
 LocalDateTime ldt = LocalDateTime.now();
 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 String date = dtf.format(ldt);
 String stat = "Not Approved";
-String photo = request.getParameter("photo");
-String man = request.getParameter("man");
-String mannum = request.getParameter("mannum");
-String vTitle = request.getParameter("vTitle");
-String cTitle = request.getParameter("cTitle");
-String pDesc = request.getParameter("pDesc");
-String uom = request.getParameter("uom");
-String alt = request.getParameter("alt");
+String address1 = "";
+String address2 = "";
+String city = "";
+String postalcode = "";
+String state = "";
+String phone = "";
+String fax = "";
 
+String query = "insert into Approve(itemNumber, price, date, locations, name, quantity, user_id, photo, stat, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, alternateItem, department, address1, address2, city, state, postalcode, fax, phone) select '"+itemNumber+"', price, '"+date+"', '"+locations+"', '"+name+"', "+quantity+", "+user_id+", photo, 'Not Approved', cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, alternateItem, '"+department+"', '"+address1+"', '"+address2+"', '"+city+"', '"+state+"', '"+postalcode+"', '"+fax+"', '"+phone+"' from Item where id ="+iid;
 
 
 try
@@ -50,15 +51,16 @@ out.println(Countrow);
 
 if(Countrow.equals("0")){
     
-int i=st.executeUpdate("insert into Approve(date,locations, itemNumber,price, quantity, user_id, stat, name, photo, unitOfMeasure, manufacturer, manufacturerNum, cTitle, vTitle, pDesc, alternateItem)values('"+date+"','"+locations+"','"+itemNumber+"','"+price+"','"+quantity+"', '"+user_id+"', '"+stat+"', '"+name+"', '"+photo+"', '"+uom+"', '"+man+"', '"+mannum+"','"+cTitle+"', '"+vTitle+"', '"+pDesc+"', '"+alt+"')");
-response.sendRedirect("items.jsp");
+int i=st.executeUpdate(query);
+response.sendRedirect("null_check.jsp");
 session.setAttribute("message", "Cart Item added!");
-
+System.out.println(query);
 }
 
 else{
 response.sendRedirect("items.jsp");
 session.setAttribute("message", "Cart Item already exist!");
+System.out.println(query);
 }
 
 
@@ -67,5 +69,6 @@ catch(Exception e)
 {
 System.out.print(e);
 e.printStackTrace();
+System.out.println(query);
 }
 %>

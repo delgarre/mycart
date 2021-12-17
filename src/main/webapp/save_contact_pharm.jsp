@@ -24,9 +24,23 @@ LocalDateTime ldt = LocalDateTime.now();
 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 String date = dtf.format(ldt);
 String stat = "Not Approved";
+String address1 = request.getParameter("address1");
+String address2 = request.getParameter("address2");
+String city = request.getParameter("city");
+String postalcode = request.getParameter("postalcode");
+String state = request.getParameter("state");
+String phone = request.getParameter("phone");
+String fax = request.getParameter("fax");
 
+if(fax.equals("null")){
+                  
+                    fax = "";
+                }else{
+                    fax = request.getParameter("fax");
+                }
 
-String query = "insert into Approve(itemNumber, price, date, locations, name, quantity, user_id, photo, stat, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, alternateItem, department) select '"+itemNumber+"', price, '"+date+"', '"+locations+"', '"+name+"', "+quantity+", "+user_id+", photo, 'Not Approved', cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, alternateItem, '"+department+"' from Item where id ="+iid;
+String query = "insert into Approve(itemNumber, price, date, locations, name, quantity, user_id, photo, stat, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, alternateItem, department, address1, address2, city, state, postalcode, fax, phone) select '"+itemNumber+"', price, '"+date+"', '"+locations+"', '"+name+"', "+quantity+", "+user_id+", photo, 'Not Approved', cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, alternateItem, '"+department+"', '"+address1+"', '"+address2+"', '"+city+"', '"+state+"', '"+postalcode+"', '"+fax+"', '"+phone+"' from Item where id ="+iid;
+
 
 try
 {
@@ -45,14 +59,15 @@ out.println(Countrow);
 if(Countrow.equals("0")){
     
 int i=st.executeUpdate(query);
-response.sendRedirect("items_pharm.jsp");
+response.sendRedirect("null_check.jsp");
 session.setAttribute("message", "Cart Item added!");
-
+System.out.println(query);
 }
 
 else{
-response.sendRedirect("items_pharm.jsp");
+response.sendRedirect("items.jsp");
 session.setAttribute("message", "Cart Item already exist!");
+System.out.println(query);
 }
 
 
@@ -61,5 +76,6 @@ catch(Exception e)
 {
 System.out.print(e);
 e.printStackTrace();
+System.out.println(query);
 }
 %>

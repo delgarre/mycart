@@ -1,5 +1,3 @@
-
-<%@page import="com.learn.mycart.entities.Test"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -13,7 +11,6 @@
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.entities.Company"%>
 <%
-
     
     User user = (User)session.getAttribute("current-user");
     if(user==null){
@@ -21,6 +18,7 @@
         response.sendRedirect("index.jsp");
         return;
     }
+    
 %>
 <%
 String id = request.getParameter("id");
@@ -42,7 +40,16 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Approve where user_id ='"+user.getUserId()+"' and stat = 'Not Approved' ";
+String sql ="SELECT DISTINCT A.locations,U.user_name "
+        + "from mycart.Approve A "
+        + "inner join mycart.User U "
+        + "on A.user_id = U.user_id "
+        + "inner join mycart.UserLocation UL "
+        + "on UL.user_id = U.user_id "
+        + "and FIND_IN_SET(A.locations,UL.comp_name) > 0 "
+        + "WHERE A.stat = 'Not Approved' and U.user_id = "
+        + "'"+id+"'"
+        + "ORDER BY  A.locations,U.user_name;";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -62,6 +69,17 @@ resultSet = statement.executeQuery(sql);
   border: navy;
   padding: 10px;
 }
+
+table.table-fit {
+    width: auto !important;
+    table-layout: auto !important;
+}
+table.table-fit thead th, table.table-fit tfoot th {
+    width: auto !important;
+}
+table.table-fit tbody td, table.table-fit tfoot td {
+    width: auto !important;
+}
 </style>
     </head>
     <%
@@ -71,70 +89,46 @@ resultSet = statement.executeQuery(sql);
     %>
     <body>
            <%@include file="components/user_navbar.jsp" %>
-           <h1>Cart Items:</h1><br>
-           
+        <h1>OPEN ORDERS:</h1>
         <div class="center">
+
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
-            <br><br>
-                <a href="cart_dropdown.jsp?id=<%= user.getUserId()%>">
-                
-                
-                <button class="btn btn-outline-success">By Location</button>
-            </a>
-           <br><br>
-            <form method="post" action="OrderServlet">
-                <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
-                <input type="submit" value="Submit Cart" onclick="mySub()"/>
-            </form>
+            
+            
             <table class="table table-bordered ">
+                
                 <tr>
-                    <th>Photo</th>
-                    <th>Item Number</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>User Name</th>
-                    <th>Location</th>
-                    <th>Actions</th>
+                    <th>LOCATIONS</th>
+                   
+                    <th>ACTIONS</th>
                     
                 </tr>
                 <tr>
                    <%
                     while(resultSet.next()){
-                        String aPName = resultSet.getString("itemNumber");
-                        String aPPrice = resultSet.getString("price");
-                        String quantity = resultSet.getString("quantity");
-                        String name = resultSet.getString("name");
+                        
                         String locations = resultSet.getString("locations");
-                        String Id = resultSet.getString("id");
-                        String photo = resultSet.getString("photo");
+                        session.setAttribute("cart", locations);
                     %>
                     
-                    <td>
-                        <img style="max-width: 125px" src="image/<%=photo%>" alt="user_icon">
-                    </td>
-                    <td><%=aPName%></td>
-                    <td><%=aPPrice%></td>
-                    <td><%=quantity%></td>
-                    <td><%=name%></td>
+
                     <td><%=locations%></td>
                     <td>
-                        <a href="update_order_page.jsp?id=<%= Id%>">
-                            <button>Edit</button>
+                        <a href="cart.jsp?id=<%=locations%>">
+                            <button class="btn btn-outline-success">VIEW</button>
                         </a>
-                            <a href="delete_order.jsp?id=<%= Id%>">
-                                <button onclick="myFunction()">Delete</button>
-                            </a>
+                           
                     </td>
-                    
+                <input type="hidden" name="name" value="<%=locations%>">
                 </tr>
                 <%
                     }
+                
                 %>
-
-            
             </table>
+         
         </div>
 <%
 
@@ -143,24 +137,5 @@ connection.close();
 e.printStackTrace();
 }
 %>
-
-<script>
-function myFunction() {
-  var txt;
-  var r = confirm("Are you sure?");
-  if (r == true) {
-    window.location.href = "pending_orders.jsp";
-  } else {
-    window.location.href = "pending_orders.jsp";
-  }
-  document.getElementById("demo").innerHTML = txt;
-}
-
-
-function mySub() {
-  alert("Order submitted for approval!");
-}
-</script>
-
     </body>
 </html>

@@ -86,7 +86,7 @@ function goBack(){
                                     
                     </div>
         <div class="card-body">
-        <h1>Enter Amount</h1>
+        
         Date: <%=today%>
 <form method="post" action="single.jsp">
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
@@ -100,27 +100,30 @@ function goBack(){
 
 <input type="hidden" name="date">
 <input type="hidden" name="user_id" value="<%=user.getUserId()%>">
+<input type="hidden" name="department" value="<%=user.getDepartment()%>">
+
+<input type="hidden" name="oid" value="<%=session.getAttribute("oid")%>">
 
 <input type="hidden" name="photo" value="<%=resultSet.getString("photo")%>">
 <div class="form-group">
                        <label for="itemNumber">Item Number:</label>
 
-<input type="text" name="itemNumber" class="form-control" id="itemNumber" value="<%=resultSet.getString("itemNumber") %>" readonly>
+<input type="text" name="itemNumber"  id="itemNumber" value="<%=resultSet.getString("itemNumber") %>" readonly>
 </div>
 <div class="form-group">
-                       <label for="price">COST:</label>
-<input type="text" name="price" class="form-control" value="<%=resultSet.getString("price") %>" id="price" readonly>
+                       <label for="price">COST($):</label>
+<input type="text" name="price"  value="<%=resultSet.getString("price") %>" id="price" readonly>
 </div>
 
 <input value="<%= user.getUserName()%>" type="hidden" name="name">
 
 <div class="form-group">
                        <label for="quantity">QUANTITY:</label>
-<input type="text" name="quantity" placeholder="Enter Amount" id="quantity" class="form-control">
+<input type="text" name="quantity" placeholder="Enter Amount" id="quantity" >
 </div>
 <div class="form-group">
                        <label for="locations">LOCATION:</label>
-                       <input value="<%=session.getAttribute("single")%>" name="locations" class="form-control" id="locations" readonly>
+                       <input value="<%=session.getAttribute("single")%>" name="locations"  id="locations" readonly>
 </div>
  <div class="container text-center">
 <input type="submit" class="btn btn-primary" value="ADD TO ORDER">

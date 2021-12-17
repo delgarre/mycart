@@ -24,11 +24,14 @@
 
 <%
 String id = request.getParameter("id");
+String contactInfo = request.getParameter("contactInfo");
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
 String database = "mycart";
 String userid = "admin";
 String password = "ordering";
+
+
 try {
 Class.forName(driver);
 } catch (ClassNotFoundException e) {
@@ -86,13 +89,13 @@ function goBack(){
     
     <div class="card">
         <div class="card-header custom-bg text-white">
-                            <h1>ENTER AMOUNT:</h1>
+                            <h1>ENTER QUANTITY:</h1>
                                     
                     </div>
                 <div class="card-body">
                     Date: <%=today%><br>
                     <br>
-<form method="post" action="save.jsp">
+<form method="post" action="contact_check.jsp">
 <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
 <input type="hidden" name="date">
 <input type="hidden" name="user_id" value="<%=user.getUserId()%>">
@@ -115,6 +118,9 @@ function goBack(){
 
 <input type="hidden" name="alt" value="<%=resultSet.getString("alternateItem")%>">
 
+<input type="hidden" name="department" value="<%=user.getDepartment()%>">
+
+<input type="hidden" name="contactInfo" value="<%=contactInfo%>">
 
                 <div class="form-group">
                     <label for="itemNumber">ITEM NUMBER:</label>
@@ -140,8 +146,12 @@ function goBack(){
 <input value="<%=company1.getCompanyName()%>" name="locations" id="locations" class="input" readonly>
                 </div>
  <div class="container text-center">
+     
+     
 <input type="submit" class="btn btn-primary" value="ADD ITEM">
+
 <button class="btn btn-warning" onclick="goBack()">GO BACK</button>
+
  </div>
 </form>
 <%

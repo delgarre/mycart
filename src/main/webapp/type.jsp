@@ -54,6 +54,14 @@ resultSet = statement.executeQuery(sql);
         <title>Location Types</title>
         <%@include file="components/common_css_js.jsp" %>
         
+        <script>
+            //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
+            
+        </script>
+        
 <style>
 .center {
   margin: auto;
@@ -61,39 +69,49 @@ resultSet = statement.executeQuery(sql);
   border: navy;
   padding: 10px;
 }
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background: white;
+  position: sticky;
+  top: 0;
+}
+
+tr:nth-child(even) {background-color: #008080;}
 </style>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
         <div class="center">
-        <h2>Maintenance Location Types</h2>
+        <h2>MAINTAIN LOCATION TYPES</h2>
         
         <div class="row ml-2">
             <a href="add_l_type.jsp">
-                <button class="btn btn-outline-success">ADD NEW LOCATION TYPE</button>
+                <button class="btn btn-success">ADD NEW LOCATION TYPE</button>
             </a>
-            
         <br>
-        
-        
             <a href="types.jsp">
-                <button class="btn btn-outline-success">ASSIGNED LOCATION TYPES</button>
+                <button class="btn btn-warning">ASSIGN LOCATION TYPE</button>
             </a>
             
         <br>
         
             <a href="l_company.jsp">
-                <button class="btn btn-outline-primary">COMPANIES</button>
+                <button class="btn btn-primary">COMPANIES</button>
             </a>
         <br>
     
             <a href="companies.jsp">
-                <button class="btn btn-outline-primary">LOCATIONS</button>
+                <button class="btn btn-info">LOCATIONS</button>
             </a>
        
         </div>
         <div class="col-md-8">
-            <div class="container-fluid mt-3">
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
             
@@ -119,11 +137,11 @@ resultSet = statement.executeQuery(sql);
                     <td>
                         
                         <a href="l_type_page.jsp?id=<%=id%>">
-                            <button class="btn btn-outline-primary">EDIT NAME</button>
+                            <button class="btn btn-primary">EDIT NAME</button>
                         </a>
                         
                         <a href="delete_l_type.jsp?id=<%=id%>" onclick="return confirm('Are you sure?');">
-                            <button class="btn btn-outline-danger">DELETE</button>
+                            <button class="btn btn-danger">DELETE</button>
                         </a>
                     </td>
                 </tr>

@@ -104,51 +104,85 @@ resultSet = statement.executeQuery(sql);
     %>
     <body>
         <%@include file="components/navbar.jsp" %>
-        <h1>APPROVE ORDER:</h1>
+        <h1>APPROVE ORDER FOR <%=id%>:</h1>
         <div class="col-md-8">
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
+<%
 
+String drivers = "com.mysql.jdbc.Driver";
+String connectionUrls = "jdbc:mysql://172.20.29.70:3306/";
+String databases = "mycart";
+String userids = "admin";
+String passwords = "ordering";
+try {
+Class.forName(drivers);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connections = null;
+Statement statemenst = null;
+ResultSet resultSets = null;
+%>
+<%
+try{
+connections = DriverManager.getConnection(connectionUrls+databases, userids, passwords);
+statemenst=connections.createStatement();
+String sqls ="select companyCode from Company where companyName = '"+id+"'";
+resultSets = statemenst.executeQuery(sqls);
+
+%>
             <form method="post" action="a.jsp">
-                <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
-                <input type="text" name="locations" value="<%=id%>"/>
-                                
-               <input type="submit" class="btn btn-success" value="Approve Order" onclick="sendEmail('td')"/>
-             
+                
+<input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
+                <input type="hidden" name="locations" value="<%=id%>"/>
+<%
+                    while(resultSets.next()){
+                        String companyCode = resultSets.getString("companyCode");
+                       
+                        
+                        
+                    %>
+                
+                <input type="hidden" name="code" value="<%=companyCode%>"/>
+                  <%
+                      }
+                  %>              
+               <input type="submit" class="btn btn-success" value="APPROVE ORDER" onclick="return confirm('Are you sure?');" onclick="sendEmail('td')"/>
+         
             </form>
+  <%
+
+connections.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>  
             <div class="row ml-2">
             <a href="single_add.jsp?id=<%=id%>">
-                <button class="btn btn-primary">Add Item</button>
+                <button class="btn btn-primary">ADD ITEM</button>
             </a>
         </div>
                 <br>
-                <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                <button class="btn btn-warning" onclick="goBack()">GO BACK</button>
                 <br>
                 <table class="table table-bordered " id="td">
                 <tr>
-                   
-                
-                    <th>Item Number</th>
-                    <th>Description</th>
-                    <th>Vendor</th>
-                    <th>Cost</th>
-                    <th>Alternate Item Number</th>
-                    <th>Ordered By</th>
-                    
-                    <th>Location</th>
-                    
-                    <th>QTY Ordered</th>
-                    
-
-
+                    <th>ITEM #</th>
+                    <th>DESCRIPTION</th>
+                    <th>VENDOR</th>
+                    <th>COST</th>
+                    <th>ORDERED BY</th>
+                    <th>LOCATION</th>
+                    <th>ALTERNATE ITEM</th>
+                    <th>QTY ORDERED</th>
                  
-                    
                 </tr>
                 <tr>
                    <%
                     while(resultSet.next()){
-                        
+                        String orderId = resultSet.getString("orderId");
                         String item = resultSet.getString("itemNumber");
                         String price = resultSet.getString("aPPrice");
                         String name = resultSet.getString("name");
@@ -158,31 +192,25 @@ resultSet = statement.executeQuery(sql);
                         String alt = resultSet.getString("alternateItem");
                         String pDesc = resultSet.getString("pDesc");
                         String vTitle = resultSet.getString("vTitle");
-                       
+                        
                         
                     %>
                     
-                    
+                
                     <td><%=item%></td>
                     <td><%=pDesc%></td>
                     <td><%=vTitle%></td>
                     <td><%= price%></td>
-                    <td><%=alt%></td>
+                   
                     
                     <td><%=name%></td>
                     
                     <td><%=id%></td>
+                    <td><%=alt%></td>
                     <td><%=quantity%></td>
                     
-                    
-
-
-
-                    
                 </tr>
-               <input type="hidden" name="oId" value="<%=order_id%>"/>
-
-              
+                           
                 <%
                     }
                     session.setAttribute("single", id);
