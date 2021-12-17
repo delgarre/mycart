@@ -59,7 +59,7 @@ response.sendRedirect("uom.jsp");
 }
 else
 {
-session.setAttribute("message", "There was a problem updating the measurement.");
+session.setAttribute("message", "There was a problem updating the measurement for the item.");
 response.sendRedirect("uom.jsp");
 }
 }

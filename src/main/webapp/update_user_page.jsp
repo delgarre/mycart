@@ -117,8 +117,9 @@ function goBack(){
                        <label for="user_type">ACCESS LEVEL:</label>
 
 <select name="user_type" id="user_type">
+    <option value="normal">NORM</option>
     <option value="admin">ADMIN</option>
-    <option value="normal">NORMAL</option>
+    
 </select>
 </div>
 <div class="container text-center">

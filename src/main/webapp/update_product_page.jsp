@@ -50,6 +50,31 @@
 %>
 
 <%
+
+String driver6 = "com.mysql.jdbc.Driver";
+String connectionUrl6 = "jdbc:mysql://172.20.29.70:3306/";
+String database6 = "mycart";
+String userid6 = "admin";
+String password6 = "ordering";
+try {
+Class.forName(driver6);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connection6 = null;
+Statement statement6 = null;
+ResultSet resultSet6 = null;
+%>
+<%
+try{
+connection6 = DriverManager.getConnection(connectionUrl6+database6, userid6, password6);
+statement6=connection6.createStatement();
+
+
+%>
+
+<%
+    String search = request.getParameter("name");
 String id = request.getParameter("id");
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
@@ -102,12 +127,21 @@ function goBack(){
          <%@include file="components/navbar.jsp" %>
          <div class="center">
              <%@include file="components/message.jsp" %>
+             <input type="hidden" name="id" value="<%=search %>">
         <h1>MANAGE INVENTORY:</h1>
         <a href="item_list.jsp?itemNumber=<%=itemNumber%>">
         <button class="btn btn-warning">Go Back</button>
-         <input type="hidden" name="operation" value="addcategory">
+       
         </a>
-         <form action="update_product.jsp" method="post">
+        <a href="update_sds.jsp?id=<%=id%>">
+        <button class="btn btn-info">CHANGE SDS</button>
+       
+        </a>
+        <a href="update_photo.jsp?id=<%=id%>">
+        <button class="btn btn-primary">CHANGE IMAGE</button>
+       
+        </a>
+         <form action="UpdateItem" method="post" enctype="multipart/form-data">
              <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
              <input type="hidden" name="stat" value="<%=resultSet.getString("stat") %>">
 <input type="hidden" name="date">
@@ -115,14 +149,14 @@ function goBack(){
                     <!--product Item number -->
                     <div>
                         <h6>ENTER ITEM NUMBER</h6>
-                        <input type="text" class="form-control" placeholder="Enter Item Number" name="itemNumber" value="<%=itemNumber%>" readonly/>
+                        <input type="text" class="form-control" placeholder="Enter Item Number" name="itemNumber" value="<%=itemNumber%>"/>
                     </div>
                     
                     
                     <!--product description-->
                     <div class="form-group">
                         <h6>ENTER DESCRIPTION</h6>
-                        <input  type="text" class="form-control" placeholder="Enter item description" name="pDesc" value="<%=resultSet.getString("pDesc")%>" spellcheck="true">
+                        <textarea  type="text" class="form-control" placeholder="Enter item description" name="pDesc" value="<%=resultSet.getString("pDesc")%>" spellcheck="true"><%=resultSet.getString("pDesc")%></textarea>
                     </div>
                     <!--product qty per uom-->
                     <div class="form-group">
@@ -136,12 +170,7 @@ function goBack(){
                     </div>
 
 
-                    <!--product unitOfMeasure-->
-                    <div class="form-group">
-                        <h6>ENTER UNIT OF MEASURE</h6>
-                <input class="form-control" value="<%=resultSet.getString("unitOfMeasure")%>" name="pMeasure" id="pMeasure"/>
-                    
-                    </div>
+                 
                 <!-- product ndc-->
                     <div>
                         <h6>ENTER NDC</h6>
@@ -154,14 +183,12 @@ function goBack(){
                         <h6>ENTER ALTERNATE ITEM</h6>
                         <input class="form-control" type="text" placeholder="Enter Alternate Item" name="alt" value="<%=resultSet.getString("alternateItem")%>"/>
                     </div>
+
+        
+
                          
-                            <div class="form-group">
-                                <h6>ENTER LOCATION TYPE</h6>
-               
-                                <input class="form-control" name="locationType" value="<%=resultSet.getString("locationType")%>" id="locationType"/>
-                            </div>         
-                 
-                    <!--product notes-->
+                         
+<!--product notes-->
                     <div class="form-group">
                         <h6>SPECIAL INSTRUCTIONS</h6>
                         <input class="form-control" value="<%=resultSet.getString("notes")%>" name="notes" spellcheck="true">
@@ -172,9 +199,131 @@ function goBack(){
                         <h6>ENTER MANUFACTURER #</h6>
                         <input class="form-control" type="text" placeholder="Enter Manufacturer Number" name="manufacturerNum" value="<%=resultSet.getString("manufacturerNum")%>"/>
                     </div>
+                    
+                                        <!-- sds 
+                    <div class="form-group">
+                        <label for="sds">Select SDS:</label>
+                        <input type="text" class="form-control" value="<%=resultSet.getString("sds")%>"/>
+                    </div>
+                        <div class="form-group">
+                        <input type="file" id="sds" name="sds" />
+                    </div>
+                    -->
+                    
+                     <!--photo 
+                    <div class="form-group">
+                        <label for="file">SELECT PICTURE OF ITEM</label>
+                        <input class="form-control" type="text" value="<%=resultSet.getString("photo")%>"/>
+                        <input type="file" id="file" name="file" />
+                        
+                    </div>
+                        -->
                 <%
 }
 connection.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
+
+            <%
+
+String ltype = request.getParameter("ltype");
+String drivers5 = "com.mysql.jdbc.Driver";
+String connectionUrls5 = "jdbc:mysql://172.20.29.70:3306/";
+String databases5 = "mycart";
+String userids5 = "admin";
+String passwords5 = "ordering";
+ String sql6 ="Select locationType, LocationType from Types "
+         + "Where not exists ( "
+         + "Select LocationType from LocationType "
+         + "where FIND_IN_SET(locationType, '"+ltype+"') > 0 "
+         + "and LocationType.LocationType = Types.LocationType) order by locationType";
+resultSet6 = statement6.executeQuery(sql6);
+try {
+Class.forName(drivers5);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connections5 = null;
+Statement statements5 = null;
+ResultSet resultSets5 = null;
+
+try{
+connections5 = DriverManager.getConnection(connectionUrls5+databases5, userids5, passwords5);
+statements5=connections5.createStatement();
+String sqls ="SELECT distinct locationType FROM LocationType WHERE FIND_IN_SET(locationType,'"+ltype+"')";
+resultSets5 = statements5.executeQuery(sqls);
+                    
+%>
+
+                            <div class="form-group">
+                                <h6>ENTER LOCATION TYPE</h6>
+                                
+                                <%
+                                while(resultSets5.next()){
+                                %>
+                                
+                                <input type="checkbox"  name="locationType" value="<%=resultSets5.getString("locationType")%>" id="locationType" checked/><%=resultSets5.getString("locationType")%><br>
+                                
+                                <%
+                                    }
+                                    while(resultSet6.next()){
+                                %>
+                                
+                                <input type="checkbox" name="locationType" value="<%=resultSet6.getString("locationType")%>" id="locationType" /><%=resultSet6.getString("locationType")%><br>
+                                
+                                <%
+                                    }
+                                %>
+                            </div>
+<%
+
+connections5.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
+<!--product uom  -->
+                                       <%
+String uom = request.getParameter("uom");
+String drivers4 = "com.mysql.jdbc.Driver";
+String connectionUrls4 = "jdbc:mysql://172.20.29.70:3306/";
+String databases4 = "mycart";
+String userids4 = "admin";
+String passwords4 = "ordering";
+try {
+Class.forName(drivers4);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connections4 = null;
+Statement statements4 = null;
+ResultSet resultSets4 = null;
+
+try{
+connections4 = DriverManager.getConnection(connectionUrls4+databases4, userids4, passwords4);
+statements4=connections4.createStatement();
+String sql ="SELECT ID,val,CASE WHEN val='" + uom + "' THEN 1	ELSE 2 END AS SortOrder FROM UOM ORDER BY SortOrder, val";
+resultSets4 = statements4.executeQuery(sql);
+              
+%>
+                    <div>
+                        <h6>SELECT UOM</h6>
+                                <select name="pMeasure" id="pMeasure" class="form-control">
+                                    <%
+                                    while(resultSets4.next()){
+                                    %>
+                                    <option value="<%=resultSets4.getString("val")%>"><%=resultSets4.getString("val")%></option>
+                                <%
+                                    }
+                                %>
+                                </select>
+                    </div>
+ 
+<%
+
+connections4.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
@@ -200,12 +349,12 @@ ResultSet resultSets1 = null;
 try{
 connections1 = DriverManager.getConnection(connectionUrls1+databases1, userids1, passwords1);
 statements1=connections1.createStatement();
-String sql ="select * from Manufacturers order by case when name='"+man+"' then 1  else 2 end";
+String sql ="SELECT ID,name,CASE WHEN name='" + man + "' THEN 1	ELSE 2 END AS SortOrder FROM Manufacturers ORDER BY SortOrder, name";
 resultSets1 = statements1.executeQuery(sql);
                     
 %>
                     <div>
-                        <h6>ENTER MANUFACTURER</h6>
+                        <h6>SELECT MANUFACTURER</h6>
                                 <select name="manufacturer" id="manufacturer" class="form-control">
                                     <%
                                     while(resultSets1.next()){
@@ -245,12 +394,12 @@ ResultSet resultSets = null;
 try{
 connections = DriverManager.getConnection(connectionUrls+databases, userids, passwords);
 statements=connections.createStatement();
-String sql ="select * from CPT order by case when codes='"+code+"' then 1  else 2 end, codes";
+String sql ="SELECT ID,codes,CASE WHEN codes='" + code + "' THEN 1 ELSE 2 END AS SortOrder FROM CPT ORDER BY SortOrder, codes";
 resultSets = statements.executeQuery(sql);
                     
 %>
                     <div>
-                        <h6>ENTER CPT</h6>
+                        <h6>SELECT CPT</h6>
                  <select name="cpt" id="cpt" class="form-control">
     <%
     while(resultSets.next()){
@@ -293,12 +442,12 @@ ResultSet resultSets2 = null;
 try{
 connections2 = DriverManager.getConnection(connectionUrls2+databases2, userids2, passwords2);
 statements2=connections2.createStatement();
-String sql ="select * from Category order by case when categoryTitle='"+categoryTitle+"' then 1  else 2 end, categoryTitle";
+String sql ="SELECT categoryId,categoryTitle,CASE WHEN categoryTitle='" + categoryTitle + "' THEN 1	ELSE 2 END AS SortOrder FROM Category ORDER BY SortOrder, categoryTitle";
 resultSets2 = statements2.executeQuery(sql);
                     
 %>
                     <div class="form-group">
-                        <h6>ENTER CATEGORY</h6>
+                        <h6>SELECT CATEGORY</h6>
                         <select name="catId" id="catId" class="form-control">
                             <%
                             while(resultSets2.next()){
@@ -338,12 +487,12 @@ ResultSet resultSets3 = null;
 try{
 connections3 = DriverManager.getConnection(connectionUrls3+databases3, userids3, passwords3);
 statements3=connections3.createStatement();
-String sql ="select * from Vendor order by case when vendorName='"+vendorName+"' then 1  else 2 end, vendorName";
-resultSets3 = statements3.executeQuery(sql);
+String sqls ="SELECT vendorId,vendorName,CASE WHEN vendorName='" + vendorName + "' THEN 1	ELSE 2 END AS SortOrder FROM Vendor ORDER BY SortOrder, vendorName";
+resultSets3 = statements3.executeQuery(sqls);
                     
 %>
                         <div class="form-group">
-                            <h6>ENTER VENDOR</h6>
+                            <h6>SELECT VENDOR</h6>
                             <select name="vendorId" id="vendorId" class="form-control">
                                 <%
                                 while(resultSets3.next()){
@@ -362,17 +511,18 @@ connections3.close();
 e.printStackTrace();
 }
 %>
-                     <!--   
                         
-                    </div>
-                    <div class="form-group">
-                        <label for="sds">Select SDS:</label>
-                        <br>
-                        <input type="file" id="sds" name="sds" size="50"/>
+                        
+                <div class="form-group">
+                        <h6>REQUEST CONTACT INFO</h6>
+                        <select name="contactInfo" class="form-control" id="contactInfo">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
                     </div>
                     
                     
-                   -->
+                   
                     <!--submit button-->
                     <div class="container text-center">
                         <button onclick="return confirm('Are you sure?');" class="btn btn-outline-success">SAVE CHANGES</button>
@@ -384,5 +534,12 @@ e.printStackTrace();
 
 
          </div>
+<%
+
+connection.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
     </body>
 </html>

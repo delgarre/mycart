@@ -37,7 +37,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select distinct locations from OrderHistory where date ='"+id+"';";
+String sql ="select distinct locations from OrderHistory where date ='"+id+"' and cName = '"+user.getUserName()+"' order by locations;";
 
 resultSet = statement.executeQuery(sql);
 
