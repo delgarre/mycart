@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author garre
  */
-public class IDropDownServlet extends HttpServlet {
+public class IDropDownPharmServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,19 +41,21 @@ public class IDropDownServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String name = request.getParameter("comId");
             String department = request.getParameter("department");
+            LocationTypeDao lDao = new LocationTypeDao(FactoryProvider.getFactory());
+           // LocationType locationType = lDao.getByLocation(location);
+            
             CompanyDao cdao  = new CompanyDao(FactoryProvider.getFactory());
             Company company = cdao.getCompanyByName(name);
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute("location", company);
             
                 httpSession.setAttribute("message","Location selected ");
-             if(department.startsWith("ASR")){
+            if(department.startsWith("ASR")){
                  response.sendRedirect("asr_items.jsp");
              }else{
                response.sendRedirect("items.jsp");  
-             }
-            
-            
+             };
+          
         }
     }
 
