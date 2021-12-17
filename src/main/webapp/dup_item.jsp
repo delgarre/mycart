@@ -16,7 +16,7 @@ String locations = request.getParameter("locations");
 String stat = "Not Approved";
 String id = request.getParameter("id");
 
-
+String contactInfo = request.getParameter("contactInfo");
 
 try
 {
@@ -35,20 +35,25 @@ out.println(Countrow);
 if(Countrow.equals("0")){
     
 
-response.sendRedirect("o.jsp?id="+id);
+response.sendRedirect("o.jsp?id="+id+"&contactInfo="+contactInfo);
 session.setAttribute("message", "Item number: "+itemNumber);
 
 }
 
 else{
-response.sendRedirect("update_order_page.jsp?id="+id);
-session.setAttribute("message", "Cart Item already exist! Please update quantity");
+
+//session.setAttribute("message", "Cart Item already exist! Please update quantity");
+//response.sendRedirect("update_order_page.jsp?id="+id);
+response.sendRedirect("items.jsp");
+    session.setAttribute("message", "Cart Item already exist! Please update quantity");
 }
 
 
 }
 catch(Exception e)
 {
+    response.sendRedirect("items.jsp");
+    session.setAttribute("message", "Cart Item already exist! Please update quantity");
 System.out.print(e);
 e.printStackTrace();
 }

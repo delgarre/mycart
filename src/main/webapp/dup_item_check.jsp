@@ -5,6 +5,7 @@
 <%@page import="java.sql.Connection"%>
 <%
 Company company1 = (Company)session.getAttribute("location");
+String contactInfo = request.getParameter("contactInfo");
 String c = company1.getCompanyName();
 String id = request.getParameter("id");
 String driver = "com.mysql.jdbc.Driver";
@@ -27,7 +28,7 @@ String sql ="select * from Item where id = "+id;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
     String itemNumber = resultSet.getString("itemNumber");
-    response.sendRedirect("dup_item.jsp?itemNumber="+itemNumber+"&locations="+c+"&id="+id);
+    response.sendRedirect("dup_item.jsp?itemNumber="+itemNumber+"&locations="+c+"&id="+id+"&contactInfo="+contactInfo);
 }
 connection.close();
 } catch (Exception e) {

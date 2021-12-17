@@ -67,53 +67,90 @@ resultSet = statement.executeQuery(sql);
   border: navy;
   padding: 10px;
 }
+
+div.solid {border-style: solid;}
+
+flo {
+  display: inline-block;
+}
 </style>
     </head>
     <body>
-        <%@include file="components/user_navbar.jsp" %>
+        <%@include file="components/navbar.jsp" %>
         <div class="center">
-            <a href="reports.jsp">
-                
-                
-                <button class="btn btn-outline-success">Reports</button>
-            </a>
+
             <br>
+        <a href="all_locations_report.jsp">
+           <input type="button" class="btn btn-info" value="ORDER HISTORY REPORTS">
+        </a>
             <br>
         <div class="col-md-8">
-            <div class="table-responsive-sm mt-3">
-                <table class="table table-bordered " >
-                    <tr>
-                        <th>Approval Date</th>
-                        
-                        <th>Actions</th>
-                    </tr>
+            
+                
+                        <h6>DATES AND LOCATIONS:</h6>
+<%
+String drivers4 = "com.mysql.jdbc.Driver";
+String connectionUrls4 = "jdbc:mysql://172.20.29.70:3306/";
+String databases4 = "mycart";
+String userids4 = "admin";
+String passwords4 = "ordering";
+try {
+Class.forName(drivers4);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+Connection connections4 = null;
+Statement statements4 = null;
+ResultSet resultSets4 = null;
 
-                    
-                    
-                    
-                    <tr>
-                           <%
+try{
+  connections4 = DriverManager.getConnection(connectionUrls4+databases4, userids4, passwords4);
+statements4=connections4.createStatement();                             
                     while(resultSet.next()){
-                        
                         String date = resultSet.getString("date");
+
+String sqls ="select distinct locations from OrderHistory where date='"+date+"'";
+resultSets4 = statements4.executeQuery(sqls);
+                        
                         
                     %>
-                        <td><%=date%></td>
-                        <td>
-                            <a href="location_page.jsp?id=<%= date%>">
-                            <button>View Locations</button>
-                        </a>
-                        </td>
+                    <div class="solid">
+                        <p><b><%=date%></b></p>
                         
-                    </tr>
+                           
+                        <ol>
+                           <%
+                           while(resultSets4.next()){
+                               
+                           %>
+                           <li><%=resultSets4.getString("locations")%></li> 
+                          
+                           <%
+                               }
+                           %>
+                        </ol>
+                        <div class="container text-center">
+                         <a href="location_page.jsp?id=<%= date%>">
+                                <button class="btn btn-secondary">VIEW LOCATIONS</button>
+                        </a>
+                        </div>
+                       </div>
+                                <br>
+                        <%
+                            }
+                        %>
+                
                     <%
                         
-                        }
+connections4.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
                      
                     %>
-                </table>
-            </div>
-        </div>
+                
+           
+         </div>
         </div>     
 
 <%

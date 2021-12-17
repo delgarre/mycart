@@ -59,49 +59,45 @@ $(document).ready(function(){
   });
 });
 
-
+//this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000);
 </script>
-<script type="text/javascript">
-        function demoFromHTML() {
-            var pdf = new jsPDF('p', 'pt', 'letter');
-            // source can be HTML-formatted string, or a reference
-            // to an actual DOM element from which the text will be scraped.
-            source = $('#customers')[0];
 
-            // we support special element handlers. Register them with jQuery-style 
-            // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
-            // There is no support for any other type of selectors 
-            // (class, of compound) at this time.
-            specialElementHandlers = {
-                // element with id of "bypass" - jQuery style selector
-                '#bypassme': function(element, renderer) {
-                    // true = "handled elsewhere, bypass text extraction"
-                    return true;
-                }
-            };
-            margins = {
-                top: 80,
-                bottom: 60,
-                left: 40,
-                width: 522
-            };
-            // all coords and widths are in jsPDF instance's declared units
-            // 'inches' in this case
-            pdf.fromHTML(
-                    source, // HTML string or DOM elem ref.
-                    margins.left, // x coord
-                    margins.top, {// y coord
-                        'width': margins.width, // max width of content on PDF
-                        'elementHandlers': specialElementHandlers
-                    },
-            function(dispose) {
-                // dispose: object with X, Y of the last line add to the PDF 
-                //          this allow the insertion of new lines after html
-                pdf.save('Test.pdf');
-            }
-            , margins);
+<script>
+            // Quick and simple export target #table_id into a csv
+function download_table_as_csv(table_id, separator = ',') {
+    // Select rows from table_id
+    var rows = document.querySelectorAll('table#' + table_id + ' tr');
+    // Construct csv
+    var csv = [];
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll('td, th');
+        for (var j = 0; j < cols.length; j++) {
+            // Clean innertext to remove multiple spaces and jumpline (break csv)
+            var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+            // Escape double-quote with double-double-quote (see https://stackoverflow.com/questions/17808511/properly-escape-a-double-quote-in-csv)
+            data = data.replace(/"/g, '""');
+            // Push escaped string
+            row.push('"' + data + '"');
         }
-    </script>
+        csv.push(row.join(separator));
+    }
+    var csv_string = csv.join('\n');
+    // Download it
+    var filename = 'export_' + table_id + '_' + new Date().toLocaleDateString() + '.csv';
+    var link = document.createElement('a');
+    link.style.display = 'none';
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+        </script>
+
         
 <style>
 .center {
@@ -190,7 +186,7 @@ tr:nth-child(even) {background-color: #008080;}
 <%@include file="components/navbar.jsp" %>
 <br>
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
+<h1>LIST OF DISCONTINUED ITEMS</h1>
         <div class="row ml-2">
             <a href="add_item_page.jsp">
                 <button class="btn btn-primary">ADD ITEM</button>
@@ -209,40 +205,30 @@ tr:nth-child(even) {background-color: #008080;}
                 <button class="btn btn-outline-success">REPORTS</button>
         </a>
             <br>
-        <a href="discontinued_items.jsp">  
-                <button class="btn btn-outline-success">DISCONTINUED</button>
+        <a href="item_list.jsp">  
+                <button class="btn btn-outline-success">ACTIVE</button>
         </a>
             <br>
+            
+             <a href="#" onclick="download_table_as_csv('my_id_table_to_export');">
+                    <button class="btn btn-info">
+                    Download as CSV
+                    </button>
+                </a>
     
-        <!--
- <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <h3>Excel Reports</h3>
-               </a>
-<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-               <a class="dropdown-item" href="product_report.jsp">All</a>
-               <a class="dropdown-item" href="vendor_product_report.jsp">Vendor</a>
-               <a class="dropdown-item" href="man_product_report.jsp">Manufacturer</a>
-               <a class="dropdown-item" href="mannum_product_report.jsp">Manufacturer Number</a>
-               <a class="dropdown-item" href="inventory_product_report.jsp">Location Type</a>
-               <a class="dropdown-item" href="alt_product_report.jsp">Alternate Item</a>
-               <a class="dropdown-item" href="desc_product_report.jsp">Description</a>
-               <a class="dropdown-item" href="cpt_product_report.jsp">CPT</a>
-               <a class="dropdown-item" href="ndc_product_report.jsp">NDC</a>
-               
-                </div>
-        -->
-        <h1>List of Items</h1>
+       
+        
         <div class="student_details">
         <div class="col-md-8">
-            <div class="container-fluid mt-3">
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
              <div class="table-responsive-sm">
             <!-- <div id="customers"> -->
                  <div id="managerTable" >
                  
-     <!-- <button onclick="javascript:demoFromHTML()">PDF</button>-->
-            <table class="table table-bordered table-fit" style="no-wrap">
+     
+            <table id="my_id_table_to_export" class="table table-bordered table-fit" style="no-wrap">
             <thead>
             <tr>
                         

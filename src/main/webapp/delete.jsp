@@ -12,15 +12,15 @@
     
     Statement st = conn.createStatement();
     
-    int i = st.executeUpdate("DELETE FROM User WHERE user_id="+id);
-    session.setAttribute("message", "User deleted successfully!");
+    int i = st.executeUpdate("UPDATE User SET status = 'inactive' WHERE user_id="+id);
+    session.setAttribute("message", "User deactivated successfully!");
     response.sendRedirect("users.jsp");
     }
     catch(Exception e)
     {
         System.out.println();
         e.printStackTrace();
-        session.setAttribute("message", "error deleted user!");
+        session.setAttribute("message", "error deactivating user!");
     response.sendRedirect("users.jsp");
     }
     %>
