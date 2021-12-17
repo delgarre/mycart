@@ -32,6 +32,7 @@ User user1 = (User)session.getAttribute("current-user");
 <%
 String mId = request.getParameter("mId");
 String name=request.getParameter("name");
+String original = request.getParameter("original");
 
 if(mId != null)
 {
@@ -51,7 +52,7 @@ int i = ps.executeUpdate();
 if(i > 0)
 {
 session.setAttribute("message", "Manufacturer info changed successfully!");
-response.sendRedirect("manufacturers.jsp");
+response.sendRedirect("update_man_item.jsp?name="+name+"&original="+original);
 }
 else
 {

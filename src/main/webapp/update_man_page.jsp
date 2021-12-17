@@ -47,6 +47,7 @@ statement=connection.createStatement();
 String sql ="select * from Manufacturers where id="+id;
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
+    String original = resultSet.getString("name");
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -70,12 +71,12 @@ function goBack(){
           <div class="row">
               <div class="col-md-6 offset-md-3">
                   <br>
-                  <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                  <button class="btn btn-warning" onclick="goBack()">GO BACK</button>
                       <br>
                   <div class="card">
                       
                       <div class="card-header custom-bg text-white">
-      <h1>Make Changes!</h1>
+      <h1>ADD MANUFACTURER</h1>
                       </div>
       <div class="card-body">
       <form method="POST" action="update_man.jsp">
@@ -83,7 +84,7 @@ function goBack(){
           <input type="hidden" name="mId" value="<%=resultSet.getString("id") %>">
 
             <div class="form-group">
-                       <label for="name">Name:</label>
+                       <label for="name">NAME:</label>
           
             
           <input type="text" name="name" value="<%=resultSet.getString("name") %>" id="name" spellcheck="true">
@@ -92,6 +93,7 @@ function goBack(){
           <input type="submit" onclick="return confirm('Are you sure?');" value="SAVE CHANGES" class="btn btn-primary">
           
             </div>
+            <input type="hidden" name="original" value="<%=original%>">
       </form>
       </div>
                   </div>
