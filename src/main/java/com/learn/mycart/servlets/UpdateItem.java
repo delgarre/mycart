@@ -65,11 +65,17 @@ String pDesc = request.getParameter("pDesc");
                 String manufacturer = request.getParameter("manufacturer");
                 String manufacturerNum = request.getParameter("manufacturerNum");
                 String notes = request.getParameter("notes");
-                String locationType = request.getParameter("locationType");
-                Part parts = request.getPart("sds");
-                String sds = parts.getSubmittedFileName();
-                Part part = request.getPart("file");
-                String fileName = part.getSubmittedFileName();
+                String contactInfo = request.getParameter("contactInfo");
+                //String locationType = request.getParameter("locationType");
+                String locationType = "";
+                String location[]=request.getParameterValues("locationType");
+                for(int i=0;i < location.length; i++){
+                locationType += location[i] + ","; 
+                }
+                //Part parts = request.getPart("sds");
+                //String sds = parts.getSubmittedFileName();
+                //Part part = request.getPart("file");
+                //String fileName = part.getSubmittedFileName();
 
 if(id != null)
 {
@@ -80,7 +86,7 @@ int personID = Integer.parseInt(id);
 try
 {
                 Connection con = DB.getConnection();
-String sql="Update Item set id=?,itemNumber=upper(?),price=?,quantity=?,unitOfMeasure=upper(?), stat=?, ndc=?, cTitle=upper(?), vTitle=upper(?), manufacturer=upper(?), manufacturerNum=upper(?), pDesc=upper(?), cpt=upper(?), alternateItem=upper(?), notes=upper(?), locationType=upper(?), sds=? where id="+id;
+String sql="Update Item set id=?,itemNumber=upper(?),price=?,quantity=?,unitOfMeasure=upper(?), stat=?, ndc=?, cTitle=upper(?), vTitle=upper(?), manufacturer=upper(?), manufacturerNum=upper(?), pDesc=upper(?), cpt=upper(?), alternateItem=upper(?), notes=upper(?), locationType=upper(?), contactInfo=? where id="+id;
 ps = con.prepareStatement(sql);
 ps.setString(1,id);
 ps.setString(2, itemNumber);
@@ -98,7 +104,8 @@ ps.setString(13, cpt);
 ps.setString(14, alt);
 ps.setString(15, notes);
 ps.setString(16, locationType);
-ps.setString(17, sds);
+ps.setString(17, contactInfo);
+//ps.setString(17, sds);
 //ps.setString(18, fileName);
 
 int i = ps.executeUpdate();
@@ -106,7 +113,7 @@ if(i > 0)
 {
     HttpSession httpSession = request.getSession();
 httpSession.setAttribute("message", "Item edited successfully!");
-response.sendRedirect("update_product_page.jsp?id="+id+"&code="+cpt+"&cTitle="+catId+"&vTitle="+vendor+"&man="+manufacturer);
+response.sendRedirect("update_product_page.jsp?id="+id+"&code="+cpt+"&cTitle="+catId+"&vTitle="+vendor+"&man="+manufacturer+"&uom="+unitOfMeasure+"&ltype="+locationType);
 }
 else
 {
