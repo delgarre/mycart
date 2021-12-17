@@ -30,6 +30,26 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Vendors</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+        <script>
+            //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
+            
+        </script>
+        
+        <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+        
 <style>
 .center {
   margin: auto;
@@ -63,25 +83,35 @@
         <%@include file="components/navbar.jsp" %>
         <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         <div class="center">
-            <h2>Vendors:</h2>
+            <h2>VENDORS:</h2>
             <br>
             <div class="row ml-2">
             <a href="add_vendor.jsp">
-                <button class="btn btn-outline-success">Add vendor</button>
+                <button class="btn btn-outline-success">ADD VENDOR</button>
             </a>
         </div>
-            
-            <div class="container-fluid mt-3">
+            <br>
+            SEACRH: <input id="myInput" type="text" placeholder="Search..">
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
+            </div>
+            
+            <div class="row ml-2">
+                <a href="meyer_dc.jsp">
+                <button class="btn btn-outline-primary">REPORT</button>
+                </a>
             </div>
             
         <div class="table-responsive-sm mt-3">
             
              <table class="table table-bordered " >
+                 <thead>
                  <tr>
-                     <th>Name</th>
-                     <th>Actions</th>
+                     <th>NAME</th>
+                     <th>ACTIONS</th>
                  </tr>
+                 </thead>
+                 <tbody id="myTable">
                  <%
                  
                  %>
@@ -94,10 +124,10 @@
                      <td>
                  
                          <a href="delete_vendor.jsp?id=<%=v.getVendorId()%>" onclick="return confirm('Are you sure?');">
-                             <button type="button" class="btn btn-danger">Delete</button>
+                             <button type="button" class="btn btn-danger">DELETE</button>
                          </a>
                          <a href="update_vendor_page.jsp?id=<%=v.getVendorId()%>">
-                             <button type="button" class="btn btn-primary">Edit</button>
+                             <button type="button" class="btn btn-primary">EDIT</button>
                          </a>
                      </td>
                  </tr>
@@ -105,6 +135,7 @@
                  <%
                      }
                  %>
+                 </tbody>
              </table>
         </div>
         </div>
