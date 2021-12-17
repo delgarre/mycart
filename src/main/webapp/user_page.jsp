@@ -35,6 +35,11 @@
   document.body.removeChild(link);
   delete link;
 }
+
+//this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
         </script>
 <style>
 .center {
@@ -64,8 +69,8 @@ table.table-fit tbody td, table.table-fit tfoot td {
          <%@include file="components/user_navbar.jsp" %>
         <div class="container admin">
            
-            <h1 class="center">Hello <%=user.getUserName()%></h1>
-            <div class="container-fluid mt-3">
+            <h1 class="center">HELLO <%=user.getUserName()%></h1>
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
             <div class="panel-heading col-md-8">
@@ -148,7 +153,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
                 </div>
                 <!--fourth box-->
                  <div class="col-md-3">
-                     <a href="cart_location.jsp?id=<%= user.getUserId()%>" class="card-link">
+                     <a href="u_cart_location.jsp?id=<%= user.getUserId()%>" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -195,8 +200,9 @@ table.table-fit tbody td, table.table-fit tfoot td {
                 </div>
                                 
                    <!--seventh row -->
+              <!--
                 <div class="col-md-3">
-                  <a href="#" onclick="downloadURI('http://localhost:8080/mycart/manuals/User Training Manual.docx','Order Portal Manual')" class="card-link">
+                  <a href="#" onclick="downloadURI('http://172.20.29.68:8080/mycart/manuals/User Training Manual.docx','Order Portal Manual')" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -204,12 +210,12 @@ table.table-fit tbody td, table.table-fit tfoot td {
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
                       
-                            <h3 class="text-muted">PORTAL USAGE INSTRUCTIONs</h3>
+                            <h3 class="text-muted">USER MANUAL</h3>
                         </div>
                     </div>
                   </a>
                 </div>
-                
+                -->
             </div>
             
         </div>

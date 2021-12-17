@@ -25,7 +25,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>User Page</title>
         <%@include file="components/common_css_js.jsp" %>
-        
+       
 <style>
 .center {
   margin: auto;
@@ -59,6 +59,11 @@ table.table-fit tbody td, table.table-fit tfoot td {
   document.body.removeChild(link);
   delete link;
 }
+
+//this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
         </script>
     </head>
     <body>
@@ -67,7 +72,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
         <div class="container admin">
            
             <h1 class="center">Hello <%=user.getUserName()%></h1>
-            <div class="container-fluid mt-3">
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
             <div class="panel-heading col-md-8">
@@ -150,7 +155,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
                 </div>
                 <!--fourth box-->
                  <div class="col-md-3">
-                     <a href="cart_location.jsp?id=<%= user.getUserId()%>" class="card-link">
+                     <a href="u_cart_location.jsp?id=<%= user.getUserId()%>" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -165,7 +170,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
                 </div>
                 <!--fifth row -->
                 <div class="col-md-3">
-                <a href="n_location.jsp" class="card-link">
+                <a href="n_location_pharm.jsp" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -197,8 +202,9 @@ table.table-fit tbody td, table.table-fit tfoot td {
                 </div>
                                 
                           <!--seventh row -->
+               <!--
                 <div class="col-md-3">
-                  <a href="#" onclick="downloadURI('http://localhost:8080/mycart/manuals/User Training Manual.docx','Order Portal Manual')" class="card-link">
+                  <a href="#" onclick="downloadURI('http://172.20.29.68:8080/mycart/manuals/User Training Manual.docx','Order Portal Manual')" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -206,12 +212,12 @@ table.table-fit tbody td, table.table-fit tfoot td {
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
                       
-                            <h3 class="text-muted">PORTAL USAGE INSTRUCTIONS</h3>
+                            <h3 class="text-muted">USER MANUAL</h3>
                         </div>
                     </div>
                   </a>
                 </div>
-                
+                -->
             </div>
             
         </div>

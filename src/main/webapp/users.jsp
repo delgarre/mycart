@@ -31,6 +31,13 @@
         <title>Users</title>
         
         <%@include file="components/common_css_js.jsp" %>
+      
+        <script>
+            //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
+        </script>
         
 <style>
 .center {
@@ -56,13 +63,18 @@ table.table-fit tbody td, table.table-fit tfoot td {
 
         
         <div class="center">
-            
+            <h2>USERS:</h2>
          <div class="row ml-2">
             <a href="add_user.jsp">
-                <button class="btn btn-outline-success">Add user</button>
+                <button class="btn btn-outline-success">ADD USER</button>
             </a>
         </div>
-            <div class="container-fluid mt-3">
+            <div class="row ml-2">
+            <a href="inactive_users.jsp">
+                <button class="btn btn-outline-success">INACTIVE USERS</button>
+            </a>
+        </div>
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
             
@@ -73,8 +85,9 @@ table.table-fit tbody td, table.table-fit tfoot td {
                 <th>NAME</th>
                 <th>PASSWORD</th>
                 <th>EMAIL</th>
+                <th>DEPARTMENT</th>
                 <th>ACCESS LEVEL</th>
-                <th>Actions</th>
+                <th>ACTIONS</th>
             </tr>
             
             
@@ -82,7 +95,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
             
                 
                 UserDao uDao = new UserDao(FactoryProvider.getFactory());
-                List<User> ulist = uDao.getUsers();
+                List<User> ulist = uDao.getActiveUsers();
                 
                
                 
@@ -91,10 +104,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
             
             <%
             for(User u: ulist){
-                
-            
             %>
-            
             
             <tr>
               
@@ -102,17 +112,18 @@ table.table-fit tbody td, table.table-fit tfoot td {
                 
                 <td><%=u.getUserPassword()%></td>
                 <td><%=u.getUserEmail()%></td>
+                <td><%=u.getDepartment()%></td>
                 
                 <td><%= u.getUserType()%></td>
                 <td>
                     <a href="delete.jsp?id=<%= u.getUserId() %>" onclick="return confirm('Are you sure?');">
-                        <button type="button" class="btn btn-outline-danger">Delete</button>
+                        <button type="button" class="btn btn-outline-danger">DEACTIVATE</button>
                     </a>
                     <a href="update_user_page.jsp?id=<%=u.getUserId() %>">
-                        <button type="button" class="btn btn-outline-warning">Edit</button>
+                        <button type="button" class="btn btn-outline-warning">EDIT</button>
                     </a>
                         <a href="company_user.jsp?id=<%= u.getUserId()%>&name=<%=u.getUserName()%>">
-                        <button type="button" class="btn btn-outline-success">Locations</button>    
+                        <button type="button" class="btn btn-outline-success">LOCATIONS</button>    
                     </a>
                 </td>
             </tr>

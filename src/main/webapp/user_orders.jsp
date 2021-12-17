@@ -54,16 +54,64 @@ resultSet = statement.executeQuery(sql);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Order History</title>
         <%@include file="components/common_css_js.jsp" %>
+        
+<script>
+   // Quick and simple export target #table_id into a csv
+function download_table_as_csv(table_id, separator = ',') {
+    // Select rows from table_id
+    var rows = document.querySelectorAll('table#' + table_id + ' tr');
+    // Construct csv
+    var csv = [];
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll('td, th');
+        for (var j = 0; j < cols.length; j++) {
+            // Clean innertext to remove multiple spaces and jumpline (break csv)
+            var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+            // Escape double-quote with double-double-quote (see https://stackoverflow.com/questions/17808511/properly-escape-a-double-quote-in-csv)
+            data = data.replace(/"/g, '""');
+            // Push escaped string
+            row.push('"' + data + '"');
+        }
+        csv.push(row.join(separator));
+    }
+    var csv_string = csv.join('\n');
+    // Download it
+    var filename = 'approved_' + '' + 'order_' + new Date().toLocaleDateString() + '.csv';
+    var link = document.createElement('a');
+    link.style.display = 'none';
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>  
+<style>
+    .center {
+  margin: auto;
+  width: 60%;
+  border: navy;
+  padding: 10px;
+}
+</style>
     </head>
     <body>
-        <%@include file="components/user_navbar.jsp" %>
-        <div class="col-md-8">
+        <%@include file="components/orders_navbar.jsp" %>
+        <div class="center">
             <div class="table-responsive-sm mt-3">
                 <h2>ORDER FOR <%=id%></h2>
+                <br>
+                <h2>Report:</h2>
+                <a href="#" onclick="download_table_as_csv('my_id_table_to_export');">
+                    <button class="btn btn-info">
+                    DOWNLOAD AS CSV
+                    </button>
+                </a>
                 <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
                 </div>
-                <table class="table table-bordered " >
+                <table id="my_id_table_to_export" class="table table-bordered " >
                     <tr>
                      
                         <th>ITEM</th>
@@ -71,6 +119,7 @@ resultSet = statement.executeQuery(sql);
                         <th>VENDOR</th>
                         <th>COST</th>
                         <th>ORDERED BY</th>
+                        <th>DEPARTMENT</th>
                         <th>LOCATION</th>
                         
                         <th>QTY ORDERED</th>
@@ -86,9 +135,10 @@ resultSet = statement.executeQuery(sql);
                      String quantity = resultSet.getString("quantity");
                      String date = resultSet.getString("date");
                      String desc = resultSet.getString("pDesc");
-                     String location = resultSet.getString("locations");
+                     String locations = resultSet.getString("locations");
                      String cName = resultSet.getString("cName");
                      String vendor = resultSet.getString("vTitle");
+                     String department = resultSet.getString("department");
                     %>
                     
                     
@@ -100,7 +150,8 @@ resultSet = statement.executeQuery(sql);
                         <td><%=vendor%></td>
                         <td><span>$<%= price%></span></td>
                         <td><%=cName%></td>
-                        <td><%= location%></td>
+                        <td><%=department%></td>
+                        <td><%= locations%></td>
                         
                         <td><%=quantity%></td>
                        
