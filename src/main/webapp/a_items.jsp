@@ -47,14 +47,14 @@ e.printStackTrace();
 Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
-
+String query = "Select * from Item WHERE stat=1";
 %>
 <%
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="Select * from Item WHERE stat=1";
-
+String sql =query;
+System.out.println(query);
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -82,6 +82,11 @@ $(document).ready(function(){
 function goBack(){
         window.history.back();
     } 
+    
+//this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
 </script>
 <style>
 .center {
@@ -127,7 +132,7 @@ th {
         <div>
             
                         
-            <div class="container-fluid mt-3">
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
             

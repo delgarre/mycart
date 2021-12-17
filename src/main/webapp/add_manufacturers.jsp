@@ -50,20 +50,20 @@ function goBack(){
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <br>
-                  <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                  <button class="btn btn-warning" onclick="goBack()">GO BACK</button>
                       <br>
                       <div class="card">
                           <div class="card-header custom-bg text-white">
-                            <h1>Info:</h1>
+                            <h1>ADD MANUFACTURER:</h1>
                           </div>
                           <div class="card-body">
         <form method="POST" action="new_manufacturer.jsp">
             <div class="form-group">
             <label for="name">NAME:</label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" spellcheck="true">
             </div>
             <div class="container text-center">
-            <input type="submit" class="btn btn-outline-success" value="Add Manufactuer">
+            <input type="submit" class="btn btn-outline-success" value="SAVE">
             </div>
         </form>
                           </div>

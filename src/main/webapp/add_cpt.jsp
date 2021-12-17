@@ -27,7 +27,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add CPT Code</title>
         <%@include file="components/common_css_js.jsp" %>
-
+<script>
+    function goBack(){
+        window.history.back();
+    } 
+</script>
 <style>
 .center {
   margin: auto;
@@ -43,11 +47,11 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <br>
-                  <button class="btn btn-warning" onclick="goBack()">Go Back</button>
+                  <button class="btn btn-warning" onclick="goBack()">GO BACK</button>
                       <br>
                       <div class="card">
                            <div class="card-header custom-bg text-white">
-      <h1>INFO:</h1>
+      <h1>CPT CODES:</h1>
                       </div>
        <div class="card-body">
         <form method="POST" action="new_cpt.jsp">
@@ -56,7 +60,7 @@
             <input type="text" name="codes" id="codes">
             </div>
             <div class="container text-center">
-            <input type="submit" class="btn btn-outline-success" value="ADD CPT CODE">
+            <input type="submit" class="btn btn-outline-success" value="SAVE">
             </div>
         </form>
        </div>

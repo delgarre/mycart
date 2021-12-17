@@ -48,6 +48,15 @@ table.table-fit thead th, table.table-fit tfoot th {
 table.table-fit tbody td, table.table-fit tfoot td {
     width: auto !important;
 }
+
+.hide {
+  display: none;
+}
+
+.myDIV:hover + .hide {
+  display: block;
+  color: red;
+}
         </style>
         
         <script>
@@ -60,6 +69,11 @@ table.table-fit tbody td, table.table-fit tfoot td {
   document.body.removeChild(link);
   delete link;
 }
+
+//this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
         </script>
         <%@include file="components/common_css_js.jsp" %>
     </head>
@@ -68,7 +82,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
         <div class="container admin">
            
             
-            <div class="container-fluid mt-3">
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
             <div class="panel-heading col-md-8">
@@ -95,26 +109,32 @@ table.table-fit tbody td, table.table-fit tfoot td {
                         %>
                     </table>
             </div>
-            
+            <div class="hide">I am shown when someone hovers over the div above.</div>
             <div class="row mt-3">
                 
                 <!--first column-->
+                
                 <div class="col-md-3">
+
                    <a href="users.jsp" class="card-link">
                     <!--first box-->
                     <div class="card">
                         <div class="card-body text-center">
                             <div class="container">
+                                                    
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/team.png" alt="user_icon">
                                 
-                            </div>
+                            
                             
                        
                             <h4 class="text-muted">USERS</h4>
                         </div>
                     </div>
+                         </div>
                    </a>
+                 
                 </div>
+                
                 <!--second column-->
                 <div class="col-md-3">
                     <a href="categories.jsp" class="card-link">
@@ -132,7 +152,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
                 </div>
                 <!--third column-->
                 <div class="col-md-3">
-                    <a href="item_list.jsp" class="card-link">
+                    <a href="item_list.jsp?id=pDesc" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -285,6 +305,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
                     </a>
                 </div>
                 <!--fourthteenth row -->
+                <!--
                 <div class="col-md-3">
                     <a href="#" class="card-link" data-toggle="modal" data-target="#exampleModal">
                     <div class="card">
@@ -299,10 +320,10 @@ table.table-fit tbody td, table.table-fit tfoot td {
                     </div>
                     </a>
                 </div>
-                
+                -->
                    <!--fifteenth row -->
-                <div class="col-md-3">
-                  <a href="#" onclick="downloadURI('http://localhost:8080/mycart/manuals/User Training Manual.docx','Order Portal Manual')" class="card-link">
+               <div class="col-md-3">
+                  <a href="#" onclick="downloadURI('http://172.20.29.68:8080/mycart/manuals/User Training Manual.docx','Order Portal Manual')" class="card-link">
                     <div class="card">
                         <div class="card-body text-center">
                             
@@ -310,7 +331,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
                                 <img style="max-width: 125px" class="img-fluid rounded-circle" src="img/vendor.png" alt="user_icon">
                             </div>
                       
-                            <h4 class="text-muted">PORTAL USAGE INSTRUCTIONS</h4>
+                            <h3 class="text-muted">USER MANUAL</h3>
                         </div>
                     </div>
                   </a>

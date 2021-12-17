@@ -11,7 +11,7 @@
 String location = request.getParameter("location");
 String user = request.getParameter("user");
 String type = request.getParameter("type");
-
+String name = request.getParameter("name");
 
             
 
@@ -30,11 +30,11 @@ Class.forName("com.mysql.jdbc.Driver");
 if(Countrow.equals("0")){
 int i=st.executeUpdate("insert into UserLocation(comp_name,user_id, type)values('"+location+"','"+user+"', '"+type+"')");
 session.setAttribute("message", "Location added!");
-response.sendRedirect("company_user.jsp?id="+user);
+response.sendRedirect("company_user.jsp?id="+user+"&name="+name);
 }
 else{
 session.setAttribute("message", "Location already exists!");
-response.sendRedirect("company_user.jsp?id="+user);
+response.sendRedirect("company_user.jsp?id="+user+"&name="+name);
 }
 }
 catch (Exception e){

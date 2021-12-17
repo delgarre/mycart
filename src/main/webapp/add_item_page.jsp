@@ -46,7 +46,35 @@ resultSet = statement.executeQuery(sql);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Item</title>
         <%@include file="components/common_css_js.jsp" %>
+        <script>
+            
+            $('.add').on('click', add);
+$('.remove').on('click', remove);
+
+function add() {
+  var new_chq_no = parseInt($('#total_chq').val()) + 1;
+  var new_input = "<input type='text' id='new_" + new_chq_no + "' name='new'>";
+
+  $('#new_chq').append(new_input);
+
+  $('#total_chq').val(new_chq_no);
+}
+
+function remove() {
+  var last_chq_no = $('#total_chq').val();
+
+  if (last_chq_no > 1) {
+    $('#new_' + last_chq_no).remove();
+    $('#total_chq').val(last_chq_no - 1);
+  }
+}
+        </script>  
         
+<script>
+    function goBack(){
+        window.history.back();
+    } 
+</script>
 <style>
 .center {
   margin: auto;
@@ -63,7 +91,11 @@ resultSet = statement.executeQuery(sql);
         <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
         </div>
-        
+         <a href="item_list.jsp">
+        <button class="btn btn-outline-info">ITEMS LIST</button>
+       
+         </a><br>
+        <br>
         <a href="add_man_item.jsp">
             <button class="btn btn-outline-warning">ADD MANUFACTURER</button>
         </a><br>
@@ -74,7 +106,11 @@ resultSet = statement.executeQuery(sql);
         <br>
         <a href="add_ven_item.jsp">
             <button class="btn btn-outline-warning">ADD VENDOR</button>
-        </a>
+        </a><br>
+        <br>
+        <button class="btn btn-success" onclick="add()">ADD ALT</button>
+        <button class="btn btn-danger" onclick="remove()">REMOVE ALT</button><br>
+        <br>
          <form action="AddItemServlet" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="operation" value="addproduct"/>
                     <!--product Item number -->
@@ -88,6 +124,12 @@ resultSet = statement.executeQuery(sql);
                     <div class="form-group">
                         <h6>ENTER DESCRIPTION</h6>
                         <textarea style="height: 100px" class="form-control" placeholder="Enter product description" name="pDesc" required spellcheck="true"></textarea>
+                    </div>
+                     <!--alternate Item-->
+                    <div class="form-group">
+                        <h6>ENTER ALTERNATE ITEM</h6>
+                        <div id="new_chq"></div>
+                        <input type="hidden" value="1" id="total_chq" name="total_chq">
                     </div>
                     <!--product price-->
                     <div class="form-group">
@@ -153,11 +195,7 @@ resultSet = statement.executeQuery(sql);
                        
                     </div>
                     
-                    <!--alternate Item-->
-                    <div class="form-group">
-                        <h6>ENTER ALTERNATE ITEM</h6>
-                        <input type="text" class="form-control" placeholder="Enter Alternate Item" name="alt"/>
-                    </div>
+                   
                     
                     <!--product manufacturer  -->
                     <%
@@ -181,6 +219,15 @@ resultSet = statement.executeQuery(sql);
                     <div>
                         <h6>ENTER MANUFACTURER #</h6>
                         <input type="text" class="form-control" placeholder="Enter Manufacturer Number" name="manufacturerNum" required/>
+                    </div>
+                    
+                    <!-- contactInfo -->
+                    <div class="form-group">
+                        <h6>REQUEST CONTACT INFO</h6>
+                        <select class="form-control" name="contactInfo" id="contactInfo">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
                     </div>
                     <!--product category-->
                     <%
@@ -222,13 +269,15 @@ resultSet = statement.executeQuery(sql);
                             
                             <div class="form-group">
                                 <h6>SELECT LOCATION TYPE</h6>
+                                <input type="checkbox" name="location" value="ADMINISTRATOR" checked>ADMINISTRATOR<br>  
                 <%
                     while(resultSet.next()){
                         
                         String company = resultSet.getString("locationType");
                         
                     %>
-                                <input type="checkbox" name="location" value="<%=company%>"><%=company%><br>
+                              
+                    <input type="checkbox" name="location" value="<%=company%>"><%=company%><br>
                                
                             
                                 <%

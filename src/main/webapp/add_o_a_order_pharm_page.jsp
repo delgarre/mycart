@@ -7,18 +7,14 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="com.learn.mycart.entities.User"%>
-
-<%@page import="com.learn.mycart.entities.Company"%>
-
 <%@page import="com.learn.mycart.dao.CompanyDao"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.entities.Company"%>
 
 <%
-    Company company1 = (Company)session.getAttribute("location");
+    
     
     User user = (User)session.getAttribute("current-user");
-    Integer user_id = user.getUserId();
     if(user==null){
         session.setAttribute("message", "You are not logged in!");
         response.sendRedirect("index.jsp");
@@ -27,6 +23,8 @@
 %>
 
 <%
+    
+    String loc = request.getParameter("loc");
 String id = request.getParameter("id");
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
@@ -57,15 +55,23 @@ while(resultSet.next()){
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Submit Order</title>
         <%@include file="components/common_css_js.jsp" %>
-        <style>
-h1 {text-align: center;}
-div {text-align: center;}
+
+<style>
+.input[type=text] {
+  background-color: #E0E0E0;
+  color: black;
+}
+
+
 </style>
+
 <script>
 function goBack(){
         window.history.back();
-    }    
+    } 
+    
 </script>
+
     </head>
     <%
     Date today = new Date();
@@ -73,33 +79,48 @@ function goBack(){
     String ddMMyyyyToday = DATE_FORMAT.format(today);
     %>
     <body>
-           <%@include file="components/navbar.jsp" %>
-<div class="container">
-     <div class="row">
+           <%@include file="components/user_items_order_pharm_navbar.jsp" %>
+           <div class="container">
+               
+                        
+               <div class="row">
            <div class="col-md-6 offset-md-3">
+    
     <div class="card">
-        <div class="card-body">
         <div class="card-header custom-bg text-white">
                             <h1>ENTER QUANTITY:</h1>
-                          Date: <%=today%>          
+                                    
                     </div>
-        
-        <form method="post" action="a_save.jsp">
-                <input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
-                <input type="hidden" name="cTitle" value="<%=resultSet.getString("cTitle") %>">
-                <input type="hidden" name="vTitle" value="<%=resultSet.getString("vTitle") %>">
-                <input type="hidden" name="manufacturer" value="<%=resultSet.getString("manufacturer") %>">
-                <input type="hidden" name="manufacturerNum" value="<%=resultSet.getString("manufacturerNum") %>">
-                <input type="hidden" name="alternateItem" value="<%=resultSet.getString("alternateItem") %>">
-                <input type="hidden" name="pDesc" value="<%=resultSet.getString("pDesc") %>">
-                <input type="hidden" name="unitOfMeasure" value="<%=resultSet.getString("unitOfMeasure") %>">
-                <input type="hidden" name="department" value="<%=user.getDepartment() %>">
-
+                <div class="card-body">
+                    Date: <%=today%><br>
+                    <br>
+<form method="post" action="user_pending_contact_check_pharm.jsp">
+<input type="hidden" name="id" value="<%=resultSet.getString("id") %>">
 <input type="hidden" name="date">
 <input type="hidden" name="user_id" value="<%=user.getUserId()%>">
 
+<input type="hidden" name="uom" value="<%=resultSet.getString("unitOfMeasure")%>">
+
+<input type="hidden" name="man" value="<%=resultSet.getString("manufacturer")%>">
+<input type="hidden" name="price" value="<%=resultSet.getString("price")%>">
+<input type="hidden" name="mannum" value="<%=resultSet.getString("manufacturerNum")%>">
+
+<input type="hidden" name="vTitle" value="<%=resultSet.getString("vTitle")%>">
+
+
+<input type="hidden" name="cTitle" value="<%=resultSet.getString("cTitle")%>">
+
+
+<input type="hidden" name="pDesc" value="<%=resultSet.getString("pDesc")%>">
+
 <input type="hidden" name="photo" value="<%=resultSet.getString("photo")%>">
-    <div class="form-group">
+
+<input type="hidden" name="alt" value="<%=resultSet.getString("alternateItem")%>">
+
+
+<input type="hidden" name="department" value="<%=user.getDepartment()%>">
+<input type="hidden" name="contactInfo" value="<%=request.getParameter("contactInfo")%>">
+                <div class="form-group">
                     <label for="itemNumber">ITEM NUMBER:</label>
 
                     <input type="text" name="itemNumber" value="<%=resultSet.getString("itemNumber") %>" class="input" id="itemNumber" readonly>
@@ -120,9 +141,9 @@ function goBack(){
                 <div class="form-group">
                        <label for="locations">LOCATION:</label>
 
-<input value="<%=company1.getCompanyName()%>" name="locations" id="locations" class="input" readonly>
+<input value="<%=loc%>" name="locations" id="locations" class="input" readonly>
                 </div>
-<div class="container text-center">
+ <div class="container text-center">
 <input type="submit" class="btn btn-primary" value="ADD ITEM">
 <button class="btn btn-warning" onclick="goBack()">GO BACK</button>
  </div>
@@ -136,10 +157,10 @@ e.printStackTrace();
 %>
   </div>
 </div>
-</div>
-</div>
-</div>
 
+</div>
+               </div>
+           </div>
     </body>
 </html>
 

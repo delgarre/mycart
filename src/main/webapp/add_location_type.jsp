@@ -5,6 +5,7 @@
 <%
 String location = request.getParameter("location");
 String user = request.getParameter("user");
+String name = request.getParameter("name");
  try
                 {
                
@@ -21,7 +22,7 @@ if(rs.next()){
 
                
               
-                response.sendRedirect("add_location.jsp?user="+user+"&location="+location+"&type="+type);
+                response.sendRedirect("add_location.jsp?user="+user+"&location="+location+"&type="+type+"&name="+name);
 }
                 }
                 catch(Exception e)
