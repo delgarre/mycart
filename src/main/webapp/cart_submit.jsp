@@ -19,12 +19,11 @@ String name = request.getParameter("name");
 String user_id = request.getParameter("user_id");
 
 String locations = request.getParameter("loc");
-
-String date = request.getParameter("date");
-
+int active = 1;
 
 
 
+String query = "insert into Orders(itemNumber, aPPrice, date, locations, name, quantity, user_id, photo, status, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, alternateItem, department, address1, address2, city, state, postalcode, fax, phone, active) select itemNumber, price, date, locations, name, quantity, user_id, photo, stat, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, alternateItem, department, address1, address2, city, state, postalcode, fax, phone, "+active+" from Approve where locations = '"+locations+"' and stat='Not Approved'";
 try
 {
 
@@ -33,7 +32,7 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://172.20.29.70:3306/mycart", "admin", "ordering");
 Statement st=conn.createStatement();
 
-String strQuery = "SELECT COUNT(*) FROM Orders WHERE user_id='"+user_id+"' and status ='Not Approved' and locations = '"+locations+"'  AND date between '"+ddMMyyyyToday+"' and '"+date+"';";
+String strQuery = "SELECT COUNT(*) FROM Orders WHERE status ='Not Approved' and locations = '"+locations+"'";
 ResultSet rs = st.executeQuery(strQuery);
 rs.next();
 String Countrow = rs.getString(1);
@@ -41,22 +40,19 @@ out.println(Countrow);
 
 if(Countrow.equals("0")){
     String count = Countrow;
-int i = st.executeUpdate("insert into Orders(itemNumber, aPPrice, date, locations, name, quantity, user_id, photo, status, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, alternateItem) select itemNumber, price, date, locations, name, quantity, user_id, photo, stat, cTitle, pDesc, manufacturer, manufacturerNum, unitOfMeasure, vTitle, alternateItem from Approve where user_id ="+user_id+" and locations = '"+locations+"' and stat='Not Approved'");
+int i = st.executeUpdate(query);
 response.sendRedirect("m.jsp?id="+user_id);
-//session.setAttribute("message", "Order submitted successfully!");
+session.setAttribute("message", "Order submitted successfully!");
 //out.println(count);
 //out.println("yay");
-
+System.out.println(query);
 }
 
 else{
     //String count = Countrow;
 response.sendRedirect("l_pending_orders.jsp?id="+user_id);
 session.setAttribute("message", "order already exist for this month!");
-//out.println(count);
-//out.println(ddMMyyyyToday);
-//out.println(date);
-//out.println(user_id);
+System.out.println(query);
 }
 
 

@@ -40,7 +40,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select distinct locations from Approve where user_id ='"+user.getUserId()+"' and stat = 'Not Approved'";
+String sql ="select distinct locations from Approve where stat = 'Not Approved' and locations = '"+id+"'";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -79,8 +79,8 @@ table.table-fit tbody td, table.table-fit tfoot td {
     String ddMMyyyyToday = DATE_FORMAT.format(today);
     %>
     <body>
-           <%@include file="components/navbar.jsp" %>
-        <h1>Locations Waiting Approval:</h1>
+           <%@include file="components/user_navbar.jsp" %>
+        <h1>OPEN ORDERS:</h1>
         <div class="center">
 
             <div class="container-fluid mt-3">
@@ -91,9 +91,9 @@ table.table-fit tbody td, table.table-fit tfoot td {
             <table class="table table-bordered ">
                 
                 <tr>
-                    <th>Locations</th>
+                    <th>LOCATIONS</th>
                    
-                    <th>Actions</th>
+                    <th>ACTIONS</th>
                     
                 </tr>
                 <tr>
@@ -107,8 +107,8 @@ table.table-fit tbody td, table.table-fit tfoot td {
 
                     <td><%=locations%></td>
                     <td>
-                        <a href="cart.jsp?id=<%=locations%>">
-                            <button class="btn btn-outline-success">View</button>
+                        <a href="u_cart_location.jsp?id=<%=locations%>">
+                            <button class="btn btn-outline-success">VIEW</button>
                         </a>
                            
                     </td>

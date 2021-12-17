@@ -37,7 +37,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from UserLocation where user_id =  "+id;
+String sql ="select * from UserLocation where user_id =  "+id+" order by comp_name";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -54,16 +54,23 @@ function goBack(){
         window.history.back();
     } 
     
+    
+    //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
+    
 </script>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
         <h1>LOCATIONS FOR <%=name%></h1>
         <div class="container-fluid">
-            <div class="container-fluid mt-3">
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
         <div class="col-md-2">
+            <button class="btn btn-warning" onclick="goBack()">GO BACK</button>
         <form action="add_location_type.jsp" method="POST">
             <%
             CompanyDao cDao = new CompanyDao(FactoryProvider.getFactory());
@@ -82,7 +89,8 @@ function goBack(){
             </select>
             
             <input type="hidden" name="user" value ="<%=id%>">
-            <button class="btn btn-warning" onclick="goBack()">GO BACK</button>
+            <input type="hidden" name="name" value ="<%=name%>">
+            
             <input type="submit" value="ADD LOCATION" class="btn btn-success">
         </form>
         </div>
@@ -110,7 +118,7 @@ function goBack(){
                 <td><%=comp_name%></td>
                 <td>
                     
-                    <a href="delete_location.jsp?id=<%=t_id%>&user=<%=id%>">
+                    <a href="delete_location.jsp?id=<%=t_id%>&user=<%=id%>&name=<%=name%>">
                         <button type="button" class="btn btn-outline-danger" onclick="return confirm('Are you sure?');">DELETE</button>
                     </a>
                 </td>

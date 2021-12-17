@@ -28,6 +28,56 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Categories</title>
         <%@include file="components/common_css_js.jsp" %>
+      
+        <script>
+            // Quick and simple export target #table_id into a csv
+function download_table_as_csv(table_id, separator = ',') {
+    // Select rows from table_id
+    var rows = document.querySelectorAll('table#' + table_id + ' tr');
+    // Construct csv
+    var csv = [];
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll('td, th');
+        for (var j = 0; j < cols.length; j++) {
+            // Clean innertext to remove multiple spaces and jumpline (break csv)
+            var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+            // Escape double-quote with double-double-quote (see https://stackoverflow.com/questions/17808511/properly-escape-a-double-quote-in-csv)
+            data = data.replace(/"/g, '""');
+            // Push escaped string
+            row.push('"' + data + '"');
+        }
+        csv.push(row.join(separator));
+    }
+    var csv_string = csv.join('\n');
+    // Download it
+    var filename = 'categories' + '_' + 'report_' + new Date().toLocaleDateString() + '.csv';
+    var link = document.createElement('a');
+    link.style.display = 'none';
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+        </script>
+        
+        <script>
+            
+           //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000) 
+        </script>
         
 <style>
 .center {
@@ -64,23 +114,33 @@
         
         <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         <div class="center">
-            <h2>Categories:</h2>
+            <h2>CATEGORIES:</h2>
+            <br>SEARCH: 
+        <input id="myInput"  name="ven" type="text" placeholder="Search All">
+        
+        <br><br>
             <br>
         <div class="row ml-2">
             <a href="add_category.jsp">
-                <button class="btn btn-outline-success">Add Category</button>
+                <button class="btn btn-outline-success">ADD CATEGORY</button>
             </a>
+                <a href="#" onclick="download_table_as_csv('my_id_table_to_export');">
+                    <button class="btn btn-info">
+                    DOWNLOAD AS CSV
+                    </button>
+                </a>
         </div>
-            <div class="container-fluid mt-3">
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
             
             <div div class="table-responsive-sm mt-3">
-                <table class="table table-bordered ">
+                <table id="my_id_table_to_export" class="table table-bordered ">
+                    <thead>
                     <tr>
-                        <th>Category</th>
+                        <th>CATEGORY</th>
                         
-                        <th>Actions</th>
+                        <th>ACTIONS</th>
                     </tr>
                     <%
                     CategoryDao cDao = new CategoryDao(FactoryProvider.getFactory());
@@ -90,19 +150,21 @@
                     <%
                     for(Category c: list){
                     %>
-                    
+                    </thead>
+                    <tbody id="myTable">
                     <tr>
                         <td><%= c.getCategoryTitle()%></td>
                         
                         <td>
                             <a href="update_category_page.jsp?id=<%=c.getCategoryId()%>">
-                                <button type="button" class="btn btn-outline-warning">Edit</button>
+                                <button type="button" class="btn btn-outline-warning">EDIT</button>
                             </a>
                                 <a href="delete_category.jsp?id=<%=c.getCategoryId()%>" onclick="return confirm('Are you sure?');">
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                    <button type="button" class="btn btn-outline-danger">DELETE</button>
                                 </a>
                         </td>
                     </tr>
+                    </tbody>
                     <%
                     }
                     %>
