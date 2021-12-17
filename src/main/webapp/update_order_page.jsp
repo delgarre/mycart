@@ -3,7 +3,7 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.learn.mycart.entities.User"%>
-<%@page import="com.learn.mycart.entities.ApproveOrder"%>
+
 <%
     
     User user = (User)session.getAttribute("current-user");
@@ -64,12 +64,14 @@ function goBack(){
     <body>
         <%@include file="components/user_navbar.jsp" %>
         
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
                 </div>
+                
             <br>
                   <button class="btn btn-warning" onclick="goBack()">Go Back</button>
                       <br>

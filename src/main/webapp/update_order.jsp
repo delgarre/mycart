@@ -11,6 +11,13 @@
 <%
  User user1 = (User)session.getAttribute("current-user");
  String email = user1.getUserEmail();
+ String department = user1.getDepartment();
+ String inventory = "";
+ if(department.equals("ASR")){
+     inventory = "asr_items.jsp";
+ }else{
+     inventory = "items.jsp";
+ }
 Integer Id = user1.getUserId();
 String id = request.getParameter("id");
 String itemNumber=request.getParameter("itemNumber");
@@ -18,6 +25,7 @@ String price = request.getParameter("price");
 String name=request.getParameter("name");
 String quantity = request.getParameter("quantity");
 String locations = request.getParameter("locations");
+
 if(id != null)
 {
 Connection con = null;
@@ -45,7 +53,7 @@ response.sendRedirect("l_pending_orders.jsp?id="+Id);
 else
 {
 session.setAttribute("message", "There was a problem updating the order.");
-response.sendRedirect("items.jsp");
+response.sendRedirect(""+inventory+"");
 }
 }
 catch(SQLException sql)

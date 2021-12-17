@@ -3,7 +3,7 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.learn.mycart.entities.User"%>
-<%@page import="com.learn.mycart.entities.ApproveOrder"%>
+
 <%
     
     User user = (User)session.getAttribute("current-user");
