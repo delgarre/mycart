@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
+<%@page import="com.learn.mycart.entities.User"%>
 
+<%
 
+    User users = (User)session.getAttribute("current-user");
+    if(user==null){
+        session.setAttribute("message", "You are not logged in!");
+        response.sendRedirect("index.jsp");
+        return;
+    }
+%>
 <%@ page import="java.sql.*" %>
 
 
@@ -11,10 +20,7 @@ pageEncoding="ISO-8859-1"%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Select Location</title>
 <%@include file="components/common_css_js.jsp" %>
-<style>
 
-
-</style>
 
 </head>
 <body>
@@ -59,6 +65,7 @@ String cname = rs.getString("comp_name");
 }
 %>
 </select>
+<input type="hidden" name="department" value="<%=users.getDepartment()%>">
 </p>
 </div>
 <div class="container text-center">

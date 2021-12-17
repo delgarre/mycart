@@ -20,10 +20,11 @@
         response.sendRedirect("index.jsp");
         return;
     }
-Company companys3 = (Company)session.getAttribute("location");
+Company companys4 = (Company)session.getAttribute("location");
+
 %>
 <%
-String name = companys3.getCompanyName();
+String names = companys4.getCompanyName();
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
 String database = "mycart";
@@ -43,7 +44,7 @@ ResultSet resultSet2 = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="Select I.* from Item I inner Join LocationType LT ON FIND_IN_SET(LT.locationType,I.locationType)Where LT.location ='"+name+"' AND stat=1 ORDER BY itemNumber";
+String sql ="Select I.* from Item I inner Join LocationType LT ON FIND_IN_SET(LT.locationType,I.locationType)Where LT.location ='"+names+"' AND stat=1 ORDER BY pDesc";
 
 resultSet = statement.executeQuery(sql);
 
@@ -76,6 +77,43 @@ function goBack(){
 
 </script>
 
+<script>
+   // Quick and simple export target #table_id into a csv
+function download_table_as_csv(table_id, separator = ',') {
+    // Select rows from table_id
+    var rows = document.querySelectorAll('table#' + table_id + ' tr');
+    // Construct csv
+    var csv = [];
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll('td, th');
+        for (var j = 0; j < cols.length; j++) {
+            // Clean innertext to remove multiple spaces and jumpline (break csv)
+            var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+            // Escape double-quote with double-double-quote (see https://stackoverflow.com/questions/17808511/properly-escape-a-double-quote-in-csv)
+            data = data.replace(/"/g, '""');
+            // Push escaped string
+            row.push('"' + data + '"');
+        }
+        csv.push(row.join(separator));
+    }
+    var csv_string = csv.join('\n');
+    // Download it
+    var filename = 'export_' + table_id + '_' + new Date().toLocaleDateString() + '.csv';
+    var link = document.createElement('a');
+    link.style.display = 'none';
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+//this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
+</script> 
         
 <style>
 .center {
@@ -142,7 +180,7 @@ th {
           
           <div class="panel panel-primary">
             <div>
-                <div class="container-fluid mt-3">
+                <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
                 </div>
             
@@ -151,12 +189,18 @@ th {
         </div>
                 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         <div class="col-md-8">
-            <div div class="table-responsive-sm mt-3">
+            <div class="table-responsive-sm mt-3">
         
                 <div>
                  <button class="btn btn-warning" onclick="goBack()">Go Back</button>
                  <br>
           <input id="myInput" type="text" placeholder="Search..">
+          <br>
+                <a href="#" onclick="download_table_as_csv('my_id_table_to_export');">
+                    <button class="btn btn-info">
+                    Download as CSV
+                    </button>
+                </a>
           
     
                 </div>
@@ -166,7 +210,7 @@ th {
              
                 <div class="img-magnifier-container"> 
    
-            <table class="table table-bordered"  style="width:20px">
+            <table class="table table-bordered" id="my_id_table_to_export"  style="width:20px">
                 <thead>
                 <tr>
                 
@@ -186,7 +230,7 @@ th {
                 <th>MANUFACTURER</th>
             
                 <th>CPT</th>
-                <th>NDC</th>
+           
                 
                 
                 <th>ACTIONS</th>
@@ -210,8 +254,9 @@ th {
                         String manNum = resultSet.getString("manufacturerNum");
                         String cTitle = resultSet.getString("cTitle");
                         String cpt = resultSet.getString("cpt");
-                        String ndc = resultSet.getString("ndc");
+                    
                         String alt = resultSet.getString("alternateItem");
+                        String contactInfo = resultSet.getString("contactInfo");
                     %>
                 
                 <tr>
@@ -232,13 +277,13 @@ th {
                     <td><%=man%></td>
                 
                     <td><%=cpt%></td>
-                    <td><%=ndc%></td>
+                  
                     
 
                     <td>
                         
-                        <a href="dup_item_check.jsp?id=<%= id%>">
-                    <button class="btn btn-outline-success">Add To Cart</button>
+                        <a href="dup_item_check.jsp?id=<%= id%>&contactInfo=<%=contactInfo%>">
+                    <button class="btn btn-outline-success">ADD TO CART</button>
                         </a>
                     
                     </td>
@@ -311,7 +356,9 @@ function topFunction() {
 
 connection.close();
 } catch (Exception e) {
-e.printStackTrace();
+response.sendRedirect("items_dropdown.jsp?id= "+user.getUserId());
+session.setAttribute("message", "Error selecting location for order");
+//e.printStackTrace();
 }
 %>
     </body>

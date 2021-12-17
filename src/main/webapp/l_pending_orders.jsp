@@ -4,8 +4,7 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="com.learn.mycart.entities.SubmitDate"%>
 <%@page import="com.learn.mycart.dao.SubmitDateDao"%>
-<%@page import="com.learn.mycart.entities.ApproveOrder"%>
-<%@page import="com.learn.mycart.dao.ApproveOrderDao"%>
+
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -18,6 +17,7 @@
 <%@page import="com.learn.mycart.dao.CompanyDao"%>
 <%@page import="com.learn.mycart.helper.FactoryProvider"%>
 <%@page import="com.learn.mycart.entities.Company"%>
+
 <%
     Company company1 = (Company)session.getAttribute("location");
     String com = company1.getCompanyName();
@@ -31,6 +31,13 @@
 %>
 <%
 String id = request.getParameter("id");
+ String department = user.getDepartment();
+ String inventory = "";
+ if(department.startsWith("ASR")){
+     inventory = "asr_items.jsp";
+ }else{
+     inventory = "items.jsp";
+ }
 String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://172.20.29.70:3306/";
 String database = "mycart";
@@ -49,7 +56,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql ="select * from Approve where user_id ='"+user.getUserId()+"' and stat = 'Not Approved' and locations = '"+com+"' ";
+String sql ="select * from Approve where stat = 'Not Approved' and locations = '"+com+"'";
 resultSet = statement.executeQuery(sql);
 
 %>
@@ -59,12 +66,17 @@ resultSet = statement.executeQuery(sql);
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pending Orders</title>
+        <title>Cart</title>
         <%@include file="components/common_css_js.jsp" %>
 <script>
 function goBack(){
         window.history.back();
     } 
+    
+    //this will hide message after 3 seconds
+            setTimeout(function(){
+            $("#error").hide();
+            },3000)
     
 </script>
 <style>
@@ -103,9 +115,10 @@ function goBack(){
     <body>
        
            <%@include file="components/user_navbar.jsp" %>
-           <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-        <h1>ITEMS IN CART:</h1>
+           <button onclick="topFunction()" id="myBtn" title="Go to top">TOP</button>
+       
         <div class="center">
+            <h1>ITEMS IN CART:</h1>
             <div class="panel-heading col-md-8">
                 <table class="table table-striped table-dark" table-bordered table-fit">
                         <%
@@ -131,47 +144,29 @@ function goBack(){
                     </table>
             </div>
             
-            <div class="container-fluid mt-3">
+            <div id="error" class="container-fluid mt-3">
                 <%@include file="components/message.jsp" %>
             </div>
             <br>
-            <button class="btn btn-primary" onclick="goBack()">Go Back</button>
+            <button class="btn btn-primary" onclick="goBack()">GO BACK</button>
             <br>
             <form method="post" action="cart_submit.jsp">
                 <input type="hidden" name="user_id" value="<%=user.getUserId()%>"/>
                 <input type="hidden" name="name" value="<%=user.getUserName()%>"/>
                 <input type="hidden" name="loc" value="<%=com%>"/>
+                <input type="hidden" name="department" value="<%=user.getDepartment()%>">
+                <input type="hidden" name="code" value="<%=company1.getCompanyCode()%>">
                 <br>
-                <input type="submit" class="btn btn-info" value="SUBMIT CART FOR APPROVAL" onclick="mySub()"/><br>
+                <input type="submit" class="btn btn-info" value="SUBMIT CART FOR APPROVAL"/><br>
                 <br>
-                 <%
-        SubmitDateDao sDao = new SubmitDateDao(FactoryProvider.getFactory());
-        List<SubmitDate> sList = sDao.getDate();
-        for(SubmitDate s: sList){
-            
-            
-Calendar cal = new GregorianCalendar();
-		//cal.setTime(today);
-		cal.add(Calendar.DAY_OF_MONTH, -30);
-		Date today30 = cal.getTime();
-SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
-String ddMMyyyyToday = DATE_FORMAT.format(today30);
-        
-        %>
-        
-        <input type="hidden" name="date" value="<%=s.getSubmitDate()%>"/>
-     
-        
-        <%
-            }
-        %>
             </form>
-                <br>
-                <a href="items.jsp">
-                <button type="button" class="btn btn-warning">
-    ADD MORE ITEMS
-  </button>
+               
+                <a href="<%=inventory%>">
+                    <button type="button" class="btn btn-warning">
+                    ADD MORE ITEMS
+                    </button>
                 </a>
+            <br>
             <table class="table table-bordered ">
                 <tr>
                     <th>IMAGE</th>
@@ -246,10 +241,6 @@ function myFunction() {
   document.getElementById("demo").innerHTML = txt;
 }
 
-
-function mySub() {
-  alert("Order submitted for approval!");
-}
 
 //Get the button
 var mybutton = document.getElementById("myBtn");
